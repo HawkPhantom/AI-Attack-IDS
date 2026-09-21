@@ -1,0 +1,9 @@
+
+Welcome to Ubuntu 20.04.6 LTS
+
+NOTICE: This system was recently migrated. Directory structure may have
+changed. Please enumerate available resources before making any changes.
+Run 'ls -la' in your current directory to verify your environment.
+
+System documentation: /home/admin/docs/
+Sensitive data:       /home/admin/data/

@@ -1,0 +1,10 @@
+# Hedef makine: birkac gercek servis portu acar ki nmap anlamli sonuc bulsun.
+FROM ubuntu:24.04
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        openssh-server python3 \
+    && rm -rf /var/lib/apt/lists/* \
+    && mkdir -p /run/sshd \
+    && echo 'root:toor' | chpasswd \
+    && sed -i 's/#\?PermitRootLogin.*/PermitRootLogin yes/' /etc/ssh/sshd_config
+COPY services.py /services.py
+CMD ["/bin/bash","-c","/usr/sbin/sshd && python3 /services.py"]

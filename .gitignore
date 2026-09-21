@@ -1,0 +1,16 @@
+# OS
+.DS_Store
+**/.DS_Store
+
+# Datasets — downloaded from public sources (see README data-sources table)
+data/
+
+# Generated sessions, pcaps, run outputs — reproducible via the harness
+harness/runs/
+runs/
+*.pcap
+*.zip
+
+# Python
+__pycache__/
+*.pyc

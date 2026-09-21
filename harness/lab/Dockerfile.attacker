@@ -1,0 +1,13 @@
+# Saldirgan konumu: AI ajan (veya insan replay) buraya SSH ile baglanir,
+# buradan ag kesfi/tarama yapar. Uretilen TUM trafik iceriden tcpdump ile yakalanir.
+FROM ubuntu:24.04
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        openssh-server nmap netcat-openbsd telnet curl iputils-ping \
+        tcpdump iproute2 net-tools dnsutils \
+    && rm -rf /var/lib/apt/lists/* \
+    && mkdir -p /run/sshd /capture \
+    && echo 'root:root' | chpasswd \
+    && sed -i 's/#\?PermitRootLogin.*/PermitRootLogin yes/' /etc/ssh/sshd_config \
+    && sed -i 's/#\?PasswordAuthentication.*/PasswordAuthentication yes/' /etc/ssh/sshd_config
+EXPOSE 22
+CMD ["/usr/sbin/sshd","-D","-e"]
