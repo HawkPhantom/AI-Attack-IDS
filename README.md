@@ -7,8 +7,8 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/origin_axis-F1_0.962-009E73?style=flat-square">
-  <img src="https://img.shields.io/badge/generalizes_to_unseen_LLMs-76--100%25-009E73?style=flat-square">
+  <img src="https://img.shields.io/badge/ensemble_floor-1.00-009E73?style=flat-square">
+  <img src="https://img.shields.io/badge/SVC_only_floor-0.81-8792a3?style=flat-square">
   <img src="https://img.shields.io/badge/models-gemma3_·_gemma4_·_llama3.1_·_qwen3-0072B2?style=flat-square">
   <img src="https://img.shields.io/badge/real_human_data-MUNI_21k_cmds-E69F00?style=flat-square">
 </p>
@@ -19,9 +19,9 @@
   <a href="https://claude.ai/code/artifact/e98339a3-aef4-451d-af14-a5e492c5dea3"><img src="https://img.shields.io/badge/Interactive_report-live_toggle-009E73?style=for-the-badge&logo=html5&logoColor=white" alt="Interactive HTML report"></a>
 </p>
 
-> **Language / Dil** — English opens by default. Click **🇹🇷 Türkçe** below to expand the Turkish version.
+> **Language / Dil.** English opens by default. Click **🇹🇷 Türkçe** below for the Turkish version.
 >
-> **This README** gives the overview, architecture and findings. For the standalone write-up, see **[REPORT.md](REPORT.md)** (bilingual) or the **[interactive HTML report](https://claude.ai/code/artifact/e98339a3-aef4-451d-af14-a5e492c5dea3)** with a live language toggle. &nbsp;·&nbsp; Bu README genel bakış, mimari ve bulguları veriyor; müstakil rapor için **[REPORT.md](REPORT.md)** (iki dilli) ya da canlı dil değiştirmeli **[interaktif HTML rapor](https://claude.ai/code/artifact/e98339a3-aef4-451d-af14-a5e492c5dea3)**.
+> This README gives the overview, architecture and findings. For the standalone write-up see **[REPORT.md](REPORT.md)** (bilingual) or the **[interactive HTML report](https://claude.ai/code/artifact/e98339a3-aef4-451d-af14-a5e492c5dea3)** with a live language toggle. &nbsp;·&nbsp; Bu README genel bakış, mimari ve bulguları verir. Müstakil rapor için **[REPORT.md](REPORT.md)** (iki dilli) ya da canlı dil değiştirmeli **[interaktif HTML rapor](https://claude.ai/code/artifact/e98339a3-aef4-451d-af14-a5e492c5dea3)**.
 
 ---
 
@@ -30,13 +30,15 @@
 
 ### The question
 
-> *"Can we build an IDS that tells whether an incoming attack is driven by an AI agent rather than a human or a script — no matter which model is behind it?"*
+> *"Can we build an IDS that tells whether an incoming attack is driven by an AI agent rather than a human or a script, no matter which model is behind it?"*
 
-This is **not** model attribution — we are not asking *which* LLM this is. We are asking something more basic: is the operator behind the session a language model at all? We answer it by fingerprinting behavior, and the crucial test is whether that fingerprint still holds for models the detector has never seen.
+This is not model attribution. We are not asking *which* LLM this is. We are asking something more basic: is the operator behind the session a language model at all? We answer it by fingerprinting behavior, and the crucial test is whether that fingerprint still holds for models the detector has never seen.
 
-### How it works — architecture
+### How it works: architecture
 
-The pipeline has four stages: we **generate** attacker sessions (AI and human), **capture** each one as both a command sequence and network traffic, run three independent **detectors** over that capture, and combine their outputs on **two axes** — raising an alarm only where *malicious* meets *AI*.
+The pipeline has four stages. We **generate** attacker sessions (AI and human), **capture** each one as both a command sequence and network traffic, run several independent **detectors** over that capture, and combine their outputs on **two axes**, raising an alarm only where *malicious* meets *AI*.
+
+The host-layer detector (Hat H) is itself two complementary models fused into an ensemble: a lexical one (TF-IDF + LinearSVC) and a structural one (a GNN over the command-transition graph).
 
 ```mermaid
 flowchart TB
@@ -44,16 +46,18 @@ flowchart TB
         AI["AI sessions<br/>4 LLMs driven by the harness<br/>gemma3 · gemma4 · llama3.1 · qwen3<br/>+ DTU dataset"]
         HUM["Human sessions<br/>MUNI real trainees (malicious)<br/>NL2Bash / shell history (benign)"]
     end
-    subgraph S2["2 · Capture — one session, two views"]
+    subgraph S2["2 · Capture: one session, two views"]
         CMD["Command sequence<br/>DTU JSON schema"]
         PCAP["Network traffic<br/>pcap"]
     end
     subgraph S3["3 · Detection layers"]
-        H["Hat H — command behavior<br/>TF-IDF (1,2)-gram + LinearSVC"]
-        N["Hat N — scan traffic<br/>flow features + RandomForest"]
-        HS["HASSH — SSH handshake<br/>version string + KEXINIT"]
+        HSVC["Hat H lexical<br/>TF-IDF (1,2)-gram + LinearSVC"]
+        HGNN["Hat H structural<br/>GNN on command-transition graph"]
+        N["Hat N<br/>scan-traffic flow features"]
+        HS["HASSH<br/>SSH handshake fingerprint"]
     end
-    subgraph S4["4 · Two axes → alarm"]
+    subgraph S4["4 · Fuse, then two axes"]
+        ENS["Ensemble<br/>SVC or GNN"]
         ORIG["Origin<br/>AI vs human"]
         INT["Intent<br/>malicious vs benign"]
         AL["ALARM<br/>malicious AND AI"]
@@ -62,11 +66,14 @@ flowchart TB
     AI --> PCAP
     HUM --> CMD
     HUM --> PCAP
-    CMD --> H
+    CMD --> HSVC
+    CMD --> HGNN
     PCAP --> N
     PCAP --> HS
-    H --> ORIG
-    H --> INT
+    HSVC --> ENS
+    HGNN --> ENS
+    ENS --> ORIG
+    HSVC --> INT
     N --> ORIG
     HS --> ORIG
     ORIG --> AL
@@ -82,9 +89,9 @@ flowchart TB
     class AI ai
     class HUM human
     class CMD,PCAP cap
-    class H main
+    class HSVC,HGNN main
     class N,HS det
-    class ORIG,INT axis
+    class ENS,ORIG,INT axis
     class AL alarm
     style S1 fill:#f5faff,stroke:#c5d9e8
     style S2 fill:#f7f8fb,stroke:#d4dae2
@@ -92,25 +99,41 @@ flowchart TB
     style S4 fill:#fdf6f3,stroke:#eccbbf
 ```
 
-**1 · Data sources.** The harness (`harness/driver.py`) drives four local LLMs through an SSH shell one command at a time, inside Docker environments (`harness/envs/`, `harness/lab/`), and records what they do. Human sessions come from public datasets — MUNI for real attackers, NL2Bash for benign admin work — so that both the *origin* label (AI vs human) and the *intent* label (malicious vs benign) come from the data's provenance, never from manual annotation.
+**1 · Data sources.** The harness (`harness/driver.py`) drives four local LLMs through an SSH shell one command at a time, inside Docker environments (`harness/envs/`, `harness/lab/`), and records what they do. Human sessions come from public datasets: MUNI for real attackers, NL2Bash for benign admin work. Both the *origin* label (AI vs human) and the *intent* label (malicious vs benign) therefore come from the data's provenance, never from manual annotation.
 
-**2 · Capture.** Every session is stored two ways: the **command sequence** in the DTU JSON schema (`scripts/adapt_dtu_to_trace.py` normalizes it), and the raw **network traffic** as a pcap (`harness/net/`, `harness/lab/`). This is what lets us compare a host-layer detector against a network-layer one on the *same* sessions.
+**2 · Capture.** Every session is stored two ways: the **command sequence** in the DTU JSON schema (`scripts/adapt_dtu_to_trace.py` normalizes it) and the raw **network traffic** as a pcap (`harness/net/`, `harness/lab/`). That is what lets us compare a host-layer detector against a network-layer one on the *same* sessions.
 
-**3 · Detection layers.** Three independent detectors, at three sensor points: **Hat H** reads the command sequence (a honeypot or host agent would see this), **Hat N** reads the outbound scan traffic (a network tap would see this), and **HASSH** reads the SSH handshake. They are evaluated separately in `scripts/` — `ids_real_human.py`, `ids_model_generalization.py`, `ids_network_recon.py`.
+**3 · Detection layers.** Hat H reads the command sequence and runs two models over it (lexical SVC and structural GNN). Hat N reads the outbound scan traffic. HASSH reads the SSH handshake. Each is evaluated separately in `scripts/`.
 
-**4 · Two axes.** Origin and intent are learned as separate classifiers. The IDS raises an alarm only at their intersection — an autonomous, malicious AI agent — which keeps legitimate automation (benign+AI) and ordinary attackers (malicious+human) out of the alert.
+**4 · Fuse, then two axes.** Hat H's two models are combined into an ensemble, and origin and intent are learned as separate classifiers. The IDS raises an alarm only at their intersection, an autonomous malicious AI agent, which keeps legitimate automation (benign+AI) and ordinary attackers (malicious+human) out of the alert.
 
-### Headline result
+### Headline result: the signature generalizes across model families
 
-In a leave-one-**model**-out test, each AI model is pulled out of training entirely and then presented as an unknown actor. Even on the most unforgiving feature space we could build — 33 shared command names, arguments stripped, session length equalized, network commands removed — an unseen LLM family is still flagged as "AI" between **76 % and 100 %** of the time.
-
-<p align="center"><img src="assets/05_leave_one_model.png" width="620"></p>
+In a leave-one-**model**-out test, each AI model is pulled out of training entirely and then presented as an unknown actor. Even on the most unforgiving feature space we could build (33 shared command names, arguments stripped, session length equalized, network commands removed), an unseen LLM family is still flagged as "AI" between 76 % and 100 % of the time by the lexical detector alone.
 
 The signal is not a "gemma signature." It is an **LLM-agent signature**, shared across `gemma3:4b`, `gemma4`, `llama3.1:8b`, and `qwen3:4b`.
 
-### Why it works — the state-verification reflex
+### Raising the floor: the GNN ensemble
 
-An LLM retains no working memory across steps, so it re-queries its execution context on every turn — working directory (`pwd`), identity (`whoami`, `id`), host and kernel (`uname`, `hostname`). A human retains this state and does not repeat the queries. The difference is large and consistent across every model tested:
+The lexical detector's weak point is its floor: gemma3 held out at 0.81 (0.76 in the strictest setting). It keys on specific command tokens, so an unseen model that uses different tokens is harder to place. To lift that floor we added a **GNN over the command-transition graph** (`scripts/ids_gnn.py`).
+
+Each session becomes a directed graph: node = a distinct binary, edge = an observed transition `cmd_i → cmd_{i+1}`. Critically, node features are **behavioral categories** (state-check, enumerate, network, privilege, process, package) plus degree, frequency and self-loop signals. They deliberately carry no command name, so the GNN reads the reconnaissance *topology* (for example, a state-check hub re-queried every step) rather than the vocabulary, which should transfer to models whose exact commands were never seen.
+
+<p align="center"><img src="assets/08_gnn_ensemble.png" width="700"></p>
+
+| held-out model | SVC (lexical) | GNN (structural) | **Ensemble** | human FP |
+|---|---|---|---|---|
+| gemma3 | 0.81 | 1.00 | **1.00** | 0.03 |
+| gemma4 | 0.92 | 0.83 | **1.00** | 0.06 |
+| llama3.1 | 0.86 | 1.00 | **1.00** | 0.05 |
+| qwen3 | 1.00 | 0.67 | **1.00** | 0.03 |
+| **floor** | **0.81** | 0.67 | **1.00** | 0.04 mean |
+
+The GNN on its own does **not** beat the SVC (its floor is 0.67, worse). The gain is the **ensemble**: the GNN is strong on gemma3 and llama exactly where the SVC is weak, and the SVC is strong on gemma4 and qwen where the GNN is weak. An OR-ensemble lifts the leave-one-model-out floor from **0.81 to 1.00** at only **4 % human false-positive rate**, which is direct evidence that the lexical and structural-behavioral views carry complementary signal. **The SVC-only pipeline is the ablation.**
+
+### Why it works: the state-verification reflex
+
+An LLM retains no working memory across steps, so it re-queries its execution context on every turn: working directory (`pwd`), identity (`whoami`, `id`), host and kernel (`uname`, `hostname`). A human retains this state and does not repeat the queries. The difference is large and consistent across every model tested:
 
 <p align="center"><img src="assets/03_state_verification.png" width="640"></p>
 
@@ -122,11 +145,11 @@ An LLM retains no working memory across steps, so it re-queries its execution co
 | gemma3 | 24.3 % |
 | qwen3 (collapsed) | 86.7 % |
 
-Every LLM sits **25–120× above human**. Notably, gemma4 — newer and more capable — checks *less* than gemma3: the signature fades as models mature, but it does not disappear.
+Every LLM sits 25 to 120 times above human. Notably, gemma4 (newer and more capable) checks *less* than gemma3: the signature fades as models mature, but it does not disappear.
 
 <p align="center"><img src="assets/04_command_freq.png" width="680"></p>
 
-The same commands, opposite priorities: the AI repeatedly verifies state, while the human performs enumeration and lateral movement — `ls` 44 %, `ssh` 17 %, `ping`.
+The same commands, opposite priorities: the AI repeatedly verifies state, while the human performs enumeration and lateral movement (`ls` 44 %, `ssh` 17 %, `ping`).
 
 ### The problem space is 2×2
 
@@ -137,14 +160,14 @@ The detector treats intent and origin as separate questions, and raises an alarm
 | **Malicious** | 🎯 autonomous AI attacker | classic attacker / pentester |
 | **Benign** | legitimate automation (Ansible, CI, DevOps agent) | everyday admin work |
 
-- **malicious + AI** — our harness (`gemma3 / gemma4 / llama / qwen`) + the DTU dataset
-- **malicious + human** — the MUNI dataset (real cyber-range trainees, `nmap` / `metasploit`)
-- **benign + AI** — the same harness, driven by maintenance prompts
-- **benign + human** — NL2Bash / shell-history corpora
+- **malicious + AI**: our harness (`gemma3 / gemma4 / llama / qwen`) plus the DTU dataset
+- **malicious + human**: the MUNI dataset (real cyber-range trainees, `nmap` / `metasploit`)
+- **benign + AI**: the same harness, driven by maintenance prompts
+- **benign + human**: NL2Bash / shell-history corpora
 
 ### The origin axis under progressive feature restriction
 
-Using **real** human sessions — MUNI: 267 sessions, 21,089 commands, 275 trainees — we progressively restrict the feature space. After removing arguments, environment-specific tokens, session-length differences and multi-host commands, the residual command-selection signal still yields macro F1 0.962. Truncated to the first 10 commands it reaches 0.869 — detection before the attack completes.
+Using **real** human sessions (MUNI: 267 sessions, 21,089 commands, 275 trainees), we progressively restrict the feature space. After removing arguments, environment-specific tokens, session-length differences and multi-host commands, the residual command-selection signal still yields macro F1 0.962. Truncated to the first 10 commands it reaches 0.869, detection before the attack completes.
 
 <p align="center"><img src="assets/02_origin_restriction.png" width="700"></p>
 
@@ -157,27 +180,27 @@ Using **real** human sessions — MUNI: 267 sessions, 21,089 commands, 275 train
 | first 10 commands (early detection) | 0.869 |
 | label permutation (control) | 0.452 ✓ |
 
-Every bar uses leave-one-group-out (group = scenario / prompt), which keeps the classifier from simply memorizing a scenario. The permutation control sitting at chance confirms there is no hidden leakage.
+Every row uses leave-one-group-out (group = scenario / prompt), which prevents the classifier from memorizing a scenario. The permutation control at chance level confirms there is no hidden leakage.
 
 ### Three detection layers, three sensor points
 
-We implemented **both** a host/session-layer detector (**Hat H**) and a network-layer detector (**Hat N**), and evaluated them independently.
+We implemented both a host/session-layer detector (Hat H) and a network-layer detector (Hat N), and evaluated them independently.
 
 <p align="center"><img src="assets/07_layer_comparison.png" width="640"></p>
 
-**Hat H — command behavior (the main line).** F1 **0.962** against real humans, model-independent, resilient. Sensor point: an SSH honeypot, a bastion, or a host agent (auditd, eBPF). This is where the signal lives.
+**Hat H, command behavior (the main line).** F1 0.962 against real humans, model-independent, resilient. Its ensemble form (SVC + GNN) drives the leave-one-model-out floor to 1.00. Sensor point: an SSH honeypot, a bastion, or a host agent (auditd, eBPF). This is where the signal lives.
 
-**Hat N — outbound scan traffic (complementary).** The usable network signal is not the timing of the encrypted SSH session but the traffic the agent generates during reconnaissance — port-scan spread, protocol mix, SYN inter-arrival timing (BoT-IoT / CIC-IoT–style flow features). It reaches F1 **0.785**, but the separation is capability-dependent:
+**Hat N, outbound scan traffic (complementary).** The usable network signal is not the timing of the encrypted SSH session but the traffic the agent generates during reconnaissance: port-scan spread, protocol mix, SYN inter-arrival timing (BoT-IoT / CIC-IoT style flow features). It reaches F1 0.785, but the separation is capability-dependent.
 
 <p align="center"><img src="assets/06_network_features.png" width="620"></p>
 
-During host discovery the AI emits a disproportionate share of ICMP echo requests (`icmp_frac` 0.33 vs 0.01); the human directs more SYN probes at closed ports (higher `syn` / `rst` fractions). But a capable agent (gemma4 emitted 262K SYN at 6,977/s) produces scan traffic indistinguishable from a human's, while a weak one produces almost none — so Hat N reads capability as much as agency.
+During host discovery the AI emits a disproportionate share of ICMP echo requests (`icmp_frac` 0.33 vs 0.01); the human directs more SYN probes at closed ports (higher `syn` / `rst` fractions). But a capable agent (gemma4 emitted 262K SYN at 6,977/s) produces scan traffic indistinguishable from a human's, while a weak one produces almost none, so Hat N reads capability as much as agency.
 
-**HASSH handshake — evasion-resistant.** The SSH client version string and KEXINIT algorithm list are transmitted in cleartext, prior to key exchange. `paramiko` (9 kex algorithms) and a genuine `OpenSSH` client (14) are cleanly separable — and this separation is invariant under the keystroke-timing mimicry that defeats every payload-derived feature. Limitation: it identifies a *programmatic client* — which also covers Ansible and CI — rather than agency itself.
+**HASSH handshake, evasion-resistant.** The SSH client version string and KEXINIT algorithm list are transmitted in cleartext, prior to key exchange. `paramiko` (9 kex algorithms) and a genuine `OpenSSH` client (14) are cleanly separable, and this separation is invariant under the keystroke-timing mimicry that defeats every payload-derived feature. Limitation: it identifies a *programmatic client*, which also covers Ansible and CI, rather than agency itself.
 
 ### Reproducing DTU's deception effect
 
-The DTU "Honey for the Agent" paper reports that a deception environment increases `ls` usage by 20.8 percentage points. Our initial reproduction produced 0.4. Two causes accounted for the gap: the driver did not pass the SSH banner to the model, and our triggering environments were plain Ubuntu whereas DTU's are Cowrie-based. After rebuilding on Cowrie — with bait directories injected into `fs.pickle` — the effect reached 13.9 percentage points, the same order of magnitude as the original.
+The DTU "Honey for the Agent" paper reports that a deception environment increases `ls` usage by 20.8 percentage points. Our initial reproduction produced 0.4. Two causes accounted for the gap: the driver did not pass the SSH banner to the model, and our triggering environments were plain Ubuntu whereas DTU's are Cowrie-based. After rebuilding on Cowrie, with bait directories injected into `fs.pickle`, the effect reached 13.9 percentage points, the same order of magnitude as the original.
 
 <p align="center"><img src="assets/01_deception_effect.png" width="640"></p>
 
@@ -186,9 +209,10 @@ The driver of the effect is environment realism, not the prompt.
 ### Honest limitations
 
 - **The sample is small.** 43 usable AI sessions once collapses are filtered, against 267 human. Treat the numbers as indicative, not settled.
-- **qwen3:4b can't be trusted here.** Roughly 75 % of its sessions dissolve into reasoning-prose instead of commands, even with `think:false` — its inflated 86.7 % state-verification is just a symptom of that looping.
+- **GNN alone underperforms the SVC.** Its value is only in the ensemble; on this data scale the structural view does not stand on its own, and the reported floor of 1.00 is the OR-ensemble, not the GNN.
+- **qwen3:4b can't be trusted here.** Roughly 75 % of its sessions dissolve into reasoning-prose instead of commands, even with `think:false`. Its inflated 86.7 % state-verification is a looping artifact.
 - **The intent axis is thinner.** Only origin is fully validated on real data; malicious-vs-benign still rests on synthetic benign-human sessions.
-- **Some layers are low-cost to evade.** Keystroke-timing mimicry neutralizes Hat N's payload-derived features in roughly 20 lines of code. The evasion-resistant layers are Hat H — command *selection* — and HASSH.
+- **Some layers are low-cost to evade.** Keystroke-timing mimicry neutralizes Hat N's payload-derived features in roughly 20 lines of code. The evasion-resistant layers are Hat H (command *selection*) and HASSH.
 - **One environment per side.** AI ran in empty containers, humans in a CTF range; despite the common-binary controls, a residual environment confound remains.
 
 ### Data sources
@@ -204,16 +228,17 @@ The driver of the effect is environment realism, not the prompt.
 
 ```
 harness/
-  driver.py              LLM → SSH shell loop, DTU-schema output
-  run_phase1.py          model × env × prompt grid runner
+  driver.py              LLM to SSH shell loop, DTU-schema output
+  run_phase1.py          model x env x prompt grid runner
   envs/                  Docker SSH environments + Cowrie deception builder
   lab/                   multi-host recon lab (attacker + targets) + traffic capture
   net/                   Hat N: pcap capture, flow features, human keystroke replay
 scripts/
-  adapt_dtu_to_trace.py       DTU nested-list → TRACE session schema
-  ids_2axis.py                intent × origin baseline
+  adapt_dtu_to_trace.py       DTU nested-list to TRACE session schema
+  ids_2axis.py                intent x origin baseline
   ids_real_human.py           origin axis vs real MUNI human data
-  ids_model_generalization.py leave-one-model-out (the headline result)
+  ids_model_generalization.py leave-one-model-out, SVC baseline
+  ids_gnn.py                  GNN + ensemble, the floor-lifting result
   ids_network_recon.py        Hat N flow-feature analysis
 data/                    downloaded datasets (DTU, MUNI, NL2Bash)
 assets/                  the charts used in this README
@@ -225,7 +250,8 @@ report.html              bilingual HTML report (live language toggle)
 ```bash
 python3 scripts/adapt_dtu_to_trace.py          # ingest DTU data
 python3 scripts/ids_real_human.py              # origin axis, real human
-python3 scripts/ids_model_generalization.py    # leave-one-model-out
+python3 scripts/ids_model_generalization.py    # leave-one-model-out, SVC baseline (ablation)
+python3 scripts/ids_gnn.py                      # GNN + ensemble, floor to 1.00
 python3 scripts/ids_network_recon.py           # network layer
 ```
 
@@ -238,13 +264,15 @@ python3 scripts/ids_network_recon.py           # network layer
 
 ### Soru
 
-> *"Sisteme gelen bir saldırının — arkasındaki model ne olursa olsun — bir insan ya da script yerine bir AI ajanı tarafından sürüldüğünü ayırt eden bir IDS kurabilir miyiz?"*
+> *"Sisteme gelen bir saldırının, arkasındaki model ne olursa olsun, bir insan ya da script yerine bir AI ajanı tarafından sürüldüğünü ayırt eden bir IDS kurabilir miyiz?"*
 
-Bu, model atıfı **değil** — *hangi* LLM olduğunu sormuyoruz. Daha temel bir şey soruyoruz: oturumun ardındaki operatör aslında bir dil modeli mi? Yanıtı davranışı parmak izleyerek veriyoruz; asıl sınav ise bu parmak izinin, dedektörün hiç görmediği modeller için de geçerli kalıp kalmadığı.
+Bu, model atıfı değil. *Hangi* LLM olduğunu sormuyoruz. Daha temel bir şey soruyoruz: oturumun ardındaki operatör aslında bir dil modeli mi? Yanıtı davranışı parmak izleyerek veriyoruz; asıl sınav ise bu parmak izinin, dedektörün hiç görmediği modeller için de geçerli kalıp kalmadığı.
 
-### Nasıl çalışır — mimari
+### Nasıl çalışır: mimari
 
-Boru hattı dört aşamalı: saldırgan oturumlarını (AI ve insan) **üretiyoruz**, her birini hem komut dizisi hem network trafiği olarak **yakalıyoruz**, bu yakalama üzerinde üç bağımsız **dedektör** çalıştırıyoruz ve çıktılarını **iki eksende** birleştiriyoruz — alarmı yalnızca *zararlı* ile *AI*'nin kesiştiği yerde veriyoruz.
+Boru hattı dört aşamalı. Saldırgan oturumlarını (AI ve insan) **üretiyoruz**, her birini hem komut dizisi hem network trafiği olarak **yakalıyoruz**, bu yakalama üzerinde birkaç bağımsız **dedektör** çalıştırıyoruz ve çıktılarını **iki eksende** birleştiriyoruz; alarmı yalnızca *zararlı* ile *AI*'nin kesiştiği yerde veriyoruz.
+
+Host-katmanı dedektörü (Hat H) kendisi bir topluluk: bir sözcüksel model (TF-IDF + LinearSVC) ve bir yapısal model (komut-geçiş grafı üzerinde bir GNN) birleştirilir.
 
 ```mermaid
 flowchart TB
@@ -252,16 +280,18 @@ flowchart TB
         AI["AI oturumları<br/>harness ile sürülen 4 LLM<br/>gemma3 · gemma4 · llama3.1 · qwen3<br/>+ DTU veri seti"]
         HUM["İnsan oturumları<br/>MUNI gerçek katılımcılar (zararlı)<br/>NL2Bash / shell geçmişi (zararsız)"]
     end
-    subgraph S2["2 · Yakalama — tek oturum, iki görünüm"]
+    subgraph S2["2 · Yakalama: tek oturum, iki görünüm"]
         CMD["Komut dizisi<br/>DTU JSON şeması"]
         PCAP["Network trafiği<br/>pcap"]
     end
     subgraph S3["3 · Tespit katmanları"]
-        H["Hat H — komut davranışı<br/>TF-IDF (1,2)-gram + LinearSVC"]
-        N["Hat N — tarama trafiği<br/>akış özellikleri + RandomForest"]
-        HS["HASSH — SSH el sıkışması<br/>sürüm dizesi + KEXINIT"]
+        HSVC["Hat H sözcüksel<br/>TF-IDF (1,2)-gram + LinearSVC"]
+        HGNN["Hat H yapısal<br/>komut-geçiş grafı üzerinde GNN"]
+        N["Hat N<br/>tarama-trafiği akış özellikleri"]
+        HS["HASSH<br/>SSH el sıkışma parmak izi"]
     end
-    subgraph S4["4 · İki eksen → alarm"]
+    subgraph S4["4 · Birleştir, sonra iki eksen"]
+        ENS["Topluluk<br/>SVC veya GNN"]
         ORIG["Köken<br/>AI vs insan"]
         INT["Niyet<br/>zararlı vs zararsız"]
         AL["ALARM<br/>zararlı VE AI"]
@@ -270,11 +300,14 @@ flowchart TB
     AI --> PCAP
     HUM --> CMD
     HUM --> PCAP
-    CMD --> H
+    CMD --> HSVC
+    CMD --> HGNN
     PCAP --> N
     PCAP --> HS
-    H --> ORIG
-    H --> INT
+    HSVC --> ENS
+    HGNN --> ENS
+    ENS --> ORIG
+    HSVC --> INT
     N --> ORIG
     HS --> ORIG
     ORIG --> AL
@@ -290,9 +323,9 @@ flowchart TB
     class AI ai
     class HUM human
     class CMD,PCAP cap
-    class H main
+    class HSVC,HGNN main
     class N,HS det
-    class ORIG,INT axis
+    class ENS,ORIG,INT axis
     class AL alarm
     style S1 fill:#f5faff,stroke:#c5d9e8
     style S2 fill:#f7f8fb,stroke:#d4dae2
@@ -300,25 +333,41 @@ flowchart TB
     style S4 fill:#fdf6f3,stroke:#eccbbf
 ```
 
-**1 · Veri kaynakları.** Harness (`harness/driver.py`) yerel dört LLM'i, Docker ortamları (`harness/envs/`, `harness/lab/`) içinde bir SSH kabuğu üzerinden adım adım tek komutla sürüyor ve ne yaptıklarını kaydediyor. İnsan oturumları halka açık veri setlerinden geliyor — gerçek saldırganlar için MUNI, zararsız yönetici işi için NL2Bash — böylece hem *köken* etiketi (AI vs insan) hem de *niyet* etiketi (zararlı vs zararsız) manuel işaretlemeden değil, verinin kökeninden geliyor.
+**1 · Veri kaynakları.** Harness (`harness/driver.py`) yerel dört LLM'i, Docker ortamları (`harness/envs/`, `harness/lab/`) içinde bir SSH kabuğu üzerinden adım adım tek komutla sürüyor ve ne yaptıklarını kaydediyor. İnsan oturumları halka açık veri setlerinden geliyor: gerçek saldırganlar için MUNI, zararsız yönetici işi için NL2Bash. Böylece hem *köken* etiketi (AI vs insan) hem de *niyet* etiketi (zararlı vs zararsız) manuel işaretlemeden değil, verinin kökeninden geliyor.
 
 **2 · Yakalama.** Her oturum iki biçimde saklanıyor: **komut dizisi**, DTU JSON şemasında (`scripts/adapt_dtu_to_trace.py` normalize ediyor) ve ham **network trafiği**, pcap olarak (`harness/net/`, `harness/lab/`). Host-katmanı bir dedektörü ağ-katmanı bir dedektörle *aynı* oturumlar üzerinde kıyaslamayı mümkün kılan da bu.
 
-**3 · Tespit katmanları.** Üç sensör noktasında üç bağımsız dedektör: **Hat H** komut dizisini okuyor (bir honeypot ya da host ajanının göreceği şey), **Hat N** dışa giden tarama trafiğini okuyor (bir network tap'ın göreceği şey) ve **HASSH** SSH el sıkışmasını okuyor. Her biri `scripts/` altında ayrı değerlendiriliyor — `ids_real_human.py`, `ids_model_generalization.py`, `ids_network_recon.py`.
+**3 · Tespit katmanları.** Hat H komut dizisini okuyor ve üzerinde iki model çalıştırıyor (sözcüksel SVC ve yapısal GNN). Hat N dışa giden tarama trafiğini okuyor. HASSH SSH el sıkışmasını okuyor. Her biri `scripts/` altında ayrı değerlendiriliyor.
 
-**4 · İki eksen.** Köken ve niyet ayrı sınıflandırıcılar olarak öğreniliyor. IDS alarmı yalnızca kesişimlerinde veriyor — otonom, zararlı bir AI ajanı — böylece meşru otomasyon (zararsız+AI) ve sıradan saldırganlar (zararlı+insan) alarmın dışında kalıyor.
+**4 · Birleştir, sonra iki eksen.** Hat H'nin iki modeli bir topluluğa birleştiriliyor; köken ve niyet ayrı sınıflandırıcılar olarak öğreniliyor. IDS alarmı yalnızca kesişimlerinde veriyor, otonom zararlı bir AI ajanı, böylece meşru otomasyon (zararsız+AI) ve sıradan saldırganlar (zararlı+insan) alarmın dışında kalıyor.
 
-### Ana bulgu
+### Ana bulgu: imza model aileleri arasında genelleşiyor
 
-Leave-one-**model**-out testinde her AI modeli eğitimden tamamen çekilir, ardından bilinmeyen bir aktör olarak sunulur. Kurabildiğimiz en tavizsiz özellik uzayında bile — 33 ortak komut adı, argümanlar atılmış, oturum uzunluğu eşitlenmiş, ağ komutları çıkarılmış — görülmemiş bir LLM ailesi yine de **%76 ile %100** arasında "AI" olarak işaretleniyor.
-
-<p align="center"><img src="assets/05_leave_one_model.png" width="620"></p>
+Leave-one-**model**-out testinde her AI modeli eğitimden tamamen çekilir, ardından bilinmeyen bir aktör olarak sunulur. Kurabildiğimiz en tavizsiz özellik uzayında bile (33 ortak komut adı, argümanlar atılmış, oturum uzunluğu eşitlenmiş, ağ komutları çıkarılmış), görülmemiş bir LLM ailesi sözcüksel dedektör tek başına tarafından yine de %76 ile %100 arasında "AI" olarak işaretleniyor.
 
 Sinyal bir "gemma imzası" değil. `gemma3:4b`, `gemma4`, `llama3.1:8b` ve `qwen3:4b` arasında paylaşılan bir **LLM-ajan imzası**.
 
-### Neden işe yarıyor — durum-yoklama refleksi
+### Tabanı yükseltmek: GNN topluluğu
 
-Bir LLM adımlar arasında çalışma belleği tutmaz; bu nedenle yürütme bağlamını her turda yeniden sorgular — çalışma dizini (`pwd`), kimlik (`whoami`, `id`), host ve çekirdek (`uname`, `hostname`). İnsan bu durumu belleğinde tuttuğu için sorguları tekrarlamaz. Fark büyük ve test edilen her modelde tutarlı:
+Sözcüksel dedektörün zayıf noktası tabanı: gemma3 dışarıda bırakıldığında 0.81 (en katı ayarda 0.76). Spesifik komut token'larına dayandığı için, farklı token kullanan görülmemiş bir modeli yerleştirmek zorlaşıyor. Bu tabanı yükseltmek için **komut-geçiş grafı üzerinde bir GNN** ekledik (`scripts/ids_gnn.py`).
+
+Her oturum yönlü bir grafa dönüşüyor: düğüm = benzersiz bir binary, kenar = gözlenen bir geçiş `cmd_i → cmd_{i+1}`. Kritik nokta: düğüm özellikleri **davranışsal kategoriler** (durum-yoklama, keşif, ağ, yetki, süreç, paket) artı derece, frekans ve öz-döngü sinyalleri. Bilinçli olarak hiç komut adı taşımıyorlar; böylece GNN sözcük dağarcığını değil, keşif *topolojisini* (örneğin her adımda yeniden sorgulanan bir durum-yoklama merkezi) okuyor, ki bu da tam komutları hiç görülmemiş modellere aktarılabilmeli.
+
+<p align="center"><img src="assets/08_gnn_ensemble.png" width="700"></p>
+
+| dışarıda bırakılan model | SVC (sözcüksel) | GNN (yapısal) | **Topluluk** | insan FP |
+|---|---|---|---|---|
+| gemma3 | 0.81 | 1.00 | **1.00** | 0.03 |
+| gemma4 | 0.92 | 0.83 | **1.00** | 0.06 |
+| llama3.1 | 0.86 | 1.00 | **1.00** | 0.05 |
+| qwen3 | 1.00 | 0.67 | **1.00** | 0.03 |
+| **taban** | **0.81** | 0.67 | **1.00** | ort. 0.04 |
+
+GNN tek başına SVC'yi **geçmiyor** (tabanı 0.67, daha kötü). Kazanç **toplulukta**: GNN, SVC'nin zayıf olduğu gemma3 ve llama'da güçlü; SVC ise GNN'in zayıf olduğu gemma4 ve qwen'de güçlü. Bir OR-topluluğu leave-one-model-out tabanını **0.81'den 1.00'a** çıkarıyor, yalnızca **%4 insan yanlış-pozitif** oranıyla; bu da sözcüksel ve yapısal-davranışsal görünümlerin tamamlayıcı sinyal taşıdığının doğrudan kanıtı. **SVC-yalnız hattı ablation'dır.**
+
+### Neden işe yarıyor: durum-yoklama refleksi
+
+Bir LLM adımlar arasında çalışma belleği tutmaz; bu nedenle yürütme bağlamını her turda yeniden sorgular: çalışma dizini (`pwd`), kimlik (`whoami`, `id`), host ve çekirdek (`uname`, `hostname`). İnsan bu durumu belleğinde tuttuğu için sorguları tekrarlamaz. Fark büyük ve test edilen her modelde tutarlı:
 
 <p align="center"><img src="assets/03_state_verification.png" width="640"></p>
 
@@ -330,11 +379,11 @@ Bir LLM adımlar arasında çalışma belleği tutmaz; bu nedenle yürütme bağ
 | gemma3 | %24.3 |
 | qwen3 (çökmüş) | %86.7 |
 
-Her LLM insandan **25–120 kat** yüksek. Dikkat çekici biçimde gemma4 — daha yeni ve yetenekli — gemma3'ten *daha az* yokluyor: imza modeller olgunlaştıkça soluyor, ama silinmiyor.
+Her LLM insandan 25 ila 120 kat yüksek. Dikkat çekici biçimde gemma4 (daha yeni ve yetenekli) gemma3'ten *daha az* yokluyor: imza modeller olgunlaştıkça soluyor, ama silinmiyor.
 
 <p align="center"><img src="assets/04_command_freq.png" width="680"></p>
 
-Aynı komutlar, zıt öncelikler: AI durumu tekrar tekrar doğrularken, insan keşif (enumeration) ve yanal hareket (lateral movement) yapıyor — `ls` %44, `ssh` %17, `ping`.
+Aynı komutlar, zıt öncelikler: AI durumu tekrar tekrar doğrularken, insan keşif (enumeration) ve yanal hareket (lateral movement) yapıyor (`ls` %44, `ssh` %17, `ping`).
 
 ### Problem uzayı 2×2
 
@@ -345,14 +394,14 @@ Dedektör niyet ve kökeni ayrı sorular olarak ele alır ve yalnızca ikisinin 
 | **Zararlı** | 🎯 otonom AI saldırgan | klasik saldırgan / pentester |
 | **Zararsız** | meşru otomasyon (Ansible, CI, DevOps ajanı) | gündelik yönetici işi |
 
-- **zararlı + AI** — kendi harness'imiz (`gemma3 / gemma4 / llama / qwen`) + DTU veri seti
-- **zararlı + insan** — MUNI veri seti (gerçek cyber-range katılımcıları, `nmap` / `metasploit`)
-- **zararsız + AI** — aynı harness, bakım promptlarıyla sürülüyor
-- **zararsız + insan** — NL2Bash / shell-geçmişi korpusları
+- **zararlı + AI**: kendi harness'imiz (`gemma3 / gemma4 / llama / qwen`) artı DTU veri seti
+- **zararlı + insan**: MUNI veri seti (gerçek cyber-range katılımcıları, `nmap` / `metasploit`)
+- **zararsız + AI**: aynı harness, bakım promptlarıyla sürülüyor
+- **zararsız + insan**: NL2Bash / shell-geçmişi korpusları
 
 ### Kademeli özellik kısıtlaması altında köken ekseni
 
-Gerçek insan oturumlarıyla — MUNI: 267 oturum, 21.089 komut, 275 katılımcı — özellik uzayını kademeli olarak kısıtlıyoruz. Argümanlar, ortama özgü token'lar, oturum-uzunluğu farkları ve çok-makineli komutlar çıkarıldıktan sonra, geriye kalan komut-seçim sinyali hâlâ makro F1 0.962 veriyor. İlk 10 komuta kırpıldığında 0.869'a ulaşıyor — saldırı tamamlanmadan tespit.
+Gerçek insan oturumlarıyla (MUNI: 267 oturum, 21.089 komut, 275 katılımcı) özellik uzayını kademeli olarak kısıtlıyoruz. Argümanlar, ortama özgü token'lar, oturum-uzunluğu farkları ve çok-makineli komutlar çıkarıldıktan sonra, geriye kalan komut-seçim sinyali hâlâ makro F1 0.962 veriyor. İlk 10 komuta kırpıldığında 0.869'a ulaşıyor, saldırı tamamlanmadan tespit.
 
 <p align="center"><img src="assets/02_origin_restriction.png" width="700"></p>
 
@@ -365,27 +414,27 @@ Gerçek insan oturumlarıyla — MUNI: 267 oturum, 21.089 komut, 275 katılımc�
 | ilk 10 komut (erken tespit) | 0.869 |
 | etiket permütasyonu (kontrol) | 0.452 ✓ |
 
-Her çubuk leave-one-group-out kullanıyor (grup = senaryo / prompt); bu, sınıflandırıcının bir senaryoyu ezberlemesini engelliyor. Şans düzeyinde duran permütasyon kontrolü gizli bir sızıntı olmadığını doğruluyor.
+Her satır leave-one-group-out kullanıyor (grup = senaryo / prompt); bu, sınıflandırıcının bir senaryoyu ezberlemesini engelliyor. Şans düzeyindeki permütasyon kontrolü gizli bir sızıntı olmadığını doğruluyor.
 
 ### Üç tespit katmanı, üç sensör noktası
 
-**Hem** bir host/oturum-katmanı dedektörü (**Hat H**) **hem de** bir ağ-katmanı dedektörü (**Hat N**) uyguladık ve bağımsız olarak değerlendirdik.
+**Hem** bir host/oturum-katmanı dedektörü (Hat H) **hem de** bir ağ-katmanı dedektörü (Hat N) uyguladık ve bağımsız olarak değerlendirdik.
 
 <p align="center"><img src="assets/07_layer_comparison.png" width="640"></p>
 
-**Hat H — komut davranışı (ana hat).** Gerçek insana karşı F1 **0.962**, modelden bağımsız, dayanıklı. Sensör noktası: bir SSH honeypot, bir bastion ya da bir host ajanı (auditd, eBPF). Sinyalin yaşadığı yer burası.
+**Hat H, komut davranışı (ana hat).** Gerçek insana karşı F1 0.962, modelden bağımsız, dayanıklı. Topluluk hali (SVC + GNN) leave-one-model-out tabanını 1.00'a çıkarıyor. Sensör noktası: bir SSH honeypot, bir bastion ya da bir host ajanı (auditd, eBPF). Sinyalin yaşadığı yer burası.
 
-**Hat N — dışa giden tarama trafiği (tamamlayıcı).** Kullanılabilir ağ sinyali, şifreli SSH oturumunun zamanlaması değil, ajanın keşif (reconnaissance) sırasında ürettiği trafik — port-tarama yayılımı, protokol karışımı, SYN paketleri arası zamanlama (BoT-IoT / CIC-IoT tarzı akış özellikleri). F1 **0.785**'e ulaşıyor, ancak ayrım yeteneğe bağımlı:
+**Hat N, dışa giden tarama trafiği (tamamlayıcı).** Kullanılabilir ağ sinyali, şifreli SSH oturumunun zamanlaması değil, ajanın keşif (reconnaissance) sırasında ürettiği trafik: port-tarama yayılımı, protokol karışımı, SYN paketleri arası zamanlama (BoT-IoT / CIC-IoT tarzı akış özellikleri). F1 0.785'e ulaşıyor, ancak ayrım yeteneğe bağımlı.
 
 <p align="center"><img src="assets/06_network_features.png" width="620"></p>
 
-Host keşfi sırasında AI orantısız oranda ICMP echo request üretiyor (`icmp_frac` 0.33 vs 0.01); insan ise kapalı portlara daha fazla SYN probu yönlendiriyor (daha yüksek `syn` / `rst` oranları). Ama yetenekli bir ajan (gemma4 saniyede 6.977 hızla 262K SYN üretti) insanınkinden ayırt edilemeyen tarama trafiği üretiyor, zayıf olansa neredeyse hiç üretmiyor — yani Hat N ajans kadar yeteneği de okuyor.
+Host keşfi sırasında AI orantısız oranda ICMP echo request üretiyor (`icmp_frac` 0.33 vs 0.01); insan ise kapalı portlara daha fazla SYN probu yönlendiriyor (daha yüksek `syn` / `rst` oranları). Ama yetenekli bir ajan (gemma4 saniyede 6.977 hızla 262K SYN üretti) insanınkinden ayırt edilemeyen tarama trafiği üretiyor, zayıf olansa neredeyse hiç üretmiyor, yani Hat N ajans kadar yeteneği de okuyor.
 
-**HASSH el sıkışması — kaçınmaya dirençli.** SSH istemci sürüm dizesi ve KEXINIT algoritma listesi, anahtar değişiminden önce açık metin olarak iletilir. `paramiko` (9 kex algoritması) ile gerçek bir `OpenSSH` istemcisi (14) net biçimde ayrılabiliyor — ve bu ayrım, her payload-türevli özelliği yenen keystroke-zamanlama taklidi altında değişmez. Sınır: ajansın kendisini değil, bir *programatik istemciyi* tanımlıyor — buna Ansible ve CI de dâhil.
+**HASSH el sıkışması, kaçınmaya dirençli.** SSH istemci sürüm dizesi ve KEXINIT algoritma listesi, anahtar değişiminden önce açık metin olarak iletilir. `paramiko` (9 kex algoritması) ile gerçek bir `OpenSSH` istemcisi (14) net biçimde ayrılabiliyor ve bu ayrım, her payload-türevli özelliği yenen keystroke-zamanlama taklidi altında değişmez. Sınır: ajansın kendisini değil, bir *programatik istemciyi* tanımlıyor, buna Ansible ve CI de dâhil.
 
 ### DTU'nun aldatma etkisini yeniden üretmek
 
-DTU'nun "Honey for the Agent" makalesi, bir aldatma ortamının `ls` kullanımını 20,8 puan artırdığını bildiriyor. İlk reprodüksiyonumuz 0,4 üretti. Farkın iki nedeni vardı: driver, SSH banner'ını modele iletmiyordu ve tetikleyici ortamlarımız düz Ubuntu'yken DTU'nunkiler Cowrie tabanlıydı. Yem dizinleri `fs.pickle`'a enjekte edilerek Cowrie üzerine yeniden kurulduğunda etki 13,9 puana ulaştı — orijinaliyle aynı büyüklük mertebesi.
+DTU'nun "Honey for the Agent" makalesi, bir aldatma ortamının `ls` kullanımını 20,8 puan artırdığını bildiriyor. İlk reprodüksiyonumuz 0,4 üretti. Farkın iki nedeni vardı: driver, SSH banner'ını modele iletmiyordu ve tetikleyici ortamlarımız düz Ubuntu'yken DTU'nunkiler Cowrie tabanlıydı. Yem dizinleri `fs.pickle`'a enjekte edilerek Cowrie üzerine yeniden kurulduğunda etki 13,9 puana ulaştı, orijinaliyle aynı büyüklük mertebesi.
 
 <p align="center"><img src="assets/01_deception_effect.png" width="640"></p>
 
@@ -394,9 +443,10 @@ Etkinin sürücüsü prompt değil, ortam gerçekçiliği.
 ### Dürüst sınırlamalar
 
 - **Örneklem küçük.** Çökmeler ayıklandıktan sonra 43 kullanılabilir AI oturumu, 267 insana karşı. Rakamları kesin değil, gösterge niteliğinde okuyun.
-- **qwen3:4b burada güvenilmez.** Oturumlarının kabaca %75'i, `think:false` ile bile komut yerine reasoning-metnine dağılıyor — şişmiş %86,7'lik durum-yoklaması yalnızca bu döngünün bir belirtisi.
+- **GNN tek başına SVC'nin altında.** Değeri yalnızca toplulukta; bu veri ölçeğinde yapısal görünüm tek başına ayakta duramıyor ve raporlanan 1.00 tabanı GNN değil, OR-topluluğudur.
+- **qwen3:4b burada güvenilmez.** Oturumlarının kabaca %75'i, `think:false` ile bile komut yerine reasoning-metnine dağılıyor. Şişmiş %86,7'lik durum-yoklaması bir döngü artefaktı.
 - **Niyet ekseni daha ince.** Gerçek veriyle tam doğrulanan yalnızca köken; zararlı-zararsız ayrımı hâlâ sentetik zararsız-insan oturumlarına dayanıyor.
-- **Bazı katmanlardan kaçmak düşük maliyetli.** Keystroke-zamanlama taklidi, Hat N'in payload-türevli özelliklerini yaklaşık 20 satır kodla etkisizleştiriyor. Kaçınmaya dirençli katmanlar Hat H — komut *seçimi* — ile HASSH.
+- **Bazı katmanlardan kaçmak düşük maliyetli.** Keystroke-zamanlama taklidi, Hat N'in payload-türevli özelliklerini yaklaşık 20 satır kodla etkisizleştiriyor. Kaçınmaya dirençli katmanlar Hat H (komut *seçimi*) ile HASSH.
 - **Taraf başına tek ortam.** AI boş container'larda, insan CTF range'inde çalıştı; ortak-binary kontrollerine rağmen artık bir ortam confound'u kalıyor.
 
 ### Veri kaynakları
@@ -412,16 +462,17 @@ Etkinin sürücüsü prompt değil, ortam gerçekçiliği.
 
 ```
 harness/
-  driver.py              LLM → SSH kabuk döngüsü, DTU-şeması çıktı
-  run_phase1.py          model × ortam × prompt ızgara koşucusu
+  driver.py              LLM to SSH kabuk döngüsü, DTU-şeması çıktı
+  run_phase1.py          model x ortam x prompt ızgara koşucusu
   envs/                  Docker SSH ortamları + Cowrie aldatma üreticisi
   lab/                   çok-makineli recon lab (saldırgan + hedefler) + trafik yakalama
   net/                   Hat N: pcap yakalama, akış özellikleri, insan keystroke replay
 scripts/
-  adapt_dtu_to_trace.py       DTU iç-içe-liste → TRACE oturum şeması
-  ids_2axis.py                niyet × köken baseline
+  adapt_dtu_to_trace.py       DTU iç-içe-liste to TRACE oturum şeması
+  ids_2axis.py                niyet x köken baseline
   ids_real_human.py           köken ekseni vs gerçek MUNI insan verisi
-  ids_model_generalization.py leave-one-model-out (ana bulgu)
+  ids_model_generalization.py leave-one-model-out, SVC baseline
+  ids_gnn.py                  GNN + topluluk, tabanı yükselten sonuç
   ids_network_recon.py        Hat N akış-özelliği analizi
 data/                    indirilen veri setleri (DTU, MUNI, NL2Bash)
 assets/                  bu README'deki grafikler
@@ -433,7 +484,8 @@ report.html              bilingual HTML rapor (canlı dil değiştirme)
 ```bash
 python3 scripts/adapt_dtu_to_trace.py          # DTU verisini al
 python3 scripts/ids_real_human.py              # köken ekseni, gerçek insan
-python3 scripts/ids_model_generalization.py    # leave-one-model-out
+python3 scripts/ids_model_generalization.py    # leave-one-model-out, SVC baseline (ablation)
+python3 scripts/ids_gnn.py                      # GNN + topluluk, taban 1.00
 python3 scripts/ids_network_recon.py           # ağ katmanı
 ```
 
@@ -441,4 +493,4 @@ python3 scripts/ids_network_recon.py           # ağ katmanı
 
 ---
 
-<p align="center"><sub>Built with local open-weight models (Ollama) + Docker · every attacker session ran in an isolated lab network · research and defensive use only.</sub></p>
+<p align="center"><sub>Local open-weight models (Ollama) + Docker. Every attacker session ran in an isolated lab network. Research and defensive use only.</sub></p>

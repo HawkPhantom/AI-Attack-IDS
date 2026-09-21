@@ -30,12 +30,9 @@
   body{background:var(--ground);color:var(--ink);font-family:var(--sans);
     line-height:1.65;margin:0;-webkit-font-smoothing:antialiased}
   .wrap{max-width:820px;margin:0 auto;padding:0 24px}
-
-  /* language toggle: default English (no flash before script runs) */
   .tr{display:none}
   [data-lang="tr"] .tr{display:inline}
   [data-lang="tr"] .en{display:none}
-
   .topbar{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--ground) 86%,transparent);
     backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
   .topbar .wrap{display:flex;align-items:center;justify-content:space-between;height:56px}
@@ -47,20 +44,17 @@
     font-family:var(--mono);font-weight:600;cursor:pointer;transition:background .15s,color .15s}
   .seg button[aria-pressed="true"]{background:var(--accent);color:#fff}
   .seg button:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
-
   header.hero{padding:64px 0 40px}
   .eyebrow{font-family:var(--mono);font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;
     color:var(--accent);font-weight:600;margin-bottom:18px}
   h1{font-family:var(--mono);font-weight:700;font-size:clamp(30px,5.2vw,46px);line-height:1.08;
     letter-spacing:-.01em;margin:0 0 18px;text-wrap:balance}
   .lede{font-size:clamp(17px,2.4vw,20px);color:var(--ink-2);max-width:60ch;text-wrap:pretty;margin:0}
-
   .tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:40px 0 8px}
   .tile{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:20px 18px;box-shadow:var(--shadow)}
   .tile .n{font-family:var(--mono);font-weight:700;font-size:30px;letter-spacing:-.02em;line-height:1;color:var(--accent)}
   .tile .k{font-size:13px;color:var(--ink-2);margin-top:9px;line-height:1.4}
   @media(max-width:640px){.tiles{grid-template-columns:1fr}}
-
   section{padding:38px 0;border-top:1px solid var(--border)}
   h2{font-family:var(--mono);font-weight:600;font-size:13px;letter-spacing:.12em;text-transform:uppercase;
     color:var(--muted);margin:0 0 6px}
@@ -73,12 +67,10 @@
   em{font-style:italic}
   code{font-family:var(--mono);font-size:.88em;background:var(--surface-2);padding:.12em .4em;border-radius:5px}
   a{color:var(--accent);text-decoration-thickness:1px;text-underline-offset:2px}
-
   figure{margin:26px 0;background:var(--surface);border:1px solid var(--border);border-radius:14px;
     padding:16px;box-shadow:var(--shadow)}
   figure img{width:100%;height:auto;display:block;border-radius:8px}
   figcaption{font-size:13.5px;color:var(--ink-2);margin-top:12px;padding:0 4px;line-height:1.55}
-
   .tbl{overflow-x:auto;margin:20px 0;border:1px solid var(--border);border-radius:12px}
   table{width:100%;border-collapse:collapse;font-size:14.5px}
   th,td{text-align:left;padding:10px 14px;border-bottom:1px solid var(--border)}
@@ -87,6 +79,7 @@
   td{color:var(--ink-2)}
   tr:last-child td{border-bottom:0}
   td.num{font-family:var(--mono);font-variant-numeric:tabular-nums;color:var(--ink);text-align:right}
+  td.win{color:var(--good);font-weight:600}
   .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:20px 0}
   @media(max-width:640px){.grid2{grid-template-columns:1fr}}
   .quad{border:1px solid var(--border);border-radius:12px;padding:16px;background:var(--surface)}
@@ -94,13 +87,11 @@
   .quad .v{font-size:15px;font-weight:600;margin-top:4px}
   .quad.target{border-color:var(--accent);background:var(--ai-soft)}
   .quad.target .v{color:var(--accent)}
-
   ul.clean{margin:16px 0;padding-left:0;list-style:none}
   ul.clean li{position:relative;padding-left:26px;margin-bottom:12px;max-width:64ch;color:var(--ink-2)}
   ul.clean li::before{content:"";position:absolute;left:2px;top:9px;width:7px;height:7px;
     border-radius:2px;background:var(--accent)}
   ul.clean.warn li::before{background:var(--human);border-radius:50%}
-
   footer{padding:44px 0 60px;border-top:1px solid var(--border);color:var(--muted);font-size:13px}
   footer .wrap{display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;align-items:center}
   .src{display:flex;gap:8px;flex-wrap:wrap;font-family:var(--mono);font-size:12px}
@@ -136,13 +127,13 @@
   </p>
 
   <div class="tiles">
+    <div class="tile"><div class="n">0.81 → 1.00</div><div class="k">
+      <span class="en">leave-one-model-out floor, lifted by the SVC + GNN ensemble</span>
+      <span class="tr">leave-one-model-out tabanı, SVC + GNN topluluğuyla yükseltildi</span></div></div>
     <div class="tile"><div class="n">0.962</div><div class="k">
       <span class="en">origin-axis F1 against real humans, on the hardest feature space</span>
       <span class="tr">gerçek insana karşı köken-ekseni F1, en zorlu özellik uzayında</span></div></div>
-    <div class="tile"><div class="n">76–100%</div><div class="k">
-      <span class="en">of the time an unseen LLM family is still caught as “AI”</span>
-      <span class="tr">oranında, görülmemiş bir LLM ailesi yine de “AI” olarak yakalanıyor</span></div></div>
-    <div class="tile"><div class="n">25–120×</div><div class="k">
+    <div class="tile"><div class="n">25 to 120×</div><div class="k">
       <span class="en">how much more every LLM checks its own state than a human does</span>
       <span class="tr">her LLM'in kendi durumunu insandan bu kadar kat fazla yoklaması</span></div></div>
   </div>
@@ -154,12 +145,12 @@
     <h2><span class="en">The question</span><span class="tr">Soru</span></h2>
     <h3><span class="en">Origin, not attribution</span><span class="tr">Atıf değil, köken</span></h3>
     <div class="callout"><p class="q" style="margin:0">
-      <span class="en">“Can we build an IDS that tells whether an incoming attack is driven by an AI agent rather than a human or a script — no matter which model is behind it?”</span>
-      <span class="tr">“Sisteme gelen bir saldırının — arkasındaki model ne olursa olsun — bir insan ya da script yerine bir AI ajanı tarafından sürüldüğünü ayırt eden bir IDS kurabilir miyiz?”</span>
+      <span class="en">"Can we build an IDS that tells whether an incoming attack is driven by an AI agent rather than a human or a script, no matter which model is behind it?"</span>
+      <span class="tr">"Sisteme gelen bir saldırının, arkasındaki model ne olursa olsun, bir insan ya da script yerine bir AI ajanı tarafından sürüldüğünü ayırt eden bir IDS kurabilir miyiz?"</span>
     </p></div>
     <p>
-      <span class="en">This is not model attribution — we are not asking <em>which</em> LLM this is. We are asking something more basic: is the operator behind the session a language model at all? We answer it by fingerprinting behavior, and the crucial test is whether that fingerprint still holds for models the detector has never seen.</span>
-      <span class="tr">Bu, model atıfı değil — <em>hangi</em> LLM olduğunu sormuyoruz. Daha temel bir şey soruyoruz: oturumun ardındaki operatör aslında bir dil modeli mi? Yanıtı davranışı parmak izleyerek veriyoruz; asıl sınav ise bu parmak izinin, dedektörün hiç görmediği modeller için de geçerli kalıp kalmadığı.</span>
+      <span class="en">This is not model attribution. We are not asking <em>which</em> LLM this is. We are asking something more basic: is the operator behind the session a language model at all? We answer it by fingerprinting behavior, and the crucial test is whether that fingerprint still holds for models the detector has never seen.</span>
+      <span class="tr">Bu, model atıfı değil. <em>Hangi</em> LLM olduğunu sormuyoruz. Daha temel bir şey soruyoruz: oturumun ardındaki operatör aslında bir dil modeli mi? Yanıtı davranışı parmak izleyerek veriyoruz; asıl sınav ise bu parmak izinin, dedektörün hiç görmediği modeller için de geçerli kalıp kalmadığı.</span>
     </p>
   </section>
 
@@ -167,49 +158,71 @@
     <h2><span class="en">Headline result</span><span class="tr">Ana bulgu</span></h2>
     <h3><span class="en">The signature generalizes across model families</span><span class="tr">İmza model aileleri arasında genelleşiyor</span></h3>
     <p>
-      <span class="en">In a leave-one-<strong>model</strong>-out test, each AI model is pulled out of training entirely and then presented as an unknown actor. Even on the most unforgiving feature space we could build — 33 shared command names, arguments stripped, session length equalized, network commands removed — an unseen LLM family is still flagged as “AI” between 76% and 100% of the time.</span>
-      <span class="tr">Leave-one-<strong>model</strong>-out testinde her AI modeli eğitimden tamamen çekilir, ardından bilinmeyen bir aktör olarak sunulur. Kurabildiğimiz en tavizsiz özellik uzayında bile — 33 ortak komut adı, argümanlar atılmış, oturum uzunluğu eşitlenmiş, ağ komutları çıkarılmış — görülmemiş bir LLM ailesi yine de %76 ile %100 arasında “AI” olarak işaretleniyor.</span>
+      <span class="en">In a leave-one-<strong>model</strong>-out test, each AI model is pulled out of training entirely and then presented as an unknown actor. Even on the most unforgiving feature space we could build (33 shared command names, arguments stripped, session length equalized, network commands removed), an unseen LLM family is still flagged as "AI" between 76% and 100% of the time.</span>
+      <span class="tr">Leave-one-<strong>model</strong>-out testinde her AI modeli eğitimden tamamen çekilir, ardından bilinmeyen bir aktör olarak sunulur. Kurabildiğimiz en tavizsiz özellik uzayında bile (33 ortak komut adı, argümanlar atılmış, oturum uzunluğu eşitlenmiş, ağ komutları çıkarılmış), görülmemiş bir LLM ailesi yine de %76 ile %100 arasında "AI" olarak işaretleniyor.</span>
     </p>
     <figure>
       <img src="assets/05_leave_one_model.png" alt="Leave-one-model-out recall by held-out model">
       <figcaption>
-        <span class="en">How reliably the held-out model is recognized as “AI” when it appears nowhere in training. The signal is not a “gemma signature” — it is an LLM-agent signature, shared across gemma3, gemma4, llama3.1 and qwen3.</span>
-        <span class="tr">Dışarıda bırakılan model eğitimde hiç yer almazken ne kadar güvenilir biçimde “AI” olarak tanındığı. Sinyal bir “gemma imzası” değil — gemma3, gemma4, llama3.1 ve qwen3 arasında paylaşılan bir LLM-ajan imzası.</span>
+        <span class="en">How reliably the held-out model is recognized as "AI" when it appears nowhere in training. The signal is not a "gemma signature." It is an LLM-agent signature, shared across gemma3, gemma4, llama3.1 and qwen3.</span>
+        <span class="tr">Dışarıda bırakılan model eğitimde hiç yer almazken ne kadar güvenilir biçimde "AI" olarak tanındığı. Sinyal bir "gemma imzası" değil. gemma3, gemma4, llama3.1 ve qwen3 arasında paylaşılan bir LLM-ajan imzası.</span>
       </figcaption>
     </figure>
+  </section>
+
+  <section>
+    <h2><span class="en">Raising the floor</span><span class="tr">Tabanı yükseltmek</span></h2>
+    <h3><span class="en">The GNN ensemble</span><span class="tr">GNN topluluğu</span></h3>
+    <p>
+      <span class="en">The lexical detector's weak point is its floor: gemma3 held out at 0.81 (0.76 in the strictest setting). Because it keys on specific command tokens, an unseen model that uses different tokens is harder to place. To lift that floor we added a GNN over the command-transition graph. A node is a distinct binary; an edge is a transition <code>cmd_i → cmd_{i+1}</code>. Node features are <strong>behavioral categories</strong> (state-check, enumerate, network, privilege, process, package) plus degree, frequency and self-loop signals. They carry no command name on purpose, so the GNN reads the reconnaissance topology rather than the vocabulary, which should transfer to models whose exact commands were never seen.</span>
+      <span class="tr">Sözcüksel dedektörün zayıf noktası tabanı: gemma3 dışarıda bırakıldığında 0.81 (en katı ayarda 0.76). Spesifik komut token'larına dayandığı için, farklı token kullanan görülmemiş bir modeli yerleştirmek zorlaşıyor. Bu tabanı yükseltmek için komut-geçiş grafı üzerinde bir GNN ekledik. Bir düğüm benzersiz bir binary; bir kenar bir geçiş <code>cmd_i → cmd_{i+1}</code>. Düğüm özellikleri <strong>davranışsal kategoriler</strong> (durum-yoklama, keşif, ağ, yetki, süreç, paket) artı derece, frekans ve öz-döngü sinyalleri. Bilinçli olarak hiç komut adı taşımıyorlar; böylece GNN sözcük dağarcığını değil keşif topolojisini okuyor, ki bu da tam komutları hiç görülmemiş modellere aktarılabilmeli.</span>
+    </p>
+    <figure>
+      <img src="assets/08_gnn_ensemble.png" alt="SVC vs GNN vs ensemble by held-out model">
+      <figcaption>
+        <span class="en">The GNN alone does not beat the SVC. The gain is the ensemble: the GNN is strong where the SVC is weak (gemma3, llama) and vice versa (gemma4, qwen).</span>
+        <span class="tr">GNN tek başına SVC'yi geçmiyor. Kazanç toplulukta: GNN, SVC'nin zayıf olduğu yerde güçlü (gemma3, llama) ve tersi (gemma4, qwen).</span>
+      </figcaption>
+    </figure>
+    <div class="tbl"><table>
+      <thead><tr>
+        <th><span class="en">held-out</span><span class="tr">dışarıda</span></th>
+        <th style="text-align:right">SVC</th><th style="text-align:right">GNN</th>
+        <th style="text-align:right">ENS.</th><th style="text-align:right">FP</th></tr></thead>
+      <tbody>
+        <tr><td>gemma3</td><td class="num">0.81</td><td class="num">1.00</td><td class="num win">1.00</td><td class="num">0.03</td></tr>
+        <tr><td>gemma4</td><td class="num">0.92</td><td class="num">0.83</td><td class="num win">1.00</td><td class="num">0.06</td></tr>
+        <tr><td>llama3.1</td><td class="num">0.86</td><td class="num">1.00</td><td class="num win">1.00</td><td class="num">0.05</td></tr>
+        <tr><td>qwen3</td><td class="num">1.00</td><td class="num">0.67</td><td class="num win">1.00</td><td class="num">0.03</td></tr>
+        <tr><td><strong><span class="en">floor</span><span class="tr">taban</span></strong></td>
+            <td class="num">0.81</td><td class="num">0.67</td><td class="num win">1.00</td><td class="num">0.04</td></tr>
+      </tbody>
+    </table></div>
+    <p>
+      <span class="en">An OR-ensemble lifts the leave-one-model-out floor from 0.81 to 1.00 at only 4% human false-positive rate, direct evidence that the lexical and structural-behavioral views carry complementary signal. The SVC-only pipeline is the ablation.</span>
+      <span class="tr">Bir OR-topluluğu leave-one-model-out tabanını 0.81'den 1.00'a çıkarıyor, yalnızca %4 insan yanlış-pozitif oranıyla; bu da sözcüksel ve yapısal-davranışsal görünümlerin tamamlayıcı sinyal taşıdığının doğrudan kanıtı. SVC-yalnız hattı ablation'dır.</span>
+    </p>
   </section>
 
   <section>
     <h2><span class="en">Mechanism</span><span class="tr">Mekanizma</span></h2>
     <h3><span class="en">The state-verification reflex</span><span class="tr">Durum-yoklama refleksi</span></h3>
     <p>
-      <span class="en">An LLM retains no working memory across steps, so it re-queries its execution context on every turn — working directory (<code>pwd</code>), identity (<code>whoami</code>, <code>id</code>), host and kernel (<code>uname</code>, <code>hostname</code>). A human retains this state and does not repeat the queries. The difference is large and consistent across every model tested.</span>
-      <span class="tr">Bir LLM adımlar arasında çalışma belleği tutmaz; bu nedenle yürütme bağlamını her turda yeniden sorgular — çalışma dizini (<code>pwd</code>), kimlik (<code>whoami</code>, <code>id</code>), host ve çekirdek (<code>uname</code>, <code>hostname</code>). İnsan bu durumu belleğinde tuttuğu için sorguları tekrarlamaz. Fark büyük ve test edilen her modelde tutarlı.</span>
+      <span class="en">An LLM retains no working memory across steps, so it re-queries its execution context on every turn: working directory (<code>pwd</code>), identity (<code>whoami</code>, <code>id</code>), host and kernel (<code>uname</code>, <code>hostname</code>). A human retains this state and does not repeat the queries. The difference is large and consistent across every model tested.</span>
+      <span class="tr">Bir LLM adımlar arasında çalışma belleği tutmaz; bu nedenle yürütme bağlamını her turda yeniden sorgular: çalışma dizini (<code>pwd</code>), kimlik (<code>whoami</code>, <code>id</code>), host ve çekirdek (<code>uname</code>, <code>hostname</code>). İnsan bu durumu belleğinde tuttuğu için sorguları tekrarlamaz. Fark büyük ve test edilen her modelde tutarlı.</span>
     </p>
     <figure>
       <img src="assets/03_state_verification.png" alt="State-verification share by operator">
       <figcaption>
-        <span class="en">The share of commands spent purely on checking state (pwd / whoami / id / uname / hostname). Notably, gemma4 — newer and more capable — checks less than gemma3: the signature fades as models mature, but it does not disappear.</span>
-        <span class="tr">Yalnızca durum yoklamaya harcanan komutların payı (pwd / whoami / id / uname / hostname). Dikkat çekici biçimde gemma4 — daha yeni ve yetenekli — gemma3'ten daha az yokluyor: imza modeller olgunlaştıkça soluyor, ama silinmiyor.</span>
+        <span class="en">The share of commands spent purely on checking state. gemma4, though newer and more capable, checks less than gemma3: the signature fades as models mature, but does not disappear. The GNN's behavioral node categories are the structural encoding of exactly this reflex.</span>
+        <span class="tr">Yalnızca durum yoklamaya harcanan komutların payı. gemma4, daha yeni ve yetenekli olsa da gemma3'ten daha az yokluyor: imza modeller olgunlaştıkça soluyor, ama silinmiyor. GNN'in davranışsal düğüm kategorileri, tam olarak bu refleksin yapısal kodlanmış hali.</span>
       </figcaption>
     </figure>
-    <div class="tbl"><table>
-      <thead><tr>
-        <th><span class="en">operator</span><span class="tr">operatör</span></th>
-        <th style="text-align:right">pwd/whoami/id/uname/hostname</th></tr></thead>
-      <tbody>
-        <tr><td><strong><span class="en">Human</span><span class="tr">İnsan</span></strong> (MUNI)</td><td class="num">0.7%</td></tr>
-        <tr><td>gemma4</td><td class="num">16.7%</td></tr>
-        <tr><td>llama3.1</td><td class="num">22.9%</td></tr>
-        <tr><td>gemma3</td><td class="num">24.3%</td></tr>
-        <tr><td>qwen3 <span class="en">(collapsed)</span><span class="tr">(çökmüş)</span></td><td class="num">86.7%</td></tr>
-      </tbody>
-    </table></div>
     <figure>
       <img src="assets/04_command_freq.png" alt="Command frequency, AI vs human">
       <figcaption>
-        <span class="en">The same commands, opposite priorities: the AI repeatedly verifies state, while the human performs enumeration and lateral movement — ls 44%, ssh 17%, ping.</span>
-        <span class="tr">Aynı komutlar, zıt öncelikler: AI durumu tekrar tekrar doğrularken, insan keşif (enumeration) ve yanal hareket (lateral movement) yapıyor — ls %44, ssh %17, ping.</span>
+        <span class="en">The same commands, opposite priorities: the AI repeatedly verifies state, while the human performs enumeration and lateral movement (ls 44%, ssh 17%, ping).</span>
+        <span class="tr">Aynı komutlar, zıt öncelikler: AI durumu tekrar tekrar doğrularken, insan keşif (enumeration) ve yanal hareket (lateral movement) yapıyor (ls %44, ssh %17, ping).</span>
       </figcaption>
     </figure>
   </section>
@@ -235,16 +248,16 @@
 
   <section>
     <h2><span class="en">Robustness</span><span class="tr">Sağlamlık</span></h2>
-    <h3><span class="en">Origin axis under progressive feature restriction</span><span class="tr">Kademeli özellik kısıtlaması altında köken ekseni</span></h3>
+    <h3><span class="en">The origin axis under progressive feature restriction</span><span class="tr">Kademeli özellik kısıtlaması altında köken ekseni</span></h3>
     <p>
-      <span class="en">Using <strong>real</strong> human sessions — MUNI: 267 sessions, 21,089 commands, 275 trainees — we progressively restrict the feature space. After removing arguments, environment-specific tokens, session-length differences and multi-host commands, the residual command-selection signal still yields macro F1 0.962. Truncated to the first 10 commands it reaches 0.869 — detection before the attack completes.</span>
-      <span class="tr"><strong>Gerçek</strong> insan oturumlarıyla — MUNI: 267 oturum, 21.089 komut, 275 katılımcı — özellik uzayını kademeli olarak kısıtlıyoruz. Argümanlar, ortama özgü token'lar, oturum-uzunluğu farkları ve çok-makineli komutlar çıkarıldıktan sonra, geriye kalan komut-seçim sinyali hâlâ makro F1 0.962 veriyor. İlk 10 komuta kırpıldığında 0.869'a ulaşıyor — saldırı tamamlanmadan tespit.</span>
+      <span class="en">Using <strong>real</strong> human sessions (MUNI: 267 sessions, 21,089 commands, 275 trainees), we progressively restrict the feature space. After removing arguments, environment-specific tokens, length differences and multi-host commands, the residual command-selection signal still scores 0.962. It works from the first 10 commands (0.869), before the attack completes.</span>
+      <span class="tr">Gerçek insan oturumlarıyla (MUNI: 267 oturum, 21.089 komut, 275 katılımcı) özellik uzayını kademeli olarak kısıtlıyoruz. Argümanlar, ortama özgü token'lar, uzunluk farkları ve çok-makineli komutlar çıkarıldıktan sonra, geriye kalan komut-seçim sinyali hâlâ 0.962 alıyor. İlk 10 komuttan çalışıyor (0.869), saldırı tamamlanmadan.</span>
     </p>
     <figure>
       <img src="assets/02_origin_restriction.png" alt="Origin axis F1 under progressive restriction">
       <figcaption>
-        <span class="en">Every bar uses leave-one-group-out (group = scenario / prompt), which keeps the classifier from simply memorizing a scenario. The permutation control sitting at chance (0.452) confirms there is no hidden leakage.</span>
-        <span class="tr">Her çubuk leave-one-group-out kullanıyor (grup = senaryo / prompt); bu, sınıflandırıcının bir senaryoyu ezberlemesini engelliyor. Şans düzeyinde duran permütasyon kontrolü (0.452) gizli bir sızıntı olmadığını doğruluyor.</span>
+        <span class="en">Every bar uses leave-one-group-out (group = scenario / prompt), which keeps the classifier from memorizing a scenario. The permutation control at chance level (0.452) confirms there is no hidden leakage.</span>
+        <span class="tr">Her çubuk leave-one-group-out kullanıyor (grup = senaryo / prompt); bu, sınıflandırıcının bir senaryoyu ezberlemesini engelliyor. Şans düzeyindeki permütasyon kontrolü (0.452) gizli bir sızıntı olmadığını doğruluyor.</span>
       </figcaption>
     </figure>
   </section>
@@ -255,24 +268,24 @@
     <figure>
       <img src="assets/07_layer_comparison.png" alt="Detection layer comparison">
       <figcaption>
-        <span class="en">Hat H, reading command behavior, is the main line: 0.962, model-independent, resilient. Hat N (scan traffic) and HASSH (handshake) sit alongside it as network-side layers.</span>
-        <span class="tr">Komut davranışını okuyan Hat H ana hat: 0.962, modelden bağımsız, dayanıklı. Hat N (tarama trafiği) ve HASSH (el sıkışma) onun yanında ağ tarafı katmanları olarak duruyor.</span>
+        <span class="en">Hat H, reading command behavior, is the main line: 0.962, model-independent, and in its ensemble form it drives the leave-one-model-out floor to 1.00. Hat N (scan traffic) and HASSH (handshake) are complementary network-side layers.</span>
+        <span class="tr">Komut davranışını okuyan Hat H ana hat: 0.962, modelden bağımsız ve topluluk halinde leave-one-model-out tabanını 1.00'a çıkarıyor. Hat N (tarama trafiği) ve HASSH (el sıkışma) tamamlayıcı ağ-tarafı katmanları.</span>
       </figcaption>
     </figure>
     <p>
-      <span class="en"><strong>Hat N — outbound scan traffic.</strong> The usable network signal is not the timing of the encrypted SSH session but the traffic the agent generates during reconnaissance — port-scan spread, protocol mix, SYN inter-arrival timing (BoT-IoT / CIC-IoT–style flow features). It reaches F1 0.785, but the separation is capability-dependent: a capable agent (gemma4 emitted 262K SYN at 6,977/s) produces scan traffic indistinguishable from a human's, while a weak one produces almost none.</span>
-      <span class="tr"><strong>Hat N — dışa giden tarama trafiği.</strong> Kullanılabilir ağ sinyali, şifreli SSH oturumunun zamanlaması değil, ajanın keşif (reconnaissance) sırasında ürettiği trafik — port-tarama yayılımı, protokol karışımı, SYN paketleri arası zamanlama (BoT-IoT / CIC-IoT tarzı akış özellikleri). F1 0.785'e ulaşıyor, ancak ayrım yeteneğe bağımlı: yetenekli bir ajan (gemma4 saniyede 6.977 hızla 262K SYN üretti) insanınkinden ayırt edilemeyen tarama trafiği üretiyor, zayıf olansa neredeyse hiç üretmiyor.</span>
+      <span class="en"><strong>Hat N, outbound scan traffic.</strong> The usable network signal is not the timing of the encrypted SSH session but the traffic the agent generates during reconnaissance: port-scan spread, protocol mix, SYN inter-arrival timing (BoT-IoT / CIC-IoT style flow features). It reaches F1 0.785, but the separation is capability-dependent: a capable agent (gemma4 emitted 262K SYN at 6,977/s) produces scan traffic indistinguishable from a human's, while a weak one produces almost none.</span>
+      <span class="tr"><strong>Hat N, dışa giden tarama trafiği.</strong> Kullanılabilir ağ sinyali, şifreli SSH oturumunun zamanlaması değil, ajanın keşif (reconnaissance) sırasında ürettiği trafik: port-tarama yayılımı, protokol karışımı, SYN paketleri arası zamanlama (BoT-IoT / CIC-IoT tarzı akış özellikleri). F1 0.785'e ulaşıyor, ancak ayrım yeteneğe bağımlı: yetenekli bir ajan (gemma4 saniyede 6.977 hızla 262K SYN üretti) insanınkinden ayırt edilemeyen tarama trafiği üretiyor, zayıf olansa neredeyse hiç üretmiyor.</span>
     </p>
     <figure>
       <img src="assets/06_network_features.png" alt="Network flow features, AI vs human">
       <figcaption>
-        <span class="en">During host discovery the AI emits a disproportionate share of ICMP echo requests (icmp_frac 0.33 vs 0.01); the human directs more SYN probes at closed ports (higher syn / rst fractions).</span>
-        <span class="tr">Host keşfi sırasında AI orantısız oranda ICMP echo request üretiyor (icmp_frac 0.33 vs 0.01); insan ise kapalı portlara daha fazla SYN probu yönlendiriyor (daha yüksek syn / rst oranları).</span>
+        <span class="en">During host discovery the AI emits a disproportionate share of ICMP echo requests (icmp_frac 0.33 vs 0.01); the human directs more SYN probes at closed ports.</span>
+        <span class="tr">Host keşfi sırasında AI orantısız oranda ICMP echo request üretiyor (icmp_frac 0.33 vs 0.01); insan ise kapalı portlara daha fazla SYN probu yönlendiriyor.</span>
       </figcaption>
     </figure>
     <p>
-      <span class="en"><strong>HASSH handshake — evasion-resistant.</strong> The SSH client version string and KEXINIT algorithm list are transmitted in cleartext, prior to key exchange. <code>paramiko</code> (9 kex algorithms) and a genuine <code>OpenSSH</code> client (14) are cleanly separable — and this separation is invariant under the keystroke-timing mimicry that defeats every payload-derived feature. Limitation: it identifies a <em>programmatic client</em> — which also covers Ansible and CI — rather than agency itself.</span>
-      <span class="tr"><strong>HASSH el sıkışması — kaçınmaya dirençli.</strong> SSH istemci sürüm dizesi ve KEXINIT algoritma listesi, anahtar değişiminden önce açık metin olarak iletilir. <code>paramiko</code> (9 kex algoritması) ile gerçek bir <code>OpenSSH</code> istemcisi (14) net biçimde ayrılabiliyor — ve bu ayrım, her payload-türevli özelliği yenen keystroke-zamanlama taklidi altında değişmez. Sınır: ajansın kendisini değil, bir <em>programatik istemciyi</em> tanımlıyor — buna Ansible ve CI de dâhil.</span>
+      <span class="en"><strong>HASSH handshake, evasion-resistant.</strong> The SSH client version string and KEXINIT algorithm list are transmitted in cleartext, prior to key exchange. <code>paramiko</code> (9 kex algorithms) and a genuine <code>OpenSSH</code> client (14) are cleanly separable, and this separation is invariant under the keystroke-timing mimicry that defeats every payload-derived feature. Limitation: it identifies a <em>programmatic client</em>, which also covers Ansible and CI, rather than agency itself.</span>
+      <span class="tr"><strong>HASSH el sıkışması, kaçınmaya dirençli.</strong> SSH istemci sürüm dizesi ve KEXINIT algoritma listesi, anahtar değişiminden önce açık metin olarak iletilir. <code>paramiko</code> (9 kex algoritması) ile gerçek bir <code>OpenSSH</code> istemcisi (14) net biçimde ayrılabiliyor ve bu ayrım, her payload-türevli özelliği yenen keystroke-zamanlama taklidi altında değişmez. Sınır: ajansın kendisini değil, bir <em>programatik istemciyi</em> tanımlıyor, buna Ansible ve CI de dâhil.</span>
     </p>
   </section>
 
@@ -280,14 +293,14 @@
     <h2><span class="en">Replication</span><span class="tr">Replikasyon</span></h2>
     <h3><span class="en">Reproducing DTU's deception effect</span><span class="tr">DTU'nun aldatma etkisini yeniden üretmek</span></h3>
     <p>
-      <span class="en">The DTU “Honey for the Agent” paper reports that a deception environment increases <code>ls</code> usage by 20.8 percentage points. Our initial reproduction produced 0.4. Two causes accounted for the gap: the driver did not pass the SSH banner to the model, and our triggering environments were plain Ubuntu whereas DTU's are Cowrie-based. After rebuilding on Cowrie — with bait directories injected into <code>fs.pickle</code> — the effect reached 13.9 percentage points, the same order of magnitude as the original.</span>
-      <span class="tr">DTU'nun “Honey for the Agent” makalesi, bir aldatma ortamının <code>ls</code> kullanımını 20,8 puan artırdığını bildiriyor. İlk reprodüksiyonumuz 0,4 üretti. Farkın iki nedeni vardı: driver, SSH banner'ını modele iletmiyordu ve tetikleyici ortamlarımız düz Ubuntu'yken DTU'nunkiler Cowrie tabanlıydı. Yem dizinleri <code>fs.pickle</code>'a enjekte edilerek Cowrie üzerine yeniden kurulduğunda etki 13,9 puana ulaştı — orijinaliyle aynı büyüklük mertebesi.</span>
+      <span class="en">The DTU "Honey for the Agent" paper reports that a deception environment increases <code>ls</code> usage by 20.8 percentage points. Our initial reproduction produced 0.4. Two causes accounted for the gap: the driver did not pass the SSH banner to the model, and our triggering environments were plain Ubuntu whereas DTU's are Cowrie-based. After rebuilding on Cowrie, with bait directories injected into <code>fs.pickle</code>, the effect reached 13.9 percentage points, the same order of magnitude as the original.</span>
+      <span class="tr">DTU'nun "Honey for the Agent" makalesi, bir aldatma ortamının <code>ls</code> kullanımını 20,8 puan artırdığını bildiriyor. İlk reprodüksiyonumuz 0,4 üretti. Farkın iki nedeni vardı: driver, SSH banner'ını modele iletmiyordu ve tetikleyici ortamlarımız düz Ubuntu'yken DTU'nunkiler Cowrie tabanlıydı. Yem dizinleri <code>fs.pickle</code>'a enjekte edilerek Cowrie üzerine yeniden kurulduğunda etki 13,9 puana ulaştı, orijinaliyle aynı büyüklük mertebesi.</span>
     </p>
     <figure>
       <img src="assets/01_deception_effect.png" alt="Deception effect by environment build">
       <figcaption>
-        <span class="en">The rise in ls usage against a real, non-deceptive system, broken down by how the environment was built. What drives the effect is the realism of the environment, not the prompt.</span>
-        <span class="tr">Gerçek, aldatıcı olmayan bir sisteme kıyasla ls kullanımındaki artış, ortamın nasıl kurulduğuna göre ayrıştırılmış hâlde. Etkiyi süren şey prompt değil, ortamın gerçekçiliği.</span>
+        <span class="en">The rise in ls usage against a real, non-deceptive system, by how the environment was built. What drives the effect is the realism of the environment, not the prompt.</span>
+        <span class="tr">Gerçek, aldatıcı olmayan bir sisteme kıyasla ls kullanımındaki artış, ortamın nasıl kurulduğuna göre. Etkiyi süren şey prompt değil, ortamın gerçekçiliği.</span>
       </figcaption>
     </figure>
   </section>
@@ -298,12 +311,12 @@
     <ul class="clean warn">
       <li><span class="en"><strong>The sample is small.</strong> 43 usable AI sessions once collapses are filtered, against 267 human. Treat the numbers as indicative, not settled.</span>
         <span class="tr"><strong>Örneklem küçük.</strong> Çökmeler ayıklandıktan sonra 43 kullanılabilir AI oturumu, 267 insana karşı. Rakamları kesin değil, gösterge niteliğinde okuyun.</span></li>
-      <li><span class="en"><strong>qwen3:4b can't be trusted here.</strong> Roughly 75% of its sessions dissolve into reasoning-prose instead of commands, even with think:false — its inflated 86.7% state-verification is just a symptom of that looping.</span>
-        <span class="tr"><strong>qwen3:4b burada güvenilmez.</strong> Oturumlarının kabaca %75'i, think:false ile bile komut yerine reasoning-metnine dağılıyor — şişmiş %86,7'lik durum-yoklaması yalnızca bu döngünün bir belirtisi.</span></li>
-      <li><span class="en"><strong>The intent axis is thinner.</strong> Only origin is fully validated on real data; malicious-vs-benign still rests on synthetic benign-human sessions.</span>
-        <span class="tr"><strong>Niyet ekseni daha ince.</strong> Gerçek veriyle tam doğrulanan yalnızca köken; zararlı-zararsız ayrımı hâlâ sentetik zararsız-insan oturumlarına dayanıyor.</span></li>
-      <li><span class="en"><strong>Some layers are low-cost to evade.</strong> Keystroke-timing mimicry neutralizes Hat N's payload-derived features in roughly 20 lines of code. The evasion-resistant layers are Hat H — command <em>selection</em> — and HASSH.</span>
-        <span class="tr"><strong>Bazı katmanlardan kaçmak düşük maliyetli.</strong> Keystroke-zamanlama taklidi, Hat N'in payload-türevli özelliklerini yaklaşık 20 satır kodla etkisizleştiriyor. Kaçınmaya dirençli katmanlar Hat H — komut <em>seçimi</em> — ile HASSH.</span></li>
+      <li><span class="en"><strong>The GNN alone underperforms the SVC.</strong> Its value is only in the ensemble; the reported floor of 1.00 is the OR-ensemble, not the GNN on its own.</span>
+        <span class="tr"><strong>GNN tek başına SVC'nin altında.</strong> Değeri yalnızca toplulukta; raporlanan 1.00 tabanı GNN değil, OR-topluluğudur.</span></li>
+      <li><span class="en"><strong>qwen3:4b can't be trusted here.</strong> Roughly 75% of its sessions dissolve into reasoning-prose instead of commands, even with think:false. Its inflated 86.7% state-verification is a looping artifact.</span>
+        <span class="tr"><strong>qwen3:4b burada güvenilmez.</strong> Oturumlarının kabaca %75'i, think:false ile bile komut yerine reasoning-metnine dağılıyor. Şişmiş %86,7'lik durum-yoklaması bir döngü artefaktı.</span></li>
+      <li><span class="en"><strong>Some layers are low-cost to evade.</strong> Keystroke-timing mimicry neutralizes Hat N's payload-derived features in roughly 20 lines of code. The evasion-resistant layers are Hat H (command <em>selection</em>) and HASSH.</span>
+        <span class="tr"><strong>Bazı katmanlardan kaçmak düşük maliyetli.</strong> Keystroke-zamanlama taklidi, Hat N'in payload-türevli özelliklerini yaklaşık 20 satır kodla etkisizleştiriyor. Kaçınmaya dirençli katmanlar Hat H (komut <em>seçimi</em>) ile HASSH.</span></li>
     </ul>
   </section>
 
@@ -332,9 +345,8 @@
   }
   function toggleTheme(){
     var cur=document.documentElement.getAttribute('data-theme');
-    var next = cur==='dark' ? 'light' : 'dark';
-    applyTheme(next);
-    try{localStorage.setItem('aiids-theme',next)}catch(e){}
+    applyTheme(cur==='dark' ? 'light' : 'dark');
+    try{localStorage.setItem('aiids-theme',document.documentElement.getAttribute('data-theme'))}catch(e){}
   }
   (function(){
     var l='en'; try{l=localStorage.getItem('aiids-lang')||'en'}catch(e){}
