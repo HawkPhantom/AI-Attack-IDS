@@ -4,10 +4,9 @@
 <p align="center">
   <a href="#-english"><img src="https://img.shields.io/badge/lang-English-0072B2?style=for-the-badge" alt="English"></a>
   <a href="#-türkçe"><img src="https://img.shields.io/badge/dil-Türkçe-E69F00?style=for-the-badge" alt="Türkçe"></a>
-  &nbsp;·&nbsp; <a href="https://claude.ai/code/artifact/e98339a3-aef4-451d-af14-a5e492c5dea3">interactive HTML version</a>
 </p>
 
-> **Language / Dil.** English opens by default. Click **🇹🇷 Türkçe** below for the Turkish version. An interactive HTML report with a live language toggle is linked above.
+> **Language / Dil.** English opens by default. Click **🇹🇷 Türkçe** below for the Turkish version.
 
 ---
 

@@ -15,13 +15,9 @@
 
 <p align="center">
   <a href="REPORT.md"><img src="https://img.shields.io/badge/Full_technical_report-EN_%2F_TR-0072B2?style=for-the-badge&logo=markdown&logoColor=white" alt="Full technical report"></a>
-  &nbsp;
-  <a href="https://claude.ai/code/artifact/e98339a3-aef4-451d-af14-a5e492c5dea3"><img src="https://img.shields.io/badge/Interactive_report-live_toggle-009E73?style=for-the-badge&logo=html5&logoColor=white" alt="Interactive HTML report"></a>
 </p>
 
-> **Language / Dil.** English opens by default. Click **🇹🇷 Türkçe** below for the Turkish version.
->
-> This README gives the overview, architecture and findings. For the standalone write-up see **[REPORT.md](REPORT.md)** (bilingual) or the **[interactive HTML report](https://claude.ai/code/artifact/e98339a3-aef4-451d-af14-a5e492c5dea3)** with a live language toggle. &nbsp;·&nbsp; Bu README genel bakış, mimari ve bulguları verir. Müstakil rapor için **[REPORT.md](REPORT.md)** (iki dilli) ya da canlı dil değiştirmeli **[interaktif HTML rapor](https://claude.ai/code/artifact/e98339a3-aef4-451d-af14-a5e492c5dea3)**.
+> This README gives the overview, architecture and findings. For the standalone write-up see **[REPORT.md](REPORT.md)** (bilingual). &nbsp;·&nbsp; Bu README genel bakış, mimari ve bulguları verir. Müstakil rapor için **[REPORT.md](REPORT.md)** (iki dilli).
 
 ---
 
