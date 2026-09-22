@@ -94,7 +94,7 @@ The detector treats intent and origin as separate questions, and raises an alarm
 - **benign + AI**: the same harness, driven by maintenance prompts
 - **benign + human**: real NL2Bash commands (TellinaTool corpus)
 
-Both human cells are **real** (`scripts/ids_2axis.py`). Earlier, the human side was keystroke-replay of fixed scripted lists, so the intent classifier largely learned "scripted list vs LLM output"; now malicious+human is the same real MUNI corpus the origin axis is validated on, and benign+human is real NL2Bash commands. On this real-data footing, intent (malicious vs benign) separates at macro F1 **0.909** in the common-binary space, with a label-permutation control at **0.515** (≈ chance). The one caveat left is provenance rather than synthesis: the two human cells are different corpora, and NL2Bash ships as one-liners, so its *sessions* are assembled from real commands rather than recorded end-to-end.
+Both human cells are **real** (`scripts/ids_2axis.py`): malicious+human is the same real MUNI corpus the origin axis is validated on, and benign+human is real NL2Bash commands. Real human commands on both sides keep the intent classifier from separating on "scripted list vs LLM output" rather than on intent. On this footing, intent (malicious vs benign) separates at macro F1 **0.909** in the common-binary space, with a label-permutation control at **0.515** (≈ chance). The one caveat is provenance rather than synthesis: the two human cells are different corpora, and NL2Bash ships as one-liners, so its *sessions* are assembled from real commands rather than recorded end-to-end.
 
 ### 6 · Robustness, origin axis under progressive restriction
 
@@ -139,7 +139,13 @@ The driver of the effect is environment realism, not the prompt.
 
 ### 9 · Second environment, isolating agency from the box
 
-The original comparison had **one environment per side**: the AI ran in an empty Ubuntu container, the humans on a MUNI cyber-range attacker box stocked with `nmap` / `john` / `fcrackzip` / `sqlmap`. A raw comparison there partly measures *tool availability*, not agency. To bracket that confound we reran all four models in a **second environment**: a CTF-range attacker box whose toolset is mirrored from the MUNI host, working a live in-scope subnet with three target services (`harness/lab/Dockerfile.ctf_attacker`, `harness/lab/run_ctf_range.py`, evaluated in `scripts/ids_env_confound.py`). This adds **25 usable CTF-range AI sessions** across `gemma3 / gemma4 / llama / qwen` to the 43 empty-container ones.
+**The problem this addresses.** The origin axis asks whether AI and human *command behaviour* differ. But there is a catch in how the two sides were run: the AI operated in a bare Ubuntu container with only basic shell tools, while the MUNI humans sat on a cyber-range attacker box equipped with a full offensive toolkit (`nmap`, `john`, `fcrackzip`, `sqlmap`, …). Part of any AI-vs-human gap could then be *which tools were installed*, not agency. The point of this experiment is to close that gap by running the AI in an environment that matches the human one, so that whatever separation is left is behaviour, not equipment.
+
+**The setup.** The environment is a small CTF range in three pieces (`harness/lab/`). An **attacker box** is a container the agent logs into over SSH; its toolkit is mirrored from the MUNI host (`Dockerfile.ctf_attacker`: nmap, hydra, sqlmap, john, fcrackzip, nc, ssh, curl, …). **Three target machines** sit on an isolated subnet (`172.30.0.0/24`) running real listening services (FTP / telnet / HTTP / MySQL banners), so a scan returns genuine results. A password-protected archive is left on the attacker box for a cracking task.
+
+**What the agent does.** The loop is the same one used everywhere else (`harness/lab/run_ctf_range.py` → `driver.py`): the model is given a penetration-test brief — reconnaissance, service exploitation, or archive/credential cracking — and issues exactly one shell command per turn; the command runs on the attacker box, its output is fed back, up to 20 turns. So the agent sweeps the subnet with `nmap`, probes the services it finds, attempts `ssh`, cracks the archive with `john` / `fcrackzip` — producing recon/exploit command sequences in the same operational setting the MUNI humans worked in. This yields **25 usable AI sessions** across `gemma3 / gemma4 / llama / qwen`, alongside the 43 empty-container ones; the whole comparison is in `scripts/ids_env_confound.py`.
+
+With the toolbox the same on both sides, an AI-vs-human separation can be read as agency rather than tool availability. The evidence comes in two parts: the behavioural reflex, then the classifier once the environment is matched.
 
 **The state-verification reflex is environment-invariant.** It is the mechanism from §4, and it barely moves when the box changes:
 
@@ -151,16 +157,26 @@ The original comparison had **one environment per side**: the AI ran in an empty
 
 Both AI environments sit ~34× above human. Because this is a property of the operator and not the toolbox, it is the strongest single piece of evidence that the origin signal is agency.
 
-**Same-environment separability.** With AI and human now *both* in a cyber range with the same toolkit, AI is still separable from human at macro F1 **0.771** on shared non-network binaries (leave-one-group-out) — a separation that can no longer be tool availability. **Cross-environment transfer is only partial**, though: train the detector on `{AI-empty + human}` and the unseen CTF-range AI is recalled as AI 0.46 of the time (0.28 the other way). So the *vocabulary* is environment-bound; the durable signal is command *selection over shared behaviour* — which is exactly what the reflex and the common-binary origin axis measure. The confound is now **measured and largely bracketed**, not merely acknowledged.
+**The classifier side, once the environment is controlled.** Putting the second environment next to the headline is more honest than the headline alone:
+
+| origin test | macro F1 | reading |
+|---|---|---|
+| headline — empty-container AI vs human, single environment | **0.962** | strong, but partly environment-aided |
+| combined — AI across *both* environments vs human, common binaries | **0.903** | holds up with the second environment folded in |
+| same-environment — AI-CTF vs human, full common space | 0.703 | shared network tools (both sides run `nmap`/`ssh`) add confusion |
+| **same-environment — AI-CTF vs human, non-network (pure agency)** | **0.771** | cannot be tool availability |
+| cross-environment transfer — held-out AI environment recalled as AI | 0.28–0.46 | vocabulary is environment-bound |
+
+**Controlling the environment pulls the separation down from the 0.962 headline to 0.771 in the strictest cut.** Part of that gap is the confound held out as intended; part is that CTF sessions are recon-heavy and thin once network commands are stripped, on a small sample (25). What survives the environment change is the reflex and command *selection over shared behaviour* — which is exactly what the reflex table and the common-binary origin axis measure; what does not survive is the specific command *vocabulary*. The confound is **measured and largely bracketed**, not left as a bare caveat.
 
 ### 10 · Honest limitations
 
-- **The sample is modest, though larger than at first.** 68 usable AI sessions across two environments (43 empty-container + 25 CTF-range) once collapses are filtered, against 267 human. Still small — treat the numbers as indicative, not settled.
+- **The sample is modest.** 68 usable AI sessions across two environments (43 empty-container + 25 CTF-range) once collapses are filtered, against 267 human. Small — treat the numbers as indicative, not settled.
 - **The GNN alone underperforms the SVC.** Its value is only in the ensemble; on this data scale the structural view does not stand on its own, and the reported floor of 1.00 is the OR-ensemble, not the GNN.
 - **qwen3:4b can't be trusted here.** Roughly 75 % of its sessions dissolve into reasoning-prose instead of commands, even with `think:false`. Its inflated 86.7 % state-verification is a looping artifact.
-- **The intent axis now uses real data on both human cells, but spans two corpora.** malicious+human is the real MUNI corpus and benign+human is real NL2Bash commands — no longer synthetic keystroke replay; intent separates at macro F1 0.909 in the common-binary space (permutation control 0.515, ≈ chance). The residual caveat is provenance, not synthesis: the two human cells are different corpora (MUNI vs NL2Bash), and NL2Bash ships as one-liners, so its sessions are assembled from real commands rather than recorded end-to-end — the common-binary row is the honest read.
+- **The intent axis uses real data on both human cells, but spans two corpora.** malicious+human is the real MUNI corpus and benign+human is real NL2Bash commands; intent separates at macro F1 0.909 in the common-binary space (permutation control 0.515, ≈ chance). The residual caveat is provenance, not synthesis: the two human cells are different corpora (MUNI vs NL2Bash), and NL2Bash ships as one-liners, so its sessions are assembled from real commands rather than recorded end-to-end — the common-binary row is the honest read.
 - **Some layers are low-cost to evade.** Keystroke-timing mimicry neutralizes Hat N's payload-derived features in roughly 20 lines of code. The evasion-resistant layers are Hat H (command *selection*) and HASSH.
-- **The environment confound is now bracketed, not just noted.** The AI was rerun in a second environment — a CTF-range box whose toolset matches the MUNI host (§9) — so agency is measured with the box held closer to fixed. The state-verification reflex is nearly identical across both AI environments (26.5 % / 23.9 % vs 0.7 % human) and origin stays separable inside the matched environment (F1 0.771). What remains: cross-environment *lexical* transfer is only partial (0.28–0.46 held-out recall), so command selection over shared behaviour — not vocabulary — is the part that travels.
+- **The environment confound is bracketed, not just noted.** The AI side spans two environments — the empty container and a CTF-range box whose toolset matches the MUNI host (§9) — so agency is measured with the box held closer to fixed. The state-verification reflex is nearly identical across both AI environments (26.5 % / 23.9 % vs 0.7 % human) and origin stays separable inside the matched environment (F1 0.771). What remains: cross-environment *lexical* transfer is only partial (0.28–0.46 held-out recall), so command selection over shared behaviour — not vocabulary — is the part that travels.
 
 ### Data sources
 
@@ -259,7 +275,7 @@ Dedektör niyet ve kökeni ayrı sorular olarak ele alır ve yalnızca ikisinin 
 - **zararsız + AI**: aynı harness, bakım promptlarıyla sürülüyor
 - **zararsız + insan**: gerçek NL2Bash komutları (TellinaTool korpusu)
 
-Her iki insan hücresi de artık **gerçek** (`scripts/ids_2axis.py`). Önceden insan tarafı sabit scripted listelerin keystroke-replay'iydi, o yüzden niyet sınıflandırıcısı büyük ölçüde "scripted liste vs LLM çıktısı" ayrımını öğreniyordu; şimdi zararlı+insan, köken ekseninin doğrulandığı aynı gerçek MUNI korpusu ve zararsız+insan gerçek NL2Bash komutları. Bu gerçek-veri zemininde niyet (zararlı vs zararsız) ortak-binary uzayında makro F1 **0.909** ile ayrılıyor; etiket-permütasyon kontrolü **0.515** (≈ şans). Kalan tek çekince sentez değil köken: iki insan hücresi farklı korpuslar ve NL2Bash tek-satırlar halinde geldiği için *oturumları* uçtan uca kaydedilmiş değil, gerçek komutlardan derlenmiştir.
+Her iki insan hücresi de **gerçek** (`scripts/ids_2axis.py`): zararlı+insan, köken ekseninin doğrulandığı aynı gerçek MUNI korpusu; zararsız+insan gerçek NL2Bash komutları. İki tarafta da gerçek insan komutları kullanmak, niyet sınıflandırıcısının niyet yerine "scripted liste vs LLM çıktısı" ayrımını öğrenmesini engeller. Bu zeminde niyet (zararlı vs zararsız) ortak-binary uzayında makro F1 **0.909** ile ayrılıyor; etiket-permütasyon kontrolü **0.515** (≈ şans). Tek çekince sentez değil köken: iki insan hücresi farklı korpuslar ve NL2Bash tek-satırlar halinde geldiği için *oturumları* uçtan uca kaydedilmiş değil, gerçek komutlardan derlenmiştir.
 
 ### 6 · Sağlamlık, kademeli kısıtlama altında köken ekseni
 
@@ -304,7 +320,13 @@ Etkinin sürücüsü prompt değil, ortam gerçekçiliği.
 
 ### 9 · İkinci ortam, ajansı ortamdan ayırmak
 
-İlk karşılaştırmada **taraf başına tek ortam** vardı: AI boş bir Ubuntu container'ında, insanlar ise `nmap` / `john` / `fcrackzip` / `sqlmap` dolu bir MUNI cyber-range saldırgan kutusunda. Oradaki ham karşılaştırma kısmen ajansı değil *araç mevcudiyetini* ölçer. Bu confound'u sınırlamak için dört modeli de **ikinci bir ortamda** yeniden çalıştırdık: araç seti MUNI kutusundan aynalanmış bir CTF-menzili saldırgan kutusu, üç hedef servisli canlı bir alt ağda (`harness/lab/Dockerfile.ctf_attacker`, `harness/lab/run_ctf_range.py`, `scripts/ids_env_confound.py` ile değerlendirilir). Bu, 43 boş-container oturumuna `gemma3 / gemma4 / llama / qwen` genelinde **25 kullanılabilir CTF-menzili AI oturumu** ekliyor.
+**Bu deneyin çözdüğü sorun.** Köken ekseni, AI ile insanın *komut davranışının* farklı olup olmadığını sorar. Ama iki tarafın nasıl koşturulduğunda bir açık var: AI yalnızca temel kabuk araçları olan boş bir Ubuntu container'ında çalıştı, MUNI insanları ise tam bir saldırı araç setiyle (`nmap`, `john`, `fcrackzip`, `sqlmap`, …) donatılmış bir cyber-range saldırgan kutusundaydı. O hâlde AI-insan farkının bir kısmı ajans değil, *hangi araçların kurulu olduğu* olabilir. Bu deneyin amacı, AI'yı insanınkiyle eşleşen bir ortamda çalıştırıp o açığı kapatmak; böylece geriye kalan ayrım, ekipman değil davranış olur.
+
+**Kurulum.** Ortam, üç parçadan oluşan küçük bir CTF menzili (`harness/lab/`). Bir **saldırgan kutusu**, ajanın SSH ile giriş yaptığı bir container'dır; araç seti MUNI kutusundan aynalanmıştır (`Dockerfile.ctf_attacker`: nmap, hydra, sqlmap, john, fcrackzip, nc, ssh, curl, …). **Üç hedef makine** izole bir alt ağda (`172.30.0.0/24`) gerçek dinleyen servisler (FTP / telnet / HTTP / MySQL banner'ları) çalıştırır; böylece bir tarama gerçek sonuç döner. Saldırgan kutusunda, kırma görevi için parola-korumalı bir arşiv bırakılır.
+
+**Ajan ne yapıyor.** Döngü, her yerde kullanılanla aynı (`harness/lab/run_ctf_range.py` → `driver.py`): modele bir sızma-testi görevi verilir — keşif, servis exploitasyonu veya arşiv/kimlik kırma — ve her turda tam olarak bir kabuk komutu üretir; komut saldırgan kutusunda çalışır, çıktısı geri beslenir, 20 tura kadar. Yani ajan alt ağı `nmap` ile tarar, bulduğu servisleri yoklar, `ssh` dener, arşivi `john` / `fcrackzip` ile kırar — MUNI insanlarının çalıştığı aynı operasyonel ortamda keşif/exploit komut dizileri üretir. Bu, 43 boş-container oturumunun yanında `gemma3 / gemma4 / llama / qwen` üzerinden **25 kullanılabilir AI oturumu** veriyor; tüm karşılaştırma `scripts/ids_env_confound.py` içinde.
+
+Araç kutusu iki tarafta da aynıyken, bir AI-insan ayrımı araç mevcudiyeti değil ajans olarak okunabilir. Kanıt iki parçada: önce davranışsal refleks, sonra ortam eşitlenince sınıflandırıcı.
 
 **Durum-yoklama refleksi ortamdan bağımsız.** §4'teki mekanizmadır ve ortam değişince neredeyse hiç oynamaz:
 
@@ -316,16 +338,26 @@ Etkinin sürücüsü prompt değil, ortam gerçekçiliği.
 
 Her iki AI ortamı da insandan ~34 kat yüksek. Bu, araç kutusunun değil operatörün özelliği olduğu için, köken sinyalinin ajans olduğuna dair en güçlü tek kanıt.
 
-**Aynı-ortam ayrıştırılabilirlik.** AI ve insan artık *her ikisi de* aynı araç setiyle bir cyber-range'deyken, AI paylaşılan ağ-dışı binary'lerde insandan hâlâ makro F1 **0.771** ile ayrılıyor (leave-one-group-out) — bu ayrım artık araç mevcudiyeti olamaz. Ancak **ortamlar-arası transfer yalnızca kısmi**: dedektörü `{AI-boş + insan}` ile eğitip görülmemiş CTF-menzili AI'yı test edince 'ai' olarak yakalanma 0.46 (diğer yönde 0.28). Yani *sözcük dağarcığı* ortama bağlı; kalıcı sinyal *paylaşılan davranış üzerinden komut seçimi* — ki refleks ve ortak-binary köken ekseni tam da bunu ölçer. Confound artık sadece kabul edilmiş değil, **ölçülmüş ve büyük ölçüde sınırlanmış**.
+**Sınıflandırıcı tarafı, ortam kontrol edilince.** İkinci ortamı headline'ın yanına koymak, tek başına headline'dan daha dürüst:
+
+| köken testi | makro F1 | okuma |
+|---|---|---|
+| headline — boş-container AI vs insan, tek ortam | **0.962** | güçlü, ama kısmen ortam-destekli |
+| birleşik — AI *her iki* ortamda vs insan, ortak binary'ler | **0.903** | ikinci ortam katılınca ayakta kalıyor |
+| aynı-ortam — AI-CTF vs insan, tam ortak uzay | 0.703 | paylaşılan ağ araçları (iki taraf da `nmap`/`ssh`) karıştırıyor |
+| **aynı-ortam — AI-CTF vs insan, ağ-dışı (saf ajans)** | **0.771** | araç mevcudiyeti olamaz |
+| ortamlar-arası transfer — dışarıda bırakılan AI ortamı 'ai' yakalanma | 0.28–0.46 | sözcük dağarcığı ortama bağlı |
+
+**Ortamı kontrol etmek, ayrımı 0.962 headline'dan en katı kesitte 0.771'e çekiyor.** Bu farkın bir kısmı confound'un kastedildiği gibi sabitlenmesi; bir kısmı da CTF oturumlarının recon-ağırlıklı olması ve ağ komutları çıkarılınca incelmesi, üstelik küçük örneklemde (25). Ortam değişimini atlatan şey refleks ve *paylaşılan davranış üzerinden komut seçimi* — ki refleks tablosu ve ortak-binary köken ekseni tam da bunu ölçer; atlatamayan ise spesifik komut *sözcük dağarcığı*. Confound sadece kabul edilmiş bir çekince değil, **ölçülmüş ve büyük ölçüde sınırlanmış**.
 
 ### 10 · Dürüst sınırlamalar
 
-- **Örneklem mütevazı, ama öncekinden büyük.** Çökmeler ayıklandıktan sonra iki ortamda 68 kullanılabilir AI oturumu (43 boş-container + 25 CTF-menzili), 267 insana karşı. Hâlâ küçük — rakamları kesin değil, gösterge niteliğinde okuyun.
+- **Örneklem mütevazı.** Çökmeler ayıklandıktan sonra iki ortamda 68 kullanılabilir AI oturumu (43 boş-container + 25 CTF-menzili), 267 insana karşı. Küçük — rakamları kesin değil, gösterge niteliğinde okuyun.
 - **GNN tek başına SVC'nin altında.** Değeri yalnızca toplulukta; bu veri ölçeğinde yapısal görünüm tek başına ayakta duramıyor ve raporlanan 1.00 tabanı GNN değil, OR-topluluğudur.
 - **qwen3:4b burada güvenilmez.** Oturumlarının kabaca %75'i, `think:false` ile bile komut yerine reasoning-metnine dağılıyor. Şişmiş %86,7'lik durum-yoklaması bir döngü artefaktı.
-- **Niyet ekseni artık iki insan hücresinde de gerçek veri, ama iki korpusa yayılıyor.** Zararlı+insan gerçek MUNI korpusu, zararsız+insan gerçek NL2Bash komutları — artık sentetik keystroke-replay değil; niyet ortak-binary uzayında makro F1 0.909 ile ayrılıyor (permütasyon kontrolü 0.515, ≈ şans). Kalan çekince sentez değil köken: iki insan hücresi farklı korpuslar (MUNI vs NL2Bash) ve NL2Bash tek-satırlar halinde geldiği için oturumları uçtan uca kaydedilmiş değil, gerçek komutlardan derlenmiştir — ortak-binary satırı dürüst okumadır.
+- **Niyet ekseni iki insan hücresinde de gerçek veri, ama iki korpusa yayılıyor.** Zararlı+insan gerçek MUNI korpusu, zararsız+insan gerçek NL2Bash komutları; niyet ortak-binary uzayında makro F1 0.909 ile ayrılıyor (permütasyon kontrolü 0.515, ≈ şans). Kalan çekince sentez değil köken: iki insan hücresi farklı korpuslar (MUNI vs NL2Bash) ve NL2Bash tek-satırlar halinde geldiği için oturumları uçtan uca kaydedilmiş değil, gerçek komutlardan derlenmiştir — ortak-binary satırı dürüst okumadır.
 - **Bazı katmanlardan kaçmak düşük maliyetli.** Keystroke-zamanlama taklidi, Hat N'in payload-türevli özelliklerini yaklaşık 20 satır kodla etkisizleştiriyor. Kaçınmaya dirençli katmanlar Hat H (komut *seçimi*) ile HASSH.
-- **Ortam confound'u artık kabul değil, sınırlanmış.** AI ikinci bir ortamda — araç seti MUNI kutusuna eşli bir CTF-menzili kutusunda (§9) — yeniden çalıştırıldı, böylece ajans ortam daha sabit tutularak ölçüldü. Durum-yoklama refleksi iki AI ortamında neredeyse aynı (%26.5 / %23.9 vs %0.7 insan) ve köken eşli ortamda hâlâ ayrılabilir (F1 0.771). Kalan: ortamlar-arası *sözcüksel* transfer yalnızca kısmi (0.28–0.46 held-out recall), yani sözcük dağarcığı değil, *paylaşılan davranış üzerinden komut seçimi* aktarılan kısım.
+- **Ortam confound'u sadece kabul edilmiş bir çekince değil, sınırlanmış.** AI tarafı iki ortama yayılıyor — boş container ve araç seti MUNI kutusuna eşli bir CTF-menzili kutusu (§9) — böylece ajans ortam daha sabit tutularak ölçülüyor. Durum-yoklama refleksi iki AI ortamında neredeyse aynı (%26.5 / %23.9 vs %0.7 insan) ve köken eşli ortamda hâlâ ayrılabilir (F1 0.771). Kalan: ortamlar-arası *sözcüksel* transfer yalnızca kısmi (0.28–0.46 held-out recall), yani sözcük dağarcığı değil, *paylaşılan davranış üzerinden komut seçimi* aktarılan kısım.
 
 ### Veri kaynakları
 
