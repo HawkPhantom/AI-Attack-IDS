@@ -11,6 +11,8 @@
   <img src="https://img.shields.io/badge/SVC_only_floor-0.81-8792a3?style=flat-square">
   <img src="https://img.shields.io/badge/models-gemma3_·_gemma4_·_llama3.1_·_qwen3-0072B2?style=flat-square">
   <img src="https://img.shields.io/badge/real_human_data-MUNI_21k_cmds-E69F00?style=flat-square">
+  <img src="https://img.shields.io/badge/AI_environments-empty_+_CTF_range-6a5cb0?style=flat-square">
+  <img src="https://img.shields.io/badge/intent_F1_(real_data)-0.909-009E73?style=flat-square">
 </p>
 
 <p align="center">
@@ -156,10 +158,12 @@ The detector treats intent and origin as separate questions, and raises an alarm
 | **Malicious** | 🎯 autonomous AI attacker | classic attacker / pentester |
 | **Benign** | legitimate automation (Ansible, CI, DevOps agent) | everyday admin work |
 
-- **malicious + AI**: our harness (`gemma3 / gemma4 / llama / qwen`) plus the DTU dataset
+- **malicious + AI**: our harness (`gemma3 / gemma4 / llama / qwen`), across two environments, plus the DTU dataset
 - **malicious + human**: the MUNI dataset (real cyber-range trainees, `nmap` / `metasploit`)
 - **benign + AI**: the same harness, driven by maintenance prompts
-- **benign + human**: NL2Bash / shell-history corpora
+- **benign + human**: real NL2Bash commands (TellinaTool corpus)
+
+Both human cells are now **real** (`scripts/ids_2axis.py`). The intent axis used to rest on synthetic keystroke-replay of fixed scripted lists — so the classifier largely learned "scripted list vs LLM output" — whereas malicious+human is now the same real MUNI corpus the origin axis is validated on, and benign+human is real NL2Bash commands. On this footing, intent (malicious vs benign) separates at macro **F1 0.909** in the common-binary space, with a label-permutation control at **0.515** (≈ chance). What's left is provenance, not synthesis: the two human cells are different corpora, and NL2Bash ships as one-liners, so its *sessions* are assembled from real commands rather than recorded end-to-end.
 
 ### The origin axis under progressive feature restriction
 
@@ -202,14 +206,28 @@ The DTU "Honey for the Agent" paper reports that a deception environment increas
 
 The driver of the effect is environment realism, not the prompt.
 
+### A second environment: isolating agency from the box
+
+The original comparison had **one environment per side** — the AI in an empty Ubuntu container, the humans on a MUNI cyber-range attacker box stocked with `nmap` / `john` / `fcrackzip` / `sqlmap` — so a raw comparison there partly measures *tool availability*, not agency. To bracket that confound we reran all four models in a **second environment**: a CTF-range attacker box whose toolset is mirrored from the MUNI host, working a live in-scope subnet with three target services (`harness/lab/Dockerfile.ctf_attacker`, `harness/lab/run_ctf_range.py`; evaluated in `scripts/ids_env_confound.py`). This adds **25 usable CTF-range AI sessions** across the four models to the 43 empty-container ones.
+
+The **state-verification reflex is environment-invariant** — it barely moves when the box changes, which is the strongest single sign the origin signal is agency and not the toolbox:
+
+| operator, by environment | `pwd` / `whoami` / `id` / `uname` / `hostname` share |
+|---|---|
+| **Human** (MUNI cyber range) | **0.7 %** |
+| AI, empty container | 26.5 % |
+| AI, CTF range (matched toolset) | 23.9 % |
+
+With AI and human now *both* in a cyber range with the same toolkit, AI is still separable at macro **F1 0.771** on shared non-network binaries (leave-one-group-out) — a separation that can no longer be tool availability. **Cross-environment transfer is only partial** (an unseen CTF-range AI is recalled as AI 0.46 of the time, 0.28 the other way), so the *vocabulary* is environment-bound while command *selection over shared behaviour* is what travels. The confound is now measured and largely bracketed, not merely acknowledged.
+
 ### Honest limitations
 
-- **The sample is small.** 43 usable AI sessions once collapses are filtered, against 267 human. Treat the numbers as indicative, not settled.
+- **The sample is modest, though larger than at first.** 68 usable AI sessions across two environments (43 empty-container + 25 CTF-range) once collapses are filtered, against 267 human. Still small — treat the numbers as indicative, not settled.
 - **GNN alone underperforms the SVC.** Its value is only in the ensemble; on this data scale the structural view does not stand on its own, and the reported floor of 1.00 is the OR-ensemble, not the GNN.
 - **qwen3:4b can't be trusted here.** Roughly 75 % of its sessions dissolve into reasoning-prose instead of commands, even with `think:false`. Its inflated 86.7 % state-verification is a looping artifact.
-- **The intent axis is thinner.** Only origin is fully validated on real data; malicious-vs-benign still rests on synthetic benign-human sessions.
+- **The intent axis now uses real data on both human cells, but spans two corpora.** malicious+human is the real MUNI corpus and benign+human is real NL2Bash commands — no longer synthetic keystroke replay; intent separates at macro F1 0.909 in the common-binary space (permutation control 0.515, ≈ chance). The residual caveat is provenance, not synthesis: the two human cells are different corpora, and NL2Bash ships as one-liners, so its sessions are assembled from real commands rather than recorded end-to-end.
 - **Some layers are low-cost to evade.** Keystroke-timing mimicry neutralizes Hat N's payload-derived features in roughly 20 lines of code. The evasion-resistant layers are Hat H (command *selection*) and HASSH.
-- **One environment per side.** AI ran in empty containers, humans in a CTF range; despite the common-binary controls, a residual environment confound remains.
+- **The environment confound is now bracketed, not just noted.** The AI was rerun in a second environment whose toolset matches the MUNI host (above), so agency is measured with the box held closer to fixed: the state-verification reflex is nearly identical across both AI environments (26.5 % / 23.9 % vs 0.7 % human) and origin stays separable inside the matched environment (F1 0.771). What remains is that cross-environment *lexical* transfer is only partial (0.28–0.46 recall) — command selection over shared behaviour, not vocabulary, is the durable part.
 
 ### Data sources
 
@@ -228,13 +246,16 @@ harness/
   run_phase1.py          model x env x prompt grid runner
   envs/                  Docker SSH environments + Cowrie deception builder
   lab/                   multi-host recon lab (attacker + targets) + traffic capture
+    Dockerfile.ctf_attacker  CTF-range attacker box, toolset matched to MUNI
+    run_ctf_range.py         second-environment AI grid (the env-confound fix)
   net/                   Hat N: pcap capture, flow features, human keystroke replay
 scripts/
   adapt_dtu_to_trace.py       DTU nested-list to TRACE session schema
-  ids_2axis.py                intent x origin baseline
+  ids_2axis.py                intent x origin, all four cells on real data
   ids_real_human.py           origin axis vs real MUNI human data
   ids_model_generalization.py leave-one-model-out, SVC baseline
   ids_gnn.py                  GNN + ensemble, the floor-lifting result
+  ids_env_confound.py         AI across two environments (the env-confound fix)
   ids_network_recon.py        Hat N flow-feature analysis
 data/                    downloaded datasets (DTU, MUNI, NL2Bash)
 assets/                  the charts used in this README
@@ -248,7 +269,13 @@ python3 scripts/adapt_dtu_to_trace.py          # ingest DTU data
 python3 scripts/ids_real_human.py              # origin axis, real human
 python3 scripts/ids_model_generalization.py    # leave-one-model-out, SVC baseline (ablation)
 python3 scripts/ids_gnn.py                      # GNN + ensemble, floor to 1.00
+python3 scripts/ids_2axis.py                    # intent x origin, all cells real data
+python3 scripts/ids_env_confound.py            # AI across two environments (env confound)
 python3 scripts/ids_network_recon.py           # network layer
+
+# regenerate the second (CTF-range) AI environment, matched to the MUNI toolset:
+docker build -f harness/lab/Dockerfile.ctf_attacker -t ctf-attacker:latest harness/lab/
+python3 harness/lab/run_ctf_range.py --setup --teardown   # -> harness/runs/ctf_range/
 ```
 
 </details>
@@ -390,10 +417,12 @@ Dedektör niyet ve kökeni ayrı sorular olarak ele alır ve yalnızca ikisinin 
 | **Zararlı** | 🎯 otonom AI saldırgan | klasik saldırgan / pentester |
 | **Zararsız** | meşru otomasyon (Ansible, CI, DevOps ajanı) | gündelik yönetici işi |
 
-- **zararlı + AI**: kendi harness'imiz (`gemma3 / gemma4 / llama / qwen`) artı DTU veri seti
+- **zararlı + AI**: kendi harness'imiz (`gemma3 / gemma4 / llama / qwen`), iki ortamda, artı DTU veri seti
 - **zararlı + insan**: MUNI veri seti (gerçek cyber-range katılımcıları, `nmap` / `metasploit`)
 - **zararsız + AI**: aynı harness, bakım promptlarıyla sürülüyor
-- **zararsız + insan**: NL2Bash / shell-geçmişi korpusları
+- **zararsız + insan**: gerçek NL2Bash komutları (TellinaTool korpusu)
+
+Her iki insan hücresi de artık **gerçek** (`scripts/ids_2axis.py`). Niyet ekseni eskiden sabit scripted listelerin sentetik keystroke-replay'ine dayanıyordu — sınıflandırıcı büyük ölçüde "scripted liste vs LLM çıktısı" öğreniyordu — oysa zararlı+insan artık köken ekseninin doğrulandığı aynı gerçek MUNI korpusu, zararsız+insan ise gerçek NL2Bash komutları. Bu zeminde niyet (zararlı vs zararsız) ortak-binary uzayında makro **F1 0.909** ile ayrılıyor; etiket-permütasyon kontrolü **0.515** (≈ şans). Kalan, sentez değil köken: iki insan hücresi farklı korpuslar ve NL2Bash tek-satırlar halinde geldiği için *oturumları* uçtan uca kaydedilmiş değil, gerçek komutlardan derlenmiştir.
 
 ### Kademeli özellik kısıtlaması altında köken ekseni
 
@@ -436,14 +465,28 @@ DTU'nun "Honey for the Agent" makalesi, bir aldatma ortamının `ls` kullanımı
 
 Etkinin sürücüsü prompt değil, ortam gerçekçiliği.
 
+### İkinci ortam: ajansı ortamdan ayırmak
+
+İlk karşılaştırmada **taraf başına tek ortam** vardı — AI boş bir Ubuntu container'ında, insanlar `nmap` / `john` / `fcrackzip` / `sqlmap` dolu bir MUNI cyber-range saldırgan kutusunda — o yüzden oradaki ham karşılaştırma kısmen ajansı değil *araç mevcudiyetini* ölçer. Bu confound'u sınırlamak için dört modeli de **ikinci bir ortamda** yeniden çalıştırdık: araç seti MUNI kutusundan aynalanmış bir CTF-menzili saldırgan kutusu, üç hedef servisli canlı bir alt ağda (`harness/lab/Dockerfile.ctf_attacker`, `harness/lab/run_ctf_range.py`; `scripts/ids_env_confound.py` ile değerlendirilir). Bu, 43 boş-container oturumuna dört model genelinde **25 kullanılabilir CTF-menzili AI oturumu** ekliyor.
+
+**Durum-yoklama refleksi ortamdan bağımsız** — ortam değişince neredeyse hiç oynamaz; bu, köken sinyalinin araç kutusu değil ajans olduğuna dair en güçlü tek işaret:
+
+| operatör, ortama göre | `pwd` / `whoami` / `id` / `uname` / `hostname` payı |
+|---|---|
+| **İnsan** (MUNI cyber range) | **%0.7** |
+| AI, boş container | %26.5 |
+| AI, CTF menzili (eşli araç seti) | %23.9 |
+
+AI ve insan artık *her ikisi de* aynı araç setiyle bir cyber-range'deyken, AI paylaşılan ağ-dışı binary'lerde hâlâ makro **F1 0.771** ile ayrılıyor (leave-one-group-out) — bu ayrım artık araç mevcudiyeti olamaz. **Ortamlar-arası transfer yalnızca kısmi** (görülmemiş CTF-menzili AI 0.46 oranında 'ai' yakalanıyor, diğer yönde 0.28), yani *sözcük dağarcığı* ortama bağlı; aktarılan şey *paylaşılan davranış üzerinden komut seçimi*. Confound artık sadece kabul değil, ölçülmüş ve büyük ölçüde sınırlanmış.
+
 ### Dürüst sınırlamalar
 
-- **Örneklem küçük.** Çökmeler ayıklandıktan sonra 43 kullanılabilir AI oturumu, 267 insana karşı. Rakamları kesin değil, gösterge niteliğinde okuyun.
+- **Örneklem mütevazı, ama öncekinden büyük.** Çökmeler ayıklandıktan sonra iki ortamda 68 kullanılabilir AI oturumu (43 boş-container + 25 CTF-menzili), 267 insana karşı. Hâlâ küçük — rakamları kesin değil, gösterge niteliğinde okuyun.
 - **GNN tek başına SVC'nin altında.** Değeri yalnızca toplulukta; bu veri ölçeğinde yapısal görünüm tek başına ayakta duramıyor ve raporlanan 1.00 tabanı GNN değil, OR-topluluğudur.
 - **qwen3:4b burada güvenilmez.** Oturumlarının kabaca %75'i, `think:false` ile bile komut yerine reasoning-metnine dağılıyor. Şişmiş %86,7'lik durum-yoklaması bir döngü artefaktı.
-- **Niyet ekseni daha ince.** Gerçek veriyle tam doğrulanan yalnızca köken; zararlı-zararsız ayrımı hâlâ sentetik zararsız-insan oturumlarına dayanıyor.
+- **Niyet ekseni artık iki insan hücresinde de gerçek veri, ama iki korpusa yayılıyor.** Zararlı+insan gerçek MUNI korpusu, zararsız+insan gerçek NL2Bash komutları — artık sentetik keystroke-replay değil; niyet ortak-binary uzayında makro F1 0.909 ile ayrılıyor (permütasyon kontrolü 0.515, ≈ şans). Kalan çekince sentez değil köken: iki insan hücresi farklı korpuslar ve NL2Bash tek-satırlar halinde geldiği için oturumları uçtan uca kaydedilmiş değil, gerçek komutlardan derlenmiştir.
 - **Bazı katmanlardan kaçmak düşük maliyetli.** Keystroke-zamanlama taklidi, Hat N'in payload-türevli özelliklerini yaklaşık 20 satır kodla etkisizleştiriyor. Kaçınmaya dirençli katmanlar Hat H (komut *seçimi*) ile HASSH.
-- **Taraf başına tek ortam.** AI boş container'larda, insan CTF range'inde çalıştı; ortak-binary kontrollerine rağmen artık bir ortam confound'u kalıyor.
+- **Ortam confound'u artık kabul değil, sınırlanmış.** AI, araç seti MUNI kutusuna eşli bir ikinci ortamda (yukarıda) yeniden çalıştırıldı; böylece ajans ortam daha sabit tutularak ölçüldü: durum-yoklama refleksi iki AI ortamında neredeyse aynı (%26.5 / %23.9 vs %0.7 insan) ve köken eşli ortamda hâlâ ayrılabilir (F1 0.771). Kalan: ortamlar-arası *sözcüksel* transfer yalnızca kısmi (0.28–0.46 recall) — sözcük dağarcığı değil, paylaşılan davranış üzerinden komut seçimi kalıcı kısımdır.
 
 ### Veri kaynakları
 
@@ -462,13 +505,16 @@ harness/
   run_phase1.py          model x ortam x prompt ızgara koşucusu
   envs/                  Docker SSH ortamları + Cowrie aldatma üreticisi
   lab/                   çok-makineli recon lab (saldırgan + hedefler) + trafik yakalama
+    Dockerfile.ctf_attacker  MUNI araç setine eşlenmiş CTF-menzili saldırgan kutusu
+    run_ctf_range.py         ikinci-ortam AI ızgarası (ortam-confound düzeltmesi)
   net/                   Hat N: pcap yakalama, akış özellikleri, insan keystroke replay
 scripts/
   adapt_dtu_to_trace.py       DTU iç-içe-liste to TRACE oturum şeması
-  ids_2axis.py                niyet x köken baseline
+  ids_2axis.py                niyet x köken, dört hücre de gerçek veri
   ids_real_human.py           köken ekseni vs gerçek MUNI insan verisi
   ids_model_generalization.py leave-one-model-out, SVC baseline
   ids_gnn.py                  GNN + topluluk, tabanı yükselten sonuç
+  ids_env_confound.py         AI iki ortamda (ortam-confound düzeltmesi)
   ids_network_recon.py        Hat N akış-özelliği analizi
 data/                    indirilen veri setleri (DTU, MUNI, NL2Bash)
 assets/                  bu README'deki grafikler
@@ -482,7 +528,13 @@ python3 scripts/adapt_dtu_to_trace.py          # DTU verisini al
 python3 scripts/ids_real_human.py              # köken ekseni, gerçek insan
 python3 scripts/ids_model_generalization.py    # leave-one-model-out, SVC baseline (ablation)
 python3 scripts/ids_gnn.py                      # GNN + topluluk, taban 1.00
+python3 scripts/ids_2axis.py                    # niyet x köken, tüm hücreler gerçek veri
+python3 scripts/ids_env_confound.py            # AI iki ortamda (ortam confound'u)
 python3 scripts/ids_network_recon.py           # ağ katmanı
+
+# ikinci (CTF-menzili) AI ortamını yeniden üret, MUNI araç setine eşli:
+docker build -f harness/lab/Dockerfile.ctf_attacker -t ctf-attacker:latest harness/lab/
+python3 harness/lab/run_ctf_range.py --setup --teardown   # -> harness/runs/ctf_range/
 ```
 
 </details>
