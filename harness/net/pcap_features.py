@@ -26,26 +26,45 @@ CLIENT_IP = "127.0.0.1"
 
 
 def load_flows(pcap_path):
-    """(ts, src_port, dst_port, length, is_client_to_server) listesi."""
+    """Follow the client endpoint from the initial SYN, never port ordering.
+
+    Accept loopback and Ethernet captures. Only the first SSH TCP connection is
+    measured; a midstream capture without a SYN is rejected explicitly.
+    """
     pkts = []
+    client = server = None
     with open(pcap_path, "rb") as f:
-        for ts, buf in dpkt.pcap.Reader(f):
+        reader = dpkt.pcap.Reader(f)
+        link = reader.datalink()
+        for ts, buf in reader:
             try:
-                # lo0 BSD loopback: 4-byte AF header, sonra IP
-                if len(buf) < 4:
-                    continue
-                ip = dpkt.ip.IP(buf[4:])
-                if not isinstance(ip.data, dpkt.tcp.TCP):
+                if link in (0, 108):  # BSD NULL / LOOP
+                    ip = dpkt.ip.IP(buf[4:])
+                elif link == 1:
+                    ip = dpkt.ethernet.Ethernet(buf).data
+                elif link in (12, 101):
+                    ip = dpkt.ip.IP(buf)
+                else:
+                    raise ValueError(f"Unsupported pcap linktype {link}")
+                if not isinstance(ip, dpkt.ip.IP) or not isinstance(ip.data, dpkt.tcp.TCP):
                     continue
                 tcp = ip.data
-                payload = len(tcp.data)
-                if payload == 0:
-                    continue  # saf ACK/handshake atla, veri paketlerine odaklan
-                # ssh sunucu portu buyuk (2222/2300+); istemci ephemeral
-                to_server = tcp.dport < tcp.sport
-                pkts.append((ts, tcp.sport, tcp.dport, payload, to_server))
-            except Exception:
+                src, dst = (ip.src, tcp.sport), (ip.dst, tcp.dport)
+                if client is None and tcp.flags & dpkt.tcp.TH_SYN and not tcp.flags & dpkt.tcp.TH_ACK:
+                    client, server = src, dst
+                if client is None or not tcp.data:
+                    continue
+                if (src, dst) == (client, server):
+                    to_server = True
+                elif (src, dst) == (server, client):
+                    to_server = False
+                else:
+                    continue
+                pkts.append((ts, tcp.sport, tcp.dport, len(tcp.data), to_server))
+            except (dpkt.UnpackError, AttributeError):
                 continue
+    if client is None:
+        raise ValueError("Initial TCP SYN missing; cannot establish SSH direction")
     return pkts
 
 

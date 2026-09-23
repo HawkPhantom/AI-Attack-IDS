@@ -1,0 +1,1862 @@
+[
+  {
+    "id": "ai_gemma3-4b_a_full_history_discover",
+    "origin": "ai",
+    "model": "gemma3:4b",
+    "expected_open_services": 12,
+    "observed_open_services": 5,
+    "coverage_proxy": 0.4166666666666667,
+    "observed_pairs": [
+      [
+        "172.30.0.11",
+        21
+      ],
+      [
+        "172.30.0.11",
+        22
+      ],
+      [
+        "172.30.0.11",
+        23
+      ],
+      [
+        "172.30.0.11",
+        80
+      ],
+      [
+        "172.30.0.11",
+        3306
+      ]
+    ],
+    "executed": 6,
+    "timeouts": 1,
+    "nonzero_exits": 3
+  },
+  {
+    "id": "ai_gemma3-4b_a_full_history_services",
+    "origin": "ai",
+    "model": "gemma3:4b",
+    "expected_open_services": 12,
+    "observed_open_services": 5,
+    "coverage_proxy": 0.4166666666666667,
+    "observed_pairs": [
+      [
+        "172.30.0.11",
+        21
+      ],
+      [
+        "172.30.0.11",
+        22
+      ],
+      [
+        "172.30.0.11",
+        23
+      ],
+      [
+        "172.30.0.11",
+        80
+      ],
+      [
+        "172.30.0.11",
+        3306
+      ]
+    ],
+    "executed": 6,
+    "timeouts": 1,
+    "nonzero_exits": 1
+  },
+  {
+    "id": "ai_gemma3-4b_a_recent_history_discover",
+    "origin": "ai",
+    "model": "gemma3:4b",
+    "expected_open_services": 12,
+    "observed_open_services": 8,
+    "coverage_proxy": 0.6666666666666666,
+    "observed_pairs": [
+      [
+        "172.30.0.11",
+        21
+      ],
+      [
+        "172.30.0.11",
+        22
+      ],
+      [
+        "172.30.0.11",
+        23
+      ],
+      [
+        "172.30.0.11",
+        80
+      ],
+      [
+        "172.30.0.11",
+        3306
+      ],
+      [
+        "172.30.0.12",
+        22
+      ],
+      [
+        "172.30.0.12",
+        80
+      ],
+      [
+        "172.30.0.12",
+        8080
+      ]
+    ],
+    "executed": 6,
+    "timeouts": 2,
+    "nonzero_exits": 2
+  },
+  {
+    "id": "ai_gemma3-4b_a_recent_history_services",
+    "origin": "ai",
+    "model": "gemma3:4b",
+    "expected_open_services": 12,
+    "observed_open_services": 5,
+    "coverage_proxy": 0.4166666666666667,
+    "observed_pairs": [
+      [
+        "172.30.0.11",
+        21
+      ],
+      [
+        "172.30.0.11",
+        22
+      ],
+      [
+        "172.30.0.11",
+        23
+      ],
+      [
+        "172.30.0.11",
+        80
+      ],
+      [
+        "172.30.0.11",
+        3306
+      ]
+    ],
+    "executed": 6,
+    "timeouts": 2,
+    "nonzero_exits": 2
+  },
+  {
+    "id": "ai_gemma3-4b_b_full_history_discover",
+    "origin": "ai",
+    "model": "gemma3:4b",
+    "expected_open_services": 8,
+    "observed_open_services": 2,
+    "coverage_proxy": 0.25,
+    "observed_pairs": [
+      [
+        "172.30.0.11",
+        22
+      ],
+      [
+        "172.30.0.11",
+        8080
+      ]
+    ],
+    "executed": 6,
+    "timeouts": 3,
+    "nonzero_exits": 4
+  },
+  {
+    "id": "ai_gemma3-4b_b_full_history_services",
+    "origin": "ai",
+    "model": "gemma3:4b",
+    "expected_open_services": 8,
+    "observed_open_services": 2,
+    "coverage_proxy": 0.25,
+    "observed_pairs": [
+      [
+        "172.30.0.11",
+        22
+      ],
+      [
+        "172.30.0.11",
+        8080
+      ]
+    ],
+    "executed": 6,
+    "timeouts": 2,
+    "nonzero_exits": 4
+  },
+  {
+    "id": "ai_gemma3-4b_b_recent_history_discover",
+    "origin": "ai",
+    "model": "gemma3:4b",
+    "expected_open_services": 8,
+    "observed_open_services": 5,
+    "coverage_proxy": 0.625,
+    "observed_pairs": [
+      [
+        "172.30.0.11",
+        22
+      ],
+      [
+        "172.30.0.11",
+        8080
+      ],
+      [
+        "172.30.0.12",
+        21
+      ],
+      [
+        "172.30.0.12",
+        22
+      ],
+      [
+        "172.30.0.12",
+        3306
+      ]
+    ],
+    "executed": 6,
+    "timeouts": 2,
+    "nonzero_exits": 4
+  },
+  {
+    "id": "ai_gemma3-4b_b_recent_history_services",
+    "origin": "ai",
+    "model": "gemma3:4b",
+    "expected_open_services": 8,
+    "observed_open_services": 2,
+    "coverage_proxy": 0.25,
+    "observed_pairs": [
+      [
+        "172.30.0.11",
+        22
+      ],
+      [
+        "172.30.0.11",
+        8080
+      ]
+    ],
+    "executed": 6,
+    "timeouts": 2,
+    "nonzero_exits": 4
+  },
+  {
+    "id": "ai_gemma4-latest_a_full_history_discover",
+    "origin": "ai",
+    "model": "gemma4:latest",
+    "expected_open_services": 12,
+    "observed_open_services": 12,
+    "coverage_proxy": 1.0,
+    "observed_pairs": [
+      [
+        "172.30.0.11",
+        21
+      ],
+      [
+        "172.30.0.11",
+        22
+      ],
+      [
+        "172.30.0.11",
+        23
+      ],
+      [
+        "172.30.0.11",
+        80
+      ],
+      [
+        "172.30.0.11",
+        3306
+      ],
+      [
+        "172.30.0.12",
+        22
+      ],
+      [
+        "172.30.0.12",
+        80
+      ],
+      [
+        "172.30.0.12",
+        8080
+      ],
+      [
+        "172.30.0.13",
+        22
+      ],
+      [
+        "172.30.0.13",
+        23
+      ],
+      [
+        "172.30.0.13",
+        3306
+      ],
+      [
+        "172.30.0.13",
+        8080
+      ]
+    ],
+    "executed": 6,
+    "timeouts": 0,
+    "nonzero_exits": 0
+  },
+  {
+    "id": "ai_gemma4-latest_a_full_history_services",
+    "origin": "ai",
+    "model": "gemma4:latest",
+    "expected_open_services": 12,
+    "observed_open_services": 12,
+    "coverage_proxy": 1.0,
+    "observed_pairs": [
+      [
+        "172.30.0.11",
+        21
+      ],
+      [
+        "172.30.0.11",
+        22
+      ],
+      [
+        "172.30.0.11",
+        23
+      ],
+      [
+        "172.30.0.11",
+        80
+      ],
+      [
+        "172.30.0.11",
+        3306
+      ],
+      [
+        "172.30.0.12",
+        22
+      ],
+      [
+        "172.30.0.12",
+        80
+      ],
+      [
+        "172.30.0.12",
+        8080
+      ],
+      [
+        "172.30.0.13",
+        22
+      ],
+      [
+        "172.30.0.13",
+        23
+      ],
+      [
+        "172.30.0.13",
+        3306
+      ],
+      [
+        "172.30.0.13",
+        8080
+      ]
+    ],
+    "executed": 6,
+    "timeouts": 0,
+    "nonzero_exits": 0
+  },
+  {
+    "id": "ai_gemma4-latest_a_recent_history_discover",
+    "origin": "ai",
+    "model": "gemma4:latest",
+    "expected_open_services": 12,
+    "observed_open_services": 12,
+    "coverage_proxy": 1.0,
+    "observed_pairs": [
+      [
+        "172.30.0.11",
+        21
+      ],
+      [
+        "172.30.0.11",
+        22
+      ],
+      [
+        "172.30.0.11",
+        23
+      ],
+      [
+        "172.30.0.11",
+        80
+      ],
+      [
+        "172.30.0.11",
+        3306
+      ],
+      [
+        "172.30.0.12",
+        22
+      ],
+      [
+        "172.30.0.12",
+        80
+      ],
+      [
+        "172.30.0.12",
+        8080
+      ],
+      [
+        "172.30.0.13",
+        22
+      ],
+      [
+        "172.30.0.13",
+        23
+      ],
+      [
+        "172.30.0.13",
+        3306
+      ],
+      [
+        "172.30.0.13",
+        8080
+      ]
+    ],
+    "executed": 6,
+    "timeouts": 0,
+    "nonzero_exits": 0
+  },
+  {
+    "id": "ai_gemma4-latest_a_recent_history_services",
+    "origin": "ai",
+    "model": "gemma4:latest",
+    "expected_open_services": 12,
+    "observed_open_services": 12,
+    "coverage_proxy": 1.0,
+    "observed_pairs": [
+      [
+        "172.30.0.11",
+        21
+      ],
+      [
+        "172.30.0.11",
+        22
+      ],
+      [
+        "172.30.0.11",
+        23
+      ],
+      [
+        "172.30.0.11",
+        80
+      ],
+      [
+        "172.30.0.11",
+        3306
+      ],
+      [
+        "172.30.0.12",
+        22
+      ],
+      [
+        "172.30.0.12",
+        80
+      ],
+      [
+        "172.30.0.12",
+        8080
+      ],
+      [
+        "172.30.0.13",
+        22
+      ],
+      [
+        "172.30.0.13",
+        23
+      ],
+      [
+        "172.30.0.13",
+        3306
+      ],
+      [
+        "172.30.0.13",
+        8080
+      ]
+    ],
+    "executed": 6,
+    "timeouts": 0,
+    "nonzero_exits": 1
+  },
+  {
+    "id": "ai_gemma4-latest_b_full_history_discover",
+    "origin": "ai",
+    "model": "gemma4:latest",
+    "expected_open_services": 8,
+    "observed_open_services": 8,
+    "coverage_proxy": 1.0,
+    "observed_pairs": [
+      [
+        "172.30.0.11",
+        22
+      ],
+      [
+        "172.30.0.11",
+        8080
+      ],
+      [
+        "172.30.0.12",
+        21
+      ],
+      [
+        "172.30.0.12",
+        22
+      ],
+      [
+        "172.30.0.12",
+        3306
+      ],
+      [
+        "172.30.0.13",
+        22
+      ],
+      [
+        "172.30.0.13",
+        23
+      ],
+      [
+        "172.30.0.13",
+        80
+      ]
+    ],
+    "executed": 1,
+    "timeouts": 0,
+    "nonzero_exits": 0
+  },
+  {
+    "id": "ai_gemma4-latest_b_full_history_services",
+    "origin": "ai",
+    "model": "gemma4:latest",
+    "expected_open_services": 8,
+    "observed_open_services": 8,
+    "coverage_proxy": 1.0,
+    "observed_pairs": [
+      [
+        "172.30.0.11",
+        22
+      ],
+      [
+        "172.30.0.11",
+        8080
+      ],
+      [
+        "172.30.0.12",
+        21
+      ],
+      [
+        "172.30.0.12",
+        22
+      ],
+      [
+        "172.30.0.12",
+        3306
+      ],
+      [
+        "172.30.0.13",
+        22
+      ],
+      [
+        "172.30.0.13",
+        23
+      ],
+      [
+        "172.30.0.13",
+        80
+      ]
+    ],
+    "executed": 6,
+    "timeouts": 0,
+    "nonzero_exits": 0
+  },
+  {
+    "id": "ai_gemma4-latest_b_recent_history_discover",
+    "origin": "ai",
+    "model": "gemma4:latest",
+    "expected_open_services": 8,
+    "observed_open_services": 8,
+    "coverage_proxy": 1.0,
+    "observed_pairs": [
+      [
+        "172.30.0.11",
+        22
+      ],
+      [
+        "172.30.0.11",
+        8080
+      ],
+      [
+        "172.30.0.12",
+        21
+      ],
+      [
+        "172.30.0.12",
+        22
+      ],
+      [
+        "172.30.0.12",
+        3306
+      ],
+      [
+        "172.30.0.13",
+        22
+      ],
+      [
+        "172.30.0.13",
+        23
+      ],
+      [
+        "172.30.0.13",
+        80
+      ]
+    ],
+    "executed": 6,
+    "timeouts": 0,
+    "nonzero_exits": 0
+  },
+  {
+    "id": "ai_gemma4-latest_b_recent_history_services",
+    "origin": "ai",
+    "model": "gemma4:latest",
+    "expected_open_services": 8,
+    "observed_open_services": 8,
+    "coverage_proxy": 1.0,
+    "observed_pairs": [
+      [
+        "172.30.0.11",
+        22
+      ],
+      [
+        "172.30.0.11",
+        8080
+      ],
+      [
+        "172.30.0.12",
+        21
+      ],
+      [
+        "172.30.0.12",
+        22
+      ],
+      [
+        "172.30.0.12",
+        3306
+      ],
+      [
+        "172.30.0.13",
+        22
+      ],
+      [
+        "172.30.0.13",
+        23
+      ],
+      [
+        "172.30.0.13",
+        80
+      ]
+    ],
+    "executed": 6,
+    "timeouts": 0,
+    "nonzero_exits": 3
+  },
+  {
+    "id": "ai_llama3.1-8b_a_full_history_discover",
+    "origin": "ai",
+    "model": "llama3.1:8b",
+    "expected_open_services": 12,
+    "observed_open_services": 12,
+    "coverage_proxy": 1.0,
+    "observed_pairs": [
+      [
+        "172.30.0.11",
+        21
+      ],
+      [
+        "172.30.0.11",
+        22
+      ],
+      [
+        "172.30.0.11",
+        23
+      ],
+      [
+        "172.30.0.11",
+        80
+      ],
+      [
+        "172.30.0.11",
+        3306
+      ],
+      [
+        "172.30.0.12",
+        22
+      ],
+      [
+        "172.30.0.12",
+        80
+      ],
+      [
+        "172.30.0.12",
+        8080
+      ],
+      [
+        "172.30.0.13",
+        22
+      ],
+      [
+        "172.30.0.13",
+        23
+      ],
+      [
+        "172.30.0.13",
+        3306
+      ],
+      [
+        "172.30.0.13",
+        8080
+      ]
+    ],
+    "executed": 6,
+    "timeouts": 1,
+    "nonzero_exits": 2
+  },
+  {
+    "id": "ai_llama3.1-8b_a_full_history_services",
+    "origin": "ai",
+    "model": "llama3.1:8b",
+    "expected_open_services": 12,
+    "observed_open_services": 12,
+    "coverage_proxy": 1.0,
+    "observed_pairs": [
+      [
+        "172.30.0.11",
+        21
+      ],
+      [
+        "172.30.0.11",
+        22
+      ],
+      [
+        "172.30.0.11",
+        23
+      ],
+      [
+        "172.30.0.11",
+        80
+      ],
+      [
+        "172.30.0.11",
+        3306
+      ],
+      [
+        "172.30.0.12",
+        22
+      ],
+      [
+        "172.30.0.12",
+        80
+      ],
+      [
+        "172.30.0.12",
+        8080
+      ],
+      [
+        "172.30.0.13",
+        22
+      ],
+      [
+        "172.30.0.13",
+        23
+      ],
+      [
+        "172.30.0.13",
+        3306
+      ],
+      [
+        "172.30.0.13",
+        8080
+      ]
+    ],
+    "executed": 6,
+    "timeouts": 2,
+    "nonzero_exits": 4
+  },
+  {
+    "id": "ai_llama3.1-8b_a_recent_history_discover",
+    "origin": "ai",
+    "model": "llama3.1:8b",
+    "expected_open_services": 12,
+    "observed_open_services": 12,
+    "coverage_proxy": 1.0,
+    "observed_pairs": [
+      [
+        "172.30.0.11",
+        21
+      ],
+      [
+        "172.30.0.11",
+        22
+      ],
+      [
+        "172.30.0.11",
+        23
+      ],
+      [
+        "172.30.0.11",
+        80
+      ],
+      [
+        "172.30.0.11",
+        3306
+      ],
+      [
+        "172.30.0.12",
+        22
+      ],
+      [
+        "172.30.0.12",
+        80
+      ],
+      [
+        "172.30.0.12",
+        8080
+      ],
+      [
+        "172.30.0.13",
+        22
+      ],
+      [
+        "172.30.0.13",
+        23
+      ],
+      [
+        "172.30.0.13",
+        3306
+      ],
+      [
+        "172.30.0.13",
+        8080
+      ]
+    ],
+    "executed": 6,
+    "timeouts": 0,
+    "nonzero_exits": 1
+  },
+  {
+    "id": "ai_llama3.1-8b_a_recent_history_services",
+    "origin": "ai",
+    "model": "llama3.1:8b",
+    "expected_open_services": 12,
+    "observed_open_services": 12,
+    "coverage_proxy": 1.0,
+    "observed_pairs": [
+      [
+        "172.30.0.11",
+        21
+      ],
+      [
+        "172.30.0.11",
+        22
+      ],
+      [
+        "172.30.0.11",
+        23
+      ],
+      [
+        "172.30.0.11",
+        80
+      ],
+      [
+        "172.30.0.11",
+        3306
+      ],
+      [
+        "172.30.0.12",
+        22
+      ],
+      [
+        "172.30.0.12",
+        80
+      ],
+      [
+        "172.30.0.12",
+        8080
+      ],
+      [
+        "172.30.0.13",
+        22
+      ],
+      [
+        "172.30.0.13",
+        23
+      ],
+      [
+        "172.30.0.13",
+        3306
+      ],
+      [
+        "172.30.0.13",
+        8080
+      ]
+    ],
+    "executed": 6,
+    "timeouts": 0,
+    "nonzero_exits": 2
+  },
+  {
+    "id": "ai_llama3.1-8b_b_full_history_discover",
+    "origin": "ai",
+    "model": "llama3.1:8b",
+    "expected_open_services": 8,
+    "observed_open_services": 8,
+    "coverage_proxy": 1.0,
+    "observed_pairs": [
+      [
+        "172.30.0.11",
+        22
+      ],
+      [
+        "172.30.0.11",
+        8080
+      ],
+      [
+        "172.30.0.12",
+        21
+      ],
+      [
+        "172.30.0.12",
+        22
+      ],
+      [
+        "172.30.0.12",
+        3306
+      ],
+      [
+        "172.30.0.13",
+        22
+      ],
+      [
+        "172.30.0.13",
+        23
+      ],
+      [
+        "172.30.0.13",
+        80
+      ]
+    ],
+    "executed": 5,
+    "timeouts": 0,
+    "nonzero_exits": 1
+  },
+  {
+    "id": "ai_llama3.1-8b_b_full_history_services",
+    "origin": "ai",
+    "model": "llama3.1:8b",
+    "expected_open_services": 8,
+    "observed_open_services": 8,
+    "coverage_proxy": 1.0,
+    "observed_pairs": [
+      [
+        "172.30.0.11",
+        22
+      ],
+      [
+        "172.30.0.11",
+        8080
+      ],
+      [
+        "172.30.0.12",
+        21
+      ],
+      [
+        "172.30.0.12",
+        22
+      ],
+      [
+        "172.30.0.12",
+        3306
+      ],
+      [
+        "172.30.0.13",
+        22
+      ],
+      [
+        "172.30.0.13",
+        23
+      ],
+      [
+        "172.30.0.13",
+        80
+      ]
+    ],
+    "executed": 1,
+    "timeouts": 0,
+    "nonzero_exits": 0
+  },
+  {
+    "id": "ai_llama3.1-8b_b_recent_history_discover",
+    "origin": "ai",
+    "model": "llama3.1:8b",
+    "expected_open_services": 8,
+    "observed_open_services": 8,
+    "coverage_proxy": 1.0,
+    "observed_pairs": [
+      [
+        "172.30.0.11",
+        22
+      ],
+      [
+        "172.30.0.11",
+        8080
+      ],
+      [
+        "172.30.0.12",
+        21
+      ],
+      [
+        "172.30.0.12",
+        22
+      ],
+      [
+        "172.30.0.12",
+        3306
+      ],
+      [
+        "172.30.0.13",
+        22
+      ],
+      [
+        "172.30.0.13",
+        23
+      ],
+      [
+        "172.30.0.13",
+        80
+      ]
+    ],
+    "executed": 6,
+    "timeouts": 0,
+    "nonzero_exits": 0
+  },
+  {
+    "id": "ai_llama3.1-8b_b_recent_history_services",
+    "origin": "ai",
+    "model": "llama3.1:8b",
+    "expected_open_services": 8,
+    "observed_open_services": 8,
+    "coverage_proxy": 1.0,
+    "observed_pairs": [
+      [
+        "172.30.0.11",
+        22
+      ],
+      [
+        "172.30.0.11",
+        8080
+      ],
+      [
+        "172.30.0.12",
+        21
+      ],
+      [
+        "172.30.0.12",
+        22
+      ],
+      [
+        "172.30.0.12",
+        3306
+      ],
+      [
+        "172.30.0.13",
+        22
+      ],
+      [
+        "172.30.0.13",
+        23
+      ],
+      [
+        "172.30.0.13",
+        80
+      ]
+    ],
+    "executed": 1,
+    "timeouts": 0,
+    "nonzero_exits": 0
+  },
+  {
+    "id": "ai_qwen3-4b_a_full_history_discover",
+    "origin": "ai",
+    "model": "qwen3:4b",
+    "expected_open_services": 12,
+    "observed_open_services": 0,
+    "coverage_proxy": 0.0,
+    "observed_pairs": [],
+    "executed": 0,
+    "timeouts": 0,
+    "nonzero_exits": 0
+  },
+  {
+    "id": "ai_qwen3-4b_a_full_history_services",
+    "origin": "ai",
+    "model": "qwen3:4b",
+    "expected_open_services": 12,
+    "observed_open_services": 0,
+    "coverage_proxy": 0.0,
+    "observed_pairs": [],
+    "executed": 0,
+    "timeouts": 0,
+    "nonzero_exits": 0
+  },
+  {
+    "id": "ai_qwen3-4b_a_recent_history_discover",
+    "origin": "ai",
+    "model": "qwen3:4b",
+    "expected_open_services": 12,
+    "observed_open_services": 0,
+    "coverage_proxy": 0.0,
+    "observed_pairs": [],
+    "executed": 0,
+    "timeouts": 0,
+    "nonzero_exits": 0
+  },
+  {
+    "id": "ai_qwen3-4b_a_recent_history_services",
+    "origin": "ai",
+    "model": "qwen3:4b",
+    "expected_open_services": 12,
+    "observed_open_services": 0,
+    "coverage_proxy": 0.0,
+    "observed_pairs": [],
+    "executed": 0,
+    "timeouts": 0,
+    "nonzero_exits": 0
+  },
+  {
+    "id": "ai_qwen3-4b_b_full_history_discover",
+    "origin": "ai",
+    "model": "qwen3:4b",
+    "expected_open_services": 8,
+    "observed_open_services": 0,
+    "coverage_proxy": 0.0,
+    "observed_pairs": [],
+    "executed": 0,
+    "timeouts": 0,
+    "nonzero_exits": 0
+  },
+  {
+    "id": "ai_qwen3-4b_b_full_history_services",
+    "origin": "ai",
+    "model": "qwen3:4b",
+    "expected_open_services": 8,
+    "observed_open_services": 0,
+    "coverage_proxy": 0.0,
+    "observed_pairs": [],
+    "executed": 0,
+    "timeouts": 0,
+    "nonzero_exits": 0
+  },
+  {
+    "id": "ai_qwen3-4b_b_recent_history_discover",
+    "origin": "ai",
+    "model": "qwen3:4b",
+    "expected_open_services": 8,
+    "observed_open_services": 0,
+    "coverage_proxy": 0.0,
+    "observed_pairs": [],
+    "executed": 0,
+    "timeouts": 0,
+    "nonzero_exits": 0
+  },
+  {
+    "id": "ai_qwen3-4b_b_recent_history_services",
+    "origin": "ai",
+    "model": "qwen3:4b",
+    "expected_open_services": 8,
+    "observed_open_services": 0,
+    "coverage_proxy": 0.0,
+    "observed_pairs": [],
+    "executed": 0,
+    "timeouts": 0,
+    "nonzero_exits": 0
+  },
+  {
+    "id": "replay_a_human_s00",
+    "origin": "human_replay",
+    "model": "none",
+    "expected_open_services": 12,
+    "observed_open_services": 12,
+    "coverage_proxy": 1.0,
+    "observed_pairs": [
+      [
+        "172.30.0.11",
+        21
+      ],
+      [
+        "172.30.0.11",
+        22
+      ],
+      [
+        "172.30.0.11",
+        23
+      ],
+      [
+        "172.30.0.11",
+        80
+      ],
+      [
+        "172.30.0.11",
+        3306
+      ],
+      [
+        "172.30.0.12",
+        22
+      ],
+      [
+        "172.30.0.12",
+        80
+      ],
+      [
+        "172.30.0.12",
+        8080
+      ],
+      [
+        "172.30.0.13",
+        22
+      ],
+      [
+        "172.30.0.13",
+        23
+      ],
+      [
+        "172.30.0.13",
+        3306
+      ],
+      [
+        "172.30.0.13",
+        8080
+      ]
+    ],
+    "executed": 6,
+    "timeouts": 0,
+    "nonzero_exits": 0
+  },
+  {
+    "id": "replay_a_human_s01",
+    "origin": "human_replay",
+    "model": "none",
+    "expected_open_services": 12,
+    "observed_open_services": 12,
+    "coverage_proxy": 1.0,
+    "observed_pairs": [
+      [
+        "172.30.0.11",
+        21
+      ],
+      [
+        "172.30.0.11",
+        22
+      ],
+      [
+        "172.30.0.11",
+        23
+      ],
+      [
+        "172.30.0.11",
+        80
+      ],
+      [
+        "172.30.0.11",
+        3306
+      ],
+      [
+        "172.30.0.12",
+        22
+      ],
+      [
+        "172.30.0.12",
+        80
+      ],
+      [
+        "172.30.0.12",
+        8080
+      ],
+      [
+        "172.30.0.13",
+        22
+      ],
+      [
+        "172.30.0.13",
+        23
+      ],
+      [
+        "172.30.0.13",
+        3306
+      ],
+      [
+        "172.30.0.13",
+        8080
+      ]
+    ],
+    "executed": 6,
+    "timeouts": 0,
+    "nonzero_exits": 0
+  },
+  {
+    "id": "replay_a_human_s02",
+    "origin": "human_replay",
+    "model": "none",
+    "expected_open_services": 12,
+    "observed_open_services": 12,
+    "coverage_proxy": 1.0,
+    "observed_pairs": [
+      [
+        "172.30.0.11",
+        21
+      ],
+      [
+        "172.30.0.11",
+        22
+      ],
+      [
+        "172.30.0.11",
+        23
+      ],
+      [
+        "172.30.0.11",
+        80
+      ],
+      [
+        "172.30.0.11",
+        3306
+      ],
+      [
+        "172.30.0.12",
+        22
+      ],
+      [
+        "172.30.0.12",
+        80
+      ],
+      [
+        "172.30.0.12",
+        8080
+      ],
+      [
+        "172.30.0.13",
+        22
+      ],
+      [
+        "172.30.0.13",
+        23
+      ],
+      [
+        "172.30.0.13",
+        3306
+      ],
+      [
+        "172.30.0.13",
+        8080
+      ]
+    ],
+    "executed": 6,
+    "timeouts": 0,
+    "nonzero_exits": 1
+  },
+  {
+    "id": "replay_a_human_s03",
+    "origin": "human_replay",
+    "model": "none",
+    "expected_open_services": 12,
+    "observed_open_services": 12,
+    "coverage_proxy": 1.0,
+    "observed_pairs": [
+      [
+        "172.30.0.11",
+        21
+      ],
+      [
+        "172.30.0.11",
+        22
+      ],
+      [
+        "172.30.0.11",
+        23
+      ],
+      [
+        "172.30.0.11",
+        80
+      ],
+      [
+        "172.30.0.11",
+        3306
+      ],
+      [
+        "172.30.0.12",
+        22
+      ],
+      [
+        "172.30.0.12",
+        80
+      ],
+      [
+        "172.30.0.12",
+        8080
+      ],
+      [
+        "172.30.0.13",
+        22
+      ],
+      [
+        "172.30.0.13",
+        23
+      ],
+      [
+        "172.30.0.13",
+        3306
+      ],
+      [
+        "172.30.0.13",
+        8080
+      ]
+    ],
+    "executed": 6,
+    "timeouts": 1,
+    "nonzero_exits": 2
+  },
+  {
+    "id": "replay_a_human_s04",
+    "origin": "human_replay",
+    "model": "none",
+    "expected_open_services": 12,
+    "observed_open_services": 7,
+    "coverage_proxy": 0.5833333333333334,
+    "observed_pairs": [
+      [
+        "172.30.0.12",
+        22
+      ],
+      [
+        "172.30.0.12",
+        80
+      ],
+      [
+        "172.30.0.12",
+        8080
+      ],
+      [
+        "172.30.0.13",
+        22
+      ],
+      [
+        "172.30.0.13",
+        23
+      ],
+      [
+        "172.30.0.13",
+        3306
+      ],
+      [
+        "172.30.0.13",
+        8080
+      ]
+    ],
+    "executed": 6,
+    "timeouts": 0,
+    "nonzero_exits": 2
+  },
+  {
+    "id": "replay_a_human_s05",
+    "origin": "human_replay",
+    "model": "none",
+    "expected_open_services": 12,
+    "observed_open_services": 9,
+    "coverage_proxy": 0.75,
+    "observed_pairs": [
+      [
+        "172.30.0.11",
+        21
+      ],
+      [
+        "172.30.0.11",
+        22
+      ],
+      [
+        "172.30.0.11",
+        23
+      ],
+      [
+        "172.30.0.11",
+        80
+      ],
+      [
+        "172.30.0.11",
+        3306
+      ],
+      [
+        "172.30.0.13",
+        22
+      ],
+      [
+        "172.30.0.13",
+        23
+      ],
+      [
+        "172.30.0.13",
+        3306
+      ],
+      [
+        "172.30.0.13",
+        8080
+      ]
+    ],
+    "executed": 6,
+    "timeouts": 1,
+    "nonzero_exits": 2
+  },
+  {
+    "id": "replay_b_human_s00",
+    "origin": "human_replay",
+    "model": "none",
+    "expected_open_services": 8,
+    "observed_open_services": 8,
+    "coverage_proxy": 1.0,
+    "observed_pairs": [
+      [
+        "172.30.0.11",
+        22
+      ],
+      [
+        "172.30.0.11",
+        8080
+      ],
+      [
+        "172.30.0.12",
+        21
+      ],
+      [
+        "172.30.0.12",
+        22
+      ],
+      [
+        "172.30.0.12",
+        3306
+      ],
+      [
+        "172.30.0.13",
+        22
+      ],
+      [
+        "172.30.0.13",
+        23
+      ],
+      [
+        "172.30.0.13",
+        80
+      ]
+    ],
+    "executed": 6,
+    "timeouts": 0,
+    "nonzero_exits": 0
+  },
+  {
+    "id": "replay_b_human_s01",
+    "origin": "human_replay",
+    "model": "none",
+    "expected_open_services": 8,
+    "observed_open_services": 8,
+    "coverage_proxy": 1.0,
+    "observed_pairs": [
+      [
+        "172.30.0.11",
+        22
+      ],
+      [
+        "172.30.0.11",
+        8080
+      ],
+      [
+        "172.30.0.12",
+        21
+      ],
+      [
+        "172.30.0.12",
+        22
+      ],
+      [
+        "172.30.0.12",
+        3306
+      ],
+      [
+        "172.30.0.13",
+        22
+      ],
+      [
+        "172.30.0.13",
+        23
+      ],
+      [
+        "172.30.0.13",
+        80
+      ]
+    ],
+    "executed": 6,
+    "timeouts": 0,
+    "nonzero_exits": 0
+  },
+  {
+    "id": "replay_b_human_s02",
+    "origin": "human_replay",
+    "model": "none",
+    "expected_open_services": 8,
+    "observed_open_services": 8,
+    "coverage_proxy": 1.0,
+    "observed_pairs": [
+      [
+        "172.30.0.11",
+        22
+      ],
+      [
+        "172.30.0.11",
+        8080
+      ],
+      [
+        "172.30.0.12",
+        21
+      ],
+      [
+        "172.30.0.12",
+        22
+      ],
+      [
+        "172.30.0.12",
+        3306
+      ],
+      [
+        "172.30.0.13",
+        22
+      ],
+      [
+        "172.30.0.13",
+        23
+      ],
+      [
+        "172.30.0.13",
+        80
+      ]
+    ],
+    "executed": 6,
+    "timeouts": 0,
+    "nonzero_exits": 1
+  },
+  {
+    "id": "replay_b_human_s03",
+    "origin": "human_replay",
+    "model": "none",
+    "expected_open_services": 8,
+    "observed_open_services": 8,
+    "coverage_proxy": 1.0,
+    "observed_pairs": [
+      [
+        "172.30.0.11",
+        22
+      ],
+      [
+        "172.30.0.11",
+        8080
+      ],
+      [
+        "172.30.0.12",
+        21
+      ],
+      [
+        "172.30.0.12",
+        22
+      ],
+      [
+        "172.30.0.12",
+        3306
+      ],
+      [
+        "172.30.0.13",
+        22
+      ],
+      [
+        "172.30.0.13",
+        23
+      ],
+      [
+        "172.30.0.13",
+        80
+      ]
+    ],
+    "executed": 6,
+    "timeouts": 1,
+    "nonzero_exits": 2
+  },
+  {
+    "id": "replay_b_human_s04",
+    "origin": "human_replay",
+    "model": "none",
+    "expected_open_services": 8,
+    "observed_open_services": 6,
+    "coverage_proxy": 0.75,
+    "observed_pairs": [
+      [
+        "172.30.0.12",
+        21
+      ],
+      [
+        "172.30.0.12",
+        22
+      ],
+      [
+        "172.30.0.12",
+        3306
+      ],
+      [
+        "172.30.0.13",
+        22
+      ],
+      [
+        "172.30.0.13",
+        23
+      ],
+      [
+        "172.30.0.13",
+        80
+      ]
+    ],
+    "executed": 6,
+    "timeouts": 0,
+    "nonzero_exits": 2
+  },
+  {
+    "id": "replay_b_human_s05",
+    "origin": "human_replay",
+    "model": "none",
+    "expected_open_services": 8,
+    "observed_open_services": 5,
+    "coverage_proxy": 0.625,
+    "observed_pairs": [
+      [
+        "172.30.0.11",
+        22
+      ],
+      [
+        "172.30.0.11",
+        8080
+      ],
+      [
+        "172.30.0.13",
+        22
+      ],
+      [
+        "172.30.0.13",
+        23
+      ],
+      [
+        "172.30.0.13",
+        80
+      ]
+    ],
+    "executed": 6,
+    "timeouts": 1,
+    "nonzero_exits": 2
+  },
+  {
+    "id": "script_a_0",
+    "origin": "script",
+    "model": "none",
+    "expected_open_services": 12,
+    "observed_open_services": 5,
+    "coverage_proxy": 0.4166666666666667,
+    "observed_pairs": [
+      [
+        "172.30.0.11",
+        21
+      ],
+      [
+        "172.30.0.11",
+        22
+      ],
+      [
+        "172.30.0.11",
+        23
+      ],
+      [
+        "172.30.0.11",
+        80
+      ],
+      [
+        "172.30.0.11",
+        3306
+      ]
+    ],
+    "executed": 3,
+    "timeouts": 0,
+    "nonzero_exits": 0
+  },
+  {
+    "id": "script_a_1",
+    "origin": "script",
+    "model": "none",
+    "expected_open_services": 12,
+    "observed_open_services": 2,
+    "coverage_proxy": 0.16666666666666666,
+    "observed_pairs": [
+      [
+        "172.30.0.11",
+        80
+      ],
+      [
+        "172.30.0.12",
+        80
+      ]
+    ],
+    "executed": 6,
+    "timeouts": 0,
+    "nonzero_exits": 1
+  },
+  {
+    "id": "script_b_0",
+    "origin": "script",
+    "model": "none",
+    "expected_open_services": 8,
+    "observed_open_services": 2,
+    "coverage_proxy": 0.25,
+    "observed_pairs": [
+      [
+        "172.30.0.11",
+        22
+      ],
+      [
+        "172.30.0.11",
+        8080
+      ]
+    ],
+    "executed": 3,
+    "timeouts": 0,
+    "nonzero_exits": 0
+  },
+  {
+    "id": "script_b_1",
+    "origin": "script",
+    "model": "none",
+    "expected_open_services": 8,
+    "observed_open_services": 1,
+    "coverage_proxy": 0.125,
+    "observed_pairs": [
+      [
+        "172.30.0.13",
+        80
+      ]
+    ],
+    "executed": 6,
+    "timeouts": 0,
+    "nonzero_exits": 2
+  }
+]

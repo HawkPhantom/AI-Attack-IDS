@@ -218,4 +218,6 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    print("Historical evaluator superseded: running the corrected host-v2 protocol.")
+    from evaluate_host_v2 import main as corrected_main
+    corrected_main()

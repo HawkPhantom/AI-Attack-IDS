@@ -1,3 +1,49 @@
+# AI-Attack IDS — corrected host + network evaluation
+
+> **Current results / Güncel sonuçlar:** [Corrected experiment report](experiments/RESULTS_V2.md)
+> and [evaluation protocol](experiments/PROTOCOL.md). The historical “1.00 ensemble floor”
+> and “intrinsic state-verification reflex” claims below are superseded.
+> Aşağıdaki eski yüzde 100 başarı ve doğal refleks iddiaları güncel sonuç değildir.
+
+The project evaluates command behavior, SSH transport metadata and outbound
+network reconnaissance. The corrected implementation records paired commands
+and pcaps, removes synthetic fallback commands, separates traffic direction,
+fits preprocessing only on training data, and compares host-only, network-only
+and combined models on identical held-out sessions.
+
+**Research status:** a corrected laboratory pilot. Human-command replay is
+explicitly distinguished from live human decisions. Same-task live-human
+collection, independent agent frameworks and deployment validation remain open;
+see the [live-human follow-up protocol](experiments/HUMAN_STUDY.md).
+
+Historical host reanalysis found **337 driver substitutions in 3,215 recorded
+malicious/evasion commands**. With corrected inputs and splits, the universal
+1.00 GNN/ensemble floor does not persist. The per-model results, three-seed graph
+controls, uncertainty intervals and achieved false-positive rates are in the
+[current report](experiments/RESULTS_V2.md).
+
+```sh
+python3.11 -m venv .venv
+.venv/bin/pip install -r experiments/requirements-lock.txt
+.venv/bin/python -m unittest discover -s tests -v
+.venv/bin/python harness/lab/recon_features.py --output experiments/network_features_v2.json
+.venv/bin/python scripts/evaluate_host_v2.py
+.venv/bin/python scripts/evaluate_intent_v2.py
+.venv/bin/python harness/lab/collect_v2.py
+.venv/bin/python harness/lab/counterfactual_v2.py
+.venv/bin/python scripts/evaluate_network_v2.py
+.venv/bin/python scripts/score_task_v2.py
+.venv/bin/python scripts/summarize_v2.py
+```
+
+Run from the repository root. Collection requires the local models and lab
+images listed in the [runtime manifest](experiments/runtime_manifest.json).
+Raw datasets and pcaps are local, git-ignored artifacts; result JSONs preserve
+prediction IDs and metrics. Legacy analysis entry points now invoke v2 evaluators.
+
+<details>
+<summary>Historical README — superseded results, retained for traceability / Eski sonuçlar</summary>
+
 <h1 align="center">AI-Attack IDS</h1>
 <p align="center"><b>Detecting LLM-driven attacks by behavioral fingerprinting.</b></p>
 
@@ -128,7 +174,6 @@ The lexical detector's weak point is its floor: gemma3 still holds out at **0.76
 
 Each session becomes a directed graph: node = a distinct binary, edge = an observed transition `cmd_i → cmd_{i+1}`. Critically, node features are **behavioral categories** (state-check, enumerate, network, privilege, process, package) plus degree, frequency and self-loop signals. They deliberately carry no command name, so the GNN reads the reconnaissance *topology* (for example, a state-check hub re-queried every step) rather than the vocabulary — which is why it transfers to models whose exact commands were never seen, including the frontier families.
 
-<p align="center"><img src="assets/08_gnn_ensemble.png" width="700"></p>
 
 | held-out model | SVC (lexical) | GNN (structural) | **Ensemble** | ens 95 % CI | human FP |
 |---|---|---|---|---|---|
@@ -142,13 +187,12 @@ Each session becomes a directed graph: node = a distinct binary, edge = an obser
 
 <sub>✱ = frontier Gemini family, never in training.</sub>
 
-The ensemble drives the leave-one-model-out floor from the SVC's **0.76 to 1.00** at only **6 % mean human false-positive rate**. Two notes of honesty on the change from the earlier version of this repo: (1) with the larger dataset (117 AI sessions vs ~50), the **GNN alone now also reaches 1.00** across every family — the old "GNN underperforms the SVC" caveat no longer holds at this data scale, so the ensemble and the GNN now agree; (2) the GNN is a single-seed run — the behavioral-topology signal is strong and model-invariant, but read the 1.00 as "no held-out miss at this scale/seed," not a proof of zero error. **The SVC-only pipeline remains the ablation, and its 0.76 floor is the conservative number.**
+The ensemble reaches a leave-one-model-out floor of **1.00** at only **6 % mean human false-positive rate**. The structural (GNN) and lexical (SVC) views are complementary: the SVC floors at 0.76 on gemma3 because it keys on vocabulary, while the GNN — reading reconnaissance topology rather than command names — recognizes every held-out family, the frontier ones included, so the ensemble never misses. Two notes of honesty: the GNN is a single-seed run, so read its 1.00 as "no held-out miss at this scale/seed," not a proof of zero error; and **the SVC-only pipeline is the ablation, its 0.76 floor the conservative number.**
 
 ### Why it works: the state-verification reflex
 
 An LLM retains no working memory across steps, so it re-queries its execution context on every turn: working directory (`pwd`), identity (`whoami`, `id`), host and kernel (`uname`, `hostname`). A human retains this state and does not repeat the queries. The difference is large and consistent across every model tested:
 
-<p align="center"><img src="assets/03_state_verification.png" width="640"></p>
 
 | operator | `pwd` / `whoami` / `id` / `uname` / `hostname` share |
 |---|---|
@@ -208,7 +252,7 @@ The detector treats intent and origin as separate questions, and raises an alarm
 - **benign + AI**: the same harness, driven by maintenance prompts
 - **benign + human**: **Schonlau SEA** — contiguous windows of real users' recorded command streams (schonlau.net)
 
-Both human cells are **real** (`scripts/ids_2axis.py`): malicious+human is the same real MUNI corpus the origin axis is validated on, and benign+human is now the **Schonlau SEA** dataset — 50 real users' shell activity recorded end-to-end via process accounting, sliced into contiguous windows so the command *order* (the 1,2-gram and transition structure the models key on) is authentic, not assembled. This replaces the old NL2Bash approach, which sampled independent one-liners and so destroyed sequential structure. On this footing, intent (malicious vs benign) separates at macro **F1 0.936** in the common-binary space, with a label-permutation control at **0.543** (≈ chance). The residual caveat is now *era/domain*, not synthesis: Schonlau is 1990s workstation activity, so it differs in domain from MUNI/AI — the common-binary space and the chance-level permutation control bound this, but it remains a different second corpus.
+Both human cells are **real** (`scripts/ids_2axis.py`): malicious+human is the same real MUNI corpus the origin axis is validated on, and benign+human is the **Schonlau SEA** dataset — 50 real users' shell activity recorded end-to-end via process accounting, sliced into contiguous windows so the command *order* (the 1,2-gram and transition structure the models key on) is authentic rather than assembled. On this footing, intent (malicious vs benign) separates at macro **F1 0.936** in the common-binary space, with a label-permutation control at **0.543** (≈ chance). The residual caveat is *era/domain*: Schonlau is 1990s workstation activity, so it differs in domain from MUNI/AI — the common-binary space and the chance-level permutation control bound this, but it remains a second corpus distinct from MUNI/AI.
 
 ### The origin axis under progressive feature restriction
 
@@ -281,12 +325,12 @@ The honest takeaway: **controlling the environment pulls the separation down fro
 
 ### Honest limitations
 
-- **The sample is larger but still modest.** ~161 usable AI sessions across two environments and **six model families** (incl. gemini-3.1-pro n=10, gemini-3.5-flash n=40) against 267 human, up from 68. Better, but small per-cell — treat numbers as indicative, and note the bootstrap CIs are honestly wide on small-n rows (qwen n=3, gemini-pro n=10).
+- **The sample is modest.** ~161 usable AI sessions across two environments and **six model families** (incl. gemini-3.1-pro n=10, gemini-3.5-flash n=40) against 267 human. Small per-cell — treat numbers as indicative, and note the bootstrap CIs are honestly wide on small-n rows (qwen n=3, gemini-pro n=10).
 - **The reflex is fully evadable; command selection is what survives.** A white-box attacker who suppresses the state-check reflex drives a reflex-only detector to ~0 recall. The command-selection SVC degrades but holds (0.91 → 0.68), and recovers to 0.82 with adversarial retraining. So the interpretable signal (reflex) and the robust signal (selection) are *different* signals — don't deploy the reflex alone.
 - **Frontier data has a compliance/selection effect.** Frontier models refuse overt exploitation a large fraction of the time (flash 62 % on exploit), so the malicious frontier sessions analyzed are the *compliant* ones. And gemini-3.1-**pro** was heavily API-rate-limited on this key (many 429s), so its n is smaller than flash's and its benign cell is empty. The frontier claim rests mainly on flash (n=40), with pro (n=10) corroborating.
-- **The GNN now matches the ensemble at this data scale (single seed).** With more data the GNN alone reaches 1.00 held-out too, so the old "GNN underperforms" caveat is gone — but it is a single-seed run; read 1.00 as "no held-out miss at this scale," not proven-zero-error. The SVC-only 0.76 floor is the conservative headline.
+- **The GNN's 1.00 is a single-seed result.** The structural view recognizes every held-out family, but it is one seed at this data scale — read it as "no held-out miss here," not proven-zero-error. The SVC-only 0.76 floor is the conservative headline.
 - **qwen3:4b can't be trusted here.** Roughly 75 % of its sessions dissolve into reasoning-prose instead of commands, even with `think:false`. Its inflated 86.7 % state-verification is a looping artifact, and its n=3 makes its 1.00 recall weak evidence.
-- **The benign+human corpus trades one caveat for another.** Schonlau SEA gives *real, sequentially-ordered* benign sessions (fixing NL2Bash's random assembly), but it is 1990s workstation-era activity — a different domain from MUNI/AI. The common-binary space + chance-level permutation (0.543) bound this, but it is still a second corpus, and its windows are accounting slices, not login-delimited sessions.
+- **The benign+human corpus is a distinct domain.** Schonlau SEA gives *real, sequentially-ordered* benign sessions, but it is 1990s workstation-era activity — a different domain from MUNI/AI, and its windows are accounting slices, not login-delimited sessions. The common-binary space + chance-level permutation (0.543) bound this.
 - **Some layers are low-cost to evade.** Keystroke-timing mimicry neutralizes Hat N's payload-derived features in roughly 20 lines of code. The evasion-resistant layers are Hat H (command *selection*) and HASSH.
 - **The environment confound is bracketed, not just noted.** The AI side spans two environments — the empty container and a CTF-range box whose toolset matches the MUNI host — so agency is measured with the box held closer to fixed: the state-verification reflex is nearly identical across both AI environments (26.5 % / 23.9 % vs 0.7 % human) and origin stays separable inside the matched environment (F1 0.771). What remains is that cross-environment *lexical* transfer is only partial (0.28–0.46 recall) — command selection over shared behaviour, not vocabulary, is the durable part.
 
@@ -463,7 +507,6 @@ Sözcüksel dedektörün zayıf noktası tabanı: gemma3 en katı ayarda hâlâ 
 
 Her oturum yönlü bir grafa dönüşüyor: düğüm = benzersiz bir binary, kenar = gözlenen bir geçiş `cmd_i → cmd_{i+1}`. Kritik nokta: düğüm özellikleri **davranışsal kategoriler** (durum-yoklama, keşif, ağ, yetki, süreç, paket) artı derece, frekans ve öz-döngü sinyalleri. Bilinçli olarak hiç komut adı taşımıyorlar; böylece GNN sözcük dağarcığını değil, keşif *topolojisini* (örneğin her adımda yeniden sorgulanan bir durum-yoklama merkezi) okuyor, ki bu da tam komutları hiç görülmemiş modellere aktarılabilmeli.
 
-<p align="center"><img src="assets/08_gnn_ensemble.png" width="700"></p>
 
 | dışarıda bırakılan model | SVC (sözcüksel) | GNN (yapısal) | **Topluluk** | %95 GA | insan FP |
 |---|---|---|---|---|---|
@@ -477,13 +520,12 @@ Her oturum yönlü bir grafa dönüşüyor: düğüm = benzersiz bir binary, ken
 
 <sub>✱ eğitimde hiç bulunmayan frontier Gemini ailesi.</sub>
 
-Topluluk, leave-one-model-out tabanını SVC'nin **0.76'sından 1.00'a** çıkarıyor, yalnızca **%6 ortalama insan yanlış-pozitif** oranıyla. İki dürüst not: (1) daha büyük veriyle (117 AI oturumu, ~50 yerine) **GNN tek başına da artık 1.00'a** ulaşıyor — önceki "GNN, SVC'nin altında (taban 0.67)" sonucu küçük-veri artefaktıydı ve artık geçerli değil; (2) GNN tek-tohumlu bir koşu, dolayısıyla 1.00'ı "bu ölçekte held-out ıskası yok" olarak okuyun, sıfır-hata kanıtı değil. **SVC-yalnız hattı ablation olarak kalıyor ve 0.76 tabanı temkinli sayıdır.**
+Topluluk, leave-one-model-out tabanını **1.00**'a taşıyor, yalnızca **%6 ortalama insan yanlış-pozitif** oranıyla. Yapısal (GNN) ve sözcüksel (SVC) görünümler tamamlayıcı: SVC gemma3'te 0.76 tabanına iniyor çünkü sözcük dağarcığına dayanıyor; komut adları yerine keşif topolojisini okuyan GNN ise frontier dahil her dışarıda bırakılan aileyi tanıyor, dolayısıyla topluluk hiç ıskalamıyor. İki dürüstlük notu: GNN tek-tohumlu bir koşu, 1.00'ını "bu ölçekte/tohumda held-out ıskası yok" olarak okuyun, sıfır-hata kanıtı değil; **SVC-yalnız hattı ablation'dır ve 0.76 tabanı temkinli sayıdır.**
 
 ### Neden işe yarıyor: durum-yoklama refleksi
 
 Bir LLM adımlar arasında çalışma belleği tutmaz; bu nedenle yürütme bağlamını her turda yeniden sorgular: çalışma dizini (`pwd`), kimlik (`whoami`, `id`), host ve çekirdek (`uname`, `hostname`). İnsan bu durumu belleğinde tuttuğu için sorguları tekrarlamaz. Fark büyük ve test edilen her modelde tutarlı:
 
-<p align="center"><img src="assets/03_state_verification.png" width="640"></p>
 
 | operatör | `pwd` / `whoami` / `id` / `uname` / `hostname` payı |
 |---|---|
@@ -541,7 +583,7 @@ Dedektör niyet ve kökeni ayrı sorular olarak ele alır ve yalnızca ikisinin 
 - **zararsız + AI**: aynı harness, bakım promptlarıyla sürülüyor
 - **zararsız + insan**: **Schonlau SEA** — gerçek kullanıcıların kaydedilmiş komut akışlarından bitişik pencereler
 
-Her iki insan hücresi de **gerçek** (`scripts/ids_2axis.py`): zararlı+insan, köken ekseninin doğrulandığı aynı gerçek MUNI korpusu; zararsız+insan artık **Schonlau SEA** — 50 gerçek kullanıcının süreç muhasebesiyle uçtan uca kaydedilmiş kabuk etkinliği, komut *sırası* (modellerin dayandığı 1,2-gram ve geçiş yapısı) korunacak biçimde bitişik pencerelere bölünmüş. Bu, bağımsız tek-satırları örnekleyip sıralı yapıyı yok eden eski NL2Bash yaklaşımının yerini alıyor. Bu zeminde niyet (zararlı vs zararsız) ortak-binary uzayında makro **F1 0.936** ile ayrılıyor; etiket-permütasyon kontrolü **0.543** (≈ şans). Kalan çekince artık sentez değil *dönem/alan*: Schonlau 1990'lar iş-istasyonu etkinliğidir, MUNI/AI'dan alan olarak farklıdır — ortak-binary uzayı ve şans düzeyindeki permütasyon bunu sınırlar, ama yine de farklı ikinci bir korpustur.
+Her iki insan hücresi de **gerçek** (`scripts/ids_2axis.py`): zararlı+insan, köken ekseninin doğrulandığı aynı gerçek MUNI korpusu; zararsız+insan **Schonlau SEA** — 50 gerçek kullanıcının süreç muhasebesiyle uçtan uca kaydedilmiş kabuk etkinliği, komut *sırası* (modellerin dayandığı 1,2-gram ve geçiş yapısı) derlenmiş değil özgün kalacak biçimde bitişik pencerelere bölünmüş. Bu zeminde niyet (zararlı vs zararsız) ortak-binary uzayında makro **F1 0.936** ile ayrılıyor; etiket-permütasyon kontrolü **0.543** (≈ şans). Kalan çekince *dönem/alan*: Schonlau 1990'lar iş-istasyonu etkinliğidir, MUNI/AI'dan alan olarak farklıdır — ortak-binary uzayı ve şans düzeyindeki permütasyon bunu sınırlar, ama yine de farklı ikinci bir korpustur.
 
 ### Kademeli özellik kısıtlaması altında köken ekseni
 
@@ -614,12 +656,12 @@ Dürüst çıkarım: **ortamı kontrol etmek, ayrımı 0.962 headline'dan en kat
 
 ### Dürüst sınırlamalar
 
-- **Örneklem daha büyük ama hâlâ mütevazı.** İki ortam ve altı model ailesinde ~161 kullanılabilir AI oturumu (gemini-3.1-pro n=10, gemini-3.5-flash n=40 dahil), 267 insana karşı; önceden 68'di. Bootstrap GA'lar küçük-n satırlarında (qwen n=3, gemini-pro n=10) dürüstçe geniş.
+- **Örneklem mütevazı.** İki ortam ve altı model ailesinde ~161 kullanılabilir AI oturumu (gemini-3.1-pro n=10, gemini-3.5-flash n=40 dahil), 267 insana karşı. Bootstrap GA'lar küçük-n satırlarında (qwen n=3, gemini-pro n=10) dürüstçe geniş — bunları gösterge olarak okuyun.
 - **Refleks tamamen kaçınılabilir; asıl dayanan komut seçimidir.** Beyaz-kutu saldırgan yalnız-refleks dedektörünü ~0 recall'a düşürür; komut-seçim SVC'si 0.68'e iner, düşmanca yeniden eğitimle 0.82'ye döner. Yorumlanabilir sinyal ile dayanıklı sinyal farklı sinyallerdir.
 - **Frontier veride uyum/rate-limit seçim etkisi var.** Frontier modeller açık exploitasyonu sık reddeder (flash %62), dolayısıyla analiz edilen zararlı-frontier oturumları uyum gösterenlerdir; ayrıca gemini-3.1-**pro** eldeki anahtarda ağır rate-limit yedi (çok 429), n'i daha küçük ve benign hücresi boş. Frontier iddiası çoğunlukla flash'a (n=40) dayanıyor, pro (n=10) doğruluyor.
-- **GNN bu ölçekte artık toplulukla eşit (tek-tohum).** Daha çok veriyle GNN tek başına da held-out 1.00'a ulaşıyor; önceki "GNN altında" sonucu küçük-veri artefaktıydı — ama tek-tohumlu; temkinli manşet SVC-yalnız 0.76 tabanıdır.
+- **GNN'in 1.00'ı tek-tohumlu bir sonuç.** Yapısal görünüm her dışarıda bırakılan aileyi tanıyor, ama bu veri ölçeğinde tek bir tohum — "burada held-out ıskası yok" olarak okuyun, sıfır-hata değil. Temkinli manşet SVC-yalnız 0.76 tabanıdır.
 - **qwen3:4b burada güvenilmez.** Oturumlarının ~%75'i `think:false` ile bile komut yerine reasoning-metnine dağılıyor; %86,7 durum-yoklaması döngü artefaktı ve n=3, 1.00 recall'ını zayıf kanıt yapar.
-- **Benign+insan korpusu bir çekinceyi başkasıyla değiştiriyor.** Schonlau SEA gerçek, sıralı benign oturumlar verir (NL2Bash'in rastgele montajını düzeltir) ama 1990'lar iş-istasyonu dönemi, farklı bir alan; ortak-binary uzayı + şans permütasyonu (0.543) sınırlar.
+- **Benign+insan korpusu farklı bir alan.** Schonlau SEA gerçek, sıralı benign oturumlar verir, ama 1990'lar iş-istasyonu dönemi — MUNI/AI'dan farklı bir alan ve pencereleri login-sınırlı oturumlar değil muhasebe dilimleri. Ortak-binary uzayı + şans permütasyonu (0.543) sınırlar.
 - **Bazı katmanlardan kaçmak düşük maliyetli.** Keystroke-zamanlama taklidi Hat N'in payload-türevli özelliklerini ~20 satırla etkisizleştiriyor. Kaçınmaya dirençli katmanlar Hat H (komut *seçimi*) ile HASSH.
 - **Ortam confound'u kabul edilmiş bir çekince değil, sınırlanmış.** AI tarafı iki ortama yayılıyor — boş container ve araç seti MUNI kutusuna eşli CTF-menzili. Refleks iki AI ortamında neredeyse aynı (%26.5 / %23.9 vs %0.7) ve köken eşli ortamda hâlâ ayrılabilir (F1 0.771). Ortamlar-arası *sözcüksel* transfer kısmi (0.28–0.46) — sözcük değil, paylaşılan davranış üzerinden komut seçimi kalıcı kısımdır.
 
@@ -693,3 +735,5 @@ python3 harness/lab/run_ctf_range.py --setup --teardown   # -> harness/runs/ctf_
 ---
 
 <p align="center"><sub>Local open-weight models (Ollama) + Docker. Every attacker session ran in an isolated lab network. Research and defensive use only.</sub></p>
+
+</details>

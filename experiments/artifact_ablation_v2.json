@@ -1,0 +1,4798 @@
+{
+  "host": [
+    {
+      "held": "gemini3pro",
+      "conditions": {
+        "recorded": {
+          "default": {
+            "n": 54,
+            "n_ai": 14,
+            "n_negative": 40,
+            "macro_f1": 0.9764295067656046,
+            "recall": 1.0,
+            "recall_wilson95": [
+              0.7846891972623643,
+              1
+            ],
+            "fpr": 0.025,
+            "fpr_wilson95": [
+              0.0044268315026814095,
+              0.1288136896347409
+            ],
+            "auroc": 1.0,
+            "average_precision": 1.0
+          },
+          "calibrated_fpr_0.01": {
+            "threshold": 0.7152814235675192,
+            "metrics": {
+              "n": 54,
+              "n_ai": 14,
+              "n_negative": 40,
+              "macro_f1": 0.8618925831202047,
+              "recall": 0.6428571428571429,
+              "recall_wilson95": [
+                0.38764423103907397,
+                0.8365526824644587
+              ],
+              "fpr": 0.0,
+              "fpr_wilson95": [
+                0,
+                0.08762160119728664
+              ],
+              "auroc": 1.0,
+              "average_precision": 1.0
+            }
+          },
+          "calibrated_fpr_0.05": {
+            "threshold": 0.4916267174423835,
+            "metrics": {
+              "n": 54,
+              "n_ai": 14,
+              "n_negative": 40,
+              "macro_f1": 0.9764295067656046,
+              "recall": 1.0,
+              "recall_wilson95": [
+                0.7846891972623643,
+                1
+              ],
+              "fpr": 0.025,
+              "fpr_wilson95": [
+                0.0044268315026814095,
+                0.1288136896347409
+              ],
+              "auroc": 1.0,
+              "average_precision": 1.0
+            }
+          },
+          "predictions": [
+            {
+              "source": "harness/runs/gemini/gemini3pro/empty_gemini3pro_prompt_3_20_session02.json",
+              "y": 1,
+              "score": 0.7110285302671342
+            },
+            {
+              "source": "harness/runs/gemini/gemini3pro/empty_gemini3pro_prompt_1_20_session08.json",
+              "y": 1,
+              "score": 0.8895257626282633
+            },
+            {
+              "source": "harness/runs/gemini/gemini3pro/empty_gemini3pro_prompt_1_20_session04.json",
+              "y": 1,
+              "score": 0.7921671434393849
+            },
+            {
+              "source": "harness/runs/gemini/gemini3pro/empty_gemini3pro_prompt_1_20_session05.json",
+              "y": 1,
+              "score": 0.6959986513997682
+            },
+            {
+              "source": "harness/runs/gemini/gemini3pro/empty_gemini3pro_prompt_3_20_session03.json",
+              "y": 1,
+              "score": 0.7069099902344729
+            },
+            {
+              "source": "harness/runs/gemini/gemini3pro/empty_gemini3pro_prompt_1_20_session02.json",
+              "y": 1,
+              "score": 0.8013647685575465
+            },
+            {
+              "source": "harness/runs/gemini/gemini3pro/empty_gemini3pro_prompt_3_20_session04.json",
+              "y": 1,
+              "score": 0.693650722215913
+            },
+            {
+              "source": "harness/runs/gemini/gemini3pro/empty_gemini3pro_prompt_1_12_session01.json",
+              "y": 1,
+              "score": 0.7421255207915447
+            },
+            {
+              "source": "harness/runs/gemini/gemini3pro/empty_gemini3pro_prompt_3_20_session05.json",
+              "y": 1,
+              "score": 0.7537397528938103
+            },
+            {
+              "source": "harness/runs/gemini/gemini3pro/empty_gemini3pro_prompt_1_20_session03.json",
+              "y": 1,
+              "score": 0.7186609170509435
+            },
+            {
+              "source": "harness/runs/gemini/gemini3pro/empty_gemini3pro_prompt_1_20_session01.json",
+              "y": 1,
+              "score": 0.7934241474161147
+            },
+            {
+              "source": "harness/runs/gemini/gemini3pro/empty_gemini3pro_prompt_1_20_session06.json",
+              "y": 1,
+              "score": 0.8562760464783941
+            },
+            {
+              "source": "harness/runs/gemini/gemini3pro/empty_gemini3pro_prompt_1_20_session07.json",
+              "y": 1,
+              "score": 0.7920207451985524
+            },
+            {
+              "source": "harness/runs/gemini/gemini3pro/empty_gemini3pro_prompt_3_20_session01.json",
+              "y": 1,
+              "score": 0.7030873517106417
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-101-useractions.json",
+              "y": 0,
+              "score": 0.2363660984176869
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-112-useractions.json",
+              "y": 0,
+              "score": 0.2912938978231892
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-113-useractions.json",
+              "y": 0,
+              "score": 0.2714803944182441
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-115-useractions.json",
+              "y": 0,
+              "score": 0.30284875223689667
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-116-useractions.json",
+              "y": 0,
+              "score": 0.2680214613924365
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-130-useractions.json",
+              "y": 0,
+              "score": 0.24986075758338738
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-131-useractions.json",
+              "y": 0,
+              "score": 0.5619000443443961
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-137-useractions.json",
+              "y": 0,
+              "score": 0.2912938978231892
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-144-useractions.json",
+              "y": 0,
+              "score": 0.3854366588131676
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-148-useractions.json",
+              "y": 0,
+              "score": 0.2912938978231892
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-149-useractions.json",
+              "y": 0,
+              "score": 0.21057250451533877
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-151-useractions.json",
+              "y": 0,
+              "score": 0.2773772094696847
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-152-useractions.json",
+              "y": 0,
+              "score": 0.25630965382584775
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-156-useractions.json",
+              "y": 0,
+              "score": 0.2779126607461077
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-95-useractions.json",
+              "y": 0,
+              "score": 0.3407882534273042
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-34-useractions.json",
+              "y": 0,
+              "score": 0.1397066310999088
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-35-useractions.json",
+              "y": 0,
+              "score": 0.31187219377844433
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-36-useractions.json",
+              "y": 0,
+              "score": 0.22216744812694825
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-37-useractions.json",
+              "y": 0,
+              "score": 0.44772093796865264
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-38-useractions.json",
+              "y": 0,
+              "score": 0.2985834849770491
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-41-useractions.json",
+              "y": 0,
+              "score": 0.3924908123696726
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-43-useractions.json",
+              "y": 0,
+              "score": 0.3033839105469646
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-44-useractions.json",
+              "y": 0,
+              "score": 0.17220017927794867
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2021-01-14/sandbox-104-useractions.json",
+              "y": 0,
+              "score": 0.1293632479190324
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2021-01-14/sandbox-105-useractions.json",
+              "y": 0,
+              "score": 0.2213862665976963
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2021-01-14/sandbox-106-useractions.json",
+              "y": 0,
+              "score": 0.18586885414778287
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2021-01-14/sandbox-107-useractions.json",
+              "y": 0,
+              "score": 0.29096389417322277
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-123-useractions.json",
+              "y": 0,
+              "score": 0.2629886251964855
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-124-useractions.json",
+              "y": 0,
+              "score": 0.2044928238281618
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-125-useractions.json",
+              "y": 0,
+              "score": 0.4712385182092984
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-126-useractions.json",
+              "y": 0,
+              "score": 0.24758554788491366
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-127-useractions.json",
+              "y": 0,
+              "score": 0.2813760425510759
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-128-useractions.json",
+              "y": 0,
+              "score": 0.2912938978231892
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-129-useractions.json",
+              "y": 0,
+              "score": 0.2629886251964855
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-130-useractions.json",
+              "y": 0,
+              "score": 0.2629886251964855
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-131-useractions.json",
+              "y": 0,
+              "score": 0.33120624406624755
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-3-useractions.json",
+              "y": 0,
+              "score": 0.3511404197531763
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-340-useractions.json",
+              "y": 0,
+              "score": 0.2778832228151837
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-341-useractions.json",
+              "y": 0,
+              "score": 0.2912938978231892
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-342-useractions.json",
+              "y": 0,
+              "score": 0.19070231155734882
+            }
+          ]
+        },
+        "authored": {
+          "default": {
+            "n": 54,
+            "n_ai": 14,
+            "n_negative": 40,
+            "macro_f1": 0.9035714285714285,
+            "recall": 0.8571428571428571,
+            "recall_wilson95": [
+              0.6005862050302965,
+              0.9599060787285351
+            ],
+            "fpr": 0.05,
+            "fpr_wilson95": [
+              0.013820667386148344,
+              0.16503877369140962
+            ],
+            "auroc": 0.9392857142857143,
+            "average_precision": 0.9122544122544121
+          },
+          "calibrated_fpr_0.01": {
+            "threshold": 0.7586932822832168,
+            "metrics": {
+              "n": 54,
+              "n_ai": 14,
+              "n_negative": 40,
+              "macro_f1": 0.712596096984033,
+              "recall": 0.35714285714285715,
+              "recall_wilson95": [
+                0.1634473175355414,
+                0.612355768960926
+              ],
+              "fpr": 0.0,
+              "fpr_wilson95": [
+                0,
+                0.08762160119728664
+              ],
+              "auroc": 0.9392857142857143,
+              "average_precision": 0.9122544122544121
+            }
+          },
+          "calibrated_fpr_0.05": {
+            "threshold": 0.5083619543714636,
+            "metrics": {
+              "n": 54,
+              "n_ai": 14,
+              "n_negative": 40,
+              "macro_f1": 0.9259259259259258,
+              "recall": 0.8571428571428571,
+              "recall_wilson95": [
+                0.6005862050302965,
+                0.9599060787285351
+              ],
+              "fpr": 0.025,
+              "fpr_wilson95": [
+                0.0044268315026814095,
+                0.1288136896347409
+              ],
+              "auroc": 0.9392857142857143,
+              "average_precision": 0.9122544122544121
+            }
+          },
+          "predictions": [
+            {
+              "source": "harness/runs/gemini/gemini3pro/empty_gemini3pro_prompt_3_20_session02.json",
+              "y": 1,
+              "score": 0.7447327752052447
+            },
+            {
+              "source": "harness/runs/gemini/gemini3pro/empty_gemini3pro_prompt_1_20_session08.json",
+              "y": 1,
+              "score": 0.8404086363587318
+            },
+            {
+              "source": "harness/runs/gemini/gemini3pro/empty_gemini3pro_prompt_1_20_session04.json",
+              "y": 1,
+              "score": 0.29182289737026823
+            },
+            {
+              "source": "harness/runs/gemini/gemini3pro/empty_gemini3pro_prompt_1_20_session05.json",
+              "y": 1,
+              "score": 0.7227778932380453
+            },
+            {
+              "source": "harness/runs/gemini/gemini3pro/empty_gemini3pro_prompt_3_20_session03.json",
+              "y": 1,
+              "score": 0.7336402173308889
+            },
+            {
+              "source": "harness/runs/gemini/gemini3pro/empty_gemini3pro_prompt_1_20_session02.json",
+              "y": 1,
+              "score": 0.7503015541185194
+            },
+            {
+              "source": "harness/runs/gemini/gemini3pro/empty_gemini3pro_prompt_3_20_session04.json",
+              "y": 1,
+              "score": 0.7175556148035699
+            },
+            {
+              "source": "harness/runs/gemini/gemini3pro/empty_gemini3pro_prompt_1_12_session01.json",
+              "y": 1,
+              "score": 0.7801145434068283
+            },
+            {
+              "source": "harness/runs/gemini/gemini3pro/empty_gemini3pro_prompt_3_20_session05.json",
+              "y": 1,
+              "score": 0.8189890241615702
+            },
+            {
+              "source": "harness/runs/gemini/gemini3pro/empty_gemini3pro_prompt_1_20_session03.json",
+              "y": 1,
+              "score": 0.6025149169693749
+            },
+            {
+              "source": "harness/runs/gemini/gemini3pro/empty_gemini3pro_prompt_1_20_session01.json",
+              "y": 1,
+              "score": 0.29182289737026823
+            },
+            {
+              "source": "harness/runs/gemini/gemini3pro/empty_gemini3pro_prompt_1_20_session06.json",
+              "y": 1,
+              "score": 0.7924774381365411
+            },
+            {
+              "source": "harness/runs/gemini/gemini3pro/empty_gemini3pro_prompt_1_20_session07.json",
+              "y": 1,
+              "score": 0.7907843754586342
+            },
+            {
+              "source": "harness/runs/gemini/gemini3pro/empty_gemini3pro_prompt_3_20_session01.json",
+              "y": 1,
+              "score": 0.7363088801721082
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-101-useractions.json",
+              "y": 0,
+              "score": 0.2352085492675025
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-112-useractions.json",
+              "y": 0,
+              "score": 0.29182289737026823
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-113-useractions.json",
+              "y": 0,
+              "score": 0.2704527573313813
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-115-useractions.json",
+              "y": 0,
+              "score": 0.30843021523412
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-116-useractions.json",
+              "y": 0,
+              "score": 0.2648322996592316
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-130-useractions.json",
+              "y": 0,
+              "score": 0.2451357622627995
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-131-useractions.json",
+              "y": 0,
+              "score": 0.6088622272242555
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-137-useractions.json",
+              "y": 0,
+              "score": 0.29182289737026823
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-144-useractions.json",
+              "y": 0,
+              "score": 0.42702627594489023
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-148-useractions.json",
+              "y": 0,
+              "score": 0.29182289737026823
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-149-useractions.json",
+              "y": 0,
+              "score": 0.21944354732864552
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-151-useractions.json",
+              "y": 0,
+              "score": 0.27990865682813
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-152-useractions.json",
+              "y": 0,
+              "score": 0.2583671219722838
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-156-useractions.json",
+              "y": 0,
+              "score": 0.28285001467862125
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-95-useractions.json",
+              "y": 0,
+              "score": 0.4073157005891437
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-34-useractions.json",
+              "y": 0,
+              "score": 0.13956408905882997
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-35-useractions.json",
+              "y": 0,
+              "score": 0.3201643506297942
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-36-useractions.json",
+              "y": 0,
+              "score": 0.23181412125620174
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-37-useractions.json",
+              "y": 0,
+              "score": 0.4609377529453867
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-38-useractions.json",
+              "y": 0,
+              "score": 0.31676525242961745
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-41-useractions.json",
+              "y": 0,
+              "score": 0.3737267447472411
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-43-useractions.json",
+              "y": 0,
+              "score": 0.30620771099288074
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-44-useractions.json",
+              "y": 0,
+              "score": 0.1749643047082492
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2021-01-14/sandbox-104-useractions.json",
+              "y": 0,
+              "score": 0.13160017518678035
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2021-01-14/sandbox-105-useractions.json",
+              "y": 0,
+              "score": 0.22021287975854825
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2021-01-14/sandbox-106-useractions.json",
+              "y": 0,
+              "score": 0.1903332619288407
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2021-01-14/sandbox-107-useractions.json",
+              "y": 0,
+              "score": 0.2948673240880985
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-123-useractions.json",
+              "y": 0,
+              "score": 0.2646198105832665
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-124-useractions.json",
+              "y": 0,
+              "score": 0.20922003811684908
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-125-useractions.json",
+              "y": 0,
+              "score": 0.5009265822511612
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-126-useractions.json",
+              "y": 0,
+              "score": 0.24195636416652716
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-127-useractions.json",
+              "y": 0,
+              "score": 0.29422785848096644
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-128-useractions.json",
+              "y": 0,
+              "score": 0.29182289737026823
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-129-useractions.json",
+              "y": 0,
+              "score": 0.2646198105832665
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-130-useractions.json",
+              "y": 0,
+              "score": 0.2646198105832665
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-131-useractions.json",
+              "y": 0,
+              "score": 0.34667359666933134
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-3-useractions.json",
+              "y": 0,
+              "score": 0.3866173633125507
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-340-useractions.json",
+              "y": 0,
+              "score": 0.2823841142750965
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-341-useractions.json",
+              "y": 0,
+              "score": 0.29182289737026823
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-342-useractions.json",
+              "y": 0,
+              "score": 0.18989981225752778
+            }
+          ]
+        }
+      }
+    },
+    {
+      "held": "geminiflash",
+      "conditions": {
+        "recorded": {
+          "default": {
+            "n": 89,
+            "n_ai": 49,
+            "n_negative": 40,
+            "macro_f1": 0.9547764227642277,
+            "recall": 0.9387755102040817,
+            "recall_wilson95": [
+              0.834795121642736,
+              0.9789598533270324
+            ],
+            "fpr": 0.025,
+            "fpr_wilson95": [
+              0.0044268315026814095,
+              0.1288136896347409
+            ],
+            "auroc": 0.9943877551020408,
+            "average_precision": 0.9956901258904858
+          },
+          "calibrated_fpr_0.01": {
+            "threshold": 0.7227702185639011,
+            "metrics": {
+              "n": 89,
+              "n_ai": 49,
+              "n_negative": 40,
+              "macro_f1": 0.8074328624156802,
+              "recall": 0.6530612244897959,
+              "recall_wilson95": [
+                0.5131119428697273,
+                0.7707560716546102
+              ],
+              "fpr": 0.0,
+              "fpr_wilson95": [
+                0,
+                0.08762160119728664
+              ],
+              "auroc": 0.9943877551020408,
+              "average_precision": 0.9956901258904858
+            }
+          },
+          "calibrated_fpr_0.05": {
+            "threshold": 0.5221871526075345,
+            "metrics": {
+              "n": 89,
+              "n_ai": 49,
+              "n_negative": 40,
+              "macro_f1": 0.9547764227642277,
+              "recall": 0.9387755102040817,
+              "recall_wilson95": [
+                0.834795121642736,
+                0.9789598533270324
+              ],
+              "fpr": 0.025,
+              "fpr_wilson95": [
+                0.0044268315026814095,
+                0.1288136896347409
+              ],
+              "auroc": 0.9943877551020408,
+              "average_precision": 0.9956901258904858
+            }
+          },
+          "predictions": [
+            {
+              "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_crack_20_session06.json",
+              "y": 1,
+              "score": 0.5467778391638076
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_exploit_20_session01.json",
+              "y": 1,
+              "score": 0.44009464297431056
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_5_20_session07.json",
+              "y": 1,
+              "score": 0.7379652241415263
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_recon_20_session07.json",
+              "y": 1,
+              "score": 0.7835026505694543
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_1_20_session06.json",
+              "y": 1,
+              "score": 0.8280833840767401
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_3_20_session01.json",
+              "y": 1,
+              "score": 0.8498106140137565
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_1_20_session07.json",
+              "y": 1,
+              "score": 0.7886441874141373
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_recon_20_session06.json",
+              "y": 1,
+              "score": 0.8105295256491187
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_5_20_session06.json",
+              "y": 1,
+              "score": 0.7533343293381256
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_crack_20_session07.json",
+              "y": 1,
+              "score": 0.3532447690074126
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_3_20_session06.json",
+              "y": 1,
+              "score": 0.8329587081155873
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_exploit_20_session07.json",
+              "y": 1,
+              "score": 0.8276565071187455
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_5_20_session01.json",
+              "y": 1,
+              "score": 0.8335105533794759
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_recon_20_session01.json",
+              "y": 1,
+              "score": 0.8078181592518483
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_1_20_session01.json",
+              "y": 1,
+              "score": 0.7708933616747851
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_exploit_20_session06.json",
+              "y": 1,
+              "score": 0.8248974535639553
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_crack_20_session01.json",
+              "y": 1,
+              "score": 0.6357412937424712
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_3_20_session07.json",
+              "y": 1,
+              "score": 0.6873527425474937
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_3_20_session04.json",
+              "y": 1,
+              "score": 0.6620691225669109
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_1_20_session02.json",
+              "y": 1,
+              "score": 0.7465197124444596
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_3_20_session08.json",
+              "y": 1,
+              "score": 0.724933057176616
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_recon_20_session03.json",
+              "y": 1,
+              "score": 0.8078181592518483
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_5_20_session03.json",
+              "y": 1,
+              "score": 0.7739791853253085
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_exploit_20_session05.json",
+              "y": 1,
+              "score": 0.7779616548914129
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_crack_20_session02.json",
+              "y": 1,
+              "score": 0.7130510615586401
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_crack_20_session03.json",
+              "y": 1,
+              "score": 0.5642001864552539
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_exploit_20_session04.json",
+              "y": 1,
+              "score": 0.8111300585020198
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_5_20_session02.json",
+              "y": 1,
+              "score": 0.7846382754556807
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_recon_20_session02.json",
+              "y": 1,
+              "score": 0.6665288940254988
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_1_20_session03.json",
+              "y": 1,
+              "score": 0.7323866920848544
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_exploit_20_session08.json",
+              "y": 1,
+              "score": 0.7620184690381553
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_1_12_session01.json",
+              "y": 1,
+              "score": 0.719539567208798
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_3_20_session05.json",
+              "y": 1,
+              "score": 0.8433994818508488
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_1_20_session04.json",
+              "y": 1,
+              "score": 0.7893604924895173
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_recon_20_session05.json",
+              "y": 1,
+              "score": 0.7749142039729102
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_5_20_session05.json",
+              "y": 1,
+              "score": 0.7620951403655426
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_exploit_20_session03.json",
+              "y": 1,
+              "score": 0.6932473935998994
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_crack_20_session04.json",
+              "y": 1,
+              "score": 0.5686619211997122
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_1_20_session08.json",
+              "y": 1,
+              "score": 0.7044531924478669
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_3_20_session02.json",
+              "y": 1,
+              "score": 0.8611523565186332
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_crack_20_session08.json",
+              "y": 1,
+              "score": 0.7359771933937566
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_5_20_session08.json",
+              "y": 1,
+              "score": 0.589311805971791
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_recon_20_session08.json",
+              "y": 1,
+              "score": 0.7618549385627006
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_3_20_session03.json",
+              "y": 1,
+              "score": 0.6725488016914969
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_crack_20_session05.json",
+              "y": 1,
+              "score": 0.43826644929679875
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_exploit_20_session02.json",
+              "y": 1,
+              "score": 0.7197519870447506
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_5_20_session04.json",
+              "y": 1,
+              "score": 0.7598453872807533
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_recon_20_session04.json",
+              "y": 1,
+              "score": 0.8081878102001656
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_1_20_session05.json",
+              "y": 1,
+              "score": 0.8044656796733878
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-101-useractions.json",
+              "y": 0,
+              "score": 0.24830512016641293
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-112-useractions.json",
+              "y": 0,
+              "score": 0.29848128289445214
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-113-useractions.json",
+              "y": 0,
+              "score": 0.27430215432315685
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-115-useractions.json",
+              "y": 0,
+              "score": 0.30255438625097636
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-116-useractions.json",
+              "y": 0,
+              "score": 0.2732370257460598
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-130-useractions.json",
+              "y": 0,
+              "score": 0.25747937528237697
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-131-useractions.json",
+              "y": 0,
+              "score": 0.5611880342089718
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-137-useractions.json",
+              "y": 0,
+              "score": 0.29848128289445214
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-144-useractions.json",
+              "y": 0,
+              "score": 0.3871916220141849
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-148-useractions.json",
+              "y": 0,
+              "score": 0.29848128289445214
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-149-useractions.json",
+              "y": 0,
+              "score": 0.2146008668440435
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-151-useractions.json",
+              "y": 0,
+              "score": 0.27780872600090334
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-152-useractions.json",
+              "y": 0,
+              "score": 0.25734734466745246
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-156-useractions.json",
+              "y": 0,
+              "score": 0.26811263836262106
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-95-useractions.json",
+              "y": 0,
+              "score": 0.36918629233635347
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-34-useractions.json",
+              "y": 0,
+              "score": 0.16259529852306365
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-35-useractions.json",
+              "y": 0,
+              "score": 0.34651965921538774
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-36-useractions.json",
+              "y": 0,
+              "score": 0.24615152030715676
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-37-useractions.json",
+              "y": 0,
+              "score": 0.43766179205086764
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-38-useractions.json",
+              "y": 0,
+              "score": 0.3246187487477921
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-41-useractions.json",
+              "y": 0,
+              "score": 0.40195769085304767
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-43-useractions.json",
+              "y": 0,
+              "score": 0.3046261052874099
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-44-useractions.json",
+              "y": 0,
+              "score": 0.18649567217905963
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2021-01-14/sandbox-104-useractions.json",
+              "y": 0,
+              "score": 0.13654233162049467
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2021-01-14/sandbox-105-useractions.json",
+              "y": 0,
+              "score": 0.2342853974424165
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2021-01-14/sandbox-106-useractions.json",
+              "y": 0,
+              "score": 0.19179951916850535
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2021-01-14/sandbox-107-useractions.json",
+              "y": 0,
+              "score": 0.33329175767895114
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-123-useractions.json",
+              "y": 0,
+              "score": 0.26482428731753677
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-124-useractions.json",
+              "y": 0,
+              "score": 0.22048262185591375
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-125-useractions.json",
+              "y": 0,
+              "score": 0.48932192004728586
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-126-useractions.json",
+              "y": 0,
+              "score": 0.2539533645189871
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-127-useractions.json",
+              "y": 0,
+              "score": 0.2993072153689467
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-128-useractions.json",
+              "y": 0,
+              "score": 0.29848128289445214
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-129-useractions.json",
+              "y": 0,
+              "score": 0.26482428731753677
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-130-useractions.json",
+              "y": 0,
+              "score": 0.26482428731753677
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-131-useractions.json",
+              "y": 0,
+              "score": 0.34681996632853734
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-3-useractions.json",
+              "y": 0,
+              "score": 0.35196751977239654
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-340-useractions.json",
+              "y": 0,
+              "score": 0.2692404000331173
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-341-useractions.json",
+              "y": 0,
+              "score": 0.29848128289445214
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-342-useractions.json",
+              "y": 0,
+              "score": 0.1935188996059686
+            }
+          ]
+        },
+        "authored": {
+          "default": {
+            "n": 89,
+            "n_ai": 49,
+            "n_negative": 40,
+            "macro_f1": 0.9433626065928471,
+            "recall": 0.9387755102040817,
+            "recall_wilson95": [
+              0.834795121642736,
+              0.9789598533270324
+            ],
+            "fpr": 0.05,
+            "fpr_wilson95": [
+              0.013820667386148344,
+              0.16503877369140962
+            ],
+            "auroc": 0.9887755102040817,
+            "average_precision": 0.9914528659771982
+          },
+          "calibrated_fpr_0.01": {
+            "threshold": 0.7626992213554226,
+            "metrics": {
+              "n": 89,
+              "n_ai": 49,
+              "n_negative": 40,
+              "macro_f1": 0.7097195042400521,
+              "recall": 0.4897959183673469,
+              "recall_wilson95": [
+                0.3557511031030578,
+                0.6253243625953194
+              ],
+              "fpr": 0.0,
+              "fpr_wilson95": [
+                0,
+                0.08762160119728664
+              ],
+              "auroc": 0.9887755102040817,
+              "average_precision": 0.9914528659771982
+            }
+          },
+          "calibrated_fpr_0.05": {
+            "threshold": 0.5869440015568059,
+            "metrics": {
+              "n": 89,
+              "n_ai": 49,
+              "n_negative": 40,
+              "macro_f1": 0.910010111223458,
+              "recall": 0.8571428571428571,
+              "recall_wilson95": [
+                0.7333229377608557,
+                0.9290357627959323
+              ],
+              "fpr": 0.025,
+              "fpr_wilson95": [
+                0.0044268315026814095,
+                0.1288136896347409
+              ],
+              "auroc": 0.9887755102040817,
+              "average_precision": 0.9914528659771982
+            }
+          },
+          "predictions": [
+            {
+              "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_crack_20_session06.json",
+              "y": 1,
+              "score": 0.5441467839301484
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_exploit_20_session01.json",
+              "y": 1,
+              "score": 0.3988856677344864
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_5_20_session07.json",
+              "y": 1,
+              "score": 0.745002616518217
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_recon_20_session07.json",
+              "y": 1,
+              "score": 0.8274076487627949
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_1_20_session06.json",
+              "y": 1,
+              "score": 0.8349300305202728
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_3_20_session01.json",
+              "y": 1,
+              "score": 0.8449693274665819
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_1_20_session07.json",
+              "y": 1,
+              "score": 0.7950899491664066
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_recon_20_session06.json",
+              "y": 1,
+              "score": 0.7873199912111244
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_5_20_session06.json",
+              "y": 1,
+              "score": 0.7116176388270955
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_crack_20_session07.json",
+              "y": 1,
+              "score": 0.3589102348098156
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_3_20_session06.json",
+              "y": 1,
+              "score": 0.8343966766334049
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_exploit_20_session07.json",
+              "y": 1,
+              "score": 0.8001459339746054
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_5_20_session01.json",
+              "y": 1,
+              "score": 0.7812582019394438
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_recon_20_session01.json",
+              "y": 1,
+              "score": 0.7843572365376289
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_1_20_session01.json",
+              "y": 1,
+              "score": 0.780980161090016
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_exploit_20_session06.json",
+              "y": 1,
+              "score": 0.7959211453673836
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_crack_20_session01.json",
+              "y": 1,
+              "score": 0.6553595546872827
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_3_20_session07.json",
+              "y": 1,
+              "score": 0.7076649641920189
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_3_20_session04.json",
+              "y": 1,
+              "score": 0.6851024101850879
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_1_20_session02.json",
+              "y": 1,
+              "score": 0.783247191736719
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_3_20_session08.json",
+              "y": 1,
+              "score": 0.7373262924686336
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_recon_20_session03.json",
+              "y": 1,
+              "score": 0.7843572365376289
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_5_20_session03.json",
+              "y": 1,
+              "score": 0.7618143013922108
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_exploit_20_session05.json",
+              "y": 1,
+              "score": 0.7706768965367979
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_crack_20_session02.json",
+              "y": 1,
+              "score": 0.7146920652693536
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_crack_20_session03.json",
+              "y": 1,
+              "score": 0.5829448477541083
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_exploit_20_session04.json",
+              "y": 1,
+              "score": 0.7942889241323847
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_5_20_session02.json",
+              "y": 1,
+              "score": 0.8079769660258008
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_recon_20_session02.json",
+              "y": 1,
+              "score": 0.6752432716326533
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_1_20_session03.json",
+              "y": 1,
+              "score": 0.7388872614659128
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_exploit_20_session08.json",
+              "y": 1,
+              "score": 0.7579397460552693
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_1_12_session01.json",
+              "y": 1,
+              "score": 0.774312714100307
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_3_20_session05.json",
+              "y": 1,
+              "score": 0.8446024757875948
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_1_20_session04.json",
+              "y": 1,
+              "score": 0.7984648077565139
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_recon_20_session05.json",
+              "y": 1,
+              "score": 0.7723005532450358
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_5_20_session05.json",
+              "y": 1,
+              "score": 0.7588720214700586
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_exploit_20_session03.json",
+              "y": 1,
+              "score": 0.7105573162281048
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_crack_20_session04.json",
+              "y": 1,
+              "score": 0.5768430685739686
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_1_20_session08.json",
+              "y": 1,
+              "score": 0.7251236131883854
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_3_20_session02.json",
+              "y": 1,
+              "score": 0.8574477390519414
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_crack_20_session08.json",
+              "y": 1,
+              "score": 0.7599917467419511
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_5_20_session08.json",
+              "y": 1,
+              "score": 0.5636643732421429
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_recon_20_session08.json",
+              "y": 1,
+              "score": 0.7575758632339139
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_3_20_session03.json",
+              "y": 1,
+              "score": 0.7060966265345876
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_crack_20_session05.json",
+              "y": 1,
+              "score": 0.4317815242045664
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_exploit_20_session02.json",
+              "y": 1,
+              "score": 0.741625940857996
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_5_20_session04.json",
+              "y": 1,
+              "score": 0.7879242601555929
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_recon_20_session04.json",
+              "y": 1,
+              "score": 0.7914208202304631
+            },
+            {
+              "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_1_20_session05.json",
+              "y": 1,
+              "score": 0.8154976354959289
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-101-useractions.json",
+              "y": 0,
+              "score": 0.2482469072361827
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-112-useractions.json",
+              "y": 0,
+              "score": 0.3462798099863196
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-113-useractions.json",
+              "y": 0,
+              "score": 0.27269913734171775
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-115-useractions.json",
+              "y": 0,
+              "score": 0.30980542015812734
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-116-useractions.json",
+              "y": 0,
+              "score": 0.2711588068514988
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-130-useractions.json",
+              "y": 0,
+              "score": 0.2562415125347413
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-131-useractions.json",
+              "y": 0,
+              "score": 0.6166544179933423
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-137-useractions.json",
+              "y": 0,
+              "score": 0.3462798099863196
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-144-useractions.json",
+              "y": 0,
+              "score": 0.4345277732405524
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-148-useractions.json",
+              "y": 0,
+              "score": 0.3462798099863196
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-149-useractions.json",
+              "y": 0,
+              "score": 0.2214169793766466
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-151-useractions.json",
+              "y": 0,
+              "score": 0.2802538053779129
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-152-useractions.json",
+              "y": 0,
+              "score": 0.26352671744128014
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-156-useractions.json",
+              "y": 0,
+              "score": 0.27743876762490594
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-95-useractions.json",
+              "y": 0,
+              "score": 0.4414916082548331
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-34-useractions.json",
+              "y": 0,
+              "score": 0.15893186030361342
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-35-useractions.json",
+              "y": 0,
+              "score": 0.3485098824541346
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-36-useractions.json",
+              "y": 0,
+              "score": 0.24781770361101185
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-37-useractions.json",
+              "y": 0,
+              "score": 0.45029082295744893
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-38-useractions.json",
+              "y": 0,
+              "score": 0.3369422799181649
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-41-useractions.json",
+              "y": 0,
+              "score": 0.37293750271389176
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-43-useractions.json",
+              "y": 0,
+              "score": 0.30411339774620566
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-44-useractions.json",
+              "y": 0,
+              "score": 0.18645706587905128
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2021-01-14/sandbox-104-useractions.json",
+              "y": 0,
+              "score": 0.13866084498557826
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2021-01-14/sandbox-105-useractions.json",
+              "y": 0,
+              "score": 0.22677303645629612
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2021-01-14/sandbox-106-useractions.json",
+              "y": 0,
+              "score": 0.19687508312225996
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2021-01-14/sandbox-107-useractions.json",
+              "y": 0,
+              "score": 0.33476752624882516
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-123-useractions.json",
+              "y": 0,
+              "score": 0.2645884778287689
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-124-useractions.json",
+              "y": 0,
+              "score": 0.22496959621785206
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-125-useractions.json",
+              "y": 0,
+              "score": 0.5134957604759965
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-126-useractions.json",
+              "y": 0,
+              "score": 0.24866794237742243
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-127-useractions.json",
+              "y": 0,
+              "score": 0.3061990173291266
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-128-useractions.json",
+              "y": 0,
+              "score": 0.3462798099863196
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-129-useractions.json",
+              "y": 0,
+              "score": 0.2645884778287689
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-130-useractions.json",
+              "y": 0,
+              "score": 0.2645884778287689
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-131-useractions.json",
+              "y": 0,
+              "score": 0.3758973347401848
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-3-useractions.json",
+              "y": 0,
+              "score": 0.3880717817819078
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-340-useractions.json",
+              "y": 0,
+              "score": 0.2785116520630602
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-341-useractions.json",
+              "y": 0,
+              "score": 0.3462798099863196
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-342-useractions.json",
+              "y": 0,
+              "score": 0.1949679256942384
+            }
+          ]
+        }
+      }
+    },
+    {
+      "held": "gemma3",
+      "conditions": {
+        "recorded": {
+          "default": {
+            "n": 64,
+            "n_ai": 24,
+            "n_negative": 40,
+            "macro_f1": 0.8961038961038961,
+            "recall": 0.7916666666666666,
+            "recall_wilson95": [
+              0.5952954674681133,
+              0.9075517464714814
+            ],
+            "fpr": 0.025,
+            "fpr_wilson95": [
+              0.0044268315026814095,
+              0.1288136896347409
+            ],
+            "auroc": 0.9916666666666667,
+            "average_precision": 0.9850927843133219
+          },
+          "calibrated_fpr_0.01": {
+            "threshold": 0.7206586411449233,
+            "metrics": {
+              "n": 64,
+              "n_ai": 24,
+              "n_negative": 40,
+              "macro_f1": 0.46907993966817496,
+              "recall": 0.08333333333333333,
+              "recall_wilson95": [
+                0.023158815297043306,
+                0.25848802193210685
+              ],
+              "fpr": 0.0,
+              "fpr_wilson95": [
+                0,
+                0.08762160119728664
+              ],
+              "auroc": 0.9916666666666667,
+              "average_precision": 0.9850927843133219
+            }
+          },
+          "calibrated_fpr_0.05": {
+            "threshold": 0.4925509771370304,
+            "metrics": {
+              "n": 64,
+              "n_ai": 24,
+              "n_negative": 40,
+              "macro_f1": 0.9143239625167336,
+              "recall": 0.8333333333333334,
+              "recall_wilson95": [
+                0.6414692935030095,
+                0.9332132367136705
+              ],
+              "fpr": 0.025,
+              "fpr_wilson95": [
+                0.0044268315026814095,
+                0.1288136896347409
+              ],
+              "auroc": 0.9916666666666667,
+              "average_precision": 0.9850927843133219
+            }
+          },
+          "predictions": [
+            {
+              "source": "harness/runs/grid_ac/real_ssh/gemma3-4b/real_ssh_gemma3-4b_prompt_3_20_session01.json",
+              "y": 1,
+              "score": 0.6414769560272743
+            },
+            {
+              "source": "harness/runs/grid_ac/real_ssh/gemma3-4b/real_ssh_gemma3-4b_prompt_1_20_session01.json",
+              "y": 1,
+              "score": 0.7177941104392959
+            },
+            {
+              "source": "harness/runs/grid_ac/real_ssh/gemma3-4b/real_ssh_gemma3-4b_prompt_5_20_session01.json",
+              "y": 1,
+              "score": 0.48609024931663364
+            },
+            {
+              "source": "harness/runs/grid_ac/real_ssh/gemma3-4b/real_ssh_gemma3-4b_prompt_5_20_session02.json",
+              "y": 1,
+              "score": 0.499352822383909
+            },
+            {
+              "source": "harness/runs/grid_ac/real_ssh/gemma3-4b/real_ssh_gemma3-4b_prompt_1_20_session03.json",
+              "y": 1,
+              "score": 0.4117705516639543
+            },
+            {
+              "source": "harness/runs/grid_ac/real_ssh/gemma3-4b/real_ssh_gemma3-4b_prompt_1_20_session02.json",
+              "y": 1,
+              "score": 0.6868252874507015
+            },
+            {
+              "source": "harness/runs/grid_ac/real_ssh/gemma3-4b/real_ssh_gemma3-4b_prompt_5_20_session03.json",
+              "y": 1,
+              "score": 0.516531463897279
+            },
+            {
+              "source": "harness/runs/grid_ac/real_ssh/gemma3-4b/real_ssh_gemma3-4b_prompt_3_20_session03.json",
+              "y": 1,
+              "score": 0.5672723411200489
+            },
+            {
+              "source": "harness/runs/grid_ac/real_ssh/gemma3-4b/real_ssh_gemma3-4b_prompt_3_20_session02.json",
+              "y": 1,
+              "score": 0.5606125528226735
+            },
+            {
+              "source": "harness/runs/ctf_range/gemma3-4b/ctf_g3_ctf_recon_20_session01.json",
+              "y": 1,
+              "score": 0.6398769922482688
+            },
+            {
+              "source": "harness/runs/ctf_range/gemma3-4b/ctf_g3_ctf_exploit_20_session02.json",
+              "y": 1,
+              "score": 0.7107047329090491
+            },
+            {
+              "source": "harness/runs/ctf_range/gemma3-4b/ctf_g3_ctf_exploit_20_session03.json",
+              "y": 1,
+              "score": 0.6621721876194985
+            },
+            {
+              "source": "harness/runs/ctf_range/gemma3-4b/ctf_g3_ctf_exploit_20_session01.json",
+              "y": 1,
+              "score": 0.729213971825544
+            },
+            {
+              "source": "harness/runs/ctf_range/gemma3-4b/ctf_g3_ctf_recon_20_session04.json",
+              "y": 1,
+              "score": 0.4756961968187588
+            },
+            {
+              "source": "harness/runs/ctf_range/gemma3-4b/ctf_g3_ctf_recon_20_session03.json",
+              "y": 1,
+              "score": 0.5391326597340454
+            },
+            {
+              "source": "harness/runs/ctf_range/gemma3-4b/ctf_g3_ctf_recon_20_session02.json",
+              "y": 1,
+              "score": 0.7789279777112068
+            },
+            {
+              "source": "harness/runs/grid_v2/real_ssh/gemma3-4b/real_ssh_gemma3-4b_prompt_1_20_session07.json",
+              "y": 1,
+              "score": 0.5865910641544309
+            },
+            {
+              "source": "harness/runs/grid_v2/real_ssh/gemma3-4b/real_ssh_gemma3-4b_prompt_1_20_session06.json",
+              "y": 1,
+              "score": 0.5546444079763825
+            },
+            {
+              "source": "harness/runs/grid_v2/real_ssh/gemma3-4b/real_ssh_gemma3-4b_prompt_1_20_session01.json",
+              "y": 1,
+              "score": 0.5914939454641246
+            },
+            {
+              "source": "harness/runs/grid_v2/real_ssh/gemma3-4b/real_ssh_gemma3-4b_prompt_1_20_session03.json",
+              "y": 1,
+              "score": 0.6597011322930331
+            },
+            {
+              "source": "harness/runs/grid_v2/real_ssh/gemma3-4b/real_ssh_gemma3-4b_prompt_1_20_session02.json",
+              "y": 1,
+              "score": 0.6050387603578867
+            },
+            {
+              "source": "harness/runs/grid_v2/real_ssh/gemma3-4b/real_ssh_gemma3-4b_prompt_1_20_session05.json",
+              "y": 1,
+              "score": 0.5751619371704364
+            },
+            {
+              "source": "harness/runs/grid_v2/real_ssh/gemma3-4b/real_ssh_gemma3-4b_prompt_1_20_session04.json",
+              "y": 1,
+              "score": 0.4739581954888145
+            },
+            {
+              "source": "harness/runs/grid_v2/real_ssh/gemma3-4b/real_ssh_gemma3-4b_prompt_1_20_session08.json",
+              "y": 1,
+              "score": 0.6223608699509597
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-101-useractions.json",
+              "y": 0,
+              "score": 0.2410003628773365
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-112-useractions.json",
+              "y": 0,
+              "score": 0.2930673451628084
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-113-useractions.json",
+              "y": 0,
+              "score": 0.23480834808626427
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-115-useractions.json",
+              "y": 0,
+              "score": 0.30657696134405693
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-116-useractions.json",
+              "y": 0,
+              "score": 0.22539672508815567
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-130-useractions.json",
+              "y": 0,
+              "score": 0.24888410677412912
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-131-useractions.json",
+              "y": 0,
+              "score": 0.546376665273839
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-137-useractions.json",
+              "y": 0,
+              "score": 0.2930673451628084
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-144-useractions.json",
+              "y": 0,
+              "score": 0.3892267859740756
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-148-useractions.json",
+              "y": 0,
+              "score": 0.2930673451628084
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-149-useractions.json",
+              "y": 0,
+              "score": 0.23588082930570609
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-151-useractions.json",
+              "y": 0,
+              "score": 0.28009870045923424
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-152-useractions.json",
+              "y": 0,
+              "score": 0.2610075666279768
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-156-useractions.json",
+              "y": 0,
+              "score": 0.2858480103585182
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-95-useractions.json",
+              "y": 0,
+              "score": 0.3490716942888925
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-34-useractions.json",
+              "y": 0,
+              "score": 0.17214512555286907
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-35-useractions.json",
+              "y": 0,
+              "score": 0.3327468849567418
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-36-useractions.json",
+              "y": 0,
+              "score": 0.21928229477379735
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-37-useractions.json",
+              "y": 0,
+              "score": 0.40751515273435396
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-38-useractions.json",
+              "y": 0,
+              "score": 0.30224286244185555
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-41-useractions.json",
+              "y": 0,
+              "score": 0.3805728508870938
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-43-useractions.json",
+              "y": 0,
+              "score": 0.3182215352775144
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-44-useractions.json",
+              "y": 0,
+              "score": 0.18298889583603462
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2021-01-14/sandbox-104-useractions.json",
+              "y": 0,
+              "score": 0.13951315078041665
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2021-01-14/sandbox-105-useractions.json",
+              "y": 0,
+              "score": 0.23661789927786275
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2021-01-14/sandbox-106-useractions.json",
+              "y": 0,
+              "score": 0.20729894975669083
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2021-01-14/sandbox-107-useractions.json",
+              "y": 0,
+              "score": 0.32553278118428924
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-123-useractions.json",
+              "y": 0,
+              "score": 0.26976578476979424
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-124-useractions.json",
+              "y": 0,
+              "score": 0.23259825933353495
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-125-useractions.json",
+              "y": 0,
+              "score": 0.46603143824237825
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-126-useractions.json",
+              "y": 0,
+              "score": 0.21941088131621728
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-127-useractions.json",
+              "y": 0,
+              "score": 0.29611895176825725
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-128-useractions.json",
+              "y": 0,
+              "score": 0.2930673451628084
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-129-useractions.json",
+              "y": 0,
+              "score": 0.26976578476979424
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-130-useractions.json",
+              "y": 0,
+              "score": 0.26976578476979424
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-131-useractions.json",
+              "y": 0,
+              "score": 0.32630038686138824
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-3-useractions.json",
+              "y": 0,
+              "score": 0.38795512982070235
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-340-useractions.json",
+              "y": 0,
+              "score": 0.2885508057723137
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-341-useractions.json",
+              "y": 0,
+              "score": 0.2930673451628084
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-342-useractions.json",
+              "y": 0,
+              "score": 0.20796889822398398
+            }
+          ]
+        },
+        "authored": {
+          "default": {
+            "n": 64,
+            "n_ai": 24,
+            "n_negative": 40,
+            "macro_f1": 0.858250276854928,
+            "recall": 0.7083333333333334,
+            "recall_wilson95": [
+              0.5083230633550337,
+              0.8508535180303913
+            ],
+            "fpr": 0.025,
+            "fpr_wilson95": [
+              0.0044268315026814095,
+              0.1288136896347409
+            ],
+            "auroc": 0.9739583333333333,
+            "average_precision": 0.9495598772930428
+          },
+          "calibrated_fpr_0.01": {
+            "threshold": 0.75048902178667,
+            "metrics": {
+              "n": 64,
+              "n_ai": 24,
+              "n_negative": 40,
+              "macro_f1": 0.42834951456310677,
+              "recall": 0.041666666666666664,
+              "recall_wilson95": [
+                0.0073934561655057685,
+                0.20241806478655938
+              ],
+              "fpr": 0.0,
+              "fpr_wilson95": [
+                0,
+                0.08762160119728664
+              ],
+              "auroc": 0.9739583333333333,
+              "average_precision": 0.9495598772930428
+            }
+          },
+          "calibrated_fpr_0.05": {
+            "threshold": 0.511563135520474,
+            "metrics": {
+              "n": 64,
+              "n_ai": 24,
+              "n_negative": 40,
+              "macro_f1": 0.858250276854928,
+              "recall": 0.7083333333333334,
+              "recall_wilson95": [
+                0.5083230633550337,
+                0.8508535180303913
+              ],
+              "fpr": 0.025,
+              "fpr_wilson95": [
+                0.0044268315026814095,
+                0.1288136896347409
+              ],
+              "auroc": 0.9739583333333333,
+              "average_precision": 0.9495598772930428
+            }
+          },
+          "predictions": [
+            {
+              "source": "harness/runs/grid_ac/real_ssh/gemma3-4b/real_ssh_gemma3-4b_prompt_3_20_session01.json",
+              "y": 1,
+              "score": 0.6894793476000455
+            },
+            {
+              "source": "harness/runs/grid_ac/real_ssh/gemma3-4b/real_ssh_gemma3-4b_prompt_1_20_session01.json",
+              "y": 1,
+              "score": 0.7189455712420796
+            },
+            {
+              "source": "harness/runs/grid_ac/real_ssh/gemma3-4b/real_ssh_gemma3-4b_prompt_5_20_session01.json",
+              "y": 1,
+              "score": 0.4947070904651575
+            },
+            {
+              "source": "harness/runs/grid_ac/real_ssh/gemma3-4b/real_ssh_gemma3-4b_prompt_5_20_session02.json",
+              "y": 1,
+              "score": 0.46119047169855126
+            },
+            {
+              "source": "harness/runs/grid_ac/real_ssh/gemma3-4b/real_ssh_gemma3-4b_prompt_1_20_session03.json",
+              "y": 1,
+              "score": 0.3405751689858121
+            },
+            {
+              "source": "harness/runs/grid_ac/real_ssh/gemma3-4b/real_ssh_gemma3-4b_prompt_1_20_session02.json",
+              "y": 1,
+              "score": 0.7163685539446214
+            },
+            {
+              "source": "harness/runs/grid_ac/real_ssh/gemma3-4b/real_ssh_gemma3-4b_prompt_5_20_session03.json",
+              "y": 1,
+              "score": 0.5355666772404021
+            },
+            {
+              "source": "harness/runs/grid_ac/real_ssh/gemma3-4b/real_ssh_gemma3-4b_prompt_3_20_session03.json",
+              "y": 1,
+              "score": 0.6024910496888575
+            },
+            {
+              "source": "harness/runs/grid_ac/real_ssh/gemma3-4b/real_ssh_gemma3-4b_prompt_3_20_session02.json",
+              "y": 1,
+              "score": 0.6006906795347977
+            },
+            {
+              "source": "harness/runs/ctf_range/gemma3-4b/ctf_g3_ctf_recon_20_session01.json",
+              "y": 1,
+              "score": 0.4903644438321572
+            },
+            {
+              "source": "harness/runs/ctf_range/gemma3-4b/ctf_g3_ctf_exploit_20_session02.json",
+              "y": 1,
+              "score": 0.6723515221759213
+            },
+            {
+              "source": "harness/runs/ctf_range/gemma3-4b/ctf_g3_ctf_exploit_20_session03.json",
+              "y": 1,
+              "score": 0.5740218702010484
+            },
+            {
+              "source": "harness/runs/ctf_range/gemma3-4b/ctf_g3_ctf_exploit_20_session01.json",
+              "y": 1,
+              "score": 0.6512520705294929
+            },
+            {
+              "source": "harness/runs/ctf_range/gemma3-4b/ctf_g3_ctf_recon_20_session04.json",
+              "y": 1,
+              "score": 0.4900907546230932
+            },
+            {
+              "source": "harness/runs/ctf_range/gemma3-4b/ctf_g3_ctf_recon_20_session03.json",
+              "y": 1,
+              "score": 0.48984423334552973
+            },
+            {
+              "source": "harness/runs/ctf_range/gemma3-4b/ctf_g3_ctf_recon_20_session02.json",
+              "y": 1,
+              "score": 0.7680893684452467
+            },
+            {
+              "source": "harness/runs/grid_v2/real_ssh/gemma3-4b/real_ssh_gemma3-4b_prompt_1_20_session07.json",
+              "y": 1,
+              "score": 0.5976360492257727
+            },
+            {
+              "source": "harness/runs/grid_v2/real_ssh/gemma3-4b/real_ssh_gemma3-4b_prompt_1_20_session06.json",
+              "y": 1,
+              "score": 0.5406853072874029
+            },
+            {
+              "source": "harness/runs/grid_v2/real_ssh/gemma3-4b/real_ssh_gemma3-4b_prompt_1_20_session01.json",
+              "y": 1,
+              "score": 0.5817047694629647
+            },
+            {
+              "source": "harness/runs/grid_v2/real_ssh/gemma3-4b/real_ssh_gemma3-4b_prompt_1_20_session03.json",
+              "y": 1,
+              "score": 0.681848714085177
+            },
+            {
+              "source": "harness/runs/grid_v2/real_ssh/gemma3-4b/real_ssh_gemma3-4b_prompt_1_20_session02.json",
+              "y": 1,
+              "score": 0.6372246183757875
+            },
+            {
+              "source": "harness/runs/grid_v2/real_ssh/gemma3-4b/real_ssh_gemma3-4b_prompt_1_20_session05.json",
+              "y": 1,
+              "score": 0.5693301892230869
+            },
+            {
+              "source": "harness/runs/grid_v2/real_ssh/gemma3-4b/real_ssh_gemma3-4b_prompt_1_20_session04.json",
+              "y": 1,
+              "score": 0.44408849347780804
+            },
+            {
+              "source": "harness/runs/grid_v2/real_ssh/gemma3-4b/real_ssh_gemma3-4b_prompt_1_20_session08.json",
+              "y": 1,
+              "score": 0.6267729428584146
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-101-useractions.json",
+              "y": 0,
+              "score": 0.240473028092277
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-112-useractions.json",
+              "y": 0,
+              "score": 0.3321945897727899
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-113-useractions.json",
+              "y": 0,
+              "score": 0.23317259770043788
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-115-useractions.json",
+              "y": 0,
+              "score": 0.3126250883825126
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-116-useractions.json",
+              "y": 0,
+              "score": 0.22049631403767694
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-130-useractions.json",
+              "y": 0,
+              "score": 0.23955225355604298
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-131-useractions.json",
+              "y": 0,
+              "score": 0.6166592225571462
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-137-useractions.json",
+              "y": 0,
+              "score": 0.3321945897727899
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-144-useractions.json",
+              "y": 0,
+              "score": 0.44411637994510444
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-148-useractions.json",
+              "y": 0,
+              "score": 0.3321945897727899
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-149-useractions.json",
+              "y": 0,
+              "score": 0.25179699309767517
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-151-useractions.json",
+              "y": 0,
+              "score": 0.28255252966309763
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-152-useractions.json",
+              "y": 0,
+              "score": 0.2674124676833348
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-156-useractions.json",
+              "y": 0,
+              "score": 0.2968161129920624
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-95-useractions.json",
+              "y": 0,
+              "score": 0.4137067827578625
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-34-useractions.json",
+              "y": 0,
+              "score": 0.17632985338185272
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-35-useractions.json",
+              "y": 0,
+              "score": 0.33692711554131743
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-36-useractions.json",
+              "y": 0,
+              "score": 0.23332801987173488
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-37-useractions.json",
+              "y": 0,
+              "score": 0.409473453670438
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-38-useractions.json",
+              "y": 0,
+              "score": 0.31802152094034636
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-41-useractions.json",
+              "y": 0,
+              "score": 0.35651396779351724
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-43-useractions.json",
+              "y": 0,
+              "score": 0.3143915672629941
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-44-useractions.json",
+              "y": 0,
+              "score": 0.18870277930476428
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2021-01-14/sandbox-104-useractions.json",
+              "y": 0,
+              "score": 0.14621576357970364
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2021-01-14/sandbox-105-useractions.json",
+              "y": 0,
+              "score": 0.2361288178585174
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2021-01-14/sandbox-106-useractions.json",
+              "y": 0,
+              "score": 0.21738004931157673
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2021-01-14/sandbox-107-useractions.json",
+              "y": 0,
+              "score": 0.33260651824754706
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-123-useractions.json",
+              "y": 0,
+              "score": 0.2699026360945706
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-124-useractions.json",
+              "y": 0,
+              "score": 0.23660188018039754
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-125-useractions.json",
+              "y": 0,
+              "score": 0.48519154998540404
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-126-useractions.json",
+              "y": 0,
+              "score": 0.21168915522517603
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-127-useractions.json",
+              "y": 0,
+              "score": 0.3124552630036903
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-128-useractions.json",
+              "y": 0,
+              "score": 0.3321945897727899
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-129-useractions.json",
+              "y": 0,
+              "score": 0.2699026360945706
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-130-useractions.json",
+              "y": 0,
+              "score": 0.2699026360945706
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-131-useractions.json",
+              "y": 0,
+              "score": 0.3457751335971037
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-3-useractions.json",
+              "y": 0,
+              "score": 0.4183791582580928
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-340-useractions.json",
+              "y": 0,
+              "score": 0.29897039602754194
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-341-useractions.json",
+              "y": 0,
+              "score": 0.3321945897727899
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-342-useractions.json",
+              "y": 0,
+              "score": 0.21282620828357318
+            }
+          ]
+        }
+      }
+    },
+    {
+      "held": "gemma4",
+      "conditions": {
+        "recorded": {
+          "default": {
+            "n": 63,
+            "n_ai": 23,
+            "n_negative": 40,
+            "macro_f1": 0.9301552106430155,
+            "recall": 0.8695652173913043,
+            "recall_wilson95": [
+              0.6787251772990404,
+              0.9546234090636876
+            ],
+            "fpr": 0.025,
+            "fpr_wilson95": [
+              0.0044268315026814095,
+              0.1288136896347409
+            ],
+            "auroc": 0.9375,
+            "average_precision": 0.9439652643313969
+          },
+          "calibrated_fpr_0.01": {
+            "threshold": 0.7131591889235012,
+            "metrics": {
+              "n": 63,
+              "n_ai": 23,
+              "n_negative": 40,
+              "macro_f1": 0.8278165806255694,
+              "recall": 0.6086956521739131,
+              "recall_wilson95": [
+                0.4078552239138171,
+                0.7784237720752205
+              ],
+              "fpr": 0.0,
+              "fpr_wilson95": [
+                0,
+                0.08762160119728664
+              ],
+              "auroc": 0.9375,
+              "average_precision": 0.9439652643313969
+            }
+          },
+          "calibrated_fpr_0.05": {
+            "threshold": 0.5117334386025543,
+            "metrics": {
+              "n": 63,
+              "n_ai": 23,
+              "n_negative": 40,
+              "macro_f1": 0.9301552106430155,
+              "recall": 0.8695652173913043,
+              "recall_wilson95": [
+                0.6787251772990404,
+                0.9546234090636876
+              ],
+              "fpr": 0.025,
+              "fpr_wilson95": [
+                0.0044268315026814095,
+                0.1288136896347409
+              ],
+              "auroc": 0.9375,
+              "average_precision": 0.9439652643313969
+            }
+          },
+          "predictions": [
+            {
+              "source": "harness/runs/multimodel/g4_prompt_5_s02.json",
+              "y": 1,
+              "score": 0.781074372520132
+            },
+            {
+              "source": "harness/runs/multimodel/g4_prompt_1_s01.json",
+              "y": 1,
+              "score": 0.7459786119186808
+            },
+            {
+              "source": "harness/runs/multimodel/g4_prompt_3_s02.json",
+              "y": 1,
+              "score": 0.6776820491374687
+            },
+            {
+              "source": "harness/runs/multimodel/g4_prompt_3_s01.json",
+              "y": 1,
+              "score": 0.7287221754177352
+            },
+            {
+              "source": "harness/runs/multimodel/g4_prompt_1_s02.json",
+              "y": 1,
+              "score": 0.7989827729902778
+            },
+            {
+              "source": "harness/runs/multimodel/g4_prompt_5_s01.json",
+              "y": 1,
+              "score": 0.7778284003973951
+            },
+            {
+              "source": "harness/runs/ctf_range/gemma4-latest/ctf_g4_ctf_recon_18_session01.json",
+              "y": 1,
+              "score": 0.2713381794207388
+            },
+            {
+              "source": "harness/runs/ctf_range/gemma4-latest/ctf_g4_ctf_exploit_18_session01.json",
+              "y": 1,
+              "score": 0.8008341879298632
+            },
+            {
+              "source": "harness/runs/ctf_range/gemma4-latest/ctf_g4_ctf_crack_18_session01.json",
+              "y": 1,
+              "score": 0.6513055628320193
+            },
+            {
+              "source": "harness/runs/ctf_range/gemma4-latest/ctf_g4_ctf_crack_18_session02.json",
+              "y": 1,
+              "score": 0.701254624545291
+            },
+            {
+              "source": "harness/runs/ctf_range/gemma4-latest/ctf_g4_ctf_recon_18_session03.json",
+              "y": 1,
+              "score": 0.7565370899904154
+            },
+            {
+              "source": "harness/runs/ctf_range/gemma4-latest/ctf_g4_ctf_exploit_18_session02.json",
+              "y": 1,
+              "score": 0.5926624668354009
+            },
+            {
+              "source": "harness/runs/ctf_range/gemma4-latest/ctf_g4_ctf_exploit_18_session03.json",
+              "y": 1,
+              "score": 0.2044015518399705
+            },
+            {
+              "source": "harness/runs/ctf_range/gemma4-latest/ctf_g4_ctf_recon_18_session02.json",
+              "y": 1,
+              "score": 0.37859613675619797
+            },
+            {
+              "source": "harness/runs/ctf_range/gemma4-latest/ctf_g4_ctf_crack_18_session03.json",
+              "y": 1,
+              "score": 0.752860515631973
+            },
+            {
+              "source": "harness/runs/grid_v2/real_ssh/gemma4-latest/real_ssh_gemma4-latest_prompt_1_20_session06.json",
+              "y": 1,
+              "score": 0.800187759921748
+            },
+            {
+              "source": "harness/runs/grid_v2/real_ssh/gemma4-latest/real_ssh_gemma4-latest_prompt_1_20_session07.json",
+              "y": 1,
+              "score": 0.7870243030648287
+            },
+            {
+              "source": "harness/runs/grid_v2/real_ssh/gemma4-latest/real_ssh_gemma4-latest_prompt_1_20_session01.json",
+              "y": 1,
+              "score": 0.6986359216485943
+            },
+            {
+              "source": "harness/runs/grid_v2/real_ssh/gemma4-latest/real_ssh_gemma4-latest_prompt_1_20_session02.json",
+              "y": 1,
+              "score": 0.7317822850982167
+            },
+            {
+              "source": "harness/runs/grid_v2/real_ssh/gemma4-latest/real_ssh_gemma4-latest_prompt_1_20_session03.json",
+              "y": 1,
+              "score": 0.8590134570676582
+            },
+            {
+              "source": "harness/runs/grid_v2/real_ssh/gemma4-latest/real_ssh_gemma4-latest_prompt_1_20_session08.json",
+              "y": 1,
+              "score": 0.7647340063576844
+            },
+            {
+              "source": "harness/runs/grid_v2/real_ssh/gemma4-latest/real_ssh_gemma4-latest_prompt_1_20_session04.json",
+              "y": 1,
+              "score": 0.6814597106727691
+            },
+            {
+              "source": "harness/runs/grid_v2/real_ssh/gemma4-latest/real_ssh_gemma4-latest_prompt_1_20_session05.json",
+              "y": 1,
+              "score": 0.7357952746005787
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-101-useractions.json",
+              "y": 0,
+              "score": 0.24925423617741366
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-112-useractions.json",
+              "y": 0,
+              "score": 0.2713381794207388
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-113-useractions.json",
+              "y": 0,
+              "score": 0.2734948895170261
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-115-useractions.json",
+              "y": 0,
+              "score": 0.2713381794207388
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-116-useractions.json",
+              "y": 0,
+              "score": 0.27497219730039435
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-130-useractions.json",
+              "y": 0,
+              "score": 0.24795077660207343
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-131-useractions.json",
+              "y": 0,
+              "score": 0.5482049116514984
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-137-useractions.json",
+              "y": 0,
+              "score": 0.2713381794207388
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-144-useractions.json",
+              "y": 0,
+              "score": 0.40358715838382453
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-148-useractions.json",
+              "y": 0,
+              "score": 0.2713381794207388
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-149-useractions.json",
+              "y": 0,
+              "score": 0.21486205879413264
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-151-useractions.json",
+              "y": 0,
+              "score": 0.27877347926523544
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-152-useractions.json",
+              "y": 0,
+              "score": 0.2617256555935203
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-156-useractions.json",
+              "y": 0,
+              "score": 0.2755184158718838
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-95-useractions.json",
+              "y": 0,
+              "score": 0.2044015518399705
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-34-useractions.json",
+              "y": 0,
+              "score": 0.15129773434801996
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-35-useractions.json",
+              "y": 0,
+              "score": 0.3045676261424835
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-36-useractions.json",
+              "y": 0,
+              "score": 0.2299341383443858
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-37-useractions.json",
+              "y": 0,
+              "score": 0.437626374945226
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-38-useractions.json",
+              "y": 0,
+              "score": 0.2644510152381106
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-41-useractions.json",
+              "y": 0,
+              "score": 0.39041862414072137
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-43-useractions.json",
+              "y": 0,
+              "score": 0.3268227353940379
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-44-useractions.json",
+              "y": 0,
+              "score": 0.15966704811233864
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2021-01-14/sandbox-104-useractions.json",
+              "y": 0,
+              "score": 0.1209158624178002
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2021-01-14/sandbox-105-useractions.json",
+              "y": 0,
+              "score": 0.21420357451331992
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2021-01-14/sandbox-106-useractions.json",
+              "y": 0,
+              "score": 0.16957254517673284
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2021-01-14/sandbox-107-useractions.json",
+              "y": 0,
+              "score": 0.28524935479949315
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-123-useractions.json",
+              "y": 0,
+              "score": 0.26914689850176704
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-124-useractions.json",
+              "y": 0,
+              "score": 0.1879905216357019
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-125-useractions.json",
+              "y": 0,
+              "score": 0.45121352119975483
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-126-useractions.json",
+              "y": 0,
+              "score": 0.25548532786242933
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-127-useractions.json",
+              "y": 0,
+              "score": 0.29410264112820195
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-128-useractions.json",
+              "y": 0,
+              "score": 0.2713381794207388
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-129-useractions.json",
+              "y": 0,
+              "score": 0.26914689850176704
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-130-useractions.json",
+              "y": 0,
+              "score": 0.26914689850176704
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-131-useractions.json",
+              "y": 0,
+              "score": 0.37080523691366135
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-3-useractions.json",
+              "y": 0,
+              "score": 0.3209403420120642
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-340-useractions.json",
+              "y": 0,
+              "score": 0.27596538997302494
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-341-useractions.json",
+              "y": 0,
+              "score": 0.2713381794207388
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-342-useractions.json",
+              "y": 0,
+              "score": 0.1802933915583484
+            }
+          ]
+        },
+        "authored": {
+          "default": {
+            "n": 63,
+            "n_ai": 23,
+            "n_negative": 40,
+            "macro_f1": 0.8928571428571428,
+            "recall": 0.782608695652174,
+            "recall_wilson95": [
+              0.5809651698373599,
+              0.9033602197341379
+            ],
+            "fpr": 0.025,
+            "fpr_wilson95": [
+              0.0044268315026814095,
+              0.1288136896347409
+            ],
+            "auroc": 0.9173913043478261,
+            "average_precision": 0.9225184577522558
+          },
+          "calibrated_fpr_0.01": {
+            "threshold": 0.7424441306843107,
+            "metrics": {
+              "n": 63,
+              "n_ai": 23,
+              "n_negative": 40,
+              "macro_f1": 0.706781914893617,
+              "recall": 0.391304347826087,
+              "recall_wilson95": [
+                0.22157622792477952,
+                0.592144776086183
+              ],
+              "fpr": 0.0,
+              "fpr_wilson95": [
+                0,
+                0.08762160119728664
+              ],
+              "auroc": 0.9173913043478261,
+              "average_precision": 0.9225184577522558
+            }
+          },
+          "calibrated_fpr_0.05": {
+            "threshold": 0.5774729887379988,
+            "metrics": {
+              "n": 63,
+              "n_ai": 23,
+              "n_negative": 40,
+              "macro_f1": 0.8928571428571428,
+              "recall": 0.782608695652174,
+              "recall_wilson95": [
+                0.5809651698373599,
+                0.9033602197341379
+              ],
+              "fpr": 0.025,
+              "fpr_wilson95": [
+                0.0044268315026814095,
+                0.1288136896347409
+              ],
+              "auroc": 0.9173913043478261,
+              "average_precision": 0.9225184577522558
+            }
+          },
+          "predictions": [
+            {
+              "source": "harness/runs/multimodel/g4_prompt_5_s02.json",
+              "y": 1,
+              "score": 0.7472003749175163
+            },
+            {
+              "source": "harness/runs/multimodel/g4_prompt_1_s01.json",
+              "y": 1,
+              "score": 0.7828575478109827
+            },
+            {
+              "source": "harness/runs/multimodel/g4_prompt_3_s02.json",
+              "y": 1,
+              "score": 0.6707408242693955
+            },
+            {
+              "source": "harness/runs/multimodel/g4_prompt_3_s01.json",
+              "y": 1,
+              "score": 0.7421076436489221
+            },
+            {
+              "source": "harness/runs/multimodel/g4_prompt_1_s02.json",
+              "y": 1,
+              "score": 0.8244598342341883
+            },
+            {
+              "source": "harness/runs/multimodel/g4_prompt_5_s01.json",
+              "y": 1,
+              "score": 0.8038896810149558
+            },
+            {
+              "source": "harness/runs/ctf_range/gemma4-latest/ctf_g4_ctf_recon_18_session01.json",
+              "y": 1,
+              "score": 0.3096583347370333
+            },
+            {
+              "source": "harness/runs/ctf_range/gemma4-latest/ctf_g4_ctf_exploit_18_session01.json",
+              "y": 1,
+              "score": 0.7416688364154472
+            },
+            {
+              "source": "harness/runs/ctf_range/gemma4-latest/ctf_g4_ctf_crack_18_session01.json",
+              "y": 1,
+              "score": 0.6782840779140341
+            },
+            {
+              "source": "harness/runs/ctf_range/gemma4-latest/ctf_g4_ctf_crack_18_session02.json",
+              "y": 1,
+              "score": 0.6868504015946801
+            },
+            {
+              "source": "harness/runs/ctf_range/gemma4-latest/ctf_g4_ctf_recon_18_session03.json",
+              "y": 1,
+              "score": 0.6298648238841033
+            },
+            {
+              "source": "harness/runs/ctf_range/gemma4-latest/ctf_g4_ctf_exploit_18_session02.json",
+              "y": 1,
+              "score": 0.24084893573110733
+            },
+            {
+              "source": "harness/runs/ctf_range/gemma4-latest/ctf_g4_ctf_exploit_18_session03.json",
+              "y": 1,
+              "score": 0.24084893573110733
+            },
+            {
+              "source": "harness/runs/ctf_range/gemma4-latest/ctf_g4_ctf_recon_18_session02.json",
+              "y": 1,
+              "score": 0.40916763261424266
+            },
+            {
+              "source": "harness/runs/ctf_range/gemma4-latest/ctf_g4_ctf_crack_18_session03.json",
+              "y": 1,
+              "score": 0.4987028767362895
+            },
+            {
+              "source": "harness/runs/grid_v2/real_ssh/gemma4-latest/real_ssh_gemma4-latest_prompt_1_20_session06.json",
+              "y": 1,
+              "score": 0.8187788716657948
+            },
+            {
+              "source": "harness/runs/grid_v2/real_ssh/gemma4-latest/real_ssh_gemma4-latest_prompt_1_20_session07.json",
+              "y": 1,
+              "score": 0.7855088679321544
+            },
+            {
+              "source": "harness/runs/grid_v2/real_ssh/gemma4-latest/real_ssh_gemma4-latest_prompt_1_20_session01.json",
+              "y": 1,
+              "score": 0.7302187525757935
+            },
+            {
+              "source": "harness/runs/grid_v2/real_ssh/gemma4-latest/real_ssh_gemma4-latest_prompt_1_20_session02.json",
+              "y": 1,
+              "score": 0.7612295902869529
+            },
+            {
+              "source": "harness/runs/grid_v2/real_ssh/gemma4-latest/real_ssh_gemma4-latest_prompt_1_20_session03.json",
+              "y": 1,
+              "score": 0.7981422507455423
+            },
+            {
+              "source": "harness/runs/grid_v2/real_ssh/gemma4-latest/real_ssh_gemma4-latest_prompt_1_20_session08.json",
+              "y": 1,
+              "score": 0.7839137813926405
+            },
+            {
+              "source": "harness/runs/grid_v2/real_ssh/gemma4-latest/real_ssh_gemma4-latest_prompt_1_20_session04.json",
+              "y": 1,
+              "score": 0.7003076453436542
+            },
+            {
+              "source": "harness/runs/grid_v2/real_ssh/gemma4-latest/real_ssh_gemma4-latest_prompt_1_20_session05.json",
+              "y": 1,
+              "score": 0.7280901645854595
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-101-useractions.json",
+              "y": 0,
+              "score": 0.2495070653187536
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-112-useractions.json",
+              "y": 0,
+              "score": 0.3096583347370333
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-113-useractions.json",
+              "y": 0,
+              "score": 0.27247059653047284
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-115-useractions.json",
+              "y": 0,
+              "score": 0.3096583347370333
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-116-useractions.json",
+              "y": 0,
+              "score": 0.274379300841602
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-130-useractions.json",
+              "y": 0,
+              "score": 0.24077384707042598
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-131-useractions.json",
+              "y": 0,
+              "score": 0.6068315334335902
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-137-useractions.json",
+              "y": 0,
+              "score": 0.3096583347370333
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-144-useractions.json",
+              "y": 0,
+              "score": 0.4529816514819495
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-148-useractions.json",
+              "y": 0,
+              "score": 0.3096583347370333
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-149-useractions.json",
+              "y": 0,
+              "score": 0.2220029435649719
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-151-useractions.json",
+              "y": 0,
+              "score": 0.281876719540939
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-152-useractions.json",
+              "y": 0,
+              "score": 0.2707789129072948
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-156-useractions.json",
+              "y": 0,
+              "score": 0.2895940148158384
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-95-useractions.json",
+              "y": 0,
+              "score": 0.24084893573110733
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-34-useractions.json",
+              "y": 0,
+              "score": 0.14901308044415723
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-35-useractions.json",
+              "y": 0,
+              "score": 0.29972601448156433
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-36-useractions.json",
+              "y": 0,
+              "score": 0.23787585997523109
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-37-useractions.json",
+              "y": 0,
+              "score": 0.43979975196288457
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-38-useractions.json",
+              "y": 0,
+              "score": 0.27057983225411436
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-41-useractions.json",
+              "y": 0,
+              "score": 0.37157816892292667
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-43-useractions.json",
+              "y": 0,
+              "score": 0.31826589104904685
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-44-useractions.json",
+              "y": 0,
+              "score": 0.15773297545744241
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2021-01-14/sandbox-104-useractions.json",
+              "y": 0,
+              "score": 0.12125470976473891
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2021-01-14/sandbox-105-useractions.json",
+              "y": 0,
+              "score": 0.21720383332733856
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2021-01-14/sandbox-106-useractions.json",
+              "y": 0,
+              "score": 0.17278501548024816
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2021-01-14/sandbox-107-useractions.json",
+              "y": 0,
+              "score": 0.2830310542773003
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-123-useractions.json",
+              "y": 0,
+              "score": 0.27034797448071873
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-124-useractions.json",
+              "y": 0,
+              "score": 0.18983035812926377
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-125-useractions.json",
+              "y": 0,
+              "score": 0.4610856055224154
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-126-useractions.json",
+              "y": 0,
+              "score": 0.2507896137007252
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-127-useractions.json",
+              "y": 0,
+              "score": 0.3008365535442899
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-128-useractions.json",
+              "y": 0,
+              "score": 0.3096583347370333
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-129-useractions.json",
+              "y": 0,
+              "score": 0.27034797448071873
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-130-useractions.json",
+              "y": 0,
+              "score": 0.27034797448071873
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-131-useractions.json",
+              "y": 0,
+              "score": 0.4112398012156589
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-3-useractions.json",
+              "y": 0,
+              "score": 0.35850308509411816
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-340-useractions.json",
+              "y": 0,
+              "score": 0.28903294698673865
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-341-useractions.json",
+              "y": 0,
+              "score": 0.3096583347370333
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-342-useractions.json",
+              "y": 0,
+              "score": 0.18406926403448362
+            }
+          ]
+        }
+      }
+    },
+    {
+      "held": "llama",
+      "conditions": {
+        "recorded": {
+          "default": {
+            "n": 63,
+            "n_ai": 23,
+            "n_negative": 40,
+            "macro_f1": 1.0,
+            "recall": 1.0,
+            "recall_wilson95": [
+              0.8568833815495731,
+              1
+            ],
+            "fpr": 0.0,
+            "fpr_wilson95": [
+              0,
+              0.08762160119728664
+            ],
+            "auroc": 1.0,
+            "average_precision": 1.0
+          },
+          "calibrated_fpr_0.01": {
+            "threshold": 0.6962493408939553,
+            "metrics": {
+              "n": 63,
+              "n_ai": 23,
+              "n_negative": 40,
+              "macro_f1": 0.8901162790697674,
+              "recall": 0.7391304347826086,
+              "recall_wilson95": [
+                0.5352999516257462,
+                0.8745138395501366
+              ],
+              "fpr": 0.0,
+              "fpr_wilson95": [
+                0,
+                0.08762160119728664
+              ],
+              "auroc": 1.0,
+              "average_precision": 1.0
+            }
+          },
+          "calibrated_fpr_0.05": {
+            "threshold": 0.5343517791412874,
+            "metrics": {
+              "n": 63,
+              "n_ai": 23,
+              "n_negative": 40,
+              "macro_f1": 0.9827160493827161,
+              "recall": 0.9565217391304348,
+              "recall_wilson95": [
+                0.7900884492974114,
+                0.9922833338565469
+              ],
+              "fpr": 0.0,
+              "fpr_wilson95": [
+                0,
+                0.08762160119728664
+              ],
+              "auroc": 1.0,
+              "average_precision": 1.0
+            }
+          },
+          "predictions": [
+            {
+              "source": "harness/runs/multimodel/l_prompt_5_s02.json",
+              "y": 1,
+              "score": 0.7051082655693958
+            },
+            {
+              "source": "harness/runs/multimodel/l_prompt_1_s01.json",
+              "y": 1,
+              "score": 0.7043730486517611
+            },
+            {
+              "source": "harness/runs/multimodel/l_prompt_3_s02.json",
+              "y": 1,
+              "score": 0.8109873099424241
+            },
+            {
+              "source": "harness/runs/multimodel/l_prompt_3_s01.json",
+              "y": 1,
+              "score": 0.7277521805593028
+            },
+            {
+              "source": "harness/runs/multimodel/l_prompt_1_s02.json",
+              "y": 1,
+              "score": 0.8059185757624144
+            },
+            {
+              "source": "harness/runs/multimodel/l_prompt_5_s01.json",
+              "y": 1,
+              "score": 0.6968143940898988
+            },
+            {
+              "source": "harness/runs/ctf_range/llama3.1-8b/ctf_l_ctf_crack_18_session01.json",
+              "y": 1,
+              "score": 0.7609834508857628
+            },
+            {
+              "source": "harness/runs/ctf_range/llama3.1-8b/ctf_l_ctf_recon_18_session01.json",
+              "y": 1,
+              "score": 0.7144467919735233
+            },
+            {
+              "source": "harness/runs/ctf_range/llama3.1-8b/ctf_l_ctf_exploit_18_session01.json",
+              "y": 1,
+              "score": 0.7178974604545202
+            },
+            {
+              "source": "harness/runs/ctf_range/llama3.1-8b/ctf_l_ctf_exploit_18_session02.json",
+              "y": 1,
+              "score": 0.6213246198260691
+            },
+            {
+              "source": "harness/runs/ctf_range/llama3.1-8b/ctf_l_ctf_exploit_18_session03.json",
+              "y": 1,
+              "score": 0.7254272922681763
+            },
+            {
+              "source": "harness/runs/ctf_range/llama3.1-8b/ctf_l_ctf_crack_18_session03.json",
+              "y": 1,
+              "score": 0.6904323308922764
+            },
+            {
+              "source": "harness/runs/ctf_range/llama3.1-8b/ctf_l_ctf_recon_18_session02.json",
+              "y": 1,
+              "score": 0.5282312880018544
+            },
+            {
+              "source": "harness/runs/ctf_range/llama3.1-8b/ctf_l_ctf_recon_18_session03.json",
+              "y": 1,
+              "score": 0.7271276706232158
+            },
+            {
+              "source": "harness/runs/ctf_range/llama3.1-8b/ctf_l_ctf_crack_18_session02.json",
+              "y": 1,
+              "score": 0.7052063299200533
+            },
+            {
+              "source": "harness/runs/grid_v2/real_ssh/llama3.1-8b/real_ssh_llama3.1-8b_prompt_1_20_session03.json",
+              "y": 1,
+              "score": 0.6733440121136128
+            },
+            {
+              "source": "harness/runs/grid_v2/real_ssh/llama3.1-8b/real_ssh_llama3.1-8b_prompt_1_20_session02.json",
+              "y": 1,
+              "score": 0.7856627582210416
+            },
+            {
+              "source": "harness/runs/grid_v2/real_ssh/llama3.1-8b/real_ssh_llama3.1-8b_prompt_1_20_session05.json",
+              "y": 1,
+              "score": 0.7526491051308284
+            },
+            {
+              "source": "harness/runs/grid_v2/real_ssh/llama3.1-8b/real_ssh_llama3.1-8b_prompt_1_20_session08.json",
+              "y": 1,
+              "score": 0.8044378884770552
+            },
+            {
+              "source": "harness/runs/grid_v2/real_ssh/llama3.1-8b/real_ssh_llama3.1-8b_prompt_1_20_session04.json",
+              "y": 1,
+              "score": 0.806866186912619
+            },
+            {
+              "source": "harness/runs/grid_v2/real_ssh/llama3.1-8b/real_ssh_llama3.1-8b_prompt_1_20_session07.json",
+              "y": 1,
+              "score": 0.7622376098982759
+            },
+            {
+              "source": "harness/runs/grid_v2/real_ssh/llama3.1-8b/real_ssh_llama3.1-8b_prompt_1_20_session06.json",
+              "y": 1,
+              "score": 0.6618338969439691
+            },
+            {
+              "source": "harness/runs/grid_v2/real_ssh/llama3.1-8b/real_ssh_llama3.1-8b_prompt_1_20_session01.json",
+              "y": 1,
+              "score": 0.672180716411253
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-101-useractions.json",
+              "y": 0,
+              "score": 0.28295570233268663
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-112-useractions.json",
+              "y": 0,
+              "score": 0.2878413028664328
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-113-useractions.json",
+              "y": 0,
+              "score": 0.2726193765834508
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-115-useractions.json",
+              "y": 0,
+              "score": 0.2996304157127503
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-116-useractions.json",
+              "y": 0,
+              "score": 0.2712650670359994
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-130-useractions.json",
+              "y": 0,
+              "score": 0.3171162205834734
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-131-useractions.json",
+              "y": 0,
+              "score": 0.4987087372851826
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-137-useractions.json",
+              "y": 0,
+              "score": 0.2878413028664328
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-144-useractions.json",
+              "y": 0,
+              "score": 0.2926917777170109
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-148-useractions.json",
+              "y": 0,
+              "score": 0.2878413028664328
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-149-useractions.json",
+              "y": 0,
+              "score": 0.1867165408754867
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-151-useractions.json",
+              "y": 0,
+              "score": 0.2878413028664328
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-152-useractions.json",
+              "y": 0,
+              "score": 0.28295570233268663
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-156-useractions.json",
+              "y": 0,
+              "score": 0.2878413028664328
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-95-useractions.json",
+              "y": 0,
+              "score": 0.32862106452608686
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-34-useractions.json",
+              "y": 0,
+              "score": 0.15677762510520626
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-35-useractions.json",
+              "y": 0,
+              "score": 0.30410921676878067
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-36-useractions.json",
+              "y": 0,
+              "score": 0.19589960081293464
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-37-useractions.json",
+              "y": 0,
+              "score": 0.4592283540562847
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-38-useractions.json",
+              "y": 0,
+              "score": 0.30741483830309546
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-41-useractions.json",
+              "y": 0,
+              "score": 0.4048109107461203
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-43-useractions.json",
+              "y": 0,
+              "score": 0.3465479805369755
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-44-useractions.json",
+              "y": 0,
+              "score": 0.17101543939552594
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2021-01-14/sandbox-104-useractions.json",
+              "y": 0,
+              "score": 0.12190475792964704
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2021-01-14/sandbox-105-useractions.json",
+              "y": 0,
+              "score": 0.20061374146689545
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2021-01-14/sandbox-106-useractions.json",
+              "y": 0,
+              "score": 0.1841394247608479
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2021-01-14/sandbox-107-useractions.json",
+              "y": 0,
+              "score": 0.27726538840191256
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-123-useractions.json",
+              "y": 0,
+              "score": 0.2878413028664328
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-124-useractions.json",
+              "y": 0,
+              "score": 0.19517972744697787
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-125-useractions.json",
+              "y": 0,
+              "score": 0.4315168846906922
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-126-useractions.json",
+              "y": 0,
+              "score": 0.2798200135382651
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-127-useractions.json",
+              "y": 0,
+              "score": 0.21995822303889093
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-128-useractions.json",
+              "y": 0,
+              "score": 0.2878413028664328
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-129-useractions.json",
+              "y": 0,
+              "score": 0.2878413028664328
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-130-useractions.json",
+              "y": 0,
+              "score": 0.2878413028664328
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-131-useractions.json",
+              "y": 0,
+              "score": 0.3450508992681462
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-3-useractions.json",
+              "y": 0,
+              "score": 0.32862106452608686
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-340-useractions.json",
+              "y": 0,
+              "score": 0.2878413028664328
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-341-useractions.json",
+              "y": 0,
+              "score": 0.2878413028664328
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-342-useractions.json",
+              "y": 0,
+              "score": 0.1933852648877884
+            }
+          ]
+        },
+        "authored": {
+          "default": {
+            "n": 63,
+            "n_ai": 23,
+            "n_negative": 40,
+            "macro_f1": 0.9481481481481482,
+            "recall": 0.9130434782608695,
+            "recall_wilson95": [
+              0.7320401892425634,
+              0.9758199955157796
+            ],
+            "fpr": 0.025,
+            "fpr_wilson95": [
+              0.0044268315026814095,
+              0.1288136896347409
+            ],
+            "auroc": 0.9978260869565218,
+            "average_precision": 0.9962980466288593
+          },
+          "calibrated_fpr_0.01": {
+            "threshold": 0.7449898543525119,
+            "metrics": {
+              "n": 63,
+              "n_ai": 23,
+              "n_negative": 40,
+              "macro_f1": 0.6791171477079796,
+              "recall": 0.34782608695652173,
+              "recall_wilson95": [
+                0.1881127593879773,
+                0.55109664622737
+              ],
+              "fpr": 0.0,
+              "fpr_wilson95": [
+                0,
+                0.08762160119728664
+              ],
+              "auroc": 0.9978260869565218,
+              "average_precision": 0.9962980466288593
+            }
+          },
+          "calibrated_fpr_0.05": {
+            "threshold": 0.5781691476298959,
+            "metrics": {
+              "n": 63,
+              "n_ai": 23,
+              "n_negative": 40,
+              "macro_f1": 0.9285714285714286,
+              "recall": 0.8260869565217391,
+              "recall_wilson95": [
+                0.6286235235977385,
+                0.9302134643693744
+              ],
+              "fpr": 0.0,
+              "fpr_wilson95": [
+                0,
+                0.08762160119728664
+              ],
+              "auroc": 0.9978260869565218,
+              "average_precision": 0.9962980466288593
+            }
+          },
+          "predictions": [
+            {
+              "source": "harness/runs/multimodel/l_prompt_5_s02.json",
+              "y": 1,
+              "score": 0.5472665310612053
+            },
+            {
+              "source": "harness/runs/multimodel/l_prompt_1_s01.json",
+              "y": 1,
+              "score": 0.7912709552665225
+            },
+            {
+              "source": "harness/runs/multimodel/l_prompt_3_s02.json",
+              "y": 1,
+              "score": 0.8003462870008783
+            },
+            {
+              "source": "harness/runs/multimodel/l_prompt_3_s01.json",
+              "y": 1,
+              "score": 0.6939306518792268
+            },
+            {
+              "source": "harness/runs/multimodel/l_prompt_1_s02.json",
+              "y": 1,
+              "score": 0.8315226262799122
+            },
+            {
+              "source": "harness/runs/multimodel/l_prompt_5_s01.json",
+              "y": 1,
+              "score": 0.7083708217998053
+            },
+            {
+              "source": "harness/runs/ctf_range/llama3.1-8b/ctf_l_ctf_crack_18_session01.json",
+              "y": 1,
+              "score": 0.7046446429700458
+            },
+            {
+              "source": "harness/runs/ctf_range/llama3.1-8b/ctf_l_ctf_recon_18_session01.json",
+              "y": 1,
+              "score": 0.479233073876609
+            },
+            {
+              "source": "harness/runs/ctf_range/llama3.1-8b/ctf_l_ctf_exploit_18_session01.json",
+              "y": 1,
+              "score": 0.7170083094252057
+            },
+            {
+              "source": "harness/runs/ctf_range/llama3.1-8b/ctf_l_ctf_exploit_18_session02.json",
+              "y": 1,
+              "score": 0.5609803464636649
+            },
+            {
+              "source": "harness/runs/ctf_range/llama3.1-8b/ctf_l_ctf_exploit_18_session03.json",
+              "y": 1,
+              "score": 0.7285164992643036
+            },
+            {
+              "source": "harness/runs/ctf_range/llama3.1-8b/ctf_l_ctf_crack_18_session03.json",
+              "y": 1,
+              "score": 0.6432498569304114
+            },
+            {
+              "source": "harness/runs/ctf_range/llama3.1-8b/ctf_l_ctf_recon_18_session02.json",
+              "y": 1,
+              "score": 0.49726632256716696
+            },
+            {
+              "source": "harness/runs/ctf_range/llama3.1-8b/ctf_l_ctf_recon_18_session03.json",
+              "y": 1,
+              "score": 0.7316953292018927
+            },
+            {
+              "source": "harness/runs/ctf_range/llama3.1-8b/ctf_l_ctf_crack_18_session02.json",
+              "y": 1,
+              "score": 0.7232862258638988
+            },
+            {
+              "source": "harness/runs/grid_v2/real_ssh/llama3.1-8b/real_ssh_llama3.1-8b_prompt_1_20_session03.json",
+              "y": 1,
+              "score": 0.6860205746363699
+            },
+            {
+              "source": "harness/runs/grid_v2/real_ssh/llama3.1-8b/real_ssh_llama3.1-8b_prompt_1_20_session02.json",
+              "y": 1,
+              "score": 0.7926158958448203
+            },
+            {
+              "source": "harness/runs/grid_v2/real_ssh/llama3.1-8b/real_ssh_llama3.1-8b_prompt_1_20_session05.json",
+              "y": 1,
+              "score": 0.7583510325363584
+            },
+            {
+              "source": "harness/runs/grid_v2/real_ssh/llama3.1-8b/real_ssh_llama3.1-8b_prompt_1_20_session08.json",
+              "y": 1,
+              "score": 0.8095552598178367
+            },
+            {
+              "source": "harness/runs/grid_v2/real_ssh/llama3.1-8b/real_ssh_llama3.1-8b_prompt_1_20_session04.json",
+              "y": 1,
+              "score": 0.8074170457201855
+            },
+            {
+              "source": "harness/runs/grid_v2/real_ssh/llama3.1-8b/real_ssh_llama3.1-8b_prompt_1_20_session07.json",
+              "y": 1,
+              "score": 0.763414875705881
+            },
+            {
+              "source": "harness/runs/grid_v2/real_ssh/llama3.1-8b/real_ssh_llama3.1-8b_prompt_1_20_session06.json",
+              "y": 1,
+              "score": 0.6129244627815451
+            },
+            {
+              "source": "harness/runs/grid_v2/real_ssh/llama3.1-8b/real_ssh_llama3.1-8b_prompt_1_20_session01.json",
+              "y": 1,
+              "score": 0.6472900951581373
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-101-useractions.json",
+              "y": 0,
+              "score": 0.29133224241404165
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-112-useractions.json",
+              "y": 0,
+              "score": 0.31934461749923815
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-113-useractions.json",
+              "y": 0,
+              "score": 0.27168666335504094
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-115-useractions.json",
+              "y": 0,
+              "score": 0.3060560598675624
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-116-useractions.json",
+              "y": 0,
+              "score": 0.27030619420223495
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-130-useractions.json",
+              "y": 0,
+              "score": 0.3163266497978985
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-131-useractions.json",
+              "y": 0,
+              "score": 0.5024923500513409
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-137-useractions.json",
+              "y": 0,
+              "score": 0.31934461749923815
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-144-useractions.json",
+              "y": 0,
+              "score": 0.2977992372973163
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-148-useractions.json",
+              "y": 0,
+              "score": 0.31934461749923815
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-149-useractions.json",
+              "y": 0,
+              "score": 0.19135740648063332
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-151-useractions.json",
+              "y": 0,
+              "score": 0.31934461749923815
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-152-useractions.json",
+              "y": 0,
+              "score": 0.29133224241404165
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-156-useractions.json",
+              "y": 0,
+              "score": 0.31934461749923815
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-95-useractions.json",
+              "y": 0,
+              "score": 0.38056652960998927
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-34-useractions.json",
+              "y": 0,
+              "score": 0.15498336471635926
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-35-useractions.json",
+              "y": 0,
+              "score": 0.30551029735021074
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-36-useractions.json",
+              "y": 0,
+              "score": 0.19242179920790828
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-37-useractions.json",
+              "y": 0,
+              "score": 0.4589356752418475
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-38-useractions.json",
+              "y": 0,
+              "score": 0.3109983238103885
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-41-useractions.json",
+              "y": 0,
+              "score": 0.36386414795649447
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-43-useractions.json",
+              "y": 0,
+              "score": 0.3698584494962236
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-44-useractions.json",
+              "y": 0,
+              "score": 0.16906217848795332
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2021-01-14/sandbox-104-useractions.json",
+              "y": 0,
+              "score": 0.12261580689998673
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2021-01-14/sandbox-105-useractions.json",
+              "y": 0,
+              "score": 0.1857183650677904
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2021-01-14/sandbox-106-useractions.json",
+              "y": 0,
+              "score": 0.19035244562589204
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2021-01-14/sandbox-107-useractions.json",
+              "y": 0,
+              "score": 0.2802315149367264
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-123-useractions.json",
+              "y": 0,
+              "score": 0.31934461749923815
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-124-useractions.json",
+              "y": 0,
+              "score": 0.19989301623435018
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-125-useractions.json",
+              "y": 0,
+              "score": 0.45210976489307714
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-126-useractions.json",
+              "y": 0,
+              "score": 0.2808765499294957
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-127-useractions.json",
+              "y": 0,
+              "score": 0.2175389701370213
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-128-useractions.json",
+              "y": 0,
+              "score": 0.31934461749923815
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-129-useractions.json",
+              "y": 0,
+              "score": 0.31934461749923815
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-130-useractions.json",
+              "y": 0,
+              "score": 0.31934461749923815
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-131-useractions.json",
+              "y": 0,
+              "score": 0.3640776713868369
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-3-useractions.json",
+              "y": 0,
+              "score": 0.38056652960998927
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-340-useractions.json",
+              "y": 0,
+              "score": 0.31934461749923815
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-341-useractions.json",
+              "y": 0,
+              "score": 0.31934461749923815
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-342-useractions.json",
+              "y": 0,
+              "score": 0.19783650235967465
+            }
+          ]
+        }
+      }
+    },
+    {
+      "held": "qwen",
+      "conditions": {
+        "recorded": {
+          "default": {
+            "n": 48,
+            "n_ai": 8,
+            "n_negative": 40,
+            "macro_f1": 0.9642591213700671,
+            "recall": 1.0,
+            "recall_wilson95": [
+              0.6755924351161198,
+              1
+            ],
+            "fpr": 0.025,
+            "fpr_wilson95": [
+              0.0044268315026814095,
+              0.1288136896347409
+            ],
+            "auroc": 1.0,
+            "average_precision": 1.0
+          },
+          "calibrated_fpr_0.01": {
+            "threshold": 0.7224195581753177,
+            "metrics": {
+              "n": 48,
+              "n_ai": 8,
+              "n_negative": 40,
+              "macro_f1": 1.0,
+              "recall": 1.0,
+              "recall_wilson95": [
+                0.6755924351161198,
+                1
+              ],
+              "fpr": 0.0,
+              "fpr_wilson95": [
+                0,
+                0.08762160119728664
+              ],
+              "auroc": 1.0,
+              "average_precision": 1.0
+            }
+          },
+          "calibrated_fpr_0.05": {
+            "threshold": 0.5056095805589537,
+            "metrics": {
+              "n": 48,
+              "n_ai": 8,
+              "n_negative": 40,
+              "macro_f1": 0.9642591213700671,
+              "recall": 1.0,
+              "recall_wilson95": [
+                0.6755924351161198,
+                1
+              ],
+              "fpr": 0.025,
+              "fpr_wilson95": [
+                0.0044268315026814095,
+                0.1288136896347409
+              ],
+              "auroc": 1.0,
+              "average_precision": 1.0
+            }
+          },
+          "predictions": [
+            {
+              "source": "harness/runs/multimodel/q_prompt_3_s02.json",
+              "y": 1,
+              "score": 0.7892263804697722
+            },
+            {
+              "source": "harness/runs/multimodel/q_prompt_1_s01.json",
+              "y": 1,
+              "score": 0.7692014181551916
+            },
+            {
+              "source": "harness/runs/multimodel/q_prompt_5_s02.json",
+              "y": 1,
+              "score": 0.7757494937144181
+            },
+            {
+              "source": "harness/runs/multimodel/q_prompt_5_s01.json",
+              "y": 1,
+              "score": 0.7579465915181387
+            },
+            {
+              "source": "harness/runs/multimodel/q_prompt_1_s02.json",
+              "y": 1,
+              "score": 0.7972444536781427
+            },
+            {
+              "source": "harness/runs/multimodel/q_prompt_3_s01.json",
+              "y": 1,
+              "score": 0.7891724011462911
+            },
+            {
+              "source": "harness/runs/ctf_range/qwen3-4b/ctf_q_ctf_recon_18_session01.json",
+              "y": 1,
+              "score": 0.7890865645964532
+            },
+            {
+              "source": "harness/runs/ctf_range/qwen3-4b/ctf_q_ctf_recon_18_session02.json",
+              "y": 1,
+              "score": 0.7891263185657804
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-101-useractions.json",
+              "y": 0,
+              "score": 0.24216478531858698
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-112-useractions.json",
+              "y": 0,
+              "score": 0.29033595452755917
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-113-useractions.json",
+              "y": 0,
+              "score": 0.2716518450068716
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-115-useractions.json",
+              "y": 0,
+              "score": 0.3005494641130774
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-116-useractions.json",
+              "y": 0,
+              "score": 0.2716958013110607
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-130-useractions.json",
+              "y": 0,
+              "score": 0.24709953428832443
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-131-useractions.json",
+              "y": 0,
+              "score": 0.5583685515539911
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-137-useractions.json",
+              "y": 0,
+              "score": 0.29033595452755917
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-144-useractions.json",
+              "y": 0,
+              "score": 0.39155130406051847
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-148-useractions.json",
+              "y": 0,
+              "score": 0.29033595452755917
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-149-useractions.json",
+              "y": 0,
+              "score": 0.20954828821322244
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-151-useractions.json",
+              "y": 0,
+              "score": 0.2770362891263206
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-152-useractions.json",
+              "y": 0,
+              "score": 0.25824335688000516
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-156-useractions.json",
+              "y": 0,
+              "score": 0.27448482578952643
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-95-useractions.json",
+              "y": 0,
+              "score": 0.33905250302713585
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-34-useractions.json",
+              "y": 0,
+              "score": 0.15555253164533145
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-35-useractions.json",
+              "y": 0,
+              "score": 0.31554228082958446
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-36-useractions.json",
+              "y": 0,
+              "score": 0.22523069485235878
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-37-useractions.json",
+              "y": 0,
+              "score": 0.44657184892812424
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-38-useractions.json",
+              "y": 0,
+              "score": 0.29751156456494354
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-41-useractions.json",
+              "y": 0,
+              "score": 0.39124344115853804
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-43-useractions.json",
+              "y": 0,
+              "score": 0.3126829659386274
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-44-useractions.json",
+              "y": 0,
+              "score": 0.16989049487154842
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2021-01-14/sandbox-104-useractions.json",
+              "y": 0,
+              "score": 0.12725131184152544
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2021-01-14/sandbox-105-useractions.json",
+              "y": 0,
+              "score": 0.2195354320346589
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2021-01-14/sandbox-106-useractions.json",
+              "y": 0,
+              "score": 0.18441075365481194
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2021-01-14/sandbox-107-useractions.json",
+              "y": 0,
+              "score": 0.29234243924554065
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-123-useractions.json",
+              "y": 0,
+              "score": 0.2629337503839668
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-124-useractions.json",
+              "y": 0,
+              "score": 0.20287172747438117
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-125-useractions.json",
+              "y": 0,
+              "score": 0.48173755533765195
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-126-useractions.json",
+              "y": 0,
+              "score": 0.2507497729286465
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-127-useractions.json",
+              "y": 0,
+              "score": 0.2836184677175472
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-128-useractions.json",
+              "y": 0,
+              "score": 0.29033595452755917
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-129-useractions.json",
+              "y": 0,
+              "score": 0.2629337503839668
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-130-useractions.json",
+              "y": 0,
+              "score": 0.2629337503839668
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-131-useractions.json",
+              "y": 0,
+              "score": 0.3650756403142248
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-3-useractions.json",
+              "y": 0,
+              "score": 0.35070603809347983
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-340-useractions.json",
+              "y": 0,
+              "score": 0.27524019108218084
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-341-useractions.json",
+              "y": 0,
+              "score": 0.29033595452755917
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-342-useractions.json",
+              "y": 0,
+              "score": 0.1892715963892941
+            }
+          ]
+        },
+        "authored": {
+          "default": {
+            "n": 48,
+            "n_ai": 8,
+            "n_negative": 40,
+            "macro_f1": 0.9316239316239316,
+            "recall": 1.0,
+            "recall_wilson95": [
+              0.6755924351161198,
+              1
+            ],
+            "fpr": 0.05,
+            "fpr_wilson95": [
+              0.013820667386148344,
+              0.16503877369140962
+            ],
+            "auroc": 1.0,
+            "average_precision": 1.0
+          },
+          "calibrated_fpr_0.01": {
+            "threshold": 0.7636039877758235,
+            "metrics": {
+              "n": 48,
+              "n_ai": 8,
+              "n_negative": 40,
+              "macro_f1": 0.8095238095238095,
+              "recall": 0.5,
+              "recall_wilson95": [
+                0.21521606221387757,
+                0.7847839377861224
+              ],
+              "fpr": 0.0,
+              "fpr_wilson95": [
+                0,
+                0.08762160119728664
+              ],
+              "auroc": 1.0,
+              "average_precision": 1.0
+            }
+          },
+          "calibrated_fpr_0.05": {
+            "threshold": 0.5710243270478896,
+            "metrics": {
+              "n": 48,
+              "n_ai": 8,
+              "n_negative": 40,
+              "macro_f1": 0.9642591213700671,
+              "recall": 1.0,
+              "recall_wilson95": [
+                0.6755924351161198,
+                1
+              ],
+              "fpr": 0.025,
+              "fpr_wilson95": [
+                0.0044268315026814095,
+                0.1288136896347409
+              ],
+              "auroc": 1.0,
+              "average_precision": 1.0
+            }
+          },
+          "predictions": [
+            {
+              "source": "harness/runs/multimodel/q_prompt_3_s02.json",
+              "y": 1,
+              "score": 0.7694753899800327
+            },
+            {
+              "source": "harness/runs/multimodel/q_prompt_1_s01.json",
+              "y": 1,
+              "score": 0.693185585200243
+            },
+            {
+              "source": "harness/runs/multimodel/q_prompt_5_s02.json",
+              "y": 1,
+              "score": 0.7243378511367343
+            },
+            {
+              "source": "harness/runs/multimodel/q_prompt_5_s01.json",
+              "y": 1,
+              "score": 0.7681998181834452
+            },
+            {
+              "source": "harness/runs/multimodel/q_prompt_1_s02.json",
+              "y": 1,
+              "score": 0.6123083456814202
+            },
+            {
+              "source": "harness/runs/multimodel/q_prompt_3_s01.json",
+              "y": 1,
+              "score": 0.7740896632234268
+            },
+            {
+              "source": "harness/runs/ctf_range/qwen3-4b/ctf_q_ctf_recon_18_session01.json",
+              "y": 1,
+              "score": 0.7741976373064154
+            },
+            {
+              "source": "harness/runs/ctf_range/qwen3-4b/ctf_q_ctf_recon_18_session02.json",
+              "y": 1,
+              "score": 0.6578151915005606
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-101-useractions.json",
+              "y": 0,
+              "score": 0.24699607777765545
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-112-useractions.json",
+              "y": 0,
+              "score": 0.3253059563915204
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-113-useractions.json",
+              "y": 0,
+              "score": 0.27061961908273313
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-115-useractions.json",
+              "y": 0,
+              "score": 0.3055874460914098
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-116-useractions.json",
+              "y": 0,
+              "score": 0.26851509142471797
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-130-useractions.json",
+              "y": 0,
+              "score": 0.24624640900387706
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-131-useractions.json",
+              "y": 0,
+              "score": 0.6065806535425737
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-137-useractions.json",
+              "y": 0,
+              "score": 0.3253059563915204
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-144-useractions.json",
+              "y": 0,
+              "score": 0.441944074680219
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-148-useractions.json",
+              "y": 0,
+              "score": 0.3253059563915204
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-149-useractions.json",
+              "y": 0,
+              "score": 0.21808520627243003
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-151-useractions.json",
+              "y": 0,
+              "score": 0.28016730108564963
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-152-useractions.json",
+              "y": 0,
+              "score": 0.26527649767573813
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-156-useractions.json",
+              "y": 0,
+              "score": 0.2817150081426071
+            },
+            {
+              "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-95-useractions.json",
+              "y": 0,
+              "score": 0.4026648360989519
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-34-useractions.json",
+              "y": 0,
+              "score": 0.1549591053396849
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-35-useractions.json",
+              "y": 0,
+              "score": 0.3195363017664635
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-36-useractions.json",
+              "y": 0,
+              "score": 0.23531411656909293
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-37-useractions.json",
+              "y": 0,
+              "score": 0.4590073287957181
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-38-useractions.json",
+              "y": 0,
+              "score": 0.31064339558525
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-41-useractions.json",
+              "y": 0,
+              "score": 0.3689238434661437
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-43-useractions.json",
+              "y": 0,
+              "score": 0.31633121484013466
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-44-useractions.json",
+              "y": 0,
+              "score": 0.1713429712281925
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2021-01-14/sandbox-104-useractions.json",
+              "y": 0,
+              "score": 0.12955272506256763
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2021-01-14/sandbox-105-useractions.json",
+              "y": 0,
+              "score": 0.21792185839370135
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2021-01-14/sandbox-106-useractions.json",
+              "y": 0,
+              "score": 0.1889348598637475
+            },
+            {
+              "source": "data/human/muni/Junior hacker adaptive/2021-01-14/sandbox-107-useractions.json",
+              "y": 0,
+              "score": 0.29588553267938383
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-123-useractions.json",
+              "y": 0,
+              "score": 0.26659986314713824
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-124-useractions.json",
+              "y": 0,
+              "score": 0.2078669817574825
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-125-useractions.json",
+              "y": 0,
+              "score": 0.509052955058046
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-126-useractions.json",
+              "y": 0,
+              "score": 0.24547947827818956
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-127-useractions.json",
+              "y": 0,
+              "score": 0.29450652594689714
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-128-useractions.json",
+              "y": 0,
+              "score": 0.3253059563915204
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-129-useractions.json",
+              "y": 0,
+              "score": 0.26659986314713824
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-130-useractions.json",
+              "y": 0,
+              "score": 0.26659986314713824
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-131-useractions.json",
+              "y": 0,
+              "score": 0.4116288296257502
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-3-useractions.json",
+              "y": 0,
+              "score": 0.38336767782800124
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-340-useractions.json",
+              "y": 0,
+              "score": 0.28250093000721493
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-341-useractions.json",
+              "y": 0,
+              "score": 0.3253059563915204
+            },
+            {
+              "source": "data/human/muni/Secret laboratory/sandbox-342-useractions.json",
+              "y": 0,
+              "score": 0.19070701743145962
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "network": {
+    "legacy": {
+      "metrics": {
+        "n": 14,
+        "n_ai": 8,
+        "n_negative": 6,
+        "macro_f1": 0.7846153846153847,
+        "recall": 0.75,
+        "recall_wilson95": [
+          0.40927543031016883,
+          0.9285207872478909
+        ],
+        "fpr": 0.16666666666666666,
+        "fpr_wilson95": [
+          0.030053369748306635,
+          0.5635028221864702
+        ],
+        "auroc": 0.8333333333333334,
+        "average_precision": 0.874440836940837
+      },
+      "predictions": [
+        {
+          "id": "ai_g4_s01",
+          "y": 1,
+          "score": 0.59
+        },
+        {
+          "id": "ai_g4_s02",
+          "y": 1,
+          "score": 0.32666666666666666
+        },
+        {
+          "id": "ai_g_s01",
+          "y": 1,
+          "score": 0.6833333333333333
+        },
+        {
+          "id": "ai_g_s02",
+          "y": 1,
+          "score": 0.5933333333333334
+        },
+        {
+          "id": "ai_l_s01",
+          "y": 1,
+          "score": 0.9566666666666667
+        },
+        {
+          "id": "ai_l_s02",
+          "y": 1,
+          "score": 0.22666666666666666
+        },
+        {
+          "id": "ai_q_s01",
+          "y": 1,
+          "score": 0.95
+        },
+        {
+          "id": "ai_q_s02",
+          "y": 1,
+          "score": 0.95
+        },
+        {
+          "id": "human_s00",
+          "y": 0,
+          "score": 0.3566666666666667
+        },
+        {
+          "id": "human_s01",
+          "y": 0,
+          "score": 0.9033333333333333
+        },
+        {
+          "id": "human_s02",
+          "y": 0,
+          "score": 0.25333333333333335
+        },
+        {
+          "id": "human_s03",
+          "y": 0,
+          "score": 0.13
+        },
+        {
+          "id": "human_s04",
+          "y": 0,
+          "score": 0.16333333333333333
+        },
+        {
+          "id": "human_s05",
+          "y": 0,
+          "score": 0.13333333333333333
+        }
+      ]
+    },
+    "directional": {
+      "metrics": {
+        "n": 14,
+        "n_ai": 8,
+        "n_negative": 6,
+        "macro_f1": 0.7142857142857143,
+        "recall": 0.625,
+        "recall_wilson95": [
+          0.30574239460262737,
+          0.8631557141764026
+        ],
+        "fpr": 0.16666666666666666,
+        "fpr_wilson95": [
+          0.030053369748306635,
+          0.5635028221864702
+        ],
+        "auroc": 0.75,
+        "average_precision": 0.8452380952380952
+      },
+      "predictions": [
+        {
+          "id": "ai_g4_s01",
+          "y": 1,
+          "score": 0.5733333333333334
+        },
+        {
+          "id": "ai_g4_s02",
+          "y": 1,
+          "score": 0.3233333333333333
+        },
+        {
+          "id": "ai_g_s01",
+          "y": 1,
+          "score": 0.61
+        },
+        {
+          "id": "ai_g_s02",
+          "y": 1,
+          "score": 0.47333333333333333
+        },
+        {
+          "id": "ai_l_s01",
+          "y": 1,
+          "score": 0.96
+        },
+        {
+          "id": "ai_l_s02",
+          "y": 1,
+          "score": 0.06333333333333334
+        },
+        {
+          "id": "ai_q_s01",
+          "y": 1,
+          "score": 0.95
+        },
+        {
+          "id": "ai_q_s02",
+          "y": 1,
+          "score": 0.95
+        },
+        {
+          "id": "human_s00",
+          "y": 0,
+          "score": 0.4166666666666667
+        },
+        {
+          "id": "human_s01",
+          "y": 0,
+          "score": 0.8266666666666667
+        },
+        {
+          "id": "human_s02",
+          "y": 0,
+          "score": 0.4
+        },
+        {
+          "id": "human_s03",
+          "y": 0,
+          "score": 0.07
+        },
+        {
+          "id": "human_s04",
+          "y": 0,
+          "score": 0.15
+        },
+        {
+          "id": "human_s05",
+          "y": 0,
+          "score": 0.15666666666666668
+        }
+      ]
+    }
+  }
+}

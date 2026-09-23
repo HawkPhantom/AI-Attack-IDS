@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Model-genelleme: '0.962' bir gemma imzasi miydi yoksa LLM-ajan imzasi mi?
 
-Test: KOKEN ekseni (AI vs gercek insan), AI tarafi artik ALTI model ailesi:
+Test: KOKEN ekseni (AI vs gercek insan), AI tarafi ALTI model ailesi:
   gemma3:4b, gemma4, llama3.1:8b, qwen3:4b  (yerel, kucuk)  +
   gemini-3.1-pro, gemini-3.5-flash          (FRONTIER, uzak API)
 Insan tarafi: MUNI (gercek).
@@ -120,4 +120,6 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    print("Historical evaluator superseded: running the corrected host-v2 protocol.")
+    from evaluate_host_v2 import main as corrected_main
+    corrected_main()

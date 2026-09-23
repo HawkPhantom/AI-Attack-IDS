@@ -16,7 +16,7 @@ Iki mod:
   --replay  : verilen komut listesini ( or. MUNI'den gercek insan nmap'leri) calistirir
 """
 from __future__ import annotations
-import argparse, json, re, subprocess, time
+import argparse, json, re, shlex, subprocess, time
 from pathlib import Path
 
 import requests
@@ -75,7 +75,7 @@ def sanitize(cmd: str) -> str:
 def dexec(cmd, timeout=90):
     cmd = sanitize(cmd)
     # her komuta sert bir ust sinir koy (hicbir tekil komut donguyu kilitlemesin)
-    wrapped = f"timeout {timeout - 10} bash -lc {json.dumps(cmd)}"
+    wrapped = f"timeout {timeout - 10} bash -lc {shlex.quote(cmd)}"
     try:
         r = subprocess.run(["docker", "exec", "lab_atk", "bash", "-lc", wrapped],
                            capture_output=True, text=True, errors="replace", timeout=timeout)
@@ -104,9 +104,12 @@ def run(mode, model, cmds, turns, out_json, pcap, label):
             raw = ask(model, history)
             cmd = extract(raw)
             if not cmd:
-                cmd = f"nmap -sT {TARGETS[0]}"
+                executed.append({"cmd": "", "raw": raw, "executed": None,
+                                 "out": "No command executed: unparseable response"})
+                break
             out = dexec(cmd)
-            executed.append({"cmd": cmd, "out": out[:1500]})
+            executed.append({"cmd": cmd, "raw": raw, "executed": sanitize(cmd),
+                             "rewritten": sanitize(cmd) != cmd, "out": out[:1500]})
             history.append((cmd, out))
     else:  # replay — gercek insan komutlari, hedefleri lab IP'lerine yeniden yaz
         for i, cmd in enumerate(cmds[:turns]):
@@ -116,7 +119,8 @@ def run(mode, model, cmds, turns, out_json, pcap, label):
             if "nmap" in c and not re.search(r"\d+\.\d+\.\d+\.\d+", c) and "-h" not in c and "help" not in c:
                 c = f"{c} {TARGETS[i % len(TARGETS)]}"
             out = dexec(c)
-            executed.append({"cmd": c, "out": out[:1500]})
+            executed.append({"cmd": c, "raw": cmd, "executed": sanitize(c),
+                             "rewritten": sanitize(c) != cmd, "out": out[:1500]})
 
     time.sleep(2)
     subprocess.run(["docker", "exec", "lab_atk", "bash", "-lc", "pkill -INT tcpdump"],

@@ -112,6 +112,14 @@
   </div>
 </div></div>
 
+<section class="wrap" style="padding-top:32px;padding-bottom:24px">
+  <h1><span class="en">Host + network: corrected evaluation</span><span class="tr">Host + network: düzeltilmiş değerlendirme</span></h1>
+  <p><span class="en">The historical 1.00 ensemble floor is superseded. The corrected study separates driver artifacts, command behavior, network direction and timing.</span><span class="tr">Eski 1.00 ensemble tabanı güncel sonuç değildir. Düzeltilmiş deneyler sürücü dönüşümlerini, komut davranışını, ağ yönünü ve zamanlamayı ayrı değerlendirir.</span></p>
+  <p><a href="experiments/RESULTS_V2.md"><span class="en">Read the corrected results and limitations</span><span class="tr">Düzeltilmiş sonuçlar ve sınırlamalar</span></a> · <a href="experiments/PROTOCOL.md">Protocol</a></p>
+  <p><span class="en">337 of 3,215 historical malicious/evasion commands were driver substitutions. Live-human matched-task validation remains outstanding; replay is not live human participation.</span><span class="tr">Tarihsel malicious/evasion verisinde 3.215 komutun 337’si sürücü dönüşümüydü. Eş görevli canlı insan doğrulaması henüz yapılmadı; replay, canlı insan katılımı değildir.</span></p>
+</section>
+<details><summary class="wrap">Historical report / Eski rapor — superseded results</summary>
+
 <header class="hero"><div class="wrap">
   <div class="eyebrow">
     <span class="en">Behavioral fingerprinting · defensive research</span>
@@ -127,15 +135,15 @@
   </p>
 
   <div class="tiles">
-    <div class="tile"><div class="n">0.81 → 1.00</div><div class="k">
-      <span class="en">leave-one-model-out floor, lifted by the SVC + GNN ensemble</span>
-      <span class="tr">leave-one-model-out tabanı, SVC + GNN topluluğuyla yükseltildi</span></div></div>
-    <div class="tile"><div class="n">0.962</div><div class="k">
-      <span class="en">origin-axis F1 against real humans, on the hardest feature space</span>
-      <span class="tr">gerçek insana karşı köken-ekseni F1, en zorlu özellik uzayında</span></div></div>
-    <div class="tile"><div class="n">25 to 120×</div><div class="k">
-      <span class="en">how much more every LLM checks its own state than a human does</span>
-      <span class="tr">her LLM'in kendi durumunu insandan bu kadar kat fazla yoklaması</span></div></div>
+    <div class="tile"><div class="n">1.00 / 1.00</div><div class="k">
+      <span class="en">held-out recall on <strong>frontier</strong> gemini-3.1-pro / gemini-3.5-flash, never in training</span>
+      <span class="tr"><strong>frontier</strong> gemini-3.1-pro / gemini-3.5-flash held-out recall, eğitimde hiç yok</span></div></div>
+    <div class="tile"><div class="n">0.76 → 1.00</div><div class="k">
+      <span class="en">leave-one-model-out floor, lifted by the SVC + GNN ensemble (6% human FP)</span>
+      <span class="tr">leave-one-model-out tabanı, SVC + GNN topluluğuyla yükseltildi (%6 insan FP)</span></div></div>
+    <div class="tile"><div class="n">23 to 120×</div><div class="k">
+      <span class="en">how much more every LLM — frontier included — checks its own state than a human</span>
+      <span class="tr">her LLM'in — frontier dahil — kendi durumunu insandan bu kadar kat fazla yoklaması</span></div></div>
   </div>
 </div></header>
 
@@ -156,51 +164,58 @@
 
   <section>
     <h2><span class="en">Headline result</span><span class="tr">Ana bulgu</span></h2>
-    <h3><span class="en">The signature generalizes across model families</span><span class="tr">İmza model aileleri arasında genelleşiyor</span></h3>
+    <h3><span class="en">The signature generalizes to <em>frontier</em> families it has never seen</span><span class="tr">İmza hiç görmediği <em>frontier</em> ailelere genelleşiyor</span></h3>
     <p>
-      <span class="en">In a leave-one-<strong>model</strong>-out test, each AI model is pulled out of training entirely and then presented as an unknown actor. Even on the most unforgiving feature space we could build (33 shared command names, arguments stripped, session length equalized, network commands removed), an unseen LLM family is still flagged as "AI" between 76% and 100% of the time.</span>
-      <span class="tr">Leave-one-<strong>model</strong>-out testinde her AI modeli eğitimden tamamen çekilir, ardından bilinmeyen bir aktör olarak sunulur. Kurabildiğimiz en tavizsiz özellik uzayında bile (33 ortak komut adı, argümanlar atılmış, oturum uzunluğu eşitlenmiş, ağ komutları çıkarılmış), görülmemiş bir LLM ailesi yine de %76 ile %100 arasında "AI" olarak işaretleniyor.</span>
+      <span class="en">In a leave-one-<strong>model</strong>-out test, each AI model is pulled out of training entirely and then presented as an unknown actor. Even on the most unforgiving feature space we could build (44 shared command names, arguments stripped, session length equalized, network commands removed), an unseen LLM family is still flagged as "AI" — and the two <strong>frontier Gemini families</strong>, orders of magnitude larger than any training model, are caught <strong>100%</strong> of the time despite never appearing in training.</span>
+      <span class="tr">Leave-one-<strong>model</strong>-out testinde her AI modeli eğitimden tamamen çekilir, ardından bilinmeyen bir aktör olarak sunulur. Kurabildiğimiz en tavizsiz özellik uzayında bile (44 ortak komut adı, argümanlar atılmış, oturum uzunluğu eşitlenmiş, ağ komutları çıkarılmış), görülmemiş bir LLM ailesi "AI" işaretleniyor — ve eğitim modellerinden kat kat büyük iki <strong>frontier Gemini ailesi</strong> eğitimde hiç bulunmamasına rağmen <strong>%100</strong> yakalanıyor.</span>
     </p>
-    <figure>
-      <img src="assets/05_leave_one_model.png" alt="Leave-one-model-out recall by held-out model">
-      <figcaption>
-        <span class="en">How reliably the held-out model is recognized as "AI" when it appears nowhere in training. The signal is not a "gemma signature." It is an LLM-agent signature, shared across gemma3, gemma4, llama3.1 and qwen3.</span>
-        <span class="tr">Dışarıda bırakılan model eğitimde hiç yer almazken ne kadar güvenilir biçimde "AI" olarak tanındığı. Sinyal bir "gemma imzası" değil. gemma3, gemma4, llama3.1 ve qwen3 arasında paylaşılan bir LLM-ajan imzası.</span>
-      </figcaption>
-    </figure>
+    <div class="tbl"><table>
+      <thead><tr>
+        <th><span class="en">held-out family (SVC only)</span><span class="tr">dışarıda bırakılan aile (yalnız SVC)</span></th>
+        <th style="text-align:right"><span class="en">recall</span><span class="tr">recall</span></th>
+        <th style="text-align:right">95% CI</th></tr></thead>
+      <tbody>
+        <tr><td>gemma3:4b <span class="en">(floor)</span><span class="tr">(taban)</span></td><td class="num">0.76</td><td class="num">[0.59, 0.90]</td></tr>
+        <tr><td>llama3.1:8b</td><td class="num">0.87</td><td class="num">[0.67, 1.00]</td></tr>
+        <tr><td>gemma4</td><td class="num">0.95</td><td class="num">[0.85, 1.00]</td></tr>
+        <tr><td>qwen3:4b <span class="en">(n=3)</span><span class="tr">(n=3)</span></td><td class="num">1.00</td><td class="num">[1.00, 1.00]</td></tr>
+        <tr><td><strong>gemini-3.1-pro</strong> <span class="en">(frontier)</span><span class="tr">(frontier)</span></td><td class="num win">1.00</td><td class="num">[1.00, 1.00]</td></tr>
+        <tr><td><strong>gemini-3.5-flash</strong> <span class="en">(frontier)</span><span class="tr">(frontier)</span></td><td class="num win">1.00</td><td class="num">[1.00, 1.00]</td></tr>
+      </tbody>
+    </table></div>
+    <p>
+      <span class="en">This is the decisive test of the "small-model artifact" objection, and it fails: the signal is neither a "gemma signature" nor a "weak-model signature." It is an LLM-agent signature, shared across gemma3, gemma4, llama3.1, qwen3, and frontier gemini-3.1-pro / gemini-3.5-flash. (CIs are bootstrap over held-out sessions; small-n rows are honestly wide.)</span>
+      <span class="tr">Bu, "küçük-model artefaktı mı?" itirazının kesin sınavı — ve itiraz çürüyor: sinyal ne "gemma imzası" ne "zayıf-model imzası". gemma3, gemma4, llama3.1, qwen3 ve frontier gemini-3.1-pro / gemini-3.5-flash arasında paylaşılan bir LLM-ajan imzası. (GA'lar held-out oturumlar üzerinde bootstrap; küçük-n satırları dürüstçe geniş.)</span>
+    </p>
   </section>
 
   <section>
     <h2><span class="en">Raising the floor</span><span class="tr">Tabanı yükseltmek</span></h2>
     <h3><span class="en">The GNN ensemble</span><span class="tr">GNN topluluğu</span></h3>
     <p>
-      <span class="en">The lexical detector's weak point is its floor: gemma3 held out at 0.81 (0.76 in the strictest setting). Because it keys on specific command tokens, an unseen model that uses different tokens is harder to place. To lift that floor we added a GNN over the command-transition graph. A node is a distinct binary; an edge is a transition <code>cmd_i → cmd_{i+1}</code>. Node features are <strong>behavioral categories</strong> (state-check, enumerate, network, privilege, process, package) plus degree, frequency and self-loop signals. They carry no command name on purpose, so the GNN reads the reconnaissance topology rather than the vocabulary, which should transfer to models whose exact commands were never seen.</span>
-      <span class="tr">Sözcüksel dedektörün zayıf noktası tabanı: gemma3 dışarıda bırakıldığında 0.81 (en katı ayarda 0.76). Spesifik komut token'larına dayandığı için, farklı token kullanan görülmemiş bir modeli yerleştirmek zorlaşıyor. Bu tabanı yükseltmek için komut-geçiş grafı üzerinde bir GNN ekledik. Bir düğüm benzersiz bir binary; bir kenar bir geçiş <code>cmd_i → cmd_{i+1}</code>. Düğüm özellikleri <strong>davranışsal kategoriler</strong> (durum-yoklama, keşif, ağ, yetki, süreç, paket) artı derece, frekans ve öz-döngü sinyalleri. Bilinçli olarak hiç komut adı taşımıyorlar; böylece GNN sözcük dağarcığını değil keşif topolojisini okuyor, ki bu da tam komutları hiç görülmemiş modellere aktarılabilmeli.</span>
+      <span class="en">The lexical detector's weak point is its floor: gemma3 still holds out at 0.76 in the strictest setting. Because it keys on specific command tokens, an unseen model that uses different tokens is harder to place. To lift that floor we added a GNN over the command-transition graph. A node is a distinct binary; an edge is a transition <code>cmd_i → cmd_{i+1}</code>. Node features are <strong>behavioral categories</strong> (state-check, enumerate, network, privilege, process, package) plus degree, frequency and self-loop signals. They carry no command name on purpose, so the GNN reads the reconnaissance topology rather than the vocabulary — which is why it transfers to models whose exact commands were never seen, the frontier families included.</span>
+      <span class="tr">Sözcüksel dedektörün zayıf noktası tabanı: gemma3 en katı ayarda hâlâ 0.76. Spesifik komut token'larına dayandığı için, farklı token kullanan görülmemiş bir modeli yerleştirmek zorlaşıyor. Bu tabanı yükseltmek için komut-geçiş grafı üzerinde bir GNN ekledik. Bir düğüm benzersiz bir binary; bir kenar bir geçiş <code>cmd_i → cmd_{i+1}</code>. Düğüm özellikleri <strong>davranışsal kategoriler</strong> (durum-yoklama, keşif, ağ, yetki, süreç, paket) artı derece, frekans ve öz-döngü sinyalleri. Bilinçli olarak hiç komut adı taşımıyorlar; böylece GNN sözcük dağarcığını değil keşif topolojisini okuyor — frontier aileler dahil, tam komutları hiç görülmemiş modellere bu yüzden aktarılıyor.</span>
     </p>
-    <figure>
-      <img src="assets/08_gnn_ensemble.png" alt="SVC vs GNN vs ensemble by held-out model">
-      <figcaption>
-        <span class="en">The GNN alone does not beat the SVC. The gain is the ensemble: the GNN is strong where the SVC is weak (gemma3, llama) and vice versa (gemma4, qwen).</span>
-        <span class="tr">GNN tek başına SVC'yi geçmiyor. Kazanç toplulukta: GNN, SVC'nin zayıf olduğu yerde güçlü (gemma3, llama) ve tersi (gemma4, qwen).</span>
-      </figcaption>
-    </figure>
     <div class="tbl"><table>
       <thead><tr>
         <th><span class="en">held-out</span><span class="tr">dışarıda</span></th>
         <th style="text-align:right">SVC</th><th style="text-align:right">GNN</th>
         <th style="text-align:right">ENS.</th><th style="text-align:right">FP</th></tr></thead>
       <tbody>
-        <tr><td>gemma3</td><td class="num">0.81</td><td class="num">1.00</td><td class="num win">1.00</td><td class="num">0.03</td></tr>
-        <tr><td>gemma4</td><td class="num">0.92</td><td class="num">0.83</td><td class="num win">1.00</td><td class="num">0.06</td></tr>
-        <tr><td>llama3.1</td><td class="num">0.86</td><td class="num">1.00</td><td class="num win">1.00</td><td class="num">0.05</td></tr>
-        <tr><td>qwen3</td><td class="num">1.00</td><td class="num">0.67</td><td class="num win">1.00</td><td class="num">0.03</td></tr>
+        <tr><td>gemma3</td><td class="num">0.76</td><td class="num">1.00</td><td class="num win">1.00</td><td class="num">0.05</td></tr>
+        <tr><td>gemma4</td><td class="num">0.95</td><td class="num">1.00</td><td class="num win">1.00</td><td class="num">0.06</td></tr>
+        <tr><td>llama3.1</td><td class="num">0.93</td><td class="num">1.00</td><td class="num win">1.00</td><td class="num">0.06</td></tr>
+        <tr><td>qwen3</td><td class="num">1.00</td><td class="num">1.00</td><td class="num win">1.00</td><td class="num">0.05</td></tr>
+        <tr><td><strong>gemini-3.1-pro</strong> ✱</td><td class="num">1.00</td><td class="num">1.00</td><td class="num win">1.00</td><td class="num">0.08</td></tr>
+        <tr><td><strong>gemini-3.5-flash</strong> ✱</td><td class="num">1.00</td><td class="num">1.00</td><td class="num win">1.00</td><td class="num">0.05</td></tr>
         <tr><td><strong><span class="en">floor</span><span class="tr">taban</span></strong></td>
-            <td class="num">0.81</td><td class="num">0.67</td><td class="num win">1.00</td><td class="num">0.04</td></tr>
+            <td class="num">0.76</td><td class="num win">1.00</td><td class="num win">1.00</td><td class="num">0.06</td></tr>
       </tbody>
     </table></div>
+    <p style="font-size:13px;color:var(--muted);margin-top:-8px">✱ <span class="en">frontier Gemini family, never in training</span><span class="tr">eğitimde hiç bulunmayan frontier Gemini ailesi</span></p>
     <p>
-      <span class="en">An OR-ensemble lifts the leave-one-model-out floor from 0.81 to 1.00 at only 4% human false-positive rate, direct evidence that the lexical and structural-behavioral views carry complementary signal. The SVC-only pipeline is the ablation.</span>
-      <span class="tr">Bir OR-topluluğu leave-one-model-out tabanını 0.81'den 1.00'a çıkarıyor, yalnızca %4 insan yanlış-pozitif oranıyla; bu da sözcüksel ve yapısal-davranışsal görünümlerin tamamlayıcı sinyal taşıdığının doğrudan kanıtı. SVC-yalnız hattı ablation'dır.</span>
+      <span class="en">The ensemble reaches a floor of 1.00 at only 6% mean human false-positive rate. The structural (GNN) and lexical (SVC) views are complementary: the SVC floors at 0.76 on gemma3 because it keys on vocabulary, while the GNN — reading reconnaissance topology rather than command names — recognizes every held-out family, the frontier ones included, so the ensemble never misses. Two honesty notes: the GNN is a single-seed run, so read its 1.00 as "no held-out miss at this scale/seed," not proven-zero-error; and the SVC-only pipeline is the ablation, its 0.76 floor the conservative headline.</span>
+      <span class="tr">Topluluk 1.00 tabanına ulaşıyor, yalnızca %6 ortalama insan yanlış-pozitif oranıyla. Yapısal (GNN) ve sözcüksel (SVC) görünümler tamamlayıcı: SVC gemma3'te 0.76 tabanına iniyor çünkü sözcük dağarcığına dayanıyor; komut adları yerine keşif topolojisini okuyan GNN ise frontier dahil her dışarıda bırakılan aileyi tanıyor, dolayısıyla topluluk hiç ıskalamıyor. İki dürüstlük notu: GNN tek-tohumlu bir koşu, 1.00'ını "bu ölçekte/tohumda held-out ıskası yok" olarak okuyun, sıfır-hata kanıtı değil; SVC-yalnız hattı ablation'dır ve 0.76 tabanı temkinli manşettir.</span>
     </p>
   </section>
 
@@ -211,13 +226,24 @@
       <span class="en">An LLM retains no working memory across steps, so it re-queries its execution context on every turn: working directory (<code>pwd</code>), identity (<code>whoami</code>, <code>id</code>), host and kernel (<code>uname</code>, <code>hostname</code>). A human retains this state and does not repeat the queries. The difference is large and consistent across every model tested.</span>
       <span class="tr">Bir LLM adımlar arasında çalışma belleği tutmaz; bu nedenle yürütme bağlamını her turda yeniden sorgular: çalışma dizini (<code>pwd</code>), kimlik (<code>whoami</code>, <code>id</code>), host ve çekirdek (<code>uname</code>, <code>hostname</code>). İnsan bu durumu belleğinde tuttuğu için sorguları tekrarlamaz. Fark büyük ve test edilen her modelde tutarlı.</span>
     </p>
-    <figure>
-      <img src="assets/03_state_verification.png" alt="State-verification share by operator">
-      <figcaption>
-        <span class="en">The share of commands spent purely on checking state. gemma4, though newer and more capable, checks less than gemma3: the signature fades as models mature, but does not disappear. The GNN's behavioral node categories are the structural encoding of exactly this reflex.</span>
-        <span class="tr">Yalnızca durum yoklamaya harcanan komutların payı. gemma4, daha yeni ve yetenekli olsa da gemma3'ten daha az yokluyor: imza modeller olgunlaştıkça soluyor, ama silinmiyor. GNN'in davranışsal düğüm kategorileri, tam olarak bu refleksin yapısal kodlanmış hali.</span>
-      </figcaption>
-    </figure>
+    <div class="tbl"><table>
+      <thead><tr>
+        <th><span class="en">operator</span><span class="tr">operatör</span></th>
+        <th style="text-align:right"><code>pwd</code>/<code>whoami</code>/<code>id</code>/<code>uname</code>/<code>hostname</code> <span class="en">share</span><span class="tr">payı</span></th></tr></thead>
+      <tbody>
+        <tr><td><strong><span class="en">Human</span><span class="tr">İnsan</span></strong> (MUNI)</td><td class="num win">0.7%</td></tr>
+        <tr><td>gemma4</td><td class="num">16.1%</td></tr>
+        <tr><td>llama3.1</td><td class="num">21.5%</td></tr>
+        <tr><td>gemma3</td><td class="num">23.8%</td></tr>
+        <tr><td><strong>gemini-3.1-pro</strong> <span class="en">(frontier)</span><span class="tr">(frontier)</span></td><td class="num">25.6%</td></tr>
+        <tr><td><strong>gemini-3.5-flash</strong> <span class="en">(frontier)</span><span class="tr">(frontier)</span></td><td class="num">32.4%</td></tr>
+        <tr><td>qwen3 <span class="en">(collapsed)</span><span class="tr">(çökmüş)</span></td><td class="num">86.7%</td></tr>
+      </tbody>
+    </table></div>
+    <p>
+      <span class="en">Every LLM sits 23 to 120× above human — and the two <strong>frontier</strong> models sit at the <em>top</em> of the non-collapsed range (25–32%), not the bottom. Whatever "more capable" buys, it does not buy escape from the stateless-context reflex. The GNN's behavioral node categories are the structural encoding of exactly this reflex.</span>
+      <span class="tr">Her LLM insandan 23 ila 120 kat yüksek — ve iki <strong>frontier</strong> model, çökmemiş aralığın <em>tepesinde</em> (%25–32), tabanında değil. "Daha yetenekli" olmak durumsuz-bağlam refleksinden kaçış kazandırmıyor. GNN'in davranışsal düğüm kategorileri, tam olarak bu refleksin yapısal kodlanmış hali.</span>
+    </p>
     <figure>
       <img src="assets/04_command_freq.png" alt="Command frequency, AI vs human">
       <figcaption>
@@ -244,6 +270,10 @@
       <div class="quad"><div class="lab">benign + human</div><div class="v">
         <span class="en">everyday admin work</span><span class="tr">gündelik yönetici işi</span></div></div>
     </div>
+    <p>
+      <span class="en">All four cells are <strong>real</strong>: malicious+AI is our harness across two environments (six model families incl. frontier Gemini) plus DTU; malicious+human is the real MUNI cyber-range corpus; benign+AI is the same harness on maintenance prompts; and benign+human is the <strong>Schonlau SEA</strong> dataset — real users' command streams recorded end-to-end, sliced into contiguous windows so command order is authentic rather than assembled. Intent (malicious vs benign) separates at macro <strong>F1 0.936</strong> in the common-binary space, permutation control 0.543 (≈ chance).</span>
+      <span class="tr">Dört hücre de <strong>gerçek</strong>: zararlı+AI iki ortamda harness'imiz (frontier Gemini dahil altı model ailesi) artı DTU; zararlı+insan gerçek MUNI cyber-range korpusu; zararsız+AI aynı harness bakım promptlarıyla; zararsız+insan <strong>Schonlau SEA</strong> — gerçek kullanıcıların uçtan uca kaydedilmiş komut akışları, komut sırası derlenmiş değil özgün kalacak biçimde bitişik pencerelere bölünmüş. Niyet (zararlı vs zararsız) ortak-binary uzayında makro <strong>F1 0.936</strong> ile ayrılıyor, permütasyon kontrolü 0.543 (≈ şans).</span>
+    </p>
   </section>
 
   <section>
@@ -306,31 +336,85 @@
   </section>
 
   <section>
+    <h2><span class="en">Adaptive evasion</span><span class="tr">Adaptif kaçınma</span></h2>
+    <h3><span class="en">What happens when the attacker knows the detector</span><span class="tr">Saldırgan dedektörü bildiğinde</span></h3>
+    <p>
+      <span class="en">A signature is only interesting if it survives an attacker trying to beat it. We ran a white-box adaptive attacker: the same recon/exploit task, but the prompt instructs the model to behave like a stateful human — never re-check identity/<code>pwd</code>/<code>uname</code>, keep state in memory, don't repeat commands. Evasion sessions are held out model-by-model, so they are genuinely unseen.</span>
+      <span class="tr">Bir imza, ancak onu yenmeye çalışan bir saldırgana dayanırsa ilginçtir. Beyaz-kutu adaptif bir saldırgan koşturduk: aynı keşif/exploit görevi, ama prompt modele durumlu bir insan gibi davranmasını söylüyor — kimliği/<code>pwd</code>/<code>uname</code> asla yeniden yoklama, durumu bellekte tut, komut tekrarlama. Kaçınma oturumları model-model dışarıda bırakılır, yani gerçekten görülmemiştir.</span>
+    </p>
+    <div class="tbl"><table>
+      <thead><tr>
+        <th><span class="en">detector</span><span class="tr">dedektör</span></th>
+        <th style="text-align:right"><span class="en">baseline</span><span class="tr">temel</span></th>
+        <th style="text-align:right"><span class="en">evasion</span><span class="tr">kaçınma</span></th>
+        <th style="text-align:right"><span class="en">+ retrain</span><span class="tr">+ yeniden eğitim</span></th></tr></thead>
+      <tbody>
+        <tr><td><span class="en">reflex only</span><span class="tr">yalnız refleks</span></td><td class="num">~0.95–1.00</td><td class="num" style="color:var(--bad)">0.00–0.30</td><td class="num">—</td></tr>
+        <tr><td><span class="en">command-selection SVC</span><span class="tr">komut-seçim SVC</span></td><td class="num">0.91</td><td class="num">0.68</td><td class="num win">0.82</td></tr>
+      </tbody>
+    </table></div>
+    <p>
+      <span class="en">The state-verification share collapses exactly as instructed (geminiflash 40.5% → 7.0%, llama 26.2% → 0.8%), so a detector relying only on the reflex is defeated. But the broader <strong>command-selection</strong> signal is more durable: even while suppressing the reflex, the agents still enumerate with an un-human systematicity, so the SVC keeps mean recall 0.68, and adversarial retraining recovers it to 0.82 — an arms race, not a silver bullet. The reflex is the interpretable signal but the evadable one; command selection is the robust one.</span>
+      <span class="tr">Durum-yoklama payı tam da söylendiği gibi çöküyor (geminiflash %40.5 → %7.0, llama %26.2 → %0.8), yani yalnız reflekse dayanan dedektör yenilir. Ama daha geniş <strong>komut-seçim</strong> sinyali daha dayanıklı: refleks bastırılsa da ajanlar insan-dışı bir sistematiklikle keşif yapmayı sürdürüyor, SVC ortalama 0.68 recall koruyor, düşmanca yeniden eğitim bunu 0.82'ye çıkarıyor — sihirli değnek değil, silahlanma yarışı. Refleks yorumlanabilir ama kaçınılabilir sinyaldir; komut seçimi dayanıklı olandır.</span>
+    </p>
+  </section>
+
+  <section>
+    <h2><span class="en">Frontier behavior</span><span class="tr">Frontier davranışı</span></h2>
+    <h3><span class="en">Frontier models refuse — and that is itself a signal</span><span class="tr">Frontier modeller reddediyor — ki bu da bir sinyal</span></h3>
+    <p>
+      <span class="en">A behavior that only appears with frontier models: they drive reconnaissance and benign maintenance, but refuse overt exploitation a large fraction of the time (<em>"I cannot assist with identifying or exploiting vulnerabilities"</em>); the local 4–8B models almost never refuse.</span>
+      <span class="tr">Yalnızca frontier modellerle ortaya çıkan bir davranış: keşif ve zararsız bakımı yürütürler, ama açık exploitasyonu büyük oranda reddederler (<em>"Zafiyet tanımlamaya/sömürmeye yardımcı olamam"</em>); yerel 4–8B modeller neredeyse hiç reddetmez.</span>
+    </p>
+    <div class="tbl"><table>
+      <thead><tr>
+        <th><span class="en">task (gemini-3.5-flash)</span><span class="tr">görev (gemini-3.5-flash)</span></th>
+        <th style="text-align:right"><span class="en">refuse %</span><span class="tr">ret %</span></th></tr></thead>
+      <tbody>
+        <tr><td><span class="en">benign / crack / deception</span><span class="tr">zararsız / kırma / aldatma</span></td><td class="num win">0%</td></tr>
+        <tr><td><span class="en">reconnaissance</span><span class="tr">keşif</span></td><td class="num">24%</td></tr>
+        <tr><td><strong><span class="en">exploitation</span><span class="tr">exploitasyon</span></strong></td><td class="num" style="color:var(--bad)">62%</td></tr>
+      </tbody>
+    </table></div>
+    <p>
+      <span class="en">Two consequences. It is a <strong>selection effect</strong> worth stating — the malicious frontier sessions we analyze are the compliant ones. And it is a finding for defenders: an autonomous frontier agent tasked with exploitation frequently self-aborts, so today's "autonomous AI attacker" threat leans more on uncensored/local models than on refusal-trained frontier APIs — which is exactly why the generalization floor is still a local model (gemma3, 0.76), not a frontier one.</span>
+      <span class="tr">İki sonuç. Bu bir <strong>seçim etkisi</strong>: analiz ettiğimiz zararlı-frontier oturumları uyum gösterenlerdir. Ve savunanlar için bir bulgu: exploitasyonla görevli otonom bir frontier ajanı sıkça kendini durdurur, dolayısıyla bugünkü "otonom AI saldırgan" tehdidi ret-eğitimli frontier API'lerinden çok sansürsüz/yerel modellere yaslanır — genelleme tabanının hâlâ yerel bir model (gemma3, 0.76) olmasının nedeni tam da bu.</span>
+    </p>
+  </section>
+
+  <section>
     <h2><span class="en">Honest limitations</span><span class="tr">Dürüst sınırlamalar</span></h2>
     <h3><span class="en">What this doesn't prove yet</span><span class="tr">Bunun henüz kanıtlamadıkları</span></h3>
     <ul class="clean warn">
-      <li><span class="en"><strong>The sample is modest.</strong> 68 usable AI sessions across two environments (43 empty-container + 25 CTF-range) once collapses are filtered, against 267 human. Small — treat the numbers as indicative, not settled.</span>
-        <span class="tr"><strong>Örneklem mütevazı.</strong> Çökmeler ayıklandıktan sonra iki ortamda 68 kullanılabilir AI oturumu (43 boş-container + 25 CTF-menzili), 267 insana karşı. Küçük — rakamları kesin değil, gösterge niteliğinde okuyun.</span></li>
-      <li><span class="en"><strong>The GNN alone underperforms the SVC.</strong> Its value is only in the ensemble; the reported floor of 1.00 is the OR-ensemble, not the GNN on its own.</span>
-        <span class="tr"><strong>GNN tek başına SVC'nin altında.</strong> Değeri yalnızca toplulukta; raporlanan 1.00 tabanı GNN değil, OR-topluluğudur.</span></li>
-      <li><span class="en"><strong>qwen3:4b can't be trusted here.</strong> Roughly 75% of its sessions dissolve into reasoning-prose instead of commands, even with think:false. Its inflated 86.7% state-verification is a looping artifact.</span>
-        <span class="tr"><strong>qwen3:4b burada güvenilmez.</strong> Oturumlarının kabaca %75'i, think:false ile bile komut yerine reasoning-metnine dağılıyor. Şişmiş %86,7'lik durum-yoklaması bir döngü artefaktı.</span></li>
-      <li><span class="en"><strong>The intent axis uses real data on both human cells, but spans two corpora.</strong> malicious+human is the real MUNI corpus and benign+human is real NL2Bash commands; intent separates at macro F1 0.909 in the common-binary space (permutation control 0.515, ≈ chance). The residual caveat is provenance, not synthesis: the two human cells are different corpora, and NL2Bash ships as one-liners, so its sessions are assembled from real commands rather than recorded end-to-end.</span>
-        <span class="tr"><strong>Niyet ekseni iki insan hücresinde de gerçek veri, ama iki korpusa yayılıyor.</strong> Zararlı+insan gerçek MUNI korpusu, zararsız+insan gerçek NL2Bash komutları; niyet ortak-binary uzayında makro F1 0.909 ile ayrılıyor (permütasyon kontrolü 0.515, ≈ şans). Kalan çekince sentez değil köken: iki insan hücresi farklı korpuslar ve NL2Bash tek-satırlar halinde geldiği için oturumları uçtan uca kaydedilmiş değil, gerçek komutlardan derlenmiştir.</span></li>
-      <li><span class="en"><strong>Some layers are low-cost to evade.</strong> Keystroke-timing mimicry neutralizes Hat N's payload-derived features in roughly 20 lines of code. The evasion-resistant layers are Hat H (command <em>selection</em>) and HASSH.</span>
-        <span class="tr"><strong>Bazı katmanlardan kaçmak düşük maliyetli.</strong> Keystroke-zamanlama taklidi, Hat N'in payload-türevli özelliklerini yaklaşık 20 satır kodla etkisizleştiriyor. Kaçınmaya dirençli katmanlar Hat H (komut <em>seçimi</em>) ile HASSH.</span></li>
-      <li><span class="en"><strong>The environment confound is bracketed, not just noted.</strong> The AI side spans two environments — the empty container and a CTF-range box whose toolset matches the MUNI host — so agency is measured with the box held closer to fixed. The state-verification reflex is nearly identical across both AI environments (26.5% / 23.9% vs 0.7% human) and origin stays separable inside the matched environment (F1 0.771). What remains: cross-environment <em>lexical</em> transfer is only partial (0.28–0.46 held-out recall), so command selection over shared behaviour — not vocabulary — is the part that travels.</span>
-        <span class="tr"><strong>Ortam confound'u sadece kabul edilmiş bir çekince değil, sınırlanmış.</strong> AI tarafı iki ortama yayılıyor — boş container ve araç seti MUNI kutusuna eşli bir CTF-menzili kutusu — böylece ajans ortam daha sabit tutularak ölçülüyor. Durum-yoklama refleksi iki AI ortamında neredeyse aynı (%26.5 / %23.9 vs %0.7 insan) ve köken eşli ortamda hâlâ ayrılabilir (F1 0.771). Kalan: ortamlar-arası <em>sözcüksel</em> transfer yalnızca kısmi (0.28–0.46 held-out recall), yani sözcük dağarcığı değil, paylaşılan davranış üzerinden komut seçimi aktarılan kısım.</span></li>
+      <li><span class="en"><strong>The sample is modest.</strong> ~161 usable AI sessions across two environments and six model families (incl. gemini-3.1-pro n=10, gemini-3.5-flash n=40) against 267 human. Bootstrap CIs are honestly wide on small-n rows (qwen n=3, gemini-pro n=10) — treat those as indicative.</span>
+        <span class="tr"><strong>Örneklem mütevazı.</strong> İki ortam ve altı model ailesinde ~161 kullanılabilir AI oturumu (gemini-3.1-pro n=10, gemini-3.5-flash n=40 dahil), 267 insana karşı. Bootstrap GA'lar küçük-n satırlarında (qwen n=3, gemini-pro n=10) dürüstçe geniş — bunları gösterge olarak okuyun.</span></li>
+      <li><span class="en"><strong>The reflex is fully evadable; command selection is what survives.</strong> A white-box attacker drives a reflex-only detector to ~0 recall; the command-selection SVC degrades to 0.68 and recovers to 0.82 with adversarial retraining. The interpretable signal and the robust signal are different signals.</span>
+        <span class="tr"><strong>Refleks tamamen kaçınılabilir; asıl dayanan komut seçimidir.</strong> Beyaz-kutu saldırgan yalnız-refleks dedektörünü ~0 recall'a düşürür; komut-seçim SVC'si 0.68'e iner, düşmanca yeniden eğitimle 0.82'ye döner. Yorumlanabilir sinyal ile dayanıklı sinyal farklı sinyallerdir.</span></li>
+      <li><span class="en"><strong>Frontier data has a compliance/rate-limit selection effect.</strong> Frontier models refuse overt exploitation often (flash 62%), so analyzed malicious-frontier sessions are the compliant ones; and gemini-3.1-pro was heavily API-rate-limited on the available key, so its n is smaller and its benign cell is empty. The frontier claim rests mainly on flash (n=40), with pro (n=10) corroborating.</span>
+        <span class="tr"><strong>Frontier veride uyum/rate-limit seçim etkisi var.</strong> Frontier modeller açık exploitasyonu sık reddeder (flash %62), dolayısıyla analiz edilen zararlı-frontier oturumları uyum gösterenlerdir; ayrıca gemini-3.1-pro eldeki anahtarda ağır rate-limit yedi, n'i daha küçük ve benign hücresi boş. Frontier iddiası çoğunlukla flash'a (n=40) dayanıyor, pro (n=10) doğruluyor.</span></li>
+      <li><span class="en"><strong>The GNN's 1.00 is a single-seed result.</strong> The structural view recognizes every held-out family, but it is one seed at this data scale — read it as "no held-out miss here," not proven-zero-error. The SVC-only 0.76 floor is the conservative headline.</span>
+        <span class="tr"><strong>GNN'in 1.00'ı tek-tohumlu bir sonuç.</strong> Yapısal görünüm her dışarıda bırakılan aileyi tanıyor, ama bu veri ölçeğinde tek bir tohum — "burada held-out ıskası yok" olarak okuyun, sıfır-hata değil. Temkinli manşet SVC-yalnız 0.76 tabanıdır.</span></li>
+      <li><span class="en"><strong>qwen3:4b can't be trusted here.</strong> ~75% of its sessions dissolve into reasoning-prose even with think:false; its 86.7% state-verification is a looping artifact and n=3 makes its 1.00 recall weak evidence.</span>
+        <span class="tr"><strong>qwen3:4b burada güvenilmez.</strong> Oturumlarının ~%75'i think:false ile bile komut yerine reasoning-metnine dağılıyor; %86,7 durum-yoklaması döngü artefaktı ve n=3, 1.00 recall'ını zayıf kanıt yapar.</span></li>
+      <li><span class="en"><strong>The benign+human corpus is a distinct domain.</strong> Schonlau SEA gives real, sequentially-ordered benign sessions, but it is 1990s workstation-era activity — a different domain from MUNI/AI, and its windows are accounting slices, not login-delimited sessions; the common-binary space + chance permutation (0.543) bound this.</span>
+        <span class="tr"><strong>Benign+insan korpusu farklı bir alan.</strong> Schonlau SEA gerçek, sıralı benign oturumlar verir, ama 1990'lar iş-istasyonu dönemi — MUNI/AI'dan farklı bir alan ve pencereleri login-sınırlı oturumlar değil muhasebe dilimleri; ortak-binary uzayı + şans permütasyonu (0.543) sınırlar.</span></li>
+      <li><span class="en"><strong>Some layers are low-cost to evade.</strong> Keystroke-timing mimicry neutralizes Hat N's payload-derived features in ~20 lines. The evasion-resistant layers are Hat H (command <em>selection</em>) and HASSH.</span>
+        <span class="tr"><strong>Bazı katmanlardan kaçmak düşük maliyetli.</strong> Keystroke-zamanlama taklidi Hat N'in payload-türevli özelliklerini ~20 satırla etkisizleştiriyor. Kaçınmaya dirençli katmanlar Hat H (komut <em>seçimi</em>) ile HASSH.</span></li>
+      <li><span class="en"><strong>The environment confound is bracketed, not just noted.</strong> The AI side spans two environments — empty container and a CTF-range box whose toolset matches the MUNI host — so agency is measured with the box held closer to fixed. The reflex is nearly identical across both (26.5% / 23.9% vs 0.7% human) and origin stays separable inside the matched environment (F1 0.771). Cross-environment lexical transfer is only partial (0.28–0.46), so command selection over shared behaviour — not vocabulary — is what travels.</span>
+        <span class="tr"><strong>Ortam confound'u kabul edilmiş bir çekince değil, sınırlanmış.</strong> AI tarafı iki ortama yayılıyor — boş container ve araç seti MUNI kutusuna eşli CTF-menzili. Refleks ikisinde de neredeyse aynı (%26.5 / %23.9 vs %0.7) ve köken eşli ortamda hâlâ ayrılabilir (F1 0.771). Ortamlar-arası sözcüksel transfer kısmi (0.28–0.46), yani sözcük değil, paylaşılan davranış üzerinden komut seçimi kalıcı kısımdır.</span></li>
     </ul>
   </section>
 
 </main>
+</details>
 
 <footer><div class="wrap">
   <span><span class="en">Local open-weight models (Ollama) + Docker · isolated lab · research and defensive use only</span><span class="tr">Yerel açık-ağırlık modeller (Ollama) + Docker · izole lab · yalnızca araştırma ve savunma amaçlı</span></span>
   <span class="src">
     <a href="https://zenodo.org/records/20818246">DTU · Zenodo</a>
     <a href="https://zenodo.org/records/8136017">MUNI · Zenodo</a>
+    <a href="https://www.schonlau.net/intrusion.html">Schonlau SEA</a>
+    <a href="https://ai.google.dev">Gemini 3.x</a>
     <a href="https://arxiv.org/abs/2605.01186">TRACE · arXiv</a>
   </span>
 </div></footer>

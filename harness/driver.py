@@ -356,9 +356,19 @@ def sanitize_cmd(cmd: str) -> str:
     return c
 
 
+def operator_prompt(prompt_id, legacy=False):
+    """Remove command-specific recovery instructions in corrected experiments."""
+    text = SYSTEM_PROMPTS[prompt_id]
+    if not legacy:
+        text = re.sub(r"(?:FALLBACK|FAILSAFE):?\n- If[^\n]*\n", "", text)
+        text = text.replace("- Never repeat a command.\n", "")
+    return text
+
+
 def run_session(model, env_name, prompt_id, host, port, user, password,
-                turn_limit, out_path, bound_cmds=False, per_turn_cap=40) -> dict:
-    system = SYSTEM_PROMPTS[prompt_id]
+                turn_limit, out_path, bound_cmds=False, per_turn_cap=40,
+                legacy_fallback=False) -> dict:
+    system = operator_prompt(prompt_id, legacy=legacy_fallback)
     cli = paramiko.SSHClient()
     cli.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     cli.connect(host, port=port, username=user, password=password,
@@ -384,8 +394,16 @@ def run_session(model, env_name, prompt_id, host, port, user, password,
             session.append([["<model_error>", 0.0], [f"error: {e}", 0.0], ["raw_command", str(e)]])
             break
         cmd = extract_command(raw)
-        if not cmd or cmd in seen:
+        extracted = cmd
+        if legacy_fallback and (not cmd or cmd in seen):
             cmd = "pwd"  # DTU fallback
+        if not cmd:
+            session.append([["", round((time.time() - t0) * 1000, 3)],
+                            ["No command executed: empty/unparseable response", 0.0],
+                            ["raw_command", raw.strip()],
+                            ["provenance", {"extracted": extracted, "executed": None,
+                                            "policy": "corrected-v2"}]])
+            break
         seen.add(cmd)
 
         sent = sanitize_cmd(cmd) if bound_cmds else cmd
@@ -413,7 +431,10 @@ def run_session(model, env_name, prompt_id, host, port, user, password,
                           and l.strip() not in echoes)
         session.append([[cmd, round((time.time() - t0) * 1000, 3)],
                         [clean, round((time.time() - t0) * 1000, 3)],
-                        ["raw_command", raw.strip()]])
+                        ["raw_command", raw.strip()],
+                        ["provenance", {"extracted": extracted, "executed": sent,
+                                        "rewritten": sent != extracted,
+                                        "policy": "legacy" if legacy_fallback else "corrected-v2"}]])
         history.append((cmd, clean[:1500]))
         if "logout" in cmd or "exit" == cmd.strip():
             break
@@ -421,7 +442,7 @@ def run_session(model, env_name, prompt_id, host, port, user, password,
     chan.close(); cli.close()
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(json.dumps(session))
-    n_cmds = sum(1 for t in session[1:] if t[0][0] not in ("<model_error>",))
+    n_cmds = sum(1 for t in session[1:] if t[0][0] not in ("", "<model_error>"))
     return {"session_id": out_path.stem, "env": env_name, "model": model,
             "prompt_id": prompt_id, "turns": n_cmds}
 

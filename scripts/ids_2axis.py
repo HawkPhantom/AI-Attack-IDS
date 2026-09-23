@@ -10,8 +10,8 @@ DATA CELLS and their provenance  (all four are now real, not scripted):
   malicious + human : MUNI cyber-range trainees (Zenodo 8136017)     REAL humans
   benign    + human : Schonlau SEA real command windows (schonlau.net) REAL humans
 
-This is the fix for the old "intent axis is synthetic" limitation. Both human
-cells are now real, human-authored commands recorded end-to-end:
+Both human cells are real, human-authored commands recorded end-to-end, which
+keeps the intent classifier from separating on provenance instead of intent:
   - malicious+human = the same real MUNI sessions the origin axis is validated on
   - benign+human    = contiguous windows of a real user's Schonlau command stream,
     so command ORDER (the 1,2-gram / transition structure the models key on) is
@@ -73,7 +73,7 @@ def degenerate(cmds):
 # ---- cells now come from the shared canonical loader (scripts/ids_data.py) --
 # AI: empty + CTF, malicious + benign, frontier Gemini included, no evasion.
 # human malicious: MUNI (real). human benign: Schonlau SEA real command windows
-# (replaces the old NL2Bash random assembly; falls back to it if not built).
+# (real contiguous command windows; falls back to NL2Bash if not yet built).
 import sys as _sys
 _sys.path.insert(0, str(Path(__file__).resolve().parent))
 import ids_data  # noqa: E402
@@ -197,4 +197,6 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    print("Running descriptive intent-v2; corpus confounding is not resolved.")
+    from evaluate_intent_v2 import main as corrected_main
+    corrected_main()

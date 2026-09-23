@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """Build REAL benign human shell sessions from the Schonlau SEA dataset.
 
-This replaces the old benign+human cell (NL2Bash one-liners RANDOMLY assembled
-into pseudo-sessions, which destroyed sequential structure). Each session here is
-a CONTIGUOUS window of one real user's command stream, so the command ORDER — and
-therefore the 1,2-gram and transition-graph structure the detectors key on — is
-authentic, end-to-end recorded process-accounting data, not synthesized.
+The benign+human cell is built from real, sequentially-ordered activity: each
+session is a CONTIGUOUS window of one real user's command stream, so the command
+ORDER — and therefore the 1,2-gram and transition-graph structure the detectors
+key on — is authentic, end-to-end recorded process-accounting data, not an
+assembly of independent one-liners.
 
 Source: Schonlau "masquerading user data" (schonlau.net), 50 users x 15000 acct
 commands. The FIRST 5000 commands per user are the certified masquerade-free

@@ -106,4 +106,6 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    print("Historical evaluator superseded: run recon_features.py first, then paired network-v2.")
+    from evaluate_network_v2 import main as corrected_main
+    corrected_main()

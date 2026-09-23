@@ -1,0 +1,4641 @@
+{
+  "status": "corpus-confounded, not validated malicious-intent inference",
+  "all_corpora_grouped": {
+    "metrics": {
+      "n": 606,
+      "macro_f1": 0.8964954453441296,
+      "recall": 0.9534313725490197,
+      "recall_wilson95": [
+        0.9284166644999349,
+        0.969987301578403
+      ],
+      "fpr": 0.17676767676767677,
+      "fpr_wilson95": [
+        0.1299344913838232,
+        0.23590441630209077
+      ],
+      "auroc": 0.95000247573777,
+      "average_precision": 0.9725995002862331,
+      "n_malicious": 408,
+      "n_benign": 198
+    },
+    "folds": [
+      {
+        "group": "gemini3pro_prompt_1",
+        "n_test": 9,
+        "vocab_n": 65
+      },
+      {
+        "group": "gemini3pro_prompt_3",
+        "n_test": 5,
+        "vocab_n": 64
+      },
+      {
+        "group": "geminiflash_benign_1",
+        "n_test": 8,
+        "vocab_n": 65
+      },
+      {
+        "group": "geminiflash_benign_2",
+        "n_test": 7,
+        "vocab_n": 65
+      },
+      {
+        "group": "geminiflash_benign_3",
+        "n_test": 8,
+        "vocab_n": 63
+      },
+      {
+        "group": "geminiflash_ctf_crack",
+        "n_test": 8,
+        "vocab_n": 65
+      },
+      {
+        "group": "geminiflash_ctf_exploit",
+        "n_test": 8,
+        "vocab_n": 65
+      },
+      {
+        "group": "geminiflash_ctf_recon",
+        "n_test": 8,
+        "vocab_n": 65
+      },
+      {
+        "group": "geminiflash_prompt_1",
+        "n_test": 9,
+        "vocab_n": 65
+      },
+      {
+        "group": "geminiflash_prompt_3",
+        "n_test": 8,
+        "vocab_n": 65
+      },
+      {
+        "group": "geminiflash_prompt_5",
+        "n_test": 8,
+        "vocab_n": 65
+      },
+      {
+        "group": "gemma3_benign_1",
+        "n_test": 4,
+        "vocab_n": 63
+      },
+      {
+        "group": "gemma3_benign_2",
+        "n_test": 4,
+        "vocab_n": 62
+      },
+      {
+        "group": "gemma3_benign_3",
+        "n_test": 4,
+        "vocab_n": 65
+      },
+      {
+        "group": "gemma3_ctf_exploit",
+        "n_test": 3,
+        "vocab_n": 65
+      },
+      {
+        "group": "gemma3_ctf_recon",
+        "n_test": 4,
+        "vocab_n": 65
+      },
+      {
+        "group": "gemma3_prompt_1",
+        "n_test": 11,
+        "vocab_n": 65
+      },
+      {
+        "group": "gemma3_prompt_3",
+        "n_test": 3,
+        "vocab_n": 65
+      },
+      {
+        "group": "gemma3_prompt_5",
+        "n_test": 3,
+        "vocab_n": 65
+      },
+      {
+        "group": "gemma4_benign_1",
+        "n_test": 2,
+        "vocab_n": 64
+      },
+      {
+        "group": "gemma4_benign_2",
+        "n_test": 2,
+        "vocab_n": 61
+      },
+      {
+        "group": "gemma4_benign_3",
+        "n_test": 2,
+        "vocab_n": 65
+      },
+      {
+        "group": "gemma4_ctf_crack",
+        "n_test": 3,
+        "vocab_n": 65
+      },
+      {
+        "group": "gemma4_ctf_exploit",
+        "n_test": 3,
+        "vocab_n": 65
+      },
+      {
+        "group": "gemma4_ctf_recon",
+        "n_test": 3,
+        "vocab_n": 65
+      },
+      {
+        "group": "gemma4_prompt_1",
+        "n_test": 10,
+        "vocab_n": 62
+      },
+      {
+        "group": "gemma4_prompt_3",
+        "n_test": 2,
+        "vocab_n": 65
+      },
+      {
+        "group": "gemma4_prompt_5",
+        "n_test": 2,
+        "vocab_n": 65
+      },
+      {
+        "group": "hu_ben_User1",
+        "n_test": 3,
+        "vocab_n": 65
+      },
+      {
+        "group": "hu_ben_User10",
+        "n_test": 3,
+        "vocab_n": 65
+      },
+      {
+        "group": "hu_ben_User11",
+        "n_test": 3,
+        "vocab_n": 65
+      },
+      {
+        "group": "hu_ben_User12",
+        "n_test": 3,
+        "vocab_n": 65
+      },
+      {
+        "group": "hu_ben_User13",
+        "n_test": 3,
+        "vocab_n": 65
+      },
+      {
+        "group": "hu_ben_User14",
+        "n_test": 3,
+        "vocab_n": 65
+      },
+      {
+        "group": "hu_ben_User15",
+        "n_test": 3,
+        "vocab_n": 65
+      },
+      {
+        "group": "hu_ben_User16",
+        "n_test": 3,
+        "vocab_n": 65
+      },
+      {
+        "group": "hu_ben_User17",
+        "n_test": 3,
+        "vocab_n": 65
+      },
+      {
+        "group": "hu_ben_User18",
+        "n_test": 3,
+        "vocab_n": 65
+      },
+      {
+        "group": "hu_ben_User19",
+        "n_test": 3,
+        "vocab_n": 65
+      },
+      {
+        "group": "hu_ben_User2",
+        "n_test": 3,
+        "vocab_n": 65
+      },
+      {
+        "group": "hu_ben_User20",
+        "n_test": 3,
+        "vocab_n": 65
+      },
+      {
+        "group": "hu_ben_User21",
+        "n_test": 3,
+        "vocab_n": 64
+      },
+      {
+        "group": "hu_ben_User22",
+        "n_test": 3,
+        "vocab_n": 65
+      },
+      {
+        "group": "hu_ben_User23",
+        "n_test": 3,
+        "vocab_n": 65
+      },
+      {
+        "group": "hu_ben_User24",
+        "n_test": 3,
+        "vocab_n": 65
+      },
+      {
+        "group": "hu_ben_User25",
+        "n_test": 3,
+        "vocab_n": 65
+      },
+      {
+        "group": "hu_ben_User26",
+        "n_test": 3,
+        "vocab_n": 64
+      },
+      {
+        "group": "hu_ben_User27",
+        "n_test": 3,
+        "vocab_n": 64
+      },
+      {
+        "group": "hu_ben_User28",
+        "n_test": 3,
+        "vocab_n": 65
+      },
+      {
+        "group": "hu_ben_User29",
+        "n_test": 3,
+        "vocab_n": 65
+      },
+      {
+        "group": "hu_ben_User3",
+        "n_test": 3,
+        "vocab_n": 63
+      },
+      {
+        "group": "hu_ben_User30",
+        "n_test": 3,
+        "vocab_n": 65
+      },
+      {
+        "group": "hu_ben_User31",
+        "n_test": 3,
+        "vocab_n": 65
+      },
+      {
+        "group": "hu_ben_User32",
+        "n_test": 3,
+        "vocab_n": 65
+      },
+      {
+        "group": "hu_ben_User33",
+        "n_test": 3,
+        "vocab_n": 65
+      },
+      {
+        "group": "hu_ben_User34",
+        "n_test": 3,
+        "vocab_n": 65
+      },
+      {
+        "group": "hu_ben_User35",
+        "n_test": 3,
+        "vocab_n": 64
+      },
+      {
+        "group": "hu_ben_User36",
+        "n_test": 3,
+        "vocab_n": 65
+      },
+      {
+        "group": "hu_ben_User37",
+        "n_test": 3,
+        "vocab_n": 65
+      },
+      {
+        "group": "hu_ben_User38",
+        "n_test": 3,
+        "vocab_n": 64
+      },
+      {
+        "group": "hu_ben_User39",
+        "n_test": 3,
+        "vocab_n": 65
+      },
+      {
+        "group": "hu_ben_User4",
+        "n_test": 3,
+        "vocab_n": 65
+      },
+      {
+        "group": "hu_ben_User40",
+        "n_test": 3,
+        "vocab_n": 65
+      },
+      {
+        "group": "hu_ben_User41",
+        "n_test": 3,
+        "vocab_n": 65
+      },
+      {
+        "group": "hu_ben_User42",
+        "n_test": 3,
+        "vocab_n": 65
+      },
+      {
+        "group": "hu_ben_User43",
+        "n_test": 3,
+        "vocab_n": 65
+      },
+      {
+        "group": "hu_ben_User44",
+        "n_test": 3,
+        "vocab_n": 65
+      },
+      {
+        "group": "hu_ben_User45",
+        "n_test": 3,
+        "vocab_n": 65
+      },
+      {
+        "group": "hu_ben_User46",
+        "n_test": 3,
+        "vocab_n": 65
+      },
+      {
+        "group": "hu_ben_User47",
+        "n_test": 3,
+        "vocab_n": 65
+      },
+      {
+        "group": "hu_ben_User48",
+        "n_test": 3,
+        "vocab_n": 64
+      },
+      {
+        "group": "hu_ben_User49",
+        "n_test": 3,
+        "vocab_n": 65
+      },
+      {
+        "group": "hu_ben_User5",
+        "n_test": 3,
+        "vocab_n": 65
+      },
+      {
+        "group": "hu_ben_User50",
+        "n_test": 3,
+        "vocab_n": 65
+      },
+      {
+        "group": "hu_ben_User6",
+        "n_test": 3,
+        "vocab_n": 65
+      },
+      {
+        "group": "hu_ben_User7",
+        "n_test": 3,
+        "vocab_n": 65
+      },
+      {
+        "group": "hu_ben_User8",
+        "n_test": 3,
+        "vocab_n": 64
+      },
+      {
+        "group": "hu_ben_User9",
+        "n_test": 3,
+        "vocab_n": 65
+      },
+      {
+        "group": "hu_mal_2019-08-15 KYPO Summer School",
+        "n_test": 6,
+        "vocab_n": 65
+      },
+      {
+        "group": "hu_mal_2019-09-19 PV276 First Lesson",
+        "n_test": 15,
+        "vocab_n": 65
+      },
+      {
+        "group": "hu_mal_2019-12-08 KYPOLAB student",
+        "n_test": 1,
+        "vocab_n": 65
+      },
+      {
+        "group": "hu_mal_2019-12-12",
+        "n_test": 4,
+        "vocab_n": 65
+      },
+      {
+        "group": "hu_mal_2020-05-06",
+        "n_test": 5,
+        "vocab_n": 65
+      },
+      {
+        "group": "hu_mal_2020-07-15",
+        "n_test": 20,
+        "vocab_n": 63
+      },
+      {
+        "group": "hu_mal_2020-12-02",
+        "n_test": 8,
+        "vocab_n": 65
+      },
+      {
+        "group": "hu_mal_2020-12-04",
+        "n_test": 7,
+        "vocab_n": 64
+      },
+      {
+        "group": "hu_mal_2020-12-11",
+        "n_test": 4,
+        "vocab_n": 65
+      },
+      {
+        "group": "hu_mal_2021-01-14",
+        "n_test": 4,
+        "vocab_n": 65
+      },
+      {
+        "group": "hu_mal_2021-02-08",
+        "n_test": 18,
+        "vocab_n": 64
+      },
+      {
+        "group": "hu_mal_2021-04-22",
+        "n_test": 9,
+        "vocab_n": 65
+      },
+      {
+        "group": "hu_mal_2021-05-25",
+        "n_test": 19,
+        "vocab_n": 63
+      },
+      {
+        "group": "hu_mal_2021-05-26",
+        "n_test": 8,
+        "vocab_n": 65
+      },
+      {
+        "group": "hu_mal_2021-05-28",
+        "n_test": 8,
+        "vocab_n": 65
+      },
+      {
+        "group": "hu_mal_2021-09-09",
+        "n_test": 4,
+        "vocab_n": 65
+      },
+      {
+        "group": "hu_mal_2022-02-18",
+        "n_test": 13,
+        "vocab_n": 65
+      },
+      {
+        "group": "hu_mal_2022-02-24",
+        "n_test": 13,
+        "vocab_n": 65
+      },
+      {
+        "group": "hu_mal_2022-04-25",
+        "n_test": 10,
+        "vocab_n": 64
+      },
+      {
+        "group": "hu_mal_2022-04-28",
+        "n_test": 12,
+        "vocab_n": 65
+      },
+      {
+        "group": "hu_mal_2022-05-04",
+        "n_test": 48,
+        "vocab_n": 63
+      },
+      {
+        "group": "hu_mal_SQL injection",
+        "n_test": 8,
+        "vocab_n": 65
+      },
+      {
+        "group": "hu_mal_Secret laboratory",
+        "n_test": 13,
+        "vocab_n": 65
+      },
+      {
+        "group": "hu_mal_Webmin exploit practice",
+        "n_test": 10,
+        "vocab_n": 64
+      },
+      {
+        "group": "llama_benign_1",
+        "n_test": 1,
+        "vocab_n": 64
+      },
+      {
+        "group": "llama_ctf_crack",
+        "n_test": 3,
+        "vocab_n": 65
+      },
+      {
+        "group": "llama_ctf_exploit",
+        "n_test": 3,
+        "vocab_n": 65
+      },
+      {
+        "group": "llama_ctf_recon",
+        "n_test": 3,
+        "vocab_n": 65
+      },
+      {
+        "group": "llama_prompt_1",
+        "n_test": 10,
+        "vocab_n": 64
+      },
+      {
+        "group": "llama_prompt_3",
+        "n_test": 2,
+        "vocab_n": 65
+      },
+      {
+        "group": "llama_prompt_5",
+        "n_test": 2,
+        "vocab_n": 65
+      },
+      {
+        "group": "qwen_benign_1",
+        "n_test": 2,
+        "vocab_n": 65
+      },
+      {
+        "group": "qwen_benign_2",
+        "n_test": 2,
+        "vocab_n": 65
+      },
+      {
+        "group": "qwen_benign_3",
+        "n_test": 2,
+        "vocab_n": 65
+      },
+      {
+        "group": "qwen_ctf_recon",
+        "n_test": 2,
+        "vocab_n": 65
+      },
+      {
+        "group": "qwen_prompt_1",
+        "n_test": 2,
+        "vocab_n": 65
+      },
+      {
+        "group": "qwen_prompt_3",
+        "n_test": 2,
+        "vocab_n": 65
+      },
+      {
+        "group": "qwen_prompt_5",
+        "n_test": 2,
+        "vocab_n": 65
+      }
+    ],
+    "predictions": [
+      {
+        "source": "harness/runs/grid_ac/real_ssh/gemma3-4b/real_ssh_gemma3-4b_prompt_3_20_session01.json",
+        "malicious": 1,
+        "score": 0.7945524117809966
+      },
+      {
+        "source": "harness/runs/grid_ac/real_ssh/gemma3-4b/real_ssh_gemma3-4b_prompt_1_20_session01.json",
+        "malicious": 1,
+        "score": 0.638448591428034
+      },
+      {
+        "source": "harness/runs/grid_ac/real_ssh/gemma3-4b/real_ssh_gemma3-4b_prompt_5_20_session01.json",
+        "malicious": 1,
+        "score": 0.6860605618624143
+      },
+      {
+        "source": "harness/runs/grid_ac/real_ssh/gemma3-4b/real_ssh_gemma3-4b_prompt_5_20_session02.json",
+        "malicious": 1,
+        "score": 0.6338185521701438
+      },
+      {
+        "source": "harness/runs/grid_ac/real_ssh/gemma3-4b/real_ssh_gemma3-4b_prompt_1_20_session03.json",
+        "malicious": 1,
+        "score": 0.667155681651602
+      },
+      {
+        "source": "harness/runs/grid_ac/real_ssh/gemma3-4b/real_ssh_gemma3-4b_prompt_1_20_session02.json",
+        "malicious": 1,
+        "score": 0.5117336629254097
+      },
+      {
+        "source": "harness/runs/grid_ac/real_ssh/gemma3-4b/real_ssh_gemma3-4b_prompt_5_20_session03.json",
+        "malicious": 1,
+        "score": 0.6025877911608909
+      },
+      {
+        "source": "harness/runs/grid_ac/real_ssh/gemma3-4b/real_ssh_gemma3-4b_prompt_3_20_session03.json",
+        "malicious": 1,
+        "score": 0.7186966344506575
+      },
+      {
+        "source": "harness/runs/grid_ac/real_ssh/gemma3-4b/real_ssh_gemma3-4b_prompt_3_20_session02.json",
+        "malicious": 1,
+        "score": 0.5634300305761434
+      },
+      {
+        "source": "harness/runs/benign/real_ssh_benign_3_s04.json",
+        "malicious": 0,
+        "score": 0.547242122570524
+      },
+      {
+        "source": "harness/runs/benign/real_ssh_benign_2_s04.json",
+        "malicious": 0,
+        "score": 0.3421705691123956
+      },
+      {
+        "source": "harness/runs/benign/real_ssh_benign_1_s01.json",
+        "malicious": 0,
+        "score": 0.5876338020999525
+      },
+      {
+        "source": "harness/runs/benign/real_ssh_benign_2_s02.json",
+        "malicious": 0,
+        "score": 0.2776984157493626
+      },
+      {
+        "source": "harness/runs/benign/real_ssh_benign_3_s02.json",
+        "malicious": 0,
+        "score": 0.48769861875391973
+      },
+      {
+        "source": "harness/runs/benign/real_ssh_benign_2_s03.json",
+        "malicious": 0,
+        "score": 0.3993068363638557
+      },
+      {
+        "source": "harness/runs/benign/real_ssh_benign_3_s03.json",
+        "malicious": 0,
+        "score": 0.4275569572069058
+      },
+      {
+        "source": "harness/runs/benign/real_ssh_benign_3_s01.json",
+        "malicious": 0,
+        "score": 0.3200188990879627
+      },
+      {
+        "source": "harness/runs/benign/real_ssh_benign_2_s01.json",
+        "malicious": 0,
+        "score": 0.2520329049596527
+      },
+      {
+        "source": "harness/runs/benign/real_ssh_benign_1_s04.json",
+        "malicious": 0,
+        "score": 0.4709297708115136
+      },
+      {
+        "source": "harness/runs/benign/real_ssh_benign_1_s03.json",
+        "malicious": 0,
+        "score": 0.424252322260526
+      },
+      {
+        "source": "harness/runs/benign/real_ssh_benign_1_s02.json",
+        "malicious": 0,
+        "score": 0.4885111163221018
+      },
+      {
+        "source": "harness/runs/multimodel/l_prompt_5_s02.json",
+        "malicious": 1,
+        "score": 0.6814383167966082
+      },
+      {
+        "source": "harness/runs/multimodel/q_prompt_3_s02.json",
+        "malicious": 1,
+        "score": 0.6088288526650214
+      },
+      {
+        "source": "harness/runs/multimodel/g4_prompt_5_s02.json",
+        "malicious": 1,
+        "score": 0.7925357714208989
+      },
+      {
+        "source": "harness/runs/multimodel/g4_benign_3_s01.json",
+        "malicious": 0,
+        "score": 0.42265345697562423
+      },
+      {
+        "source": "harness/runs/multimodel/g4_benign_2_s01.json",
+        "malicious": 0,
+        "score": 0.5175981320002592
+      },
+      {
+        "source": "harness/runs/multimodel/l_prompt_1_s01.json",
+        "malicious": 1,
+        "score": 0.627106737017778
+      },
+      {
+        "source": "harness/runs/multimodel/q_benign_1_s02.json",
+        "malicious": 0,
+        "score": 0.4342777216569695
+      },
+      {
+        "source": "harness/runs/multimodel/g4_prompt_1_s01.json",
+        "malicious": 1,
+        "score": 0.678670020129212
+      },
+      {
+        "source": "harness/runs/multimodel/q_prompt_1_s01.json",
+        "malicious": 1,
+        "score": 0.6551064751320419
+      },
+      {
+        "source": "harness/runs/multimodel/g4_benign_1_s02.json",
+        "malicious": 0,
+        "score": 0.3219922274316637
+      },
+      {
+        "source": "harness/runs/multimodel/l_prompt_3_s02.json",
+        "malicious": 1,
+        "score": 0.764362262143753
+      },
+      {
+        "source": "harness/runs/multimodel/q_benign_3_s01.json",
+        "malicious": 0,
+        "score": 0.5926027941675035
+      },
+      {
+        "source": "harness/runs/multimodel/q_benign_2_s01.json",
+        "malicious": 0,
+        "score": 0.6870080396239748
+      },
+      {
+        "source": "harness/runs/multimodel/q_prompt_5_s02.json",
+        "malicious": 1,
+        "score": 0.7266267730634951
+      },
+      {
+        "source": "harness/runs/multimodel/g4_prompt_3_s02.json",
+        "malicious": 1,
+        "score": 0.7611264215913943
+      },
+      {
+        "source": "harness/runs/multimodel/g4_prompt_3_s01.json",
+        "malicious": 1,
+        "score": 0.6363924306269042
+      },
+      {
+        "source": "harness/runs/multimodel/l_prompt_3_s01.json",
+        "malicious": 1,
+        "score": 0.6985552505639634
+      },
+      {
+        "source": "harness/runs/multimodel/q_benign_2_s02.json",
+        "malicious": 0,
+        "score": 0.6870080396239748
+      },
+      {
+        "source": "harness/runs/multimodel/q_benign_3_s02.json",
+        "malicious": 0,
+        "score": 0.5926027941675035
+      },
+      {
+        "source": "harness/runs/multimodel/q_prompt_5_s01.json",
+        "malicious": 1,
+        "score": 0.720996283712265
+      },
+      {
+        "source": "harness/runs/multimodel/g4_benign_1_s01.json",
+        "malicious": 0,
+        "score": 0.2975688600201131
+      },
+      {
+        "source": "harness/runs/multimodel/l_benign_1_s01.json",
+        "malicious": 0,
+        "score": 0.395441657867305
+      },
+      {
+        "source": "harness/runs/multimodel/q_prompt_1_s02.json",
+        "malicious": 1,
+        "score": 0.3952195869137908
+      },
+      {
+        "source": "harness/runs/multimodel/g4_prompt_1_s02.json",
+        "malicious": 1,
+        "score": 0.6490472650181535
+      },
+      {
+        "source": "harness/runs/multimodel/l_prompt_1_s02.json",
+        "malicious": 1,
+        "score": 0.42334160824872497
+      },
+      {
+        "source": "harness/runs/multimodel/q_benign_1_s01.json",
+        "malicious": 0,
+        "score": 0.13728257413531658
+      },
+      {
+        "source": "harness/runs/multimodel/g4_prompt_5_s01.json",
+        "malicious": 1,
+        "score": 0.6655174802657069
+      },
+      {
+        "source": "harness/runs/multimodel/g4_benign_2_s02.json",
+        "malicious": 0,
+        "score": 0.33290061626400697
+      },
+      {
+        "source": "harness/runs/multimodel/g4_benign_3_s02.json",
+        "malicious": 0,
+        "score": 0.6851301345679789
+      },
+      {
+        "source": "harness/runs/multimodel/l_prompt_5_s01.json",
+        "malicious": 1,
+        "score": 0.6617466872616519
+      },
+      {
+        "source": "harness/runs/multimodel/q_prompt_3_s01.json",
+        "malicious": 1,
+        "score": 0.7024024303344869
+      },
+      {
+        "source": "harness/runs/ctf_range/gemma4-latest/ctf_g4_ctf_recon_18_session01.json",
+        "malicious": 1,
+        "score": 0.5676571926540145
+      },
+      {
+        "source": "harness/runs/ctf_range/gemma4-latest/ctf_g4_ctf_exploit_18_session01.json",
+        "malicious": 1,
+        "score": 0.650862503986323
+      },
+      {
+        "source": "harness/runs/ctf_range/gemma4-latest/ctf_g4_ctf_crack_18_session01.json",
+        "malicious": 1,
+        "score": 0.4108903436226774
+      },
+      {
+        "source": "harness/runs/ctf_range/gemma4-latest/ctf_g4_ctf_crack_18_session02.json",
+        "malicious": 1,
+        "score": 0.4297527444886324
+      },
+      {
+        "source": "harness/runs/ctf_range/gemma4-latest/ctf_g4_ctf_recon_18_session03.json",
+        "malicious": 1,
+        "score": 0.7670788228611161
+      },
+      {
+        "source": "harness/runs/ctf_range/gemma4-latest/ctf_g4_ctf_exploit_18_session02.json",
+        "malicious": 1,
+        "score": 0.632491016714884
+      },
+      {
+        "source": "harness/runs/ctf_range/gemma4-latest/ctf_g4_ctf_exploit_18_session03.json",
+        "malicious": 1,
+        "score": 0.503839677217546
+      },
+      {
+        "source": "harness/runs/ctf_range/gemma4-latest/ctf_g4_ctf_recon_18_session02.json",
+        "malicious": 1,
+        "score": 0.6791543277533696
+      },
+      {
+        "source": "harness/runs/ctf_range/gemma4-latest/ctf_g4_ctf_crack_18_session03.json",
+        "malicious": 1,
+        "score": 0.6811136190825582
+      },
+      {
+        "source": "harness/runs/ctf_range/gemma3-4b/ctf_g3_ctf_recon_20_session01.json",
+        "malicious": 1,
+        "score": 0.5640029166123857
+      },
+      {
+        "source": "harness/runs/ctf_range/gemma3-4b/ctf_g3_ctf_exploit_20_session02.json",
+        "malicious": 1,
+        "score": 0.7462378770116708
+      },
+      {
+        "source": "harness/runs/ctf_range/gemma3-4b/ctf_g3_ctf_exploit_20_session03.json",
+        "malicious": 1,
+        "score": 0.8191299565373206
+      },
+      {
+        "source": "harness/runs/ctf_range/gemma3-4b/ctf_g3_ctf_exploit_20_session01.json",
+        "malicious": 1,
+        "score": 0.5551111337050001
+      },
+      {
+        "source": "harness/runs/ctf_range/gemma3-4b/ctf_g3_ctf_recon_20_session04.json",
+        "malicious": 1,
+        "score": 0.7488261649156006
+      },
+      {
+        "source": "harness/runs/ctf_range/gemma3-4b/ctf_g3_ctf_recon_20_session03.json",
+        "malicious": 1,
+        "score": 0.5640029166123857
+      },
+      {
+        "source": "harness/runs/ctf_range/gemma3-4b/ctf_g3_ctf_recon_20_session02.json",
+        "malicious": 1,
+        "score": 0.7178018113535345
+      },
+      {
+        "source": "harness/runs/ctf_range/llama3.1-8b/ctf_l_ctf_crack_18_session01.json",
+        "malicious": 1,
+        "score": 0.6425602960445932
+      },
+      {
+        "source": "harness/runs/ctf_range/llama3.1-8b/ctf_l_ctf_recon_18_session01.json",
+        "malicious": 1,
+        "score": 0.6562470325555602
+      },
+      {
+        "source": "harness/runs/ctf_range/llama3.1-8b/ctf_l_ctf_exploit_18_session01.json",
+        "malicious": 1,
+        "score": 0.7212815425393977
+      },
+      {
+        "source": "harness/runs/ctf_range/llama3.1-8b/ctf_l_ctf_exploit_18_session02.json",
+        "malicious": 1,
+        "score": 0.7803276111112515
+      },
+      {
+        "source": "harness/runs/ctf_range/llama3.1-8b/ctf_l_ctf_exploit_18_session03.json",
+        "malicious": 1,
+        "score": 0.6937301634174025
+      },
+      {
+        "source": "harness/runs/ctf_range/llama3.1-8b/ctf_l_ctf_crack_18_session03.json",
+        "malicious": 1,
+        "score": 0.807617041076397
+      },
+      {
+        "source": "harness/runs/ctf_range/llama3.1-8b/ctf_l_ctf_recon_18_session02.json",
+        "malicious": 1,
+        "score": 0.657724247311125
+      },
+      {
+        "source": "harness/runs/ctf_range/llama3.1-8b/ctf_l_ctf_recon_18_session03.json",
+        "malicious": 1,
+        "score": 0.7040592325916859
+      },
+      {
+        "source": "harness/runs/ctf_range/llama3.1-8b/ctf_l_ctf_crack_18_session02.json",
+        "malicious": 1,
+        "score": 0.4695895489171941
+      },
+      {
+        "source": "harness/runs/ctf_range/qwen3-4b/ctf_q_ctf_recon_18_session01.json",
+        "malicious": 1,
+        "score": 0.7105310715950144
+      },
+      {
+        "source": "harness/runs/ctf_range/qwen3-4b/ctf_q_ctf_recon_18_session02.json",
+        "malicious": 1,
+        "score": 0.6980030997980187
+      },
+      {
+        "source": "harness/runs/grid_v2/real_ssh/gemma4-latest/real_ssh_gemma4-latest_prompt_1_20_session06.json",
+        "malicious": 1,
+        "score": 0.534969302868453
+      },
+      {
+        "source": "harness/runs/grid_v2/real_ssh/gemma4-latest/real_ssh_gemma4-latest_prompt_1_20_session07.json",
+        "malicious": 1,
+        "score": 0.4598130186766969
+      },
+      {
+        "source": "harness/runs/grid_v2/real_ssh/gemma4-latest/real_ssh_gemma4-latest_prompt_1_20_session01.json",
+        "malicious": 1,
+        "score": 0.6915491879882342
+      },
+      {
+        "source": "harness/runs/grid_v2/real_ssh/gemma4-latest/real_ssh_gemma4-latest_prompt_1_20_session02.json",
+        "malicious": 1,
+        "score": 0.6461340364418263
+      },
+      {
+        "source": "harness/runs/grid_v2/real_ssh/gemma4-latest/real_ssh_gemma4-latest_prompt_1_20_session03.json",
+        "malicious": 1,
+        "score": 0.6811072994852082
+      },
+      {
+        "source": "harness/runs/grid_v2/real_ssh/gemma4-latest/real_ssh_gemma4-latest_prompt_1_20_session08.json",
+        "malicious": 1,
+        "score": 0.5490638059598285
+      },
+      {
+        "source": "harness/runs/grid_v2/real_ssh/gemma4-latest/real_ssh_gemma4-latest_prompt_1_20_session04.json",
+        "malicious": 1,
+        "score": 0.5037072126024723
+      },
+      {
+        "source": "harness/runs/grid_v2/real_ssh/gemma4-latest/real_ssh_gemma4-latest_prompt_1_20_session05.json",
+        "malicious": 1,
+        "score": 0.5821309205648043
+      },
+      {
+        "source": "harness/runs/grid_v2/real_ssh/gemma3-4b/real_ssh_gemma3-4b_prompt_1_20_session07.json",
+        "malicious": 1,
+        "score": 0.6085834890200751
+      },
+      {
+        "source": "harness/runs/grid_v2/real_ssh/gemma3-4b/real_ssh_gemma3-4b_prompt_1_20_session06.json",
+        "malicious": 1,
+        "score": 0.6459487712446247
+      },
+      {
+        "source": "harness/runs/grid_v2/real_ssh/gemma3-4b/real_ssh_gemma3-4b_prompt_1_20_session01.json",
+        "malicious": 1,
+        "score": 0.5327794594561476
+      },
+      {
+        "source": "harness/runs/grid_v2/real_ssh/gemma3-4b/real_ssh_gemma3-4b_prompt_1_20_session03.json",
+        "malicious": 1,
+        "score": 0.6914886166068416
+      },
+      {
+        "source": "harness/runs/grid_v2/real_ssh/gemma3-4b/real_ssh_gemma3-4b_prompt_1_20_session02.json",
+        "malicious": 1,
+        "score": 0.6723894252992799
+      },
+      {
+        "source": "harness/runs/grid_v2/real_ssh/gemma3-4b/real_ssh_gemma3-4b_prompt_1_20_session05.json",
+        "malicious": 1,
+        "score": 0.6349660751668652
+      },
+      {
+        "source": "harness/runs/grid_v2/real_ssh/gemma3-4b/real_ssh_gemma3-4b_prompt_1_20_session04.json",
+        "malicious": 1,
+        "score": 0.550988531957764
+      },
+      {
+        "source": "harness/runs/grid_v2/real_ssh/gemma3-4b/real_ssh_gemma3-4b_prompt_1_20_session08.json",
+        "malicious": 1,
+        "score": 0.8013548730958101
+      },
+      {
+        "source": "harness/runs/grid_v2/real_ssh/llama3.1-8b/real_ssh_llama3.1-8b_prompt_1_20_session03.json",
+        "malicious": 1,
+        "score": 0.7203005763425836
+      },
+      {
+        "source": "harness/runs/grid_v2/real_ssh/llama3.1-8b/real_ssh_llama3.1-8b_prompt_1_20_session02.json",
+        "malicious": 1,
+        "score": 0.5323790524771054
+      },
+      {
+        "source": "harness/runs/grid_v2/real_ssh/llama3.1-8b/real_ssh_llama3.1-8b_prompt_1_20_session05.json",
+        "malicious": 1,
+        "score": 0.5106409808681798
+      },
+      {
+        "source": "harness/runs/grid_v2/real_ssh/llama3.1-8b/real_ssh_llama3.1-8b_prompt_1_20_session08.json",
+        "malicious": 1,
+        "score": 0.6801375047824407
+      },
+      {
+        "source": "harness/runs/grid_v2/real_ssh/llama3.1-8b/real_ssh_llama3.1-8b_prompt_1_20_session04.json",
+        "malicious": 1,
+        "score": 0.6661621286389874
+      },
+      {
+        "source": "harness/runs/grid_v2/real_ssh/llama3.1-8b/real_ssh_llama3.1-8b_prompt_1_20_session07.json",
+        "malicious": 1,
+        "score": 0.5073092830259093
+      },
+      {
+        "source": "harness/runs/grid_v2/real_ssh/llama3.1-8b/real_ssh_llama3.1-8b_prompt_1_20_session06.json",
+        "malicious": 1,
+        "score": 0.6698415845380208
+      },
+      {
+        "source": "harness/runs/grid_v2/real_ssh/llama3.1-8b/real_ssh_llama3.1-8b_prompt_1_20_session01.json",
+        "malicious": 1,
+        "score": 0.6090727774388538
+      },
+      {
+        "source": "harness/runs/gemini/gemini3pro/empty_gemini3pro_prompt_3_20_session02.json",
+        "malicious": 1,
+        "score": 0.42904560826198296
+      },
+      {
+        "source": "harness/runs/gemini/gemini3pro/empty_gemini3pro_prompt_1_20_session08.json",
+        "malicious": 1,
+        "score": 0.6531694812909187
+      },
+      {
+        "source": "harness/runs/gemini/gemini3pro/empty_gemini3pro_prompt_1_20_session04.json",
+        "malicious": 1,
+        "score": 0.5661352310876323
+      },
+      {
+        "source": "harness/runs/gemini/gemini3pro/empty_gemini3pro_prompt_1_20_session05.json",
+        "malicious": 1,
+        "score": 0.7208519952856457
+      },
+      {
+        "source": "harness/runs/gemini/gemini3pro/empty_gemini3pro_prompt_3_20_session03.json",
+        "malicious": 1,
+        "score": 0.475324385693632
+      },
+      {
+        "source": "harness/runs/gemini/gemini3pro/empty_gemini3pro_prompt_1_20_session02.json",
+        "malicious": 1,
+        "score": 0.35565042257500074
+      },
+      {
+        "source": "harness/runs/gemini/gemini3pro/empty_gemini3pro_prompt_3_20_session04.json",
+        "malicious": 1,
+        "score": 0.7346833868304733
+      },
+      {
+        "source": "harness/runs/gemini/gemini3pro/empty_gemini3pro_prompt_1_12_session01.json",
+        "malicious": 1,
+        "score": 0.740328007651866
+      },
+      {
+        "source": "harness/runs/gemini/gemini3pro/empty_gemini3pro_prompt_3_20_session05.json",
+        "malicious": 1,
+        "score": 0.3683782051941516
+      },
+      {
+        "source": "harness/runs/gemini/gemini3pro/empty_gemini3pro_prompt_1_20_session03.json",
+        "malicious": 1,
+        "score": 0.6484841035869163
+      },
+      {
+        "source": "harness/runs/gemini/gemini3pro/empty_gemini3pro_prompt_1_20_session01.json",
+        "malicious": 1,
+        "score": 0.5661352310876323
+      },
+      {
+        "source": "harness/runs/gemini/gemini3pro/empty_gemini3pro_prompt_1_20_session06.json",
+        "malicious": 1,
+        "score": 0.7509490845232507
+      },
+      {
+        "source": "harness/runs/gemini/gemini3pro/empty_gemini3pro_prompt_1_20_session07.json",
+        "malicious": 1,
+        "score": 0.7236401249302722
+      },
+      {
+        "source": "harness/runs/gemini/gemini3pro/empty_gemini3pro_prompt_3_20_session01.json",
+        "malicious": 1,
+        "score": 0.5776278016862112
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_crack_20_session06.json",
+        "malicious": 1,
+        "score": 0.6506936232570073
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_exploit_20_session01.json",
+        "malicious": 1,
+        "score": 0.6264567289179162
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_benign_3_20_session05.json",
+        "malicious": 0,
+        "score": 0.327000127900505
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_5_20_session07.json",
+        "malicious": 1,
+        "score": 0.6617170166644851
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_recon_20_session07.json",
+        "malicious": 1,
+        "score": 0.6117739239011557
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_1_20_session06.json",
+        "malicious": 1,
+        "score": 0.7649011101556001
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_benign_2_20_session08.json",
+        "malicious": 0,
+        "score": 0.4854724248033997
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_benign_1_20_session03.json",
+        "malicious": 0,
+        "score": 0.4805468678297088
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_benign_2_20_session04.json",
+        "malicious": 0,
+        "score": 0.7069551708718503
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_3_20_session01.json",
+        "malicious": 1,
+        "score": 0.7861172778771873
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_benign_2_20_session05.json",
+        "malicious": 0,
+        "score": 0.6182890595778062
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_benign_1_20_session02.json",
+        "malicious": 0,
+        "score": 0.5231571931841287
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_benign_3_20_session08.json",
+        "malicious": 0,
+        "score": 0.37584036085658706
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_1_20_session07.json",
+        "malicious": 1,
+        "score": 0.5847929890659492
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_recon_20_session06.json",
+        "malicious": 1,
+        "score": 0.7102804182595206
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_5_20_session06.json",
+        "malicious": 1,
+        "score": 0.5505840547318164
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_benign_3_20_session04.json",
+        "malicious": 0,
+        "score": 0.34095321394271844
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_crack_20_session07.json",
+        "malicious": 1,
+        "score": 0.5690569568561206
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_benign_1_20_session05.json",
+        "malicious": 0,
+        "score": 0.5491013405944992
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_benign_2_20_session02.json",
+        "malicious": 0,
+        "score": 0.7050463890331616
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_3_20_session06.json",
+        "malicious": 1,
+        "score": 0.7429912865352974
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_exploit_20_session07.json",
+        "malicious": 1,
+        "score": 0.7788538084763764
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_benign_3_20_session03.json",
+        "malicious": 0,
+        "score": 0.3496386435248887
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_5_20_session01.json",
+        "malicious": 1,
+        "score": 0.6402011896954
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_recon_20_session01.json",
+        "malicious": 1,
+        "score": 0.7092505325168835
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_1_20_session01.json",
+        "malicious": 1,
+        "score": 0.6249989719484275
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_exploit_20_session06.json",
+        "malicious": 1,
+        "score": 0.7682935623258871
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_benign_1_20_session08.json",
+        "malicious": 0,
+        "score": 0.48192265645071014
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_benign_3_20_session02.json",
+        "malicious": 0,
+        "score": 0.2552233458045708
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_crack_20_session01.json",
+        "malicious": 1,
+        "score": 0.690397459970097
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_3_20_session07.json",
+        "malicious": 1,
+        "score": 0.6449464278094228
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_benign_2_20_session03.json",
+        "malicious": 0,
+        "score": 0.7288180280509414
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_benign_1_20_session04.json",
+        "malicious": 0,
+        "score": 0.5412105872061898
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_3_20_session04.json",
+        "malicious": 1,
+        "score": 0.7879449563026003
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_benign_1_20_session07.json",
+        "malicious": 0,
+        "score": 0.5934253488862735
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_1_20_session02.json",
+        "malicious": 1,
+        "score": 0.6763193758058822
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_3_20_session08.json",
+        "malicious": 1,
+        "score": 0.7758190720426318
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_recon_20_session03.json",
+        "malicious": 1,
+        "score": 0.7092505325168835
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_5_20_session03.json",
+        "malicious": 1,
+        "score": 0.5577170055490599
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_benign_3_20_session01.json",
+        "malicious": 0,
+        "score": 0.3353177623680242
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_exploit_20_session05.json",
+        "malicious": 1,
+        "score": 0.7741181259583066
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_crack_20_session02.json",
+        "malicious": 1,
+        "score": 0.6930453643430512
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_crack_20_session03.json",
+        "malicious": 1,
+        "score": 0.6940742212301533
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_exploit_20_session04.json",
+        "malicious": 1,
+        "score": 0.719970403525497
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_5_20_session02.json",
+        "malicious": 1,
+        "score": 0.6437795301331957
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_recon_20_session02.json",
+        "malicious": 1,
+        "score": 0.7483098408253132
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_1_20_session03.json",
+        "malicious": 1,
+        "score": 0.6606016632678475
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_exploit_20_session08.json",
+        "malicious": 1,
+        "score": 0.7024356813618535
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_benign_1_20_session06.json",
+        "malicious": 0,
+        "score": 0.5071312995846674
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_1_12_session01.json",
+        "malicious": 1,
+        "score": 0.6987769215408214
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_benign_2_20_session01.json",
+        "malicious": 0,
+        "score": 0.6518970713510497
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_3_20_session05.json",
+        "malicious": 1,
+        "score": 0.7388944872226231
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_1_20_session04.json",
+        "malicious": 1,
+        "score": 0.5842756022143322
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_recon_20_session05.json",
+        "malicious": 1,
+        "score": 0.7885321939281449
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_5_20_session05.json",
+        "malicious": 1,
+        "score": 0.7009771788193524
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_benign_3_20_session07.json",
+        "malicious": 0,
+        "score": 0.4047931939519522
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_exploit_20_session03.json",
+        "malicious": 1,
+        "score": 0.6619329294416874
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_crack_20_session04.json",
+        "malicious": 1,
+        "score": 0.6953155152146592
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_1_20_session08.json",
+        "malicious": 1,
+        "score": 0.6229826509041351
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_3_20_session02.json",
+        "malicious": 1,
+        "score": 0.7531492527115121
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_benign_2_20_session06.json",
+        "malicious": 0,
+        "score": 0.6346401541564796
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_crack_20_session08.json",
+        "malicious": 1,
+        "score": 0.690397459970097
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_benign_1_20_session01.json",
+        "malicious": 0,
+        "score": 0.4415186057029226
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_5_20_session08.json",
+        "malicious": 1,
+        "score": 0.6182921450309707
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_recon_20_session08.json",
+        "malicious": 1,
+        "score": 0.6994485348473697
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_3_20_session03.json",
+        "malicious": 1,
+        "score": 0.5888542469843281
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_crack_20_session05.json",
+        "malicious": 1,
+        "score": 0.6677358521419898
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_benign_3_20_session06.json",
+        "malicious": 0,
+        "score": 0.37338317617725736
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_exploit_20_session02.json",
+        "malicious": 1,
+        "score": 0.6831245142612489
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_5_20_session04.json",
+        "malicious": 1,
+        "score": 0.3878190189910123
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_recon_20_session04.json",
+        "malicious": 1,
+        "score": 0.7142880149438201
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_1_20_session05.json",
+        "malicious": 1,
+        "score": 0.6013622050483771
+      },
+      {
+        "source": "data/human/muni/House of cards/2019-08-15 KYPO Summer School/sandbox-396-useractions.json",
+        "malicious": 1,
+        "score": 0.6192925717956369
+      },
+      {
+        "source": "data/human/muni/House of cards/2019-08-15 KYPO Summer School/sandbox-397-useractions.json",
+        "malicious": 1,
+        "score": 0.5619959411419629
+      },
+      {
+        "source": "data/human/muni/House of cards/2019-08-15 KYPO Summer School/sandbox-398-useractions.json",
+        "malicious": 1,
+        "score": 0.667276229361578
+      },
+      {
+        "source": "data/human/muni/House of cards/2019-08-15 KYPO Summer School/sandbox-399-useractions.json",
+        "malicious": 1,
+        "score": 0.5619959411419629
+      },
+      {
+        "source": "data/human/muni/House of cards/2019-08-15 KYPO Summer School/sandbox-400-useractions.json",
+        "malicious": 1,
+        "score": 0.698408631358815
+      },
+      {
+        "source": "data/human/muni/House of cards/2019-08-15 KYPO Summer School/sandbox-401-useractions.json",
+        "malicious": 1,
+        "score": 0.5619959411419629
+      },
+      {
+        "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-101-useractions.json",
+        "malicious": 1,
+        "score": 0.7347736935938057
+      },
+      {
+        "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-112-useractions.json",
+        "malicious": 1,
+        "score": 0.5645463368755329
+      },
+      {
+        "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-113-useractions.json",
+        "malicious": 1,
+        "score": 0.7511389683491531
+      },
+      {
+        "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-115-useractions.json",
+        "malicious": 1,
+        "score": 0.6191024495065239
+      },
+      {
+        "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-116-useractions.json",
+        "malicious": 1,
+        "score": 0.7313025102227971
+      },
+      {
+        "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-130-useractions.json",
+        "malicious": 1,
+        "score": 0.8367679449475123
+      },
+      {
+        "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-131-useractions.json",
+        "malicious": 1,
+        "score": 0.5704086764990632
+      },
+      {
+        "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-137-useractions.json",
+        "malicious": 1,
+        "score": 0.5645463368755329
+      },
+      {
+        "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-144-useractions.json",
+        "malicious": 1,
+        "score": 0.7658542201837286
+      },
+      {
+        "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-148-useractions.json",
+        "malicious": 1,
+        "score": 0.5645463368755329
+      },
+      {
+        "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-149-useractions.json",
+        "malicious": 1,
+        "score": 0.7694802568549278
+      },
+      {
+        "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-151-useractions.json",
+        "malicious": 1,
+        "score": 0.718466254085982
+      },
+      {
+        "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-152-useractions.json",
+        "malicious": 1,
+        "score": 0.7489688797285218
+      },
+      {
+        "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-156-useractions.json",
+        "malicious": 1,
+        "score": 0.7037911658529155
+      },
+      {
+        "source": "data/human/muni/House of cards/2019-09-19 PV276 First Lesson/sandbox-95-useractions.json",
+        "malicious": 1,
+        "score": 0.6226129697267468
+      },
+      {
+        "source": "data/human/muni/House of cards/2019-12-08 KYPOLAB student/sandbox-93-useractions.json",
+        "malicious": 1,
+        "score": 0.6026701391789514
+      },
+      {
+        "source": "data/human/muni/Junior hacker/2021-02-08/sandbox-1-useractions.json",
+        "malicious": 1,
+        "score": 0.6231644693303025
+      },
+      {
+        "source": "data/human/muni/Junior hacker/2021-02-08/sandbox-10-useractions.json",
+        "malicious": 1,
+        "score": 0.6155503087875107
+      },
+      {
+        "source": "data/human/muni/Junior hacker/2021-02-08/sandbox-11-useractions.json",
+        "malicious": 1,
+        "score": 0.6799585310953746
+      },
+      {
+        "source": "data/human/muni/Junior hacker/2021-02-08/sandbox-12-useractions.json",
+        "malicious": 1,
+        "score": 0.8111574360654793
+      },
+      {
+        "source": "data/human/muni/Junior hacker/2021-02-08/sandbox-13-useractions.json",
+        "malicious": 1,
+        "score": 0.7166349928450857
+      },
+      {
+        "source": "data/human/muni/Junior hacker/2021-02-08/sandbox-14-useractions.json",
+        "malicious": 1,
+        "score": 0.5654373201189804
+      },
+      {
+        "source": "data/human/muni/Junior hacker/2021-02-08/sandbox-15-useractions.json",
+        "malicious": 1,
+        "score": 0.7467456513627394
+      },
+      {
+        "source": "data/human/muni/Junior hacker/2021-02-08/sandbox-16-useractions.json",
+        "malicious": 1,
+        "score": 0.7927781528353771
+      },
+      {
+        "source": "data/human/muni/Junior hacker/2021-02-08/sandbox-17-useractions.json",
+        "malicious": 1,
+        "score": 0.7213015648070309
+      },
+      {
+        "source": "data/human/muni/Junior hacker/2021-02-08/sandbox-18-useractions.json",
+        "malicious": 1,
+        "score": 0.5654373201189804
+      },
+      {
+        "source": "data/human/muni/Junior hacker/2021-02-08/sandbox-2-useractions.json",
+        "malicious": 1,
+        "score": 0.7535972739373108
+      },
+      {
+        "source": "data/human/muni/Junior hacker/2021-02-08/sandbox-3-useractions.json",
+        "malicious": 1,
+        "score": 0.6211158290072761
+      },
+      {
+        "source": "data/human/muni/Junior hacker/2021-02-08/sandbox-4-useractions.json",
+        "malicious": 1,
+        "score": 0.6748028631404146
+      },
+      {
+        "source": "data/human/muni/Junior hacker/2021-02-08/sandbox-5-useractions.json",
+        "malicious": 1,
+        "score": 0.7692755412084739
+      },
+      {
+        "source": "data/human/muni/Junior hacker/2021-02-08/sandbox-6-useractions.json",
+        "malicious": 1,
+        "score": 0.7076373883516526
+      },
+      {
+        "source": "data/human/muni/Junior hacker/2021-02-08/sandbox-7-useractions.json",
+        "malicious": 1,
+        "score": 0.5654373201189804
+      },
+      {
+        "source": "data/human/muni/Junior hacker/2021-02-08/sandbox-8-useractions.json",
+        "malicious": 1,
+        "score": 0.6516998357020966
+      },
+      {
+        "source": "data/human/muni/Junior hacker/2021-02-08/sandbox-9-useractions.json",
+        "malicious": 1,
+        "score": 0.6436097540744512
+      },
+      {
+        "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-34-useractions.json",
+        "malicious": 1,
+        "score": 0.785926292362558
+      },
+      {
+        "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-35-useractions.json",
+        "malicious": 1,
+        "score": 0.8491638745973531
+      },
+      {
+        "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-36-useractions.json",
+        "malicious": 1,
+        "score": 0.8680511203983121
+      },
+      {
+        "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-37-useractions.json",
+        "malicious": 1,
+        "score": 0.67328683407094
+      },
+      {
+        "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-38-useractions.json",
+        "malicious": 1,
+        "score": 0.8208439944962644
+      },
+      {
+        "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-41-useractions.json",
+        "malicious": 1,
+        "score": 0.7485525560785674
+      },
+      {
+        "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-43-useractions.json",
+        "malicious": 1,
+        "score": 0.771077889876866
+      },
+      {
+        "source": "data/human/muni/Junior hacker adaptive/2020-12-02/sandbox-44-useractions.json",
+        "malicious": 1,
+        "score": 0.8165178986205136
+      },
+      {
+        "source": "data/human/muni/Junior hacker adaptive/2020-12-04/sandbox-68-useractions.json",
+        "malicious": 1,
+        "score": 0.7885555097518252
+      },
+      {
+        "source": "data/human/muni/Junior hacker adaptive/2020-12-04/sandbox-69-useractions.json",
+        "malicious": 1,
+        "score": 0.5705252004855353
+      },
+      {
+        "source": "data/human/muni/Junior hacker adaptive/2020-12-04/sandbox-70-useractions.json",
+        "malicious": 1,
+        "score": 0.5417958724825174
+      },
+      {
+        "source": "data/human/muni/Junior hacker adaptive/2020-12-04/sandbox-71-useractions.json",
+        "malicious": 1,
+        "score": 0.6660831534409399
+      },
+      {
+        "source": "data/human/muni/Junior hacker adaptive/2020-12-04/sandbox-73-useractions.json",
+        "malicious": 1,
+        "score": 0.8044300463686207
+      },
+      {
+        "source": "data/human/muni/Junior hacker adaptive/2020-12-04/sandbox-74-useractions.json",
+        "malicious": 1,
+        "score": 0.7429133026560022
+      },
+      {
+        "source": "data/human/muni/Junior hacker adaptive/2020-12-04/sandbox-75-useractions.json",
+        "malicious": 1,
+        "score": 0.766742630033532
+      },
+      {
+        "source": "data/human/muni/Junior hacker adaptive/2020-12-11/sandbox-120-useractions.json",
+        "malicious": 1,
+        "score": 0.7479183026474716
+      },
+      {
+        "source": "data/human/muni/Junior hacker adaptive/2020-12-11/sandbox-121-useractions.json",
+        "malicious": 1,
+        "score": 0.7404066866415703
+      },
+      {
+        "source": "data/human/muni/Junior hacker adaptive/2020-12-11/sandbox-122-useractions.json",
+        "malicious": 1,
+        "score": 0.7892312058098093
+      },
+      {
+        "source": "data/human/muni/Junior hacker adaptive/2020-12-11/sandbox-123-useractions.json",
+        "malicious": 1,
+        "score": 0.815757960479265
+      },
+      {
+        "source": "data/human/muni/Junior hacker adaptive/2021-01-14/sandbox-104-useractions.json",
+        "malicious": 1,
+        "score": 0.7809793772730627
+      },
+      {
+        "source": "data/human/muni/Junior hacker adaptive/2021-01-14/sandbox-105-useractions.json",
+        "malicious": 1,
+        "score": 0.8033094624570027
+      },
+      {
+        "source": "data/human/muni/Junior hacker adaptive/2021-01-14/sandbox-106-useractions.json",
+        "malicious": 1,
+        "score": 0.8131971076497917
+      },
+      {
+        "source": "data/human/muni/Junior hacker adaptive/2021-01-14/sandbox-107-useractions.json",
+        "malicious": 1,
+        "score": 0.8467114330569248
+      },
+      {
+        "source": "data/human/muni/Junior hacker adaptive/2021-05-25/sandbox-25-useractions.json",
+        "malicious": 1,
+        "score": 0.7830190280563034
+      },
+      {
+        "source": "data/human/muni/Junior hacker adaptive/2021-05-25/sandbox-27-useractions.json",
+        "malicious": 1,
+        "score": 0.8115697134062402
+      },
+      {
+        "source": "data/human/muni/Junior hacker adaptive/2021-05-25/sandbox-28-useractions.json",
+        "malicious": 1,
+        "score": 0.7744177118105883
+      },
+      {
+        "source": "data/human/muni/Junior hacker adaptive/2021-05-25/sandbox-29-useractions.json",
+        "malicious": 1,
+        "score": 0.8050482961879953
+      },
+      {
+        "source": "data/human/muni/Junior hacker adaptive/2021-05-25/sandbox-30-useractions.json",
+        "malicious": 1,
+        "score": 0.7635093547381402
+      },
+      {
+        "source": "data/human/muni/Junior hacker adaptive/2021-05-25/sandbox-31-useractions.json",
+        "malicious": 1,
+        "score": 0.7018904563478624
+      },
+      {
+        "source": "data/human/muni/Junior hacker adaptive/2021-05-25/sandbox-32-useractions.json",
+        "malicious": 1,
+        "score": 0.8163289258340976
+      },
+      {
+        "source": "data/human/muni/Junior hacker adaptive/2021-05-25/sandbox-33-useractions.json",
+        "malicious": 1,
+        "score": 0.7467667405151859
+      },
+      {
+        "source": "data/human/muni/Junior hacker adaptive/2021-05-25/sandbox-34-useractions.json",
+        "malicious": 1,
+        "score": 0.7583392106879943
+      },
+      {
+        "source": "data/human/muni/Junior hacker adaptive/2021-05-25/sandbox-35-useractions.json",
+        "malicious": 1,
+        "score": 0.8164834065809388
+      },
+      {
+        "source": "data/human/muni/Junior hacker adaptive/2021-05-25/sandbox-36-useractions.json",
+        "malicious": 1,
+        "score": 0.7783229591547355
+      },
+      {
+        "source": "data/human/muni/Junior hacker adaptive/2021-05-25/sandbox-37-useractions.json",
+        "malicious": 1,
+        "score": 0.772137691433078
+      },
+      {
+        "source": "data/human/muni/Junior hacker adaptive/2021-05-25/sandbox-39-useractions.json",
+        "malicious": 1,
+        "score": 0.8137849021462761
+      },
+      {
+        "source": "data/human/muni/Junior hacker adaptive/2021-05-25/sandbox-40-useractions.json",
+        "malicious": 1,
+        "score": 0.7611702266900693
+      },
+      {
+        "source": "data/human/muni/Junior hacker adaptive/2021-05-25/sandbox-41-useractions.json",
+        "malicious": 1,
+        "score": 0.7644892749358765
+      },
+      {
+        "source": "data/human/muni/Junior hacker adaptive/2021-05-25/sandbox-42-useractions.json",
+        "malicious": 1,
+        "score": 0.7798318338978134
+      },
+      {
+        "source": "data/human/muni/Junior hacker adaptive/2021-05-25/sandbox-43-useractions.json",
+        "malicious": 1,
+        "score": 0.7058436081093513
+      },
+      {
+        "source": "data/human/muni/Junior hacker adaptive/2021-05-25/sandbox-44-useractions.json",
+        "malicious": 1,
+        "score": 0.8372779754865272
+      },
+      {
+        "source": "data/human/muni/Junior hacker adaptive/2021-05-25/sandbox-45-useractions.json",
+        "malicious": 1,
+        "score": 0.538638978214917
+      },
+      {
+        "source": "data/human/muni/Junior hacker adaptive/2021-05-26/sandbox-59-useractions.json",
+        "malicious": 1,
+        "score": 0.8348177891139034
+      },
+      {
+        "source": "data/human/muni/Junior hacker adaptive/2021-05-26/sandbox-61-useractions.json",
+        "malicious": 1,
+        "score": 0.7894893676968756
+      },
+      {
+        "source": "data/human/muni/Junior hacker adaptive/2021-05-26/sandbox-62-useractions.json",
+        "malicious": 1,
+        "score": 0.7503364969013231
+      },
+      {
+        "source": "data/human/muni/Junior hacker adaptive/2021-05-26/sandbox-63-useractions.json",
+        "malicious": 1,
+        "score": 0.792504498359665
+      },
+      {
+        "source": "data/human/muni/Junior hacker adaptive/2021-05-26/sandbox-65-useractions.json",
+        "malicious": 1,
+        "score": 0.7049730224211357
+      },
+      {
+        "source": "data/human/muni/Junior hacker adaptive/2021-05-26/sandbox-66-useractions.json",
+        "malicious": 1,
+        "score": 0.8454021740008797
+      },
+      {
+        "source": "data/human/muni/Junior hacker adaptive/2021-05-26/sandbox-67-useractions.json",
+        "malicious": 1,
+        "score": 0.8223986809520771
+      },
+      {
+        "source": "data/human/muni/Junior hacker adaptive/2021-05-26/sandbox-68-useractions.json",
+        "malicious": 1,
+        "score": 0.8015047667283648
+      },
+      {
+        "source": "data/human/muni/Junior hacker adaptive/2021-05-28/sandbox-74-useractions.json",
+        "malicious": 1,
+        "score": 0.812976371471954
+      },
+      {
+        "source": "data/human/muni/Junior hacker adaptive/2021-05-28/sandbox-75-useractions.json",
+        "malicious": 1,
+        "score": 0.8631090568503857
+      },
+      {
+        "source": "data/human/muni/Junior hacker adaptive/2021-05-28/sandbox-76-useractions.json",
+        "malicious": 1,
+        "score": 0.7468188556417213
+      },
+      {
+        "source": "data/human/muni/Junior hacker adaptive/2021-05-28/sandbox-77-useractions.json",
+        "malicious": 1,
+        "score": 0.8079688728890677
+      },
+      {
+        "source": "data/human/muni/Junior hacker adaptive/2021-05-28/sandbox-78-useractions.json",
+        "malicious": 1,
+        "score": 0.7593812691469665
+      },
+      {
+        "source": "data/human/muni/Junior hacker adaptive/2021-05-28/sandbox-79-useractions.json",
+        "malicious": 1,
+        "score": 0.8008773642260276
+      },
+      {
+        "source": "data/human/muni/Junior hacker adaptive/2021-05-28/sandbox-81-useractions.json",
+        "malicious": 1,
+        "score": 0.5690529809642216
+      },
+      {
+        "source": "data/human/muni/Junior hacker adaptive/2021-05-28/sandbox-86-useractions.json",
+        "malicious": 1,
+        "score": 0.8571878475602217
+      },
+      {
+        "source": "data/human/muni/Junior hacker adaptive/2021-09-09/sandbox-3-useractions.json",
+        "malicious": 1,
+        "score": 0.7683582660244277
+      },
+      {
+        "source": "data/human/muni/Junior hacker adaptive/2021-09-09/sandbox-4-useractions.json",
+        "malicious": 1,
+        "score": 0.829366986943799
+      },
+      {
+        "source": "data/human/muni/Junior hacker adaptive/2021-09-09/sandbox-7-useractions.json",
+        "malicious": 1,
+        "score": 0.7841195080602265
+      },
+      {
+        "source": "data/human/muni/Junior hacker adaptive/2021-09-09/sandbox-9-useractions.json",
+        "malicious": 1,
+        "score": 0.8374275583853328
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2019-12-12/sandbox-185-useractions.json",
+        "malicious": 1,
+        "score": 0.8424670331805162
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2019-12-12/sandbox-187-useractions.json",
+        "malicious": 1,
+        "score": 0.7182341881362677
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2019-12-12/sandbox-188-useractions.json",
+        "malicious": 1,
+        "score": 0.5647571002077586
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2019-12-12/sandbox-195-useractions.json",
+        "malicious": 1,
+        "score": 0.5647571002077586
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2020-05-06/sandbox-128-useractions.json",
+        "malicious": 1,
+        "score": 0.5677179626835809
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2020-05-06/sandbox-129-useractions.json",
+        "malicious": 1,
+        "score": 0.41511235664952484
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2020-05-06/sandbox-130-useractions.json",
+        "malicious": 1,
+        "score": 0.703905413134505
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2020-05-06/sandbox-131-useractions.json",
+        "malicious": 1,
+        "score": 0.78409696930443
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2020-05-06/sandbox-172-useractions.json",
+        "malicious": 1,
+        "score": 0.8009838216263802
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2020-07-15/sandbox-42-useractions.json",
+        "malicious": 1,
+        "score": 0.6714884777962085
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2020-07-15/sandbox-43-useractions.json",
+        "malicious": 1,
+        "score": 0.6648118305383841
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2020-07-15/sandbox-44-useractions.json",
+        "malicious": 1,
+        "score": 0.7801474564082285
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2020-07-15/sandbox-50-useractions.json",
+        "malicious": 1,
+        "score": 0.7385582473851269
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2020-07-15/sandbox-54-useractions.json",
+        "malicious": 1,
+        "score": 0.8070021403472932
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2020-07-15/sandbox-56-useractions.json",
+        "malicious": 1,
+        "score": 0.8035766732688665
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2020-07-15/sandbox-66-useractions.json",
+        "malicious": 1,
+        "score": 0.7419916363242519
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2020-07-15/sandbox-69-useractions.json",
+        "malicious": 1,
+        "score": 0.8364289880369318
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2020-07-15/sandbox-70-useractions.json",
+        "malicious": 1,
+        "score": 0.6954693815376151
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2020-07-15/sandbox-71-useractions.json",
+        "malicious": 1,
+        "score": 0.8386916355851269
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2020-07-15/sandbox-73-useractions.json",
+        "malicious": 1,
+        "score": 0.5551340786839887
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2020-07-15/sandbox-77-useractions.json",
+        "malicious": 1,
+        "score": 0.42195287194970243
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2020-07-15/sandbox-79-useractions.json",
+        "malicious": 1,
+        "score": 0.5551340786839887
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2020-07-15/sandbox-80-useractions.json",
+        "malicious": 1,
+        "score": 0.6733392712582699
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2020-07-15/sandbox-84-useractions.json",
+        "malicious": 1,
+        "score": 0.7482911350159581
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2020-07-15/sandbox-85-useractions.json",
+        "malicious": 1,
+        "score": 0.7609716075552709
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2020-07-15/sandbox-86-useractions.json",
+        "malicious": 1,
+        "score": 0.6941804954382957
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2020-07-15/sandbox-87-useractions.json",
+        "malicious": 1,
+        "score": 0.784680434300013
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2020-07-15/sandbox-91-useractions.json",
+        "malicious": 1,
+        "score": 0.5551340786839887
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2020-07-15/sandbox-92-useractions.json",
+        "malicious": 1,
+        "score": 0.6941804954382957
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2021-04-22/sandbox-22-useractions.json",
+        "malicious": 1,
+        "score": 0.5693318423082571
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2021-04-22/sandbox-23-useractions.json",
+        "malicious": 1,
+        "score": 0.7116463874338177
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2021-04-22/sandbox-24-useractions.json",
+        "malicious": 1,
+        "score": 0.6885497042584263
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2021-04-22/sandbox-25-useractions.json",
+        "malicious": 1,
+        "score": 0.6936253094604466
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2021-04-22/sandbox-26-useractions.json",
+        "malicious": 1,
+        "score": 0.6209319145399278
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2021-04-22/sandbox-28-useractions.json",
+        "malicious": 1,
+        "score": 0.7227172067202995
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2021-04-22/sandbox-29-useractions.json",
+        "malicious": 1,
+        "score": 0.7172748813452288
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2021-04-22/sandbox-30-useractions.json",
+        "malicious": 1,
+        "score": 0.7707739402930143
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2021-04-22/sandbox-31-useractions.json",
+        "malicious": 1,
+        "score": 0.709627902462786
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-02-18/sandbox-44-useractions.json",
+        "malicious": 1,
+        "score": 0.5004107631712913
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-02-18/sandbox-45-useractions.json",
+        "malicious": 1,
+        "score": 0.6884272507598515
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-02-18/sandbox-46-useractions.json",
+        "malicious": 1,
+        "score": 0.7476369767060568
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-02-18/sandbox-47-useractions.json",
+        "malicious": 1,
+        "score": 0.7205735547590014
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-02-18/sandbox-48-useractions.json",
+        "malicious": 1,
+        "score": 0.18413002955648974
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-02-18/sandbox-49-useractions.json",
+        "malicious": 1,
+        "score": 0.7826056489612401
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-02-18/sandbox-50-useractions.json",
+        "malicious": 1,
+        "score": 0.7439198014294545
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-02-18/sandbox-51-useractions.json",
+        "malicious": 1,
+        "score": 0.7498326868560554
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-02-18/sandbox-52-useractions.json",
+        "malicious": 1,
+        "score": 0.8133493166038991
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-02-18/sandbox-53-useractions.json",
+        "malicious": 1,
+        "score": 0.6365196285101171
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-02-18/sandbox-54-useractions.json",
+        "malicious": 1,
+        "score": 0.5673096940898394
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-02-18/sandbox-55-useractions.json",
+        "malicious": 1,
+        "score": 0.5673096940898394
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-02-18/sandbox-56-useractions.json",
+        "malicious": 1,
+        "score": 0.621997659875962
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-02-24/sandbox-100-useractions.json",
+        "malicious": 1,
+        "score": 0.7438951746485294
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-02-24/sandbox-101-useractions.json",
+        "malicious": 1,
+        "score": 0.8356624585501716
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-02-24/sandbox-102-useractions.json",
+        "malicious": 1,
+        "score": 0.6765918268086875
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-02-24/sandbox-90-useractions.json",
+        "malicious": 1,
+        "score": 0.46836666595595283
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-02-24/sandbox-91-useractions.json",
+        "malicious": 1,
+        "score": 0.8089500856339891
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-02-24/sandbox-92-useractions.json",
+        "malicious": 1,
+        "score": 0.5704187816705566
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-02-24/sandbox-93-useractions.json",
+        "malicious": 1,
+        "score": 0.7814279192090373
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-02-24/sandbox-94-useractions.json",
+        "malicious": 1,
+        "score": 0.8463187976263045
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-02-24/sandbox-95-useractions.json",
+        "malicious": 1,
+        "score": 0.6779135704829824
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-02-24/sandbox-96-useractions.json",
+        "malicious": 1,
+        "score": 0.7448288195103895
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-02-24/sandbox-97-useractions.json",
+        "malicious": 1,
+        "score": 0.7294194483918547
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-02-24/sandbox-98-useractions.json",
+        "malicious": 1,
+        "score": 0.7153860308861679
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-02-24/sandbox-99-useractions.json",
+        "malicious": 1,
+        "score": 0.7362835578142158
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-04-25/sandbox-82-useractions.json",
+        "malicious": 1,
+        "score": 0.7124643697318332
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-04-25/sandbox-83-useractions.json",
+        "malicious": 1,
+        "score": 0.5843841276419459
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-04-25/sandbox-84-useractions.json",
+        "malicious": 1,
+        "score": 0.8328411076481161
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-04-25/sandbox-85-useractions.json",
+        "malicious": 1,
+        "score": 0.7151879673349976
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-04-25/sandbox-86-useractions.json",
+        "malicious": 1,
+        "score": 0.8039427562674628
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-04-25/sandbox-87-useractions.json",
+        "malicious": 1,
+        "score": 0.7012390429543999
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-04-25/sandbox-88-useractions.json",
+        "malicious": 1,
+        "score": 0.7228712722637233
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-04-25/sandbox-89-useractions.json",
+        "malicious": 1,
+        "score": 0.7496377673858807
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-04-25/sandbox-90-useractions.json",
+        "malicious": 1,
+        "score": 0.7496377673858807
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-04-25/sandbox-91-useractions.json",
+        "malicious": 1,
+        "score": 0.7771861092479168
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-04-28/sandbox-57-useractions.json",
+        "malicious": 1,
+        "score": 0.5669540707739723
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-04-28/sandbox-58-useractions.json",
+        "malicious": 1,
+        "score": 0.6848703246899058
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-04-28/sandbox-59-useractions.json",
+        "malicious": 1,
+        "score": 0.6061424828305658
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-04-28/sandbox-60-useractions.json",
+        "malicious": 1,
+        "score": 0.7935528552481267
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-04-28/sandbox-61-useractions.json",
+        "malicious": 1,
+        "score": 0.7697118665142588
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-04-28/sandbox-62-useractions.json",
+        "malicious": 1,
+        "score": 0.3645842303945353
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-04-28/sandbox-63-useractions.json",
+        "malicious": 1,
+        "score": 0.7639138657298332
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-04-28/sandbox-64-useractions.json",
+        "malicious": 1,
+        "score": 0.7395571396029301
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-04-28/sandbox-65-useractions.json",
+        "malicious": 1,
+        "score": 0.8213640655770613
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-04-28/sandbox-66-useractions.json",
+        "malicious": 1,
+        "score": 0.7772992056318306
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-04-28/sandbox-67-useractions.json",
+        "malicious": 1,
+        "score": 0.5669540707739723
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-04-28/sandbox-68-useractions.json",
+        "malicious": 1,
+        "score": 0.7395571396029301
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-05-04/sandbox-643-useractions.json",
+        "malicious": 1,
+        "score": 0.4788783952539267
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-05-04/sandbox-644-useractions.json",
+        "malicious": 1,
+        "score": 0.5427486693742688
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-05-04/sandbox-645-useractions.json",
+        "malicious": 1,
+        "score": 0.6933496955692415
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-05-04/sandbox-646-useractions.json",
+        "malicious": 1,
+        "score": 0.6749117905811277
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-05-04/sandbox-647-useractions.json",
+        "malicious": 1,
+        "score": 0.7281281446038738
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-05-04/sandbox-648-useractions.json",
+        "malicious": 1,
+        "score": 0.6995091197176193
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-05-04/sandbox-649-useractions.json",
+        "malicious": 1,
+        "score": 0.6900966764614782
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-05-04/sandbox-650-useractions.json",
+        "malicious": 1,
+        "score": 0.8539813461405718
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-05-04/sandbox-651-useractions.json",
+        "malicious": 1,
+        "score": 0.702535205730002
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-05-04/sandbox-652-useractions.json",
+        "malicious": 1,
+        "score": 0.6953355893949286
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-05-04/sandbox-653-useractions.json",
+        "malicious": 1,
+        "score": 0.739429366948868
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-05-04/sandbox-654-useractions.json",
+        "malicious": 1,
+        "score": 0.7472558027586143
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-05-04/sandbox-655-useractions.json",
+        "malicious": 1,
+        "score": 0.739429366948868
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-05-04/sandbox-656-useractions.json",
+        "malicious": 1,
+        "score": 0.717175666432996
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-05-04/sandbox-660-useractions.json",
+        "malicious": 1,
+        "score": 0.7121824374203523
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-05-04/sandbox-661-useractions.json",
+        "malicious": 1,
+        "score": 0.7655876190179058
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-05-04/sandbox-662-useractions.json",
+        "malicious": 1,
+        "score": 0.6189195475146905
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-05-04/sandbox-663-useractions.json",
+        "malicious": 1,
+        "score": 0.7134598708487132
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-05-04/sandbox-664-useractions.json",
+        "malicious": 1,
+        "score": 0.6580536671970181
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-05-04/sandbox-665-useractions.json",
+        "malicious": 1,
+        "score": 0.7614328756971144
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-05-04/sandbox-666-useractions.json",
+        "malicious": 1,
+        "score": 0.7939599982018603
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-05-04/sandbox-667-useractions.json",
+        "malicious": 1,
+        "score": 0.5427486693742688
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-05-04/sandbox-668-useractions.json",
+        "malicious": 1,
+        "score": 0.7361823646626505
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-05-04/sandbox-669-useractions.json",
+        "malicious": 1,
+        "score": 0.7033309025756581
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-05-04/sandbox-670-useractions.json",
+        "malicious": 1,
+        "score": 0.7652731490937404
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-05-04/sandbox-671-useractions.json",
+        "malicious": 1,
+        "score": 0.5427486693742688
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-05-04/sandbox-672-useractions.json",
+        "malicious": 1,
+        "score": 0.8061777902123263
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-05-04/sandbox-673-useractions.json",
+        "malicious": 1,
+        "score": 0.7472558027586143
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-05-04/sandbox-674-useractions.json",
+        "malicious": 1,
+        "score": 0.6850958982475416
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-05-04/sandbox-675-useractions.json",
+        "malicious": 1,
+        "score": 0.7437338673246645
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-05-04/sandbox-676-useractions.json",
+        "malicious": 1,
+        "score": 0.7104508778795452
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-05-04/sandbox-680-useractions.json",
+        "malicious": 1,
+        "score": 0.7651731305882473
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-05-04/sandbox-681-useractions.json",
+        "malicious": 1,
+        "score": 0.5427486693742688
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-05-04/sandbox-682-useractions.json",
+        "malicious": 1,
+        "score": 0.6936766855870385
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-05-04/sandbox-683-useractions.json",
+        "malicious": 1,
+        "score": 0.7408702178406765
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-05-04/sandbox-684-useractions.json",
+        "malicious": 1,
+        "score": 0.6808882474372776
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-05-04/sandbox-685-useractions.json",
+        "malicious": 1,
+        "score": 0.7472558027586143
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-05-04/sandbox-686-useractions.json",
+        "malicious": 1,
+        "score": 0.7799781489764188
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-05-04/sandbox-687-useractions.json",
+        "malicious": 1,
+        "score": 0.7472558027586143
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-05-04/sandbox-688-useractions.json",
+        "malicious": 1,
+        "score": 0.7601311837133439
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-05-04/sandbox-690-useractions.json",
+        "malicious": 1,
+        "score": 0.6933496955692415
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-05-04/sandbox-691-useractions.json",
+        "malicious": 1,
+        "score": 0.6707337582929912
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-05-04/sandbox-692-useractions.json",
+        "malicious": 1,
+        "score": 0.8035322639507945
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-05-04/sandbox-693-useractions.json",
+        "malicious": 1,
+        "score": 0.5427486693742688
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-05-04/sandbox-694-useractions.json",
+        "malicious": 1,
+        "score": 0.4870357767430847
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-05-04/sandbox-695-useractions.json",
+        "malicious": 1,
+        "score": 0.5427486693742688
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-05-04/sandbox-696-useractions.json",
+        "malicious": 1,
+        "score": 0.7383329176753116
+      },
+      {
+        "source": "data/human/muni/Locust 3302/2022-05-04/sandbox-714-useractions.json",
+        "malicious": 1,
+        "score": 0.7435135162800538
+      },
+      {
+        "source": "data/human/muni/SQL injection/sandbox-116-useractions.json",
+        "malicious": 1,
+        "score": 0.7270947649652019
+      },
+      {
+        "source": "data/human/muni/SQL injection/sandbox-117-useractions.json",
+        "malicious": 1,
+        "score": 0.6534145392842574
+      },
+      {
+        "source": "data/human/muni/SQL injection/sandbox-122-useractions.json",
+        "malicious": 1,
+        "score": 0.6215419046337579
+      },
+      {
+        "source": "data/human/muni/SQL injection/sandbox-130-useractions.json",
+        "malicious": 1,
+        "score": 0.8144234665030304
+      },
+      {
+        "source": "data/human/muni/SQL injection/sandbox-131-useractions.json",
+        "malicious": 1,
+        "score": 0.7336171561236503
+      },
+      {
+        "source": "data/human/muni/SQL injection/sandbox-132-useractions.json",
+        "malicious": 1,
+        "score": 0.7043526842254922
+      },
+      {
+        "source": "data/human/muni/SQL injection/sandbox-134-useractions.json",
+        "malicious": 1,
+        "score": 0.5658731562732847
+      },
+      {
+        "source": "data/human/muni/SQL injection/sandbox-135-useractions.json",
+        "malicious": 1,
+        "score": 0.5658731562732847
+      },
+      {
+        "source": "data/human/muni/Secret laboratory/sandbox-123-useractions.json",
+        "malicious": 1,
+        "score": 0.6288430995337357
+      },
+      {
+        "source": "data/human/muni/Secret laboratory/sandbox-124-useractions.json",
+        "malicious": 1,
+        "score": 0.796912528546488
+      },
+      {
+        "source": "data/human/muni/Secret laboratory/sandbox-125-useractions.json",
+        "malicious": 1,
+        "score": 0.6321792525054353
+      },
+      {
+        "source": "data/human/muni/Secret laboratory/sandbox-126-useractions.json",
+        "malicious": 1,
+        "score": 0.763527506994195
+      },
+      {
+        "source": "data/human/muni/Secret laboratory/sandbox-127-useractions.json",
+        "malicious": 1,
+        "score": 0.7884834250252422
+      },
+      {
+        "source": "data/human/muni/Secret laboratory/sandbox-128-useractions.json",
+        "malicious": 1,
+        "score": 0.5672493635442196
+      },
+      {
+        "source": "data/human/muni/Secret laboratory/sandbox-129-useractions.json",
+        "malicious": 1,
+        "score": 0.7423942551817085
+      },
+      {
+        "source": "data/human/muni/Secret laboratory/sandbox-130-useractions.json",
+        "malicious": 1,
+        "score": 0.7423942551817085
+      },
+      {
+        "source": "data/human/muni/Secret laboratory/sandbox-131-useractions.json",
+        "malicious": 1,
+        "score": 0.732979597336988
+      },
+      {
+        "source": "data/human/muni/Secret laboratory/sandbox-3-useractions.json",
+        "malicious": 1,
+        "score": 0.5610420897952271
+      },
+      {
+        "source": "data/human/muni/Secret laboratory/sandbox-340-useractions.json",
+        "malicious": 1,
+        "score": 0.7020757180994721
+      },
+      {
+        "source": "data/human/muni/Secret laboratory/sandbox-341-useractions.json",
+        "malicious": 1,
+        "score": 0.5672493635442196
+      },
+      {
+        "source": "data/human/muni/Secret laboratory/sandbox-342-useractions.json",
+        "malicious": 1,
+        "score": 0.8072812953487425
+      },
+      {
+        "source": "data/human/muni/Webmin exploit practice/sandbox-315-useractions.json",
+        "malicious": 1,
+        "score": 0.8270479140812599
+      },
+      {
+        "source": "data/human/muni/Webmin exploit practice/sandbox-316-useractions.json",
+        "malicious": 1,
+        "score": 0.7421655849124864
+      },
+      {
+        "source": "data/human/muni/Webmin exploit practice/sandbox-317-useractions.json",
+        "malicious": 1,
+        "score": 0.779591538483347
+      },
+      {
+        "source": "data/human/muni/Webmin exploit practice/sandbox-327-useractions.json",
+        "malicious": 1,
+        "score": 0.5663984659192183
+      },
+      {
+        "source": "data/human/muni/Webmin exploit practice/sandbox-328-useractions.json",
+        "malicious": 1,
+        "score": 0.3288051176859795
+      },
+      {
+        "source": "data/human/muni/Webmin exploit practice/sandbox-329-useractions.json",
+        "malicious": 1,
+        "score": 0.5793562738454429
+      },
+      {
+        "source": "data/human/muni/Webmin exploit practice/sandbox-331-useractions.json",
+        "malicious": 1,
+        "score": 0.7158482877313903
+      },
+      {
+        "source": "data/human/muni/Webmin exploit practice/sandbox-351-useractions.json",
+        "malicious": 1,
+        "score": 0.6972699308756426
+      },
+      {
+        "source": "data/human/muni/Webmin exploit practice/sandbox-358-useractions.json",
+        "malicious": 1,
+        "score": 0.5663984659192183
+      },
+      {
+        "source": "data/human/muni/Webmin exploit practice/sandbox-374-useractions.json",
+        "malicious": 1,
+        "score": 0.7333332682329099
+      },
+      {
+        "source": "data/human/benign_sessions/User10_s01.json",
+        "malicious": 0,
+        "score": 0.23854329814269068
+      },
+      {
+        "source": "data/human/benign_sessions/User10_s02.json",
+        "malicious": 0,
+        "score": 0.2561958823441666
+      },
+      {
+        "source": "data/human/benign_sessions/User10_s03.json",
+        "malicious": 0,
+        "score": 0.2580404763104421
+      },
+      {
+        "source": "data/human/benign_sessions/User11_s01.json",
+        "malicious": 0,
+        "score": 0.24897232377536674
+      },
+      {
+        "source": "data/human/benign_sessions/User11_s02.json",
+        "malicious": 0,
+        "score": 0.25749970897108043
+      },
+      {
+        "source": "data/human/benign_sessions/User11_s03.json",
+        "malicious": 0,
+        "score": 0.3268681532648047
+      },
+      {
+        "source": "data/human/benign_sessions/User12_s01.json",
+        "malicious": 0,
+        "score": 0.409735840364003
+      },
+      {
+        "source": "data/human/benign_sessions/User12_s02.json",
+        "malicious": 0,
+        "score": 0.23989016347359915
+      },
+      {
+        "source": "data/human/benign_sessions/User12_s03.json",
+        "malicious": 0,
+        "score": 0.3083972315910648
+      },
+      {
+        "source": "data/human/benign_sessions/User13_s01.json",
+        "malicious": 0,
+        "score": 0.23787227668126062
+      },
+      {
+        "source": "data/human/benign_sessions/User13_s02.json",
+        "malicious": 0,
+        "score": 0.21627707677710517
+      },
+      {
+        "source": "data/human/benign_sessions/User13_s03.json",
+        "malicious": 0,
+        "score": 0.2270223195828405
+      },
+      {
+        "source": "data/human/benign_sessions/User14_s01.json",
+        "malicious": 0,
+        "score": 0.27822419827762207
+      },
+      {
+        "source": "data/human/benign_sessions/User14_s02.json",
+        "malicious": 0,
+        "score": 0.30166973748528036
+      },
+      {
+        "source": "data/human/benign_sessions/User14_s03.json",
+        "malicious": 0,
+        "score": 0.2677568678532504
+      },
+      {
+        "source": "data/human/benign_sessions/User15_s01.json",
+        "malicious": 0,
+        "score": 0.30369247310024633
+      },
+      {
+        "source": "data/human/benign_sessions/User15_s02.json",
+        "malicious": 0,
+        "score": 0.28564603310025344
+      },
+      {
+        "source": "data/human/benign_sessions/User15_s03.json",
+        "malicious": 0,
+        "score": 0.30369247310024633
+      },
+      {
+        "source": "data/human/benign_sessions/User16_s01.json",
+        "malicious": 0,
+        "score": 0.21484876983993903
+      },
+      {
+        "source": "data/human/benign_sessions/User16_s02.json",
+        "malicious": 0,
+        "score": 0.265768535993204
+      },
+      {
+        "source": "data/human/benign_sessions/User16_s03.json",
+        "malicious": 0,
+        "score": 0.2023332869503359
+      },
+      {
+        "source": "data/human/benign_sessions/User17_s01.json",
+        "malicious": 0,
+        "score": 0.2435378544182249
+      },
+      {
+        "source": "data/human/benign_sessions/User17_s02.json",
+        "malicious": 0,
+        "score": 0.2745994980571451
+      },
+      {
+        "source": "data/human/benign_sessions/User17_s03.json",
+        "malicious": 0,
+        "score": 0.2915221721532599
+      },
+      {
+        "source": "data/human/benign_sessions/User18_s01.json",
+        "malicious": 0,
+        "score": 0.417503464992139
+      },
+      {
+        "source": "data/human/benign_sessions/User18_s02.json",
+        "malicious": 0,
+        "score": 0.5797695167967541
+      },
+      {
+        "source": "data/human/benign_sessions/User18_s03.json",
+        "malicious": 0,
+        "score": 0.44142983107782824
+      },
+      {
+        "source": "data/human/benign_sessions/User19_s01.json",
+        "malicious": 0,
+        "score": 0.276979654045236
+      },
+      {
+        "source": "data/human/benign_sessions/User19_s02.json",
+        "malicious": 0,
+        "score": 0.40806926528170684
+      },
+      {
+        "source": "data/human/benign_sessions/User19_s03.json",
+        "malicious": 0,
+        "score": 0.28680666631871454
+      },
+      {
+        "source": "data/human/benign_sessions/User1_s01.json",
+        "malicious": 0,
+        "score": 0.24617821871179646
+      },
+      {
+        "source": "data/human/benign_sessions/User1_s02.json",
+        "malicious": 0,
+        "score": 0.21357173438738883
+      },
+      {
+        "source": "data/human/benign_sessions/User1_s03.json",
+        "malicious": 0,
+        "score": 0.3529391971312399
+      },
+      {
+        "source": "data/human/benign_sessions/User20_s01.json",
+        "malicious": 0,
+        "score": 0.24875755609521516
+      },
+      {
+        "source": "data/human/benign_sessions/User20_s02.json",
+        "malicious": 0,
+        "score": 0.5920751937450212
+      },
+      {
+        "source": "data/human/benign_sessions/User20_s03.json",
+        "malicious": 0,
+        "score": 0.5920751937450212
+      },
+      {
+        "source": "data/human/benign_sessions/User21_s01.json",
+        "malicious": 0,
+        "score": 0.3298171824518027
+      },
+      {
+        "source": "data/human/benign_sessions/User21_s02.json",
+        "malicious": 0,
+        "score": 0.2922790070616679
+      },
+      {
+        "source": "data/human/benign_sessions/User21_s03.json",
+        "malicious": 0,
+        "score": 0.3037356659100866
+      },
+      {
+        "source": "data/human/benign_sessions/User22_s01.json",
+        "malicious": 0,
+        "score": 0.24051458742936602
+      },
+      {
+        "source": "data/human/benign_sessions/User22_s02.json",
+        "malicious": 0,
+        "score": 0.24124574844250923
+      },
+      {
+        "source": "data/human/benign_sessions/User22_s03.json",
+        "malicious": 0,
+        "score": 0.31302226662359345
+      },
+      {
+        "source": "data/human/benign_sessions/User23_s01.json",
+        "malicious": 0,
+        "score": 0.2610575944736586
+      },
+      {
+        "source": "data/human/benign_sessions/User23_s02.json",
+        "malicious": 0,
+        "score": 0.28048870408465537
+      },
+      {
+        "source": "data/human/benign_sessions/User23_s03.json",
+        "malicious": 0,
+        "score": 0.26678569249093503
+      },
+      {
+        "source": "data/human/benign_sessions/User24_s01.json",
+        "malicious": 0,
+        "score": 0.31226234616074394
+      },
+      {
+        "source": "data/human/benign_sessions/User24_s02.json",
+        "malicious": 0,
+        "score": 0.2971080528103429
+      },
+      {
+        "source": "data/human/benign_sessions/User24_s03.json",
+        "malicious": 0,
+        "score": 0.26994009073475994
+      },
+      {
+        "source": "data/human/benign_sessions/User25_s01.json",
+        "malicious": 0,
+        "score": 0.36666996188094964
+      },
+      {
+        "source": "data/human/benign_sessions/User25_s02.json",
+        "malicious": 0,
+        "score": 0.2733219172755878
+      },
+      {
+        "source": "data/human/benign_sessions/User25_s03.json",
+        "malicious": 0,
+        "score": 0.5797489821188335
+      },
+      {
+        "source": "data/human/benign_sessions/User26_s01.json",
+        "malicious": 0,
+        "score": 0.32415078213130116
+      },
+      {
+        "source": "data/human/benign_sessions/User26_s02.json",
+        "malicious": 0,
+        "score": 0.2754825604423687
+      },
+      {
+        "source": "data/human/benign_sessions/User26_s03.json",
+        "malicious": 0,
+        "score": 0.6043863547799131
+      },
+      {
+        "source": "data/human/benign_sessions/User27_s01.json",
+        "malicious": 0,
+        "score": 0.28452424254494063
+      },
+      {
+        "source": "data/human/benign_sessions/User27_s02.json",
+        "malicious": 0,
+        "score": 0.3031372180454339
+      },
+      {
+        "source": "data/human/benign_sessions/User27_s03.json",
+        "malicious": 0,
+        "score": 0.2724328751752381
+      },
+      {
+        "source": "data/human/benign_sessions/User28_s01.json",
+        "malicious": 0,
+        "score": 0.28763043745199773
+      },
+      {
+        "source": "data/human/benign_sessions/User28_s02.json",
+        "malicious": 0,
+        "score": 0.46462877292037774
+      },
+      {
+        "source": "data/human/benign_sessions/User28_s03.json",
+        "malicious": 0,
+        "score": 0.2970505086111358
+      },
+      {
+        "source": "data/human/benign_sessions/User29_s01.json",
+        "malicious": 0,
+        "score": 0.6044226636356598
+      },
+      {
+        "source": "data/human/benign_sessions/User29_s02.json",
+        "malicious": 0,
+        "score": 0.5824590009751002
+      },
+      {
+        "source": "data/human/benign_sessions/User29_s03.json",
+        "malicious": 0,
+        "score": 0.37872275159526664
+      },
+      {
+        "source": "data/human/benign_sessions/User2_s01.json",
+        "malicious": 0,
+        "score": 0.6822283588496618
+      },
+      {
+        "source": "data/human/benign_sessions/User2_s02.json",
+        "malicious": 0,
+        "score": 0.24062147453273514
+      },
+      {
+        "source": "data/human/benign_sessions/User2_s03.json",
+        "malicious": 0,
+        "score": 0.2628639730864546
+      },
+      {
+        "source": "data/human/benign_sessions/User30_s01.json",
+        "malicious": 0,
+        "score": 0.605269425661231
+      },
+      {
+        "source": "data/human/benign_sessions/User30_s02.json",
+        "malicious": 0,
+        "score": 0.605269425661231
+      },
+      {
+        "source": "data/human/benign_sessions/User30_s03.json",
+        "malicious": 0,
+        "score": 0.605269425661231
+      },
+      {
+        "source": "data/human/benign_sessions/User31_s01.json",
+        "malicious": 0,
+        "score": 0.24560293034200031
+      },
+      {
+        "source": "data/human/benign_sessions/User31_s02.json",
+        "malicious": 0,
+        "score": 0.21825935516305223
+      },
+      {
+        "source": "data/human/benign_sessions/User31_s03.json",
+        "malicious": 0,
+        "score": 0.23427828856164135
+      },
+      {
+        "source": "data/human/benign_sessions/User32_s01.json",
+        "malicious": 0,
+        "score": 0.424290993475964
+      },
+      {
+        "source": "data/human/benign_sessions/User32_s02.json",
+        "malicious": 0,
+        "score": 0.2551175118739909
+      },
+      {
+        "source": "data/human/benign_sessions/User32_s03.json",
+        "malicious": 0,
+        "score": 0.38628513051773095
+      },
+      {
+        "source": "data/human/benign_sessions/User33_s01.json",
+        "malicious": 0,
+        "score": 0.3069881577056094
+      },
+      {
+        "source": "data/human/benign_sessions/User33_s02.json",
+        "malicious": 0,
+        "score": 0.283425276555156
+      },
+      {
+        "source": "data/human/benign_sessions/User33_s03.json",
+        "malicious": 0,
+        "score": 0.29121753562980335
+      },
+      {
+        "source": "data/human/benign_sessions/User34_s01.json",
+        "malicious": 0,
+        "score": 0.2779998201148881
+      },
+      {
+        "source": "data/human/benign_sessions/User34_s02.json",
+        "malicious": 0,
+        "score": 0.24323605561695905
+      },
+      {
+        "source": "data/human/benign_sessions/User34_s03.json",
+        "malicious": 0,
+        "score": 0.23765050600509954
+      },
+      {
+        "source": "data/human/benign_sessions/User35_s01.json",
+        "malicious": 0,
+        "score": 0.5952636156305398
+      },
+      {
+        "source": "data/human/benign_sessions/User35_s02.json",
+        "malicious": 0,
+        "score": 0.25539992292977926
+      },
+      {
+        "source": "data/human/benign_sessions/User35_s03.json",
+        "malicious": 0,
+        "score": 0.34912235481698894
+      },
+      {
+        "source": "data/human/benign_sessions/User36_s01.json",
+        "malicious": 0,
+        "score": 0.2316904827753506
+      },
+      {
+        "source": "data/human/benign_sessions/User36_s02.json",
+        "malicious": 0,
+        "score": 0.2608813830702041
+      },
+      {
+        "source": "data/human/benign_sessions/User36_s03.json",
+        "malicious": 0,
+        "score": 0.25750913021637456
+      },
+      {
+        "source": "data/human/benign_sessions/User37_s01.json",
+        "malicious": 0,
+        "score": 0.24707616127373358
+      },
+      {
+        "source": "data/human/benign_sessions/User37_s02.json",
+        "malicious": 0,
+        "score": 0.24436282585960806
+      },
+      {
+        "source": "data/human/benign_sessions/User37_s03.json",
+        "malicious": 0,
+        "score": 0.4566825272356953
+      },
+      {
+        "source": "data/human/benign_sessions/User38_s01.json",
+        "malicious": 0,
+        "score": 0.22674774851344975
+      },
+      {
+        "source": "data/human/benign_sessions/User38_s02.json",
+        "malicious": 0,
+        "score": 0.28778300583751354
+      },
+      {
+        "source": "data/human/benign_sessions/User38_s03.json",
+        "malicious": 0,
+        "score": 0.2981238135265815
+      },
+      {
+        "source": "data/human/benign_sessions/User39_s01.json",
+        "malicious": 0,
+        "score": 0.21673890608263569
+      },
+      {
+        "source": "data/human/benign_sessions/User39_s02.json",
+        "malicious": 0,
+        "score": 0.2147836504988385
+      },
+      {
+        "source": "data/human/benign_sessions/User39_s03.json",
+        "malicious": 0,
+        "score": 0.25410004569358874
+      },
+      {
+        "source": "data/human/benign_sessions/User3_s01.json",
+        "malicious": 0,
+        "score": 0.2049185770877055
+      },
+      {
+        "source": "data/human/benign_sessions/User3_s02.json",
+        "malicious": 0,
+        "score": 0.2589119333568202
+      },
+      {
+        "source": "data/human/benign_sessions/User3_s03.json",
+        "malicious": 0,
+        "score": 0.2606439978788381
+      },
+      {
+        "source": "data/human/benign_sessions/User40_s01.json",
+        "malicious": 0,
+        "score": 0.24600790829933344
+      },
+      {
+        "source": "data/human/benign_sessions/User40_s02.json",
+        "malicious": 0,
+        "score": 0.5611002039712187
+      },
+      {
+        "source": "data/human/benign_sessions/User40_s03.json",
+        "malicious": 0,
+        "score": 0.432652621469141
+      },
+      {
+        "source": "data/human/benign_sessions/User41_s01.json",
+        "malicious": 0,
+        "score": 0.24934932375135793
+      },
+      {
+        "source": "data/human/benign_sessions/User41_s02.json",
+        "malicious": 0,
+        "score": 0.25905686693192476
+      },
+      {
+        "source": "data/human/benign_sessions/User41_s03.json",
+        "malicious": 0,
+        "score": 0.3102252339733567
+      },
+      {
+        "source": "data/human/benign_sessions/User42_s01.json",
+        "malicious": 0,
+        "score": 0.19905865438297266
+      },
+      {
+        "source": "data/human/benign_sessions/User42_s02.json",
+        "malicious": 0,
+        "score": 0.2915879245066248
+      },
+      {
+        "source": "data/human/benign_sessions/User42_s03.json",
+        "malicious": 0,
+        "score": 0.2763949253193235
+      },
+      {
+        "source": "data/human/benign_sessions/User43_s01.json",
+        "malicious": 0,
+        "score": 0.25865071443108906
+      },
+      {
+        "source": "data/human/benign_sessions/User43_s02.json",
+        "malicious": 0,
+        "score": 0.3540951802027982
+      },
+      {
+        "source": "data/human/benign_sessions/User43_s03.json",
+        "malicious": 0,
+        "score": 0.3081380238816873
+      },
+      {
+        "source": "data/human/benign_sessions/User44_s01.json",
+        "malicious": 0,
+        "score": 0.24882990694599982
+      },
+      {
+        "source": "data/human/benign_sessions/User44_s02.json",
+        "malicious": 0,
+        "score": 0.2480123413426842
+      },
+      {
+        "source": "data/human/benign_sessions/User44_s03.json",
+        "malicious": 0,
+        "score": 0.3892814076478011
+      },
+      {
+        "source": "data/human/benign_sessions/User45_s01.json",
+        "malicious": 0,
+        "score": 0.2823506980065617
+      },
+      {
+        "source": "data/human/benign_sessions/User45_s02.json",
+        "malicious": 0,
+        "score": 0.23345214141431272
+      },
+      {
+        "source": "data/human/benign_sessions/User45_s03.json",
+        "malicious": 0,
+        "score": 0.5288461525678049
+      },
+      {
+        "source": "data/human/benign_sessions/User46_s01.json",
+        "malicious": 0,
+        "score": 0.24706045960287074
+      },
+      {
+        "source": "data/human/benign_sessions/User46_s02.json",
+        "malicious": 0,
+        "score": 0.35775541462342825
+      },
+      {
+        "source": "data/human/benign_sessions/User46_s03.json",
+        "malicious": 0,
+        "score": 0.3813919411625039
+      },
+      {
+        "source": "data/human/benign_sessions/User47_s01.json",
+        "malicious": 0,
+        "score": 0.29926101621678125
+      },
+      {
+        "source": "data/human/benign_sessions/User47_s02.json",
+        "malicious": 0,
+        "score": 0.4727832821912095
+      },
+      {
+        "source": "data/human/benign_sessions/User47_s03.json",
+        "malicious": 0,
+        "score": 0.576376499207069
+      },
+      {
+        "source": "data/human/benign_sessions/User48_s01.json",
+        "malicious": 0,
+        "score": 0.4662040531424459
+      },
+      {
+        "source": "data/human/benign_sessions/User48_s02.json",
+        "malicious": 0,
+        "score": 0.29025661708917816
+      },
+      {
+        "source": "data/human/benign_sessions/User48_s03.json",
+        "malicious": 0,
+        "score": 0.26556384342432643
+      },
+      {
+        "source": "data/human/benign_sessions/User49_s01.json",
+        "malicious": 0,
+        "score": 0.2722314331715232
+      },
+      {
+        "source": "data/human/benign_sessions/User49_s02.json",
+        "malicious": 0,
+        "score": 0.21501662108343234
+      },
+      {
+        "source": "data/human/benign_sessions/User49_s03.json",
+        "malicious": 0,
+        "score": 0.34869141508025964
+      },
+      {
+        "source": "data/human/benign_sessions/User4_s01.json",
+        "malicious": 0,
+        "score": 0.2235065160140624
+      },
+      {
+        "source": "data/human/benign_sessions/User4_s02.json",
+        "malicious": 0,
+        "score": 0.2833355513998566
+      },
+      {
+        "source": "data/human/benign_sessions/User4_s03.json",
+        "malicious": 0,
+        "score": 0.2961745840439716
+      },
+      {
+        "source": "data/human/benign_sessions/User50_s01.json",
+        "malicious": 0,
+        "score": 0.2290717508615248
+      },
+      {
+        "source": "data/human/benign_sessions/User50_s02.json",
+        "malicious": 0,
+        "score": 0.24789009228680822
+      },
+      {
+        "source": "data/human/benign_sessions/User50_s03.json",
+        "malicious": 0,
+        "score": 0.2539509017395391
+      },
+      {
+        "source": "data/human/benign_sessions/User5_s01.json",
+        "malicious": 0,
+        "score": 0.2769785574176547
+      },
+      {
+        "source": "data/human/benign_sessions/User5_s02.json",
+        "malicious": 0,
+        "score": 0.2523154747331682
+      },
+      {
+        "source": "data/human/benign_sessions/User5_s03.json",
+        "malicious": 0,
+        "score": 0.27230010025431456
+      },
+      {
+        "source": "data/human/benign_sessions/User6_s01.json",
+        "malicious": 0,
+        "score": 0.26582398107666827
+      },
+      {
+        "source": "data/human/benign_sessions/User6_s02.json",
+        "malicious": 0,
+        "score": 0.2670412889459954
+      },
+      {
+        "source": "data/human/benign_sessions/User6_s03.json",
+        "malicious": 0,
+        "score": 0.28697943464161824
+      },
+      {
+        "source": "data/human/benign_sessions/User7_s01.json",
+        "malicious": 0,
+        "score": 0.263155497139595
+      },
+      {
+        "source": "data/human/benign_sessions/User7_s02.json",
+        "malicious": 0,
+        "score": 0.24045207467510124
+      },
+      {
+        "source": "data/human/benign_sessions/User7_s03.json",
+        "malicious": 0,
+        "score": 0.2995597995585641
+      },
+      {
+        "source": "data/human/benign_sessions/User8_s01.json",
+        "malicious": 0,
+        "score": 0.2960726409934451
+      },
+      {
+        "source": "data/human/benign_sessions/User8_s02.json",
+        "malicious": 0,
+        "score": 0.3115137456156641
+      },
+      {
+        "source": "data/human/benign_sessions/User8_s03.json",
+        "malicious": 0,
+        "score": 0.7463493606624442
+      },
+      {
+        "source": "data/human/benign_sessions/User9_s01.json",
+        "malicious": 0,
+        "score": 0.24692012512558545
+      },
+      {
+        "source": "data/human/benign_sessions/User9_s02.json",
+        "malicious": 0,
+        "score": 0.21299752685765813
+      },
+      {
+        "source": "data/human/benign_sessions/User9_s03.json",
+        "malicious": 0,
+        "score": 0.22217171080255227
+      }
+    ]
+  },
+  "ai_only_leave_model_out": {
+    "metrics": {
+      "n": 189,
+      "macro_f1": 0.7851662404092072,
+      "recall": 0.8652482269503546,
+      "recall_wilson95": [
+        0.7991154834716516,
+        0.9120068763735942
+      ],
+      "fpr": 0.2708333333333333,
+      "fpr_wilson95": [
+        0.1656595762745644,
+        0.40996964982240613
+      ],
+      "auroc": 0.8881501182033097,
+      "average_precision": 0.9522504522463531,
+      "n_malicious": 141,
+      "n_benign": 48
+    },
+    "folds": [
+      {
+        "group": "gemini3pro",
+        "n_test": 14,
+        "vocab_n": 36
+      },
+      {
+        "group": "geminiflash",
+        "n_test": 72,
+        "vocab_n": 34
+      },
+      {
+        "group": "gemma3",
+        "n_test": 36,
+        "vocab_n": 30
+      },
+      {
+        "group": "gemma4",
+        "n_test": 29,
+        "vocab_n": 28
+      },
+      {
+        "group": "llama",
+        "n_test": 24,
+        "vocab_n": 32
+      },
+      {
+        "group": "qwen",
+        "n_test": 14,
+        "vocab_n": 36
+      }
+    ],
+    "predictions": [
+      {
+        "source": "harness/runs/grid_ac/real_ssh/gemma3-4b/real_ssh_gemma3-4b_prompt_3_20_session01.json",
+        "malicious": 1,
+        "score": 0.6873313287164394
+      },
+      {
+        "source": "harness/runs/grid_ac/real_ssh/gemma3-4b/real_ssh_gemma3-4b_prompt_1_20_session01.json",
+        "malicious": 1,
+        "score": 0.4996566950843749
+      },
+      {
+        "source": "harness/runs/grid_ac/real_ssh/gemma3-4b/real_ssh_gemma3-4b_prompt_5_20_session01.json",
+        "malicious": 1,
+        "score": 0.540160204897033
+      },
+      {
+        "source": "harness/runs/grid_ac/real_ssh/gemma3-4b/real_ssh_gemma3-4b_prompt_5_20_session02.json",
+        "malicious": 1,
+        "score": 0.4195644931250045
+      },
+      {
+        "source": "harness/runs/grid_ac/real_ssh/gemma3-4b/real_ssh_gemma3-4b_prompt_1_20_session03.json",
+        "malicious": 1,
+        "score": 0.49562627742311904
+      },
+      {
+        "source": "harness/runs/grid_ac/real_ssh/gemma3-4b/real_ssh_gemma3-4b_prompt_1_20_session02.json",
+        "malicious": 1,
+        "score": 0.47870949584117495
+      },
+      {
+        "source": "harness/runs/grid_ac/real_ssh/gemma3-4b/real_ssh_gemma3-4b_prompt_5_20_session03.json",
+        "malicious": 1,
+        "score": 0.42257897090959035
+      },
+      {
+        "source": "harness/runs/grid_ac/real_ssh/gemma3-4b/real_ssh_gemma3-4b_prompt_3_20_session03.json",
+        "malicious": 1,
+        "score": 0.6401346211156289
+      },
+      {
+        "source": "harness/runs/grid_ac/real_ssh/gemma3-4b/real_ssh_gemma3-4b_prompt_3_20_session02.json",
+        "malicious": 1,
+        "score": 0.6027442438509454
+      },
+      {
+        "source": "harness/runs/benign/real_ssh_benign_3_s04.json",
+        "malicious": 0,
+        "score": 0.5825359601622712
+      },
+      {
+        "source": "harness/runs/benign/real_ssh_benign_2_s04.json",
+        "malicious": 0,
+        "score": 0.23676021663073318
+      },
+      {
+        "source": "harness/runs/benign/real_ssh_benign_1_s01.json",
+        "malicious": 0,
+        "score": 0.4092642005658308
+      },
+      {
+        "source": "harness/runs/benign/real_ssh_benign_2_s02.json",
+        "malicious": 0,
+        "score": 0.1917521743797987
+      },
+      {
+        "source": "harness/runs/benign/real_ssh_benign_3_s02.json",
+        "malicious": 0,
+        "score": 0.5177328404813941
+      },
+      {
+        "source": "harness/runs/benign/real_ssh_benign_2_s03.json",
+        "malicious": 0,
+        "score": 0.29371701281794765
+      },
+      {
+        "source": "harness/runs/benign/real_ssh_benign_3_s03.json",
+        "malicious": 0,
+        "score": 0.40304856385395355
+      },
+      {
+        "source": "harness/runs/benign/real_ssh_benign_3_s01.json",
+        "malicious": 0,
+        "score": 0.4691441326324469
+      },
+      {
+        "source": "harness/runs/benign/real_ssh_benign_2_s01.json",
+        "malicious": 0,
+        "score": 0.2053604352118409
+      },
+      {
+        "source": "harness/runs/benign/real_ssh_benign_1_s04.json",
+        "malicious": 0,
+        "score": 0.4039199301103733
+      },
+      {
+        "source": "harness/runs/benign/real_ssh_benign_1_s03.json",
+        "malicious": 0,
+        "score": 0.3968755682301562
+      },
+      {
+        "source": "harness/runs/benign/real_ssh_benign_1_s02.json",
+        "malicious": 0,
+        "score": 0.3844392126834942
+      },
+      {
+        "source": "harness/runs/multimodel/l_prompt_5_s02.json",
+        "malicious": 1,
+        "score": 0.5051393509857856
+      },
+      {
+        "source": "harness/runs/multimodel/q_prompt_3_s02.json",
+        "malicious": 1,
+        "score": 0.6730403369572716
+      },
+      {
+        "source": "harness/runs/multimodel/g4_prompt_5_s02.json",
+        "malicious": 1,
+        "score": 0.755144084695077
+      },
+      {
+        "source": "harness/runs/multimodel/g4_benign_3_s01.json",
+        "malicious": 0,
+        "score": 0.40194007183679836
+      },
+      {
+        "source": "harness/runs/multimodel/g4_benign_2_s01.json",
+        "malicious": 0,
+        "score": 0.46683214043651544
+      },
+      {
+        "source": "harness/runs/multimodel/l_prompt_1_s01.json",
+        "malicious": 1,
+        "score": 0.7051407448591487
+      },
+      {
+        "source": "harness/runs/multimodel/q_benign_1_s02.json",
+        "malicious": 0,
+        "score": 0.33935816506638805
+      },
+      {
+        "source": "harness/runs/multimodel/g4_prompt_1_s01.json",
+        "malicious": 1,
+        "score": 0.7067305707703043
+      },
+      {
+        "source": "harness/runs/multimodel/q_prompt_1_s01.json",
+        "malicious": 1,
+        "score": 0.7241135187454073
+      },
+      {
+        "source": "harness/runs/multimodel/g4_benign_1_s02.json",
+        "malicious": 0,
+        "score": 0.35099611719085994
+      },
+      {
+        "source": "harness/runs/multimodel/l_prompt_3_s02.json",
+        "malicious": 1,
+        "score": 0.8334125932088913
+      },
+      {
+        "source": "harness/runs/multimodel/q_benign_3_s01.json",
+        "malicious": 0,
+        "score": 0.7092383274965137
+      },
+      {
+        "source": "harness/runs/multimodel/q_benign_2_s01.json",
+        "malicious": 0,
+        "score": 0.7095432897441172
+      },
+      {
+        "source": "harness/runs/multimodel/q_prompt_5_s02.json",
+        "malicious": 1,
+        "score": 0.6922247740953316
+      },
+      {
+        "source": "harness/runs/multimodel/g4_prompt_3_s02.json",
+        "malicious": 1,
+        "score": 0.7748712260801599
+      },
+      {
+        "source": "harness/runs/multimodel/g4_prompt_3_s01.json",
+        "malicious": 1,
+        "score": 0.7572356233979247
+      },
+      {
+        "source": "harness/runs/multimodel/l_prompt_3_s01.json",
+        "malicious": 1,
+        "score": 0.8217079909386794
+      },
+      {
+        "source": "harness/runs/multimodel/q_benign_2_s02.json",
+        "malicious": 0,
+        "score": 0.7095432897441172
+      },
+      {
+        "source": "harness/runs/multimodel/q_benign_3_s02.json",
+        "malicious": 0,
+        "score": 0.7092383274965137
+      },
+      {
+        "source": "harness/runs/multimodel/q_prompt_5_s01.json",
+        "malicious": 1,
+        "score": 0.7337890967160572
+      },
+      {
+        "source": "harness/runs/multimodel/g4_benign_1_s01.json",
+        "malicious": 0,
+        "score": 0.3008558887582896
+      },
+      {
+        "source": "harness/runs/multimodel/l_benign_1_s01.json",
+        "malicious": 0,
+        "score": 0.3506655450958483
+      },
+      {
+        "source": "harness/runs/multimodel/q_prompt_1_s02.json",
+        "malicious": 1,
+        "score": 0.73656058911502
+      },
+      {
+        "source": "harness/runs/multimodel/g4_prompt_1_s02.json",
+        "malicious": 1,
+        "score": 0.7559813201713328
+      },
+      {
+        "source": "harness/runs/multimodel/l_prompt_1_s02.json",
+        "malicious": 1,
+        "score": 0.7890482549405203
+      },
+      {
+        "source": "harness/runs/multimodel/q_benign_1_s01.json",
+        "malicious": 0,
+        "score": 0.1793177013407879
+      },
+      {
+        "source": "harness/runs/multimodel/g4_prompt_5_s01.json",
+        "malicious": 1,
+        "score": 0.7767100071042191
+      },
+      {
+        "source": "harness/runs/multimodel/g4_benign_2_s02.json",
+        "malicious": 0,
+        "score": 0.27694525016176347
+      },
+      {
+        "source": "harness/runs/multimodel/g4_benign_3_s02.json",
+        "malicious": 0,
+        "score": 0.5996004613744919
+      },
+      {
+        "source": "harness/runs/multimodel/l_prompt_5_s01.json",
+        "malicious": 1,
+        "score": 0.8476080533786176
+      },
+      {
+        "source": "harness/runs/multimodel/q_prompt_3_s01.json",
+        "malicious": 1,
+        "score": 0.6981292213996246
+      },
+      {
+        "source": "harness/runs/ctf_range/gemma4-latest/ctf_g4_ctf_recon_18_session01.json",
+        "malicious": 1,
+        "score": 0.43201173038104734
+      },
+      {
+        "source": "harness/runs/ctf_range/gemma4-latest/ctf_g4_ctf_exploit_18_session01.json",
+        "malicious": 1,
+        "score": 0.718381341744963
+      },
+      {
+        "source": "harness/runs/ctf_range/gemma4-latest/ctf_g4_ctf_crack_18_session01.json",
+        "malicious": 1,
+        "score": 0.723896456239177
+      },
+      {
+        "source": "harness/runs/ctf_range/gemma4-latest/ctf_g4_ctf_crack_18_session02.json",
+        "malicious": 1,
+        "score": 0.7711839879339542
+      },
+      {
+        "source": "harness/runs/ctf_range/gemma4-latest/ctf_g4_ctf_recon_18_session03.json",
+        "malicious": 1,
+        "score": 0.8389249387336718
+      },
+      {
+        "source": "harness/runs/ctf_range/gemma4-latest/ctf_g4_ctf_exploit_18_session02.json",
+        "malicious": 1,
+        "score": 0.6867526865136027
+      },
+      {
+        "source": "harness/runs/ctf_range/gemma4-latest/ctf_g4_ctf_exploit_18_session03.json",
+        "malicious": 1,
+        "score": 0.6867526865136027
+      },
+      {
+        "source": "harness/runs/ctf_range/gemma4-latest/ctf_g4_ctf_recon_18_session02.json",
+        "malicious": 1,
+        "score": 0.43201173038104734
+      },
+      {
+        "source": "harness/runs/ctf_range/gemma4-latest/ctf_g4_ctf_crack_18_session03.json",
+        "malicious": 1,
+        "score": 0.6998053037769701
+      },
+      {
+        "source": "harness/runs/ctf_range/gemma3-4b/ctf_g3_ctf_recon_20_session01.json",
+        "malicious": 1,
+        "score": 0.4831413433971078
+      },
+      {
+        "source": "harness/runs/ctf_range/gemma3-4b/ctf_g3_ctf_exploit_20_session02.json",
+        "malicious": 1,
+        "score": 0.7182331732892161
+      },
+      {
+        "source": "harness/runs/ctf_range/gemma3-4b/ctf_g3_ctf_exploit_20_session03.json",
+        "malicious": 1,
+        "score": 0.6796211017397701
+      },
+      {
+        "source": "harness/runs/ctf_range/gemma3-4b/ctf_g3_ctf_exploit_20_session01.json",
+        "malicious": 1,
+        "score": 0.7299641419657796
+      },
+      {
+        "source": "harness/runs/ctf_range/gemma3-4b/ctf_g3_ctf_recon_20_session04.json",
+        "malicious": 1,
+        "score": 0.4831413433971078
+      },
+      {
+        "source": "harness/runs/ctf_range/gemma3-4b/ctf_g3_ctf_recon_20_session03.json",
+        "malicious": 1,
+        "score": 0.4831413433971078
+      },
+      {
+        "source": "harness/runs/ctf_range/gemma3-4b/ctf_g3_ctf_recon_20_session02.json",
+        "malicious": 1,
+        "score": 0.7109165149756113
+      },
+      {
+        "source": "harness/runs/ctf_range/llama3.1-8b/ctf_l_ctf_crack_18_session01.json",
+        "malicious": 1,
+        "score": 0.5951427503370049
+      },
+      {
+        "source": "harness/runs/ctf_range/llama3.1-8b/ctf_l_ctf_recon_18_session01.json",
+        "malicious": 1,
+        "score": 0.49889360135189953
+      },
+      {
+        "source": "harness/runs/ctf_range/llama3.1-8b/ctf_l_ctf_exploit_18_session01.json",
+        "malicious": 1,
+        "score": 0.7116466200206493
+      },
+      {
+        "source": "harness/runs/ctf_range/llama3.1-8b/ctf_l_ctf_exploit_18_session02.json",
+        "malicious": 1,
+        "score": 0.7574631398953381
+      },
+      {
+        "source": "harness/runs/ctf_range/llama3.1-8b/ctf_l_ctf_exploit_18_session03.json",
+        "malicious": 1,
+        "score": 0.7025582029656644
+      },
+      {
+        "source": "harness/runs/ctf_range/llama3.1-8b/ctf_l_ctf_crack_18_session03.json",
+        "malicious": 1,
+        "score": 0.8031790460078145
+      },
+      {
+        "source": "harness/runs/ctf_range/llama3.1-8b/ctf_l_ctf_recon_18_session02.json",
+        "malicious": 1,
+        "score": 0.7025582029656644
+      },
+      {
+        "source": "harness/runs/ctf_range/llama3.1-8b/ctf_l_ctf_recon_18_session03.json",
+        "malicious": 1,
+        "score": 0.696857528346138
+      },
+      {
+        "source": "harness/runs/ctf_range/llama3.1-8b/ctf_l_ctf_crack_18_session02.json",
+        "malicious": 1,
+        "score": 0.7302677927610849
+      },
+      {
+        "source": "harness/runs/ctf_range/qwen3-4b/ctf_q_ctf_recon_18_session01.json",
+        "malicious": 1,
+        "score": 0.700041015310293
+      },
+      {
+        "source": "harness/runs/ctf_range/qwen3-4b/ctf_q_ctf_recon_18_session02.json",
+        "malicious": 1,
+        "score": 0.6591459461909156
+      },
+      {
+        "source": "harness/runs/grid_v2/real_ssh/gemma4-latest/real_ssh_gemma4-latest_prompt_1_20_session06.json",
+        "malicious": 1,
+        "score": 0.6960980947646436
+      },
+      {
+        "source": "harness/runs/grid_v2/real_ssh/gemma4-latest/real_ssh_gemma4-latest_prompt_1_20_session07.json",
+        "malicious": 1,
+        "score": 0.5798248727675968
+      },
+      {
+        "source": "harness/runs/grid_v2/real_ssh/gemma4-latest/real_ssh_gemma4-latest_prompt_1_20_session01.json",
+        "malicious": 1,
+        "score": 0.6970945943712671
+      },
+      {
+        "source": "harness/runs/grid_v2/real_ssh/gemma4-latest/real_ssh_gemma4-latest_prompt_1_20_session02.json",
+        "malicious": 1,
+        "score": 0.6834224475478139
+      },
+      {
+        "source": "harness/runs/grid_v2/real_ssh/gemma4-latest/real_ssh_gemma4-latest_prompt_1_20_session03.json",
+        "malicious": 1,
+        "score": 0.6902029703635817
+      },
+      {
+        "source": "harness/runs/grid_v2/real_ssh/gemma4-latest/real_ssh_gemma4-latest_prompt_1_20_session08.json",
+        "malicious": 1,
+        "score": 0.5712651663236725
+      },
+      {
+        "source": "harness/runs/grid_v2/real_ssh/gemma4-latest/real_ssh_gemma4-latest_prompt_1_20_session04.json",
+        "malicious": 1,
+        "score": 0.5125718195783249
+      },
+      {
+        "source": "harness/runs/grid_v2/real_ssh/gemma4-latest/real_ssh_gemma4-latest_prompt_1_20_session05.json",
+        "malicious": 1,
+        "score": 0.46983096831019183
+      },
+      {
+        "source": "harness/runs/grid_v2/real_ssh/gemma3-4b/real_ssh_gemma3-4b_prompt_1_20_session07.json",
+        "malicious": 1,
+        "score": 0.4667713889207037
+      },
+      {
+        "source": "harness/runs/grid_v2/real_ssh/gemma3-4b/real_ssh_gemma3-4b_prompt_1_20_session06.json",
+        "malicious": 1,
+        "score": 0.5943940653184203
+      },
+      {
+        "source": "harness/runs/grid_v2/real_ssh/gemma3-4b/real_ssh_gemma3-4b_prompt_1_20_session01.json",
+        "malicious": 1,
+        "score": 0.5589936596385655
+      },
+      {
+        "source": "harness/runs/grid_v2/real_ssh/gemma3-4b/real_ssh_gemma3-4b_prompt_1_20_session03.json",
+        "malicious": 1,
+        "score": 0.6039166395388743
+      },
+      {
+        "source": "harness/runs/grid_v2/real_ssh/gemma3-4b/real_ssh_gemma3-4b_prompt_1_20_session02.json",
+        "malicious": 1,
+        "score": 0.5129277942262085
+      },
+      {
+        "source": "harness/runs/grid_v2/real_ssh/gemma3-4b/real_ssh_gemma3-4b_prompt_1_20_session05.json",
+        "malicious": 1,
+        "score": 0.6135885440474529
+      },
+      {
+        "source": "harness/runs/grid_v2/real_ssh/gemma3-4b/real_ssh_gemma3-4b_prompt_1_20_session04.json",
+        "malicious": 1,
+        "score": 0.44220473726747617
+      },
+      {
+        "source": "harness/runs/grid_v2/real_ssh/gemma3-4b/real_ssh_gemma3-4b_prompt_1_20_session08.json",
+        "malicious": 1,
+        "score": 0.6897227138134696
+      },
+      {
+        "source": "harness/runs/grid_v2/real_ssh/llama3.1-8b/real_ssh_llama3.1-8b_prompt_1_20_session03.json",
+        "malicious": 1,
+        "score": 0.7383596393587997
+      },
+      {
+        "source": "harness/runs/grid_v2/real_ssh/llama3.1-8b/real_ssh_llama3.1-8b_prompt_1_20_session02.json",
+        "malicious": 1,
+        "score": 0.7150051333289575
+      },
+      {
+        "source": "harness/runs/grid_v2/real_ssh/llama3.1-8b/real_ssh_llama3.1-8b_prompt_1_20_session05.json",
+        "malicious": 1,
+        "score": 0.5839971630270745
+      },
+      {
+        "source": "harness/runs/grid_v2/real_ssh/llama3.1-8b/real_ssh_llama3.1-8b_prompt_1_20_session08.json",
+        "malicious": 1,
+        "score": 0.8399167231260405
+      },
+      {
+        "source": "harness/runs/grid_v2/real_ssh/llama3.1-8b/real_ssh_llama3.1-8b_prompt_1_20_session04.json",
+        "malicious": 1,
+        "score": 0.7813742006246686
+      },
+      {
+        "source": "harness/runs/grid_v2/real_ssh/llama3.1-8b/real_ssh_llama3.1-8b_prompt_1_20_session07.json",
+        "malicious": 1,
+        "score": 0.7522569736828276
+      },
+      {
+        "source": "harness/runs/grid_v2/real_ssh/llama3.1-8b/real_ssh_llama3.1-8b_prompt_1_20_session06.json",
+        "malicious": 1,
+        "score": 0.7443917773322377
+      },
+      {
+        "source": "harness/runs/grid_v2/real_ssh/llama3.1-8b/real_ssh_llama3.1-8b_prompt_1_20_session01.json",
+        "malicious": 1,
+        "score": 0.685041417787836
+      },
+      {
+        "source": "harness/runs/gemini/gemini3pro/empty_gemini3pro_prompt_3_20_session02.json",
+        "malicious": 1,
+        "score": 0.660552857719504
+      },
+      {
+        "source": "harness/runs/gemini/gemini3pro/empty_gemini3pro_prompt_1_20_session08.json",
+        "malicious": 1,
+        "score": 0.5983694392167296
+      },
+      {
+        "source": "harness/runs/gemini/gemini3pro/empty_gemini3pro_prompt_1_20_session04.json",
+        "malicious": 1,
+        "score": 0.43722571290932105
+      },
+      {
+        "source": "harness/runs/gemini/gemini3pro/empty_gemini3pro_prompt_1_20_session05.json",
+        "malicious": 1,
+        "score": 0.7752347165538884
+      },
+      {
+        "source": "harness/runs/gemini/gemini3pro/empty_gemini3pro_prompt_3_20_session03.json",
+        "malicious": 1,
+        "score": 0.7685617044996351
+      },
+      {
+        "source": "harness/runs/gemini/gemini3pro/empty_gemini3pro_prompt_1_20_session02.json",
+        "malicious": 1,
+        "score": 0.32651594145668594
+      },
+      {
+        "source": "harness/runs/gemini/gemini3pro/empty_gemini3pro_prompt_3_20_session04.json",
+        "malicious": 1,
+        "score": 0.8151890642651941
+      },
+      {
+        "source": "harness/runs/gemini/gemini3pro/empty_gemini3pro_prompt_1_12_session01.json",
+        "malicious": 1,
+        "score": 0.7503645113404207
+      },
+      {
+        "source": "harness/runs/gemini/gemini3pro/empty_gemini3pro_prompt_3_20_session05.json",
+        "malicious": 1,
+        "score": 0.5954240088096714
+      },
+      {
+        "source": "harness/runs/gemini/gemini3pro/empty_gemini3pro_prompt_1_20_session03.json",
+        "malicious": 1,
+        "score": 0.5147828084048147
+      },
+      {
+        "source": "harness/runs/gemini/gemini3pro/empty_gemini3pro_prompt_1_20_session01.json",
+        "malicious": 1,
+        "score": 0.43722571290932105
+      },
+      {
+        "source": "harness/runs/gemini/gemini3pro/empty_gemini3pro_prompt_1_20_session06.json",
+        "malicious": 1,
+        "score": 0.8193467504929797
+      },
+      {
+        "source": "harness/runs/gemini/gemini3pro/empty_gemini3pro_prompt_1_20_session07.json",
+        "malicious": 1,
+        "score": 0.7209987045801978
+      },
+      {
+        "source": "harness/runs/gemini/gemini3pro/empty_gemini3pro_prompt_3_20_session01.json",
+        "malicious": 1,
+        "score": 0.7320693959487375
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_crack_20_session06.json",
+        "malicious": 1,
+        "score": 0.6482643061182067
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_exploit_20_session01.json",
+        "malicious": 1,
+        "score": 0.602066105748254
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_benign_3_20_session05.json",
+        "malicious": 0,
+        "score": 0.3219039090550563
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_5_20_session07.json",
+        "malicious": 1,
+        "score": 0.6736794064968842
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_recon_20_session07.json",
+        "malicious": 1,
+        "score": 0.764245995901994
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_1_20_session06.json",
+        "malicious": 1,
+        "score": 0.7177414132038059
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_benign_2_20_session08.json",
+        "malicious": 0,
+        "score": 0.41286440804128965
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_benign_1_20_session03.json",
+        "malicious": 0,
+        "score": 0.32778171294342406
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_benign_2_20_session04.json",
+        "malicious": 0,
+        "score": 0.6848353250639516
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_3_20_session01.json",
+        "malicious": 1,
+        "score": 0.777050427132657
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_benign_2_20_session05.json",
+        "malicious": 0,
+        "score": 0.556336585094562
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_benign_1_20_session02.json",
+        "malicious": 0,
+        "score": 0.3670024599573713
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_benign_3_20_session08.json",
+        "malicious": 0,
+        "score": 0.3315816146913924
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_1_20_session07.json",
+        "malicious": 1,
+        "score": 0.6665146633743547
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_recon_20_session06.json",
+        "malicious": 1,
+        "score": 0.7267299915773812
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_5_20_session06.json",
+        "malicious": 1,
+        "score": 0.6442916162354178
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_benign_3_20_session04.json",
+        "malicious": 0,
+        "score": 0.26883199064659435
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_crack_20_session07.json",
+        "malicious": 1,
+        "score": 0.43299051515457215
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_benign_1_20_session05.json",
+        "malicious": 0,
+        "score": 0.43408526068340086
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_benign_2_20_session02.json",
+        "malicious": 0,
+        "score": 0.683813978656023
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_3_20_session06.json",
+        "malicious": 1,
+        "score": 0.706090157101802
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_exploit_20_session07.json",
+        "malicious": 1,
+        "score": 0.7754480641968307
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_benign_3_20_session03.json",
+        "malicious": 0,
+        "score": 0.3781324597621205
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_5_20_session01.json",
+        "malicious": 1,
+        "score": 0.6361741483745285
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_recon_20_session01.json",
+        "malicious": 1,
+        "score": 0.7239450225771582
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_1_20_session01.json",
+        "malicious": 1,
+        "score": 0.6502701151494173
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_exploit_20_session06.json",
+        "malicious": 1,
+        "score": 0.7654035968594896
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_benign_1_20_session08.json",
+        "malicious": 0,
+        "score": 0.391618853112378
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_benign_3_20_session02.json",
+        "malicious": 0,
+        "score": 0.22214520218699876
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_crack_20_session01.json",
+        "malicious": 1,
+        "score": 0.6807763448236441
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_3_20_session07.json",
+        "malicious": 1,
+        "score": 0.6362366045226827
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_benign_2_20_session03.json",
+        "malicious": 0,
+        "score": 0.677322313258946
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_benign_1_20_session04.json",
+        "malicious": 0,
+        "score": 0.36806505614142704
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_3_20_session04.json",
+        "malicious": 1,
+        "score": 0.7350996375771044
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_benign_1_20_session07.json",
+        "malicious": 0,
+        "score": 0.38352586573110636
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_1_20_session02.json",
+        "malicious": 1,
+        "score": 0.7046268719848489
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_3_20_session08.json",
+        "malicious": 1,
+        "score": 0.7541850965987081
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_recon_20_session03.json",
+        "malicious": 1,
+        "score": 0.7239450225771582
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_5_20_session03.json",
+        "malicious": 1,
+        "score": 0.6854831330449646
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_benign_3_20_session01.json",
+        "malicious": 0,
+        "score": 0.2628871448920739
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_exploit_20_session05.json",
+        "malicious": 1,
+        "score": 0.7262756290626479
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_crack_20_session02.json",
+        "malicious": 1,
+        "score": 0.703273813873211
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_crack_20_session03.json",
+        "malicious": 1,
+        "score": 0.7039087812606086
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_exploit_20_session04.json",
+        "malicious": 1,
+        "score": 0.7085470370213245
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_5_20_session02.json",
+        "malicious": 1,
+        "score": 0.6690009970649178
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_recon_20_session02.json",
+        "malicious": 1,
+        "score": 0.6622658389514795
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_1_20_session03.json",
+        "malicious": 1,
+        "score": 0.7240571454719539
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_exploit_20_session08.json",
+        "malicious": 1,
+        "score": 0.7033797056272483
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_benign_1_20_session06.json",
+        "malicious": 0,
+        "score": 0.3623667615043386
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_1_12_session01.json",
+        "malicious": 1,
+        "score": 0.6831018061497601
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_benign_2_20_session01.json",
+        "malicious": 0,
+        "score": 0.6290424300107611
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_3_20_session05.json",
+        "malicious": 1,
+        "score": 0.7660047818455914
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_1_20_session04.json",
+        "malicious": 1,
+        "score": 0.6916761846392342
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_recon_20_session05.json",
+        "malicious": 1,
+        "score": 0.7316287828135472
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_5_20_session05.json",
+        "malicious": 1,
+        "score": 0.7042207427516742
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_benign_3_20_session07.json",
+        "malicious": 0,
+        "score": 0.36639787425718817
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_exploit_20_session03.json",
+        "malicious": 1,
+        "score": 0.7056172165214781
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_crack_20_session04.json",
+        "malicious": 1,
+        "score": 0.7046752308456332
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_1_20_session08.json",
+        "malicious": 1,
+        "score": 0.6874506252034364
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_3_20_session02.json",
+        "malicious": 1,
+        "score": 0.732790257990625
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_benign_2_20_session06.json",
+        "malicious": 0,
+        "score": 0.6035207080487606
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_crack_20_session08.json",
+        "malicious": 1,
+        "score": 0.6807763448236441
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_benign_1_20_session01.json",
+        "malicious": 0,
+        "score": 0.4018185805321077
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_5_20_session08.json",
+        "malicious": 1,
+        "score": 0.5625252758172433
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_recon_20_session08.json",
+        "malicious": 1,
+        "score": 0.7030558454533078
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_3_20_session03.json",
+        "malicious": 1,
+        "score": 0.6235130795501801
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_crack_20_session05.json",
+        "malicious": 1,
+        "score": 0.6357867206300465
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_benign_3_20_session06.json",
+        "malicious": 0,
+        "score": 0.2609638109208168
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_exploit_20_session02.json",
+        "malicious": 1,
+        "score": 0.6509342697860625
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_5_20_session04.json",
+        "malicious": 1,
+        "score": 0.47843268847680337
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/ctf_geminiflash_ctf_recon_20_session04.json",
+        "malicious": 1,
+        "score": 0.7092983604381846
+      },
+      {
+        "source": "harness/runs/gemini/geminiflash/empty_geminiflash_prompt_1_20_session05.json",
+        "malicious": 1,
+        "score": 0.6418500869084778
+      }
+    ]
+  },
+  "limitations": [
+    "MUNI versus Schonlau provenance remains aligned with human intent labels.",
+    "Scenario labels are assigned tasks, not proof of harmful execution.",
+    "AI-only results still share historical prompt templates and collector."
+  ]
+}

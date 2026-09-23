@@ -1,17 +1,16 @@
 #!/usr/bin/env python3
 """Canonical data loaders shared by every ids_*.py analysis.
 
-Before this module each script re-implemented its own load_ai(); adding the
-frontier (Gemini) grid, the scaled local grid (grid_v2) and the real benign
-corpus (Schonlau) in four places would have diverged. Everything now flows
-through here.
+Every ids_*.py analysis loads sessions through this module, so the AI trees
+(local grids, the frontier Gemini grid, the CTF-range grid) and the human
+corpora (MUNI, Schonlau) are read the same way everywhere.
 
 AI session trees and how they are tagged:
   harness/runs/grid_ac/**/real_ssh/**   gemma3, empty container   (original)
   harness/runs/benign/*.json            gemma3, empty, BENIGN     (original)
   harness/runs/multimodel/*.json        gemma4/llama/qwen, empty  (original)
-  harness/runs/grid_v2/<env>/<model>/   scaled local grid         (NEW, --sessions up)
-  harness/runs/gemini/<tag>/*.json      Gemini frontier families  (NEW, frontier)
+  harness/runs/grid_v2/<env>/<model>/   local grid (higher session count)
+  harness/runs/gemini/<tag>/*.json      Gemini frontier families
   harness/runs/ctf_range/<model>/*.json all models, CTF env       (2-axis / env-confound)
 
 Each AI row carries: cmds, model, origin='ai', intent, env in {empty,ctf},
@@ -96,7 +95,8 @@ def load_ai(min_cmds=4, drop_degenerate=True, envs=("empty", "ctf"),
         if intent == "benign" and not include_benign:
             return
         rows.append({"cmds": cmds, "model": model, "origin": "ai",
-                     "intent": intent, "env": env, "evasion": evasion, "grp": grp})
+                     "intent": intent, "env": env, "evasion": evasion, "grp": grp,
+                     "source": str(f), "task": grp.split("_", 1)[-1]})
 
     # --- original empty-container trees ---
     for f in Path("harness/runs/grid_ac").rglob("*session*.json"):
@@ -122,14 +122,14 @@ def load_ai(min_cmds=4, drop_degenerate=True, envs=("empty", "ctf"),
         intent, ev, tok = _meta(f.name)
         add(cmds_raw(f), model, intent, ev, "ctf", f"{model}_{tok}")
 
-    # --- NEW: scaled local grid ---
+    # --- local grid (higher session count) ---
     for f in Path("harness/runs/grid_v2").rglob("*session*.json"):
         model = _model_from_dir(f.parent.name)
         env = "empty" if f.parent.parent.name == "real_ssh" else f.parent.parent.name
         intent, ev, tok = _meta(f.name)
         add(cmds_raw(f), model, intent, ev, env, f"{model}_{tok}")
 
-    # --- NEW: Gemini frontier grid ---
+    # --- Gemini frontier grid ---
     for f in Path("harness/runs/gemini").rglob("*session*.json"):
         model = f.parent.name
         env = "ctf" if f.name.startswith("ctf_") else "empty"
@@ -156,7 +156,7 @@ def load_human_malicious(min_cmds=4):
                 cmds.append(c)
         if len(cmds) >= min_cmds:
             rows.append({"cmds": cmds, "model": "human", "origin": "human",
-                         "intent": "malicious", "grp": f"hu_mal_{f.parent.name}"})
+                         "intent": "malicious", "grp": f"hu_mal_{f.parent.name}", "source": str(f)})
     return rows
 
 
@@ -175,7 +175,7 @@ def load_human_benign(min_cmds=4):
             c = [str(x) for x in o.get("cmds", [])]
             if len(c) >= min_cmds:
                 rows.append({"cmds": c, "model": "human", "origin": "human",
-                             "intent": "benign", "grp": f"hu_ben_{o.get('user', '?')}"})
+                             "intent": "benign", "grp": f"hu_ben_{o.get('user', '?')}", "source": str(f)})
         return rows
     return _load_human_benign_nl2bash(min_cmds=min_cmds)
 
