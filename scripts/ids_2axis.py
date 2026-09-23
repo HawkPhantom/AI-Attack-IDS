@@ -8,18 +8,19 @@ DATA CELLS and their provenance  (all four are now real, not scripted):
   malicious + AI    : harness/runs/grid_ac + harness/runs/ctf_range  (our agents)
   benign    + AI    : harness/runs/benign                            (our agents)
   malicious + human : MUNI cyber-range trainees (Zenodo 8136017)     REAL humans
-  benign    + human : NL2Bash real shell one-liners (TellinaTool)    REAL humans
+  benign    + human : Schonlau SEA real command windows (schonlau.net) REAL humans
 
-This is the fix for the old "intent axis is synthetic" limitation. Previously the
-human cells were keystroke-replay of fixed scripted lists I wrote, so the intent
-classifier largely learned "scripted list vs LLM generation". Both human cells
-are now real, human-authored commands:
+This is the fix for the old "intent axis is synthetic" limitation. Both human
+cells are now real, human-authored commands recorded end-to-end:
   - malicious+human = the same real MUNI sessions the origin axis is validated on
-  - benign+human    = real NL2Bash commands (real selection + real argument style)
-NL2Bash ships as independent one-liners, so a benign-human *session* is assembled
-by sampling real commands (per-session head cap keeps them from collapsing onto
-`find`, which is 60% of the corpus). Command text is real; only the grouping into
-sessions is assembled -- an honest step up from wholly synthetic sessions.
+  - benign+human    = contiguous windows of a real user's Schonlau command stream,
+    so command ORDER (the 1,2-gram / transition structure the models key on) is
+    authentic, not assembled. The first 5000 commands per user are Schonlau's
+    certified masquerade-free region, i.e. genuinely that user's own benign
+    activity. Built by scripts/build_benign_sessions.py; group = user.
+Honest residual: these windows are fixed-size slices of a continuous accounting
+stream (not login-delimited), and are program names without arguments -- which
+matches our argument-stripped common-binary origin space.
 
 Two remaining, reported controls:
   - leave-one-GROUP-out (group = scenario / prompt / corpus bucket), so no fold
@@ -69,78 +70,29 @@ def degenerate(cmds):
     return len(set(cmds)) < 3 or prose > len(cmds) * 0.4
 
 
-# ---- AI cells ---------------------------------------------------------------
+# ---- cells now come from the shared canonical loader (scripts/ids_data.py) --
+# AI: empty + CTF, malicious + benign, frontier Gemini included, no evasion.
+# human malicious: MUNI (real). human benign: Schonlau SEA real command windows
+# (replaces the old NL2Bash random assembly; falls back to it if not built).
+import sys as _sys
+_sys.path.insert(0, str(Path(__file__).resolve().parent))
+import ids_data  # noqa: E402
+
+
 def load_ai():
-    rows = []
-    for f in Path("harness/runs/grid_ac").rglob("*session*.json"):
-        if f.parent.parent.name != "real_ssh":
-            continue
-        c = cmds_raw(f)
-        if len(c) >= 4 and not degenerate(c):
-            pr = re.search(r"(prompt_\d)", f.name)
-            rows.append({"cmds": c, "intent": "malicious", "origin": "ai",
-                         "grp": f"ai_mal_{pr.group(1) if pr else '?'}"})
-    for f in Path("harness/runs/ctf_range").rglob("*session*.json"):
-        c = cmds_raw(f)
-        if len(c) >= 4 and not degenerate(c):
-            pr = re.search(r"(ctf_[a-z]+)", f.name)
-            rows.append({"cmds": c, "intent": "malicious", "origin": "ai",
-                         "grp": f"ai_mal_{pr.group(1) if pr else 'ctf'}"})
-    for f in Path("harness/runs/benign").glob("*.json"):
-        c = cmds_raw(f)
-        if len(c) >= 4 and not degenerate(c):
-            pr = re.search(r"(benign_\d)", f.name)
-            rows.append({"cmds": c, "intent": "benign", "origin": "ai",
-                         "grp": f"ai_ben_{pr.group(1) if pr else '?'}"})
-    return rows
+    return [{"cmds": r["cmds"], "intent": r["intent"], "origin": "ai", "grp": r["grp"]}
+            for r in ids_data.load_ai(envs=("empty", "ctf"), include_evasion=False)]
 
 
-# ---- human malicious: MUNI (real) ------------------------------------------
 def load_human_malicious():
-    rows = []
-    for f in sorted(Path("data/human/muni").rglob("*useractions.json")):
-        cmds = []
-        for line in f.read_text(errors="replace").splitlines():
-            if not line.strip():
-                continue
-            try:
-                r = json.loads(line)
-            except Exception:
-                continue
-            c = (r.get("cmd") or "").strip()
-            if c:
-                cmds.append(c)
-        if len(cmds) >= 4:
-            game = f.relative_to("data/human/muni").parts[0]
-            rows.append({"cmds": cmds, "intent": "malicious", "origin": "human",
-                         "grp": f"hu_mal_{game}"})
-    return rows
+    return [{"cmds": r["cmds"], "intent": "malicious", "origin": "human", "grp": r["grp"]}
+            for r in ids_data.load_human_malicious()]
 
 
-# ---- human benign: NL2Bash real commands, assembled into sessions ----------
-def load_human_benign(n_sessions=60, lo=6, hi=12, head_cap=2, seed=SEED):
-    lines = [l.strip() for l in Path("data/human/nl2bash_all.cm").read_text(errors="replace").splitlines()
-             if l.strip()]
-    rng = random.Random(seed)
-    rng.shuffle(lines)
-    rows = []
-    i = 0
-    for s in range(n_sessions):
-        k = rng.randint(lo, hi)
-        sess, per = [], Counter()
-        # walk the shuffled pool, respecting a per-session cap on any one head
-        scanned = 0
-        while len(sess) < k and scanned < len(lines):
-            c = lines[i % len(lines)]; i += 1; scanned += 1
-            h = head(c)
-            if per[h] >= head_cap:
-                continue
-            per[h] += 1
-            sess.append(c)
-        if len(sess) >= 4:
-            rows.append({"cmds": sess, "intent": "benign", "origin": "human",
-                         "grp": f"hu_ben_bucket{s % 6}"})
-    return rows
+def load_human_benign(n_sessions=60, **_):
+    # n_sessions kept for CLI compatibility; Schonlau session set is fixed.
+    return [{"cmds": r["cmds"], "intent": "benign", "origin": "human", "grp": r["grp"]}
+            for r in ids_data.load_human_benign()]
 
 
 def load_cells():
@@ -206,7 +158,7 @@ def main():
         print(f"  {intent:<12}{grid[(intent,'ai')]:>10}{grid[(intent,'human')]:>10}")
     print(f"  TOTAL: {len(rows)} sessions")
     print("  sources: mal+AI=grid_ac+ctf_range · ben+AI=benign · "
-          "mal+human=MUNI(real) · ben+human=NL2Bash(real)")
+          "mal+human=MUNI(real) · ben+human=Schonlau SEA(real)")
 
     # ------- INTENT axis -------
     print("\n" + "=" * 74)
@@ -240,7 +192,7 @@ def main():
 
     print("\n" + "=" * 74)
     print("All four cells are real data. INTENT still spans two human provenances")
-    print("(MUNI vs NL2Bash), so the common-binary row is the honest read for it.")
+    print("(MUNI vs Schonlau SEA), so the common-binary row is the honest read for it.")
     print("=" * 74)
 
 

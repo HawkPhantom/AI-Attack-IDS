@@ -24,7 +24,7 @@ Evaluated under the SAME leave-one-model-out protocol as ids_model_generalizatio
 The SVC-only pipeline is the ablation.
 """
 from __future__ import annotations
-import json, re, random
+import json, re, random, sys
 from collections import Counter
 from pathlib import Path
 
@@ -65,54 +65,27 @@ def cat_of(binary):
     return BIN2CAT.get(binary, "other")
 
 
-# ---- data loading (same cells / filters as ids_model_generalization.py) -----
-def cmds_raw(path):
-    raw = json.loads(Path(path).read_text(errors="replace"))
-    return [t[0][0].strip() for t in raw[1:]
-            if t and t[0] and (t[0][0] or "").strip() not in ("", "<model_error>")]
-
-
-def degenerate(cmds):
-    prose = sum(1 for c in cmds if len(c) > 60 or c.lower().startswith(("okay", "we ", "the user")))
-    return len(set(cmds)) < 3 or prose > len(cmds) * 0.4
+# ---- data loading (shared loader; empty-container AI + frontier + MUNI) ------
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from ids_data import load_ai, load_human_malicious  # noqa: E402
 
 
 def load():
-    rows = []
-    for f in Path("harness/runs/grid_ac").rglob("*session*.json"):
-        if f.parent.parent.name != "real_ssh":
-            continue
-        c = cmds_raw(f)
-        if len(c) >= 4 and not degenerate(c):
-            rows.append({"cmds": c, "model": "gemma3", "origin": "ai"})
-    for f in Path("harness/runs/benign").glob("*.json"):
-        c = cmds_raw(f)
-        if len(c) >= 4 and not degenerate(c):
-            rows.append({"cmds": c, "model": "gemma3", "origin": "ai"})
-    tagmap = {"q": "qwen", "l": "llama", "g4": "gemma4"}
-    for f in Path("harness/runs/multimodel").glob("*.json"):
-        name = f.name
-        tag = "g4" if name.startswith("g4_") else name[0]
-        model = tagmap.get(tag)
-        if not model:
-            continue
-        c = cmds_raw(f)
-        if len(c) >= 4 and not degenerate(c):
-            rows.append({"cmds": c, "model": model, "origin": "ai"})
-    for f in sorted(Path("data/human/muni").rglob("*useractions.json")):
-        cmds = []
-        for line in f.read_text(errors="replace").splitlines():
-            if not line.strip():
-                continue
-            try:
-                r = json.loads(line)
-            except Exception:
-                continue
-            if (r.get("cmd") or "").strip():
-                cmds.append(r["cmd"].strip())
-        if len(cmds) >= 4:
-            rows.append({"cmds": cmds, "model": "human", "origin": "human"})
+    # empty-container AI (incl. Gemini frontier + scaled grid_v2), no evasion
+    rows = [{"cmds": r["cmds"], "model": r["model"], "origin": "ai"}
+            for r in load_ai(envs=("empty",), include_evasion=False)]
+    rows += [{"cmds": r["cmds"], "model": "human", "origin": "human"}
+             for r in load_human_malicious()]
     return rows
+
+
+def bootstrap_ci(indicators, B=3000, seed=SEED):
+    a = np.asarray(indicators, dtype=float)
+    if len(a) == 0:
+        return (float("nan"), float("nan"))
+    rng = np.random.default_rng(seed)
+    return (float(np.percentile(a[rng.integers(0, len(a), (B, len(a)))].mean(1), 2.5)),
+            float(np.percentile(a[rng.integers(0, len(a), (B, len(a)))].mean(1), 97.5)))
 
 
 # ---- graph construction -----------------------------------------------------
@@ -259,9 +232,12 @@ def main():
     def svc_doc(r):
         return " ".join(head(c) for c in r["cmds"][:20] if head(c) in vocab)
 
-    models = [m for m in ["gemma3", "gemma4", "llama", "qwen"] if by_model.get(m, 0) >= 2]
+    order = ["gemma3", "gemma4", "llama", "qwen", "gemini3pro", "geminiflash",
+             "gemini25pro", "gemini25flash"]
+    models = [m for m in order if by_model.get(m, 0) >= 2] + \
+             [m for m in by_model if m not in order and by_model[m] >= 2]
     rng = random.Random(SEED)
-    print(f"  {'held-out':<9}{'SVC':>8}{'GNN':>8}{'ENSEMBLE':>10}   {'human FP (ens.)':>16}")
+    print(f"  {'held-out':<12}{'SVC':>7}{'GNN':>7}{'ENSEMBLE':>10}{'ens 95% CI':>16}{'humFP':>8}")
     svc_s, gnn_s, ens_s, fp_s = [], [], [], []
     for held in models:
         train = [r for r in rows if not (r["origin"] == "ai" and r["model"] == held)]
@@ -292,16 +268,21 @@ def main():
 
         svc_rec = np.mean([p == "ai" for p in svc_ai])
         gnn_rec = np.mean([p == "ai" for p in gnn_ai])
-        ens_rec = np.mean([p == "ai" for p in ens_ai])
+        ens_ind = [1 if p == "ai" else 0 for p in ens_ai]
+        ens_rec = float(np.mean(ens_ind))
+        elo, ehi = bootstrap_ci(ens_ind)
         ens_fp = np.mean([p == "ai" for p in ens_hu])
         svc_s.append(svc_rec); gnn_s.append(gnn_rec); ens_s.append(ens_rec); fp_s.append(ens_fp)
-        print(f"  {held:<9}{svc_rec:>8.2f}{gnn_rec:>8.2f}{ens_rec:>10.2f}   {ens_fp:>15.2f}   (n={len(test_ai)})")
-    print("  " + "-" * 60)
-    print(f"  {'MEAN':<9}{np.mean(svc_s):>8.2f}{np.mean(gnn_s):>8.2f}{np.mean(ens_s):>10.2f}   {np.mean(fp_s):>15.2f}")
-    print(f"  {'FLOOR':<9}{min(svc_s):>8.2f}{min(gnn_s):>8.2f}{min(ens_s):>10.2f}")
-    print(f"\n  >> Target was to raise the SVC floor of {min(svc_s):.2f}. "
-          f"Ensemble floor = {min(ens_s):.2f}  ({min(ens_s)-min(svc_s):+.2f}), "
-          f"at {np.mean(fp_s):.2f} mean human false-positive rate.")
+        fr = "*" if held.startswith("gemini") else " "
+        print(f" {fr}{held:<11}{svc_rec:>7.2f}{gnn_rec:>7.2f}{ens_rec:>10.2f}"
+              f"   [{elo:.2f},{ehi:.2f}]{ens_fp:>8.2f}   (n={len(test_ai)})")
+    print("  " + "-" * 62)
+    print(f"  {'MEAN':<11}{np.mean(svc_s):>7.2f}{np.mean(gnn_s):>7.2f}{np.mean(ens_s):>10.2f}"
+          f"{'':>16}{np.mean(fp_s):>8.2f}")
+    print(f"  {'FLOOR':<11}{min(svc_s):>7.2f}{min(gnn_s):>7.2f}{min(ens_s):>10.2f}")
+    print(f"\n  (* = frontier Gemini family, never in training)")
+    print(f"  >> SVC floor {min(svc_s):.2f} -> Ensemble floor {min(ens_s):.2f} "
+          f"({min(ens_s)-min(svc_s):+.2f}), at {np.mean(fp_s):.2f} mean human FP rate.")
 
 
 if __name__ == "__main__":
