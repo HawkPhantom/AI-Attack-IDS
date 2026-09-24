@@ -28,9 +28,9 @@ from driver import extract_command
 torch.set_num_threads(1)
 
 def authored(row):
-    """Remove known driver substitutions from logs; prompt bias remains."""
+    """Drop substituted turns, NOT restore unexecuted model text. Prompt bias remains."""
     raw = json.loads(Path(row['source']).read_text())
-    commands, rewritten = [], 0
+    commands, rewritten, unknown = [], 0, 0
     for turn in raw[1:]:
         if not turn or not turn[0] or turn[0][0] in ('','<model_error>'):
             continue
@@ -39,11 +39,12 @@ def authored(row):
         if model_raw is None:
             # Unknown provenance is retained, separately counted in audit.
             commands.append(executed)
+            unknown += 1
         elif extract_command(model_raw) == executed:
             commands.append(executed)
         else:
             rewritten += 1
-    return dict(row, cmds=commands), rewritten
+    return dict(row, cmds=commands, unknown_provenance_commands=unknown), rewritten
 
 def deduplicate(rows):
     seen, kept = set(), []
@@ -157,6 +158,8 @@ def evaluate_fold(train,cal,test,name,seeds,graphs=True,exclude_state=False):
                 scores[f'{control}_seed{seed}']=fit_graph(ts,y,es,seed,control)
             scores[f'ensemble_seed{seed}']=np.maximum(scores['svc'],scores[f'graph_seed{seed}'])
     result={'fold':name,'train_n':len(train),'cal_n':len(cal),'test_n':len(test),
+            'split_sources':{k:[r['source'] for r in part] for k,part in
+                             [('train',train),('cal',cal),('test',test)]},
             'vocab':sorted(vocab),'empty_train':sum(not s for s in ts),'empty_test':sum(not s for s in es[len(cal):]),
             'models':{}}
     for method,score in scores.items():
@@ -166,7 +169,7 @@ def evaluate_fold(train,cal,test,name,seeds,graphs=True,exclude_state=False):
             threshold=threshold_from_negatives(c,target)
             result['models'][method][f'calibrated_fpr_{target}']={
                 'threshold':threshold,'metrics':metrics(ey,s,threshold)}
-        result['models'][method]['predictions']=[{'source':r['source'],'y':yy,'score':float(ss)}
+        result['models'][method]['predictions']=[{'source':r['source'],'group':r['grp'],'y':yy,'score':float(ss)}
                                                   for r,yy,ss in zip(test,ey,s)]
     return result
 
@@ -181,6 +184,7 @@ def main():
     for row in ai:
         r,n=authored(row); corrected.append(r)
         audit['recorded_commands']+=len(row['cmds']); audit['known_substitutions']+=n
+        audit['unknown_provenance_commands']+=r['unknown_provenance_commands']
         audit['recorded_state_checks']+=sum(head(c) in {'pwd','whoami','id','uname','hostname'} for c in row['cmds'])
         audit['authored_state_checks']+=sum(head(c) in {'pwd','whoami','id','uname','hostname'} for c in r['cmds'])
     ai=deduplicate(corrected)
@@ -191,6 +195,8 @@ def main():
     results={'protocol':'host-v2','seeds':a.seeds,'audit':dict(audit),
              'ai_before_dedup':len(corrected),'ai_after_dedup':len(ai),
              'human_split':{'train':len(htr),'cal':len(hcal),'test':len(hte)},
+             'human_recording_groups':{k:len({r['grp'] for r in part}) for k,part in
+                                      [('train',htr),('cal',hcal),('test',hte)]},
              'limitations':['Historical prompts still encourage pwd; removing substitutions is not causal debiasing.',
                             'MUNI and AI were not collected from live humans in the same environment.',
                             'Wilson intervals describe session proportions; grouped dependence and training variance remain.'],

@@ -1,14 +1,14 @@
 <h1 align="center">AI-Attack IDS · Technical Report</h1>
-<p align="center"><b>Detecting an AI operator behind the shell, from host and network behavior.</b></p>
+<p align="center"><b>Detecting an AI operator behind the shell, under equalized task and budget.</b></p>
 
 <p align="center">
   <a href="#-english"><img src="https://img.shields.io/badge/lang-English-0072B2?style=for-the-badge" alt="English"></a>
   <a href="#-türkçe"><img src="https://img.shields.io/badge/dil-Türkçe-E69F00?style=for-the-badge" alt="Türkçe"></a>
 </p>
 
-> The method and exact commands are in **[experiments/PROTOCOL.md](experiments/PROTOCOL.md)**;
-> the required live-human follow-up is in **[experiments/HUMAN_STUDY.md](experiments/HUMAN_STUDY.md)**;
-> per-fold predictions and thresholds are under `experiments/`.
+> Method and exact commands: **[experiments/PROTOCOL.md](experiments/PROTOCOL.md)** ·
+> full per-fold tables: **[experiments/MATCHED_RESULTS.md](experiments/MATCHED_RESULTS.md)** ·
+> required live-human follow-up: **[experiments/HUMAN_STUDY.md](experiments/HUMAN_STUDY.md)**.
 
 ---
 
@@ -19,107 +19,95 @@
 
 | what | result |
 |---|---|
-| Host leave-one-model-out, lexical SVC recall (held-out model) | **0.71–1.00** at 2.5–5% human FPR (Wilson intervals wide) |
-| Does the transition **graph** add signal? | **No clear gain** — shuffled-order / no-edge controls ≈ the real graph; SVC alone (0.867) > graph (0.758) |
-| State-check commands (malicious/evasion set) | **503**; load-bearing but also prompt-encouraged, not proven intrinsic |
-| Low false-positive target | 1% FPR **not** validated (40 test humans; 2.5% FPR resolution) |
-| Network — legacy captures, directional | macro F1 **0.714** (preprocessing comparison, not generalization) |
-| Network — paired lab | strong with **timing**, but loopback + replay-not-human + scan-budget confounds |
-| Intent (corpus classification) | grouped F1 **0.896**; AI-only **0.785** — not independent evidence of malice |
-| Human class | **replay of archived commands, not live participants** |
+| Network + timing (SVC) vs automation | AUROC **0.92** at **0.01** test FPR (recall 0.82) |
+| Host + network + timing vs automation | AUROC **0.95** at **0.00** test FPR (recall 0.72) |
+| Host command-name TF-IDF vs automation | AUROC 0.87 but recall 0.24, unstable across splits — weak signal |
+| Port / command / state controls | 0.61 / 0.77 / 0.50 — budget matched; command *volume* a partial confound; state tokens constant |
+| Matched emulated-WAN impairment (both classes) | separation survives (RF+timing AUROC 0.96, 0 FP) |
+| Frozen unseen test (tasks/profiles/families) | 0/16 false positives (network+timing AUROC 0.89, RF+timing 1.00) |
+| Intent (corpus classification) | grouped **0.896**, AI-only **0.785** — descriptive, not malice |
+| Human class | **replayed archived commands, not live participants** |
 
-The project asks whether an intrusion detector can tell that the operator behind a shell session is an AI agent, from the command sequence and the network traffic. The honest reading is a real-but-modest host signal, an unproven graph contribution, a timing-dominated network signal on an unrealistic loopback, and no completed human-vs-AI field claim.
+The project asks whether an intrusion detector can identify an AI operator behind a shell session from the command sequence and the network traffic, once the comparison is fair — equalizing task and tool/scan budget across operators and measuring against deterministic automation over a wide pool of independent script families. The honest reading: network and combined detectors (especially with inter-packet timing) **do separate AI from automation with AUROC ~0.9 and a low test false-positive rate**, the separation **survives matched emulated-WAN impairment and a frozen test on unseen tasks/profiles/negative-families**, but the host command-name baseline is weak and unstable, and none of this is a *validated* low-FPR detector: the negatives are deterministic automation (not live humans), the FP resolution is coarse, and command volume remains a partial confound.
 
 ### 1 · The question — origin, not attribution
 
-> *"Can we build an IDS that tells whether an incoming attack is driven by an AI agent rather than a human or a script, no matter which model is behind it?"*
+We are not asking *which* LLM this is, only whether the operator is a language model. The design exists to stop that question collapsing into an easier one: if the AI and its comparison classes differ in task, tool budget or scan breadth, a detector separates them without learning about agency. So origin is measured against automation under a matched budget, and single-feature controls check that the budget really is matched.
 
-We are not asking *which* LLM this is, only whether the operator is a language model. The tests that matter are generalization to unseen models and robustness once known confounds are controlled.
+### 2 · Design
 
-### 2 · Method
+Each session is captured as a command sequence and a directional pcap, for three operator classes on one isolated lab, under equal command timeouts and no injected recovery commands:
 
-Every session is captured as a command sequence and a directional pcap, for three operator classes — AI agents, `human_replay` (archived human commands replayed by a program), and deterministic `script` controls — under equal time limits. The evaluation contract (`scripts/eval_common.py`) is conservative:
+- **AI agents** — gemma3, gemma4, llama3.1, qwen3, driven by two independent scaffolds (our native loop and the upstream `smolagents` tool-calling agent sharing the same shell executor).
+- **`script`** — eight deterministic families (nmap/nc/curl/`/dev/tcp` variants) as negative controls.
+- **`human_live`** — participants choosing commands from the same instructions and outputs. The consent/collection package is ready but **no participant data exists**; today's human negatives are replayed archived commands (`human_replay`), which is not a live decision and is labelled distinctly.
 
-- **The model's own commands are scored.** The harness does not inject flags into agent commands. Where a logged command carries executor-added flags (337 of 3,215 malicious/evasion commands — e.g. `nmap -T4 --host-timeout 25s`, `ping -c 3`, `ssh -o BatchMode=yes …`), the model's own text from `raw_command` is used, so the detector sees agent behavior rather than harness formatting.
-- **Directional network features.** Target ports/IPs/SYNs from outbound traffic only; received-RST fraction from inbound only; SSH transport direction from the first TCP SYN's endpoints.
-- **Training-only preprocessing.** Common vocabulary, TF-IDF and scalers fit on training data only, after a 20-command cap, with network commands removed. Empty/unparseable sessions are kept.
-- **Honest uncertainty.** Session recall/FPR with Wilson intervals; three graph seeds (17/42/73) reported as a min–max range (not a CI); FPR thresholds chosen only on a held-out calibration set; per-batch class weights that do not cancel.
-- **Held-out design.** Leave-one-model-out for the AI side; disjoint human recording groups for train (147) / calibration (80) / test (40); script controls never enter training.
+Every operator gets the same instructions, the same six in-scope ports and the same six-command budget. The evaluation contract (`scripts/eval_common.py`) fits vocabulary/TF-IDF/scalers on training data only; holds out whole AI models, tasks, environments and negative source-groups; selects false-positive thresholds only on a separate calibration set; reports Wilson intervals and a group-resampling cluster bootstrap; and quarantines incompletely-captured sessions rather than scoring them.
 
-### 3 · Host layer — generalization to unseen models
+### 3 · Command and network behavior against automation
 
-| held-out model | AI n | SVC recall | SVC 95% Wilson | SVC FPR | graph recall (seeds) | ensemble (seeds) |
-|---|---:|---:|---|---:|---|---|
-| gemini-3.1-pro | 14 | 0.857 | 0.601–0.960 | 0.050 | 0.571–0.786 | 0.857 |
-| gemini-3.5-flash | 49 | 0.939 | 0.835–0.979 | 0.050 | 0.959 | 0.959 |
-| gemma3 | 24 | 0.708 | 0.508–0.851 | 0.025 | 0.583–0.625 | 0.792–0.833 |
-| gemma4 | 23 | 0.783 | 0.581–0.903 | 0.025 | 0.565–0.696 | 0.783–0.826 |
-| llama3.1 | 23 | 0.913 | 0.732–0.976 | 0.025 | 0.783–0.870 | 0.957–1.000 |
-| qwen3 | 8 | 1.000 | 0.676–1.000 | 0.050 | 0.875–1.000 | 1.000 |
+Leave-one-model-out, each held-out AI model versus deterministic scripts under the matched budget, with a wide negative pool of **16 independent script families** (several families per calibration/test split):
 
-A held-out model is recognized above chance, but the intervals are wide and the two Gemini models are one provider (not independent frontier families). The `qwen3` row is an empty-session artifact (§6).
+| detector | AUROC | recall @cal-5% | test FPR |
+|---|---:|---:|---:|
+| port count only *(control)* | 0.61 | 0.23 | 0.00 |
+| command count only *(control)* | 0.77 | 0.00 | 0.00 |
+| state-check share only *(control)* | 0.50 | 0.00 | 0.00 |
+| host command-name TF-IDF | 0.87 | 0.24 | 0.00 |
+| network SVC, no timing | 0.92 | 0.67 | 0.14 |
+| network SVC, with timing | 0.92 | 0.82 | 0.01 |
+| network RF, with timing | 0.94 | 0.51 | 0.00 |
+| host + network, with timing | 0.95 | 0.72 | 0.00 |
 
-### 4 · Does the graph earn its keep? No clear evidence
+The controls confirm the budget is matched — port count alone reaches only 0.61 — while **command count reaches 0.77**, so command volume is a partial confound, and **state-check share is 0.50 because those tokens never appear in these matched sessions** (a constant feature, not evidence that a script and an LLM look alike). The **host command-name TF-IDF** baseline reaches AUROC 0.87 but its recall at a 5%-calibrated threshold is only 0.24 and it inverts on some splits — computed from the first token of the first six commands, it is a weak, unstable signal. **Network and combined models separate AI from automation and hold a low test false-positive rate** across the wide negative pool of independent families: network+timing AUROC 0.92 at 0.01 FPR (recall 0.82), host+network+timing 0.95 at 0.00 FPR. This is still not a *validated* deployment FPR — each split holds only tens of negatives (a zero-FP fold has a wide exact upper bound), the negatives are automation not live humans, and cluster intervals are wide.
 
-Mean recall over the model folds (equal weight per fold):
+### 4 · Identical commands, different operator
 
-| method | mean recall | mean human FPR |
-|---|---:|---:|
-| lexical SVC | **0.867** | 0.037 |
-| category-frequency logistic | 0.801 | 0.079 |
-| graph topology (seed 42) | 0.758 | 0.071 |
-| graph, **shuffled command order** | 0.799 | 0.104 |
-| graph, **edges removed** | 0.785 | 0.067 |
-| OR-ensemble (SVC ∪ graph) | 0.913 | 0.087 |
+Replaying an AI session's exact commands as a script isolates the operator from the command text:
 
-Shuffling the order or deleting the edges leaves the graph model essentially unchanged, and the lexical SVC alone beats it. A high ensemble number does not demonstrate that transition *topology* carries the signal; the ensemble's 0.913 is mostly the SVC. The lexical SVC is the primary detector; the graph is an inconclusive control.
+| detector | AUROC |
+|---|---:|
+| host command-name TF-IDF | 0.50 |
+| network SVC, no timing | 0.50 |
+| network SVC, with timing | 0.81 |
 
-### 5 · State-check tendency, no-state and evasion controls
+Command-name features tie by construction across the 13 pairs — a consistency check, not a finding. Timing features add some separation, but each row is a two-sample fold and the mean is over 13 folds; local-model inference waits versus wait-free replay are an expected timing difference, so this is "timing adds separation under these conditions," not an established AI-specific signal. "Did an AI write this command?" and "is an AI deciding online now?" remain different questions.
 
-LLM agents re-query `pwd`/`whoami`/`id`/`uname`/`hostname` far more than the human recordings — 503 such commands across the malicious/evasion set. The recon prompts also instruct a `pwd` fallback, so this is not a prompt-free property. It is load-bearing for the detector: a `no_state` ablation (dropping those five tokens) lowers SVC recall markedly (gemma3 0.71→0.50, qwen 1.00→0.13, gemini-flash 0.94→0.74). Under evasion prompts the state share collapses and the detector's response is model-dependent (`evasion:gemma4` SVC 1.00, `evasion:llama` 0.67, `evasion:gemma3` 0.75); adversarial retraining recovers some models. Full per-experiment numbers are under `experiments/`. A prompt-free, live-human replication remains outstanding.
+### 5 · Evasion, matched impairment, and a frozen test
 
-### 6 · Task coverage — some agents barely act
+**Evasion.** Of 32 attempts (30 eligible), **9 produce the exact correct answer** (gemma4 6, llama 2, qwen 1) — several models complete the task. The state-check share does not "collapse" — those tokens are zero in the normal condition too. Two evasion sessions **exceeded the port budget** (~1000 TCP ports), recorded and excluded from matched-budget claims; the success-gated subset is in `successful_ai_sensitivity` per fold. Detection holds under evasion (network+timing AUROC 0.97 at 0.01 FPR). An agent that suppresses all useful reconnaissance is not counted as evading.
 
-Coverage = the share of expected open services that returned a SYN+ACK; a floor on activity, not proof of comprehension or exploitation.
+**Matched emulated-WAN impairment.** An emulated netem profile — delay 80ms±40ms (normal), 1.5% correlated loss, 5% reordering — is applied to **both** AI and scripts (16 impaired AI, 32 impaired scripts) and evaluated impaired-AI vs impaired-scripts, with the threshold re-fit on impaired negatives. The separation survives (network RF+timing AUROC 0.96, recall 0.81, 0 FP; network+timing 0.72). This remains emulation on a single Docker host with capture on the operator container's `eth0`, **not** a real wide-area network.
 
-| operator | sessions | mean open-service coverage | commands run | timeouts | nonzero exit codes |
-|---|---:|---:|---:|---:|---:|
-| gemma3:4b | 8 | 0.411 | 48 | 15 | 24 |
-| gemma4:latest | 8 | 1.000 | 43 | 0 | 4 |
-| llama3.1:8b | 8 | 1.000 | 37 | 3 | 10 |
-| **qwen3:4b** | 8 | **0.000** | **0** | 0 | 0 |
-| human_replay | 12 | 0.892 | 72 | 4 | 14 |
-| script | 4 | 0.240 | 18 | 0 | 3 |
+**Frozen confirmatory test.** With the detector and threshold frozen on the development data, a held-out set of **unseen tasks (triage, dbweb), unseen service profiles (c, d) and 4 reserved script families** (`nmap_reason`, `nmap_seq`, `ssh_probe`, `telnet_probe`) is scored **once**: network+timing and host+network reach **0/16 false positives** (AUROC 0.86–0.89), RF+timing AUROC 1.00. Encouraging generalization, but 16 negatives still leave a wide exact 95% FP upper bound.
 
-`qwen3:4b` produces no usable commands, so its "detection" is detection of an empty session — a caution for any per-model number that includes it.
+### 6 · Against archived human command corpora
 
-### 7 · Network layer
+Compared against a different human corpus (archived cyber-range logs) rather than automation, command content separates far better — leave-one-model-out recall 0.71–1.00 — but that comparison carries the corpus, era, task and installed-tool differences between two data sources, so it measures those alongside agency. A graph model over the command-transition topology does not beat the lexical baseline (shuffling order or removing edges barely changes it), so the added structure is not where a signal lives. This is why the controlled comparison is against automation under a matched budget.
 
-- **Legacy captures.** The 14 legacy pcaps (8 AI, 6 replay), a Random Forest and an out-of-session split give macro F1 **0.714** with directional features. These captures dropped port-22 traffic, so this is a preprocessing comparison, not an unseen-model generalization test.
-- **Paired lab.** On the 48 paired sessions, host, network and combined models use identical folds. Network features — especially with inter-packet **timing** — separate AI from replay strongly (combined F1 up to 1.00; host alone ≈ 0.60–0.82). But this is a **loopback** lab with no realistic latency/loss; the negatives are replay, not live humans; and the agent's constrained port budget differs from the replay's task. Timing carries most of the separation. Four unseen scripts are frequently mis-flagged (host-only / network-no-timing false-alarm rate 0.50), so this is not a solved discrimination.
-- **HASSH** identifies a *programmatic client* (paramiko vs OpenSSH), which also covers Ansible/CI, rather than agency itself.
+### 7 · Intent (malicious vs benign)
 
-### 8 · Intent axis (malicious vs benign)
+Task category separates at leave-one-group-out macro F1 **0.896** across corpora and **0.785** within the AI side. This is descriptive corpus classification: the corpora differ in source and era and labels come from the assigned task, not proven harm. A permuted-label control cannot remove that provenance confound. No malice claim follows without a live, matched-task human study.
 
-Across the command corpora, leave-one-group-out macro F1 is **0.896**; within the AI side only, leave-one-model-out is **0.785**. This is descriptive corpus classification: the corpora differ in source and era, and the labels come from the assigned task, not from proven harm. A permuted-label control cannot remove that provenance confound. No malice claim follows without a live, matched-task human study.
+### 8 · Honest limitations
 
-### 9 · Honest limitations
+- **The human class is replay, not live participation** — the largest limitation. The question needs live participants choosing commands from the same task and outputs ([HUMAN_STUDY.md](experiments/HUMAN_STUDY.md)).
+- **Pilot sample.** 253 attempts, 237 eligible (112 AI, 128 script across 16 families, 13 counterfactual; 16 quarantined). Every AI attempt is repeat 0. Each split holds several negative families but still only tens of negatives, so a zero-FP fold has a wide exact upper bound; cluster intervals are wide.
+- **The signal is real but not deployment-validated.** Network and combined detectors reach AUROC ~0.92–0.95 at ~0–1% test FPR, survive matched impairment, and generalize on a frozen unseen test — but the negatives are deterministic automation, not live humans, and the FP resolution is coarse. The host command-name baseline is weak and unstable (AUROC 0.87, recall 0.24, inverts on some splits).
+- **Command volume is a partial confound** the matched budget does not fully remove (command-count control 0.77); two evasion sessions exceeded the budget.
+- **Four local open-weight models across three families** (gemma×2, llama, qwen); two scaffolds share one executor; a network-only defender does not see the commands captured inside the operator container.
+- **Open work:** live matched-task humans, more independently-implemented agents, many more independent negatives, broader tasks/environments, a realistic-network experiment.
 
-- **The human class is replay, not live participation** — the single largest limitation. Live participants must choose commands from the same task instructions and outputs before any human-vs-AI claim ([HUMAN_STUDY.md](experiments/HUMAN_STUDY.md)).
-- **Pilot sample.** 48 paired sessions ({ai: 32, replay: 12, script: 4}; 8 zero-traffic AI kept; 2 collector errors excluded); command/network sets similarly small. Wilson intervals ignore session dependence and training variance.
-- **No validated low FPR.** With 40 test humans the FPR resolution is 2.5%; a 1% population FPR needs ≈299 independent negatives with zero false positives, far beyond this sample.
-- **The graph contribution is unproven** (shuffle / no-edge ≈ real graph).
-- **Two frontier models, one provider,** and the pro model was heavily API-rate-limited (small n).
-- **Network is loopback and confounded** (no jitter/loss; replay ≠ human; scan-budget mismatch; timing dominates).
-- **The environment/context variants are one driver** — two service profiles and two context policies of the same collector, not independent agent frameworks.
-- **Open work:** live matched-task humans, independently-implemented agents, broader tasks/environments, adaptive evasion that preserves reconnaissance success, a real network-impairment experiment, independent field testing.
+### 9 · Reproduction and artifacts
+
+Protocol and commands: [PROTOCOL.md](experiments/PROTOCOL.md) · full tables: [MATCHED_RESULTS.md](experiments/MATCHED_RESULTS.md) · per-fold predictions/thresholds and runtime/dependency locks under `experiments/`. Raw sessions and pcaps are local, git-ignored; result JSONs and these documents are versioned.
 
 ### Data sources
 
 | dataset | role | link |
 |---|---|---|
-| **MUNI shell commands** | real human commands (replayed as negatives) | [Zenodo 8136017](https://zenodo.org/records/8136017) (CC-BY-4.0) |
-| **DTU "Honey for the Agent"** | malicious+AI reference, deception design | [Zenodo 20818246](https://zenodo.org/records/20818246) (CC-BY-4.0) |
+| **MUNI shell commands** | archived human commands (replayed as negatives; intent corpus) | [Zenodo 8136017](https://zenodo.org/records/8136017) (CC-BY-4.0) |
+| **DTU "Honey for the Agent"** | AI-attack reference, deception design | [Zenodo 20818246](https://zenodo.org/records/20818246) (CC-BY-4.0) |
 | **Schonlau SEA** | real benign human command streams (intent corpus) | [schonlau.net](https://www.schonlau.net/intrusion.html) |
 | **Gemini 3.x API** | frontier AI host sessions | [ai.google.dev](https://ai.google.dev) |
 | **TRACE** | fingerprinting-pipeline reference | [arXiv 2605.01186](https://arxiv.org/abs/2605.01186) |
@@ -135,110 +123,88 @@ Across the command corpora, leave-one-group-out macro F1 is **0.896**; within th
 
 | ne | sonuç |
 |---|---|
-| Host leave-one-model-out, sözcüksel SVC recall | **0.71–1.00** (%2.5–5 insan FPR; Wilson aralıkları geniş) |
-| Geçiş **grafiği** sinyal ekliyor mu? | **Net kazanç yok** — karıştırılmış/kenarsız kontroller ≈ gerçek grafik; SVC tek başına (0.867) > grafik (0.758) |
-| Durum-kontrol komutu (malicious/evasion) | **503**; belirleyici ama prompt-teşvikli, içsel olduğu kanıtlı değil |
-| Düşük yanlış-pozitif hedefi | %1 FPR **doğrulanmadı** (40 test insanı; %2.5 FPR çözünürlüğü) |
-| Ağ — eski yakalamalar, yönlü | macro F1 **0.714** (ön-işleme karşılaştırması, genelleme değil) |
-| Ağ — eşlenmiş lab | **zamanlama** ile güçlü, ama loopback + replay-insan-değil + tarama-bütçesi confound'u |
-| Niyet (korpus sınıflandırma) | gruplu F1 **0.896**; yalnız-AI **0.785** — bağımsız kötü-niyet kanıtı değil |
-| İnsan sınıfı | **arşiv komutlarının replay'i, canlı katılımcı değil** |
+| Ağ + zamanlama (SVC), otomasyona karşı | AUROC **0.92**, **%1** test FPR (recall 0.82) |
+| Host + ağ + zamanlama, otomasyona karşı | AUROC **0.95**, **%0** test FPR (recall 0.72) |
+| Host komut-adı TF-IDF | AUROC 0.87 ama recall 0.24, split'ler arası kararsız — zayıf sinyal |
+| Port / komut / durum kontrolleri | 0.61 / 0.77 / 0.50 — bütçe eşit; komut *hacmi* kısmi confound; durum token'ları sabit |
+| Eşit emüle-WAN bozunumu (iki sınıf) | ayrım hayatta kalıyor (RF+zamanlama AUROC 0.96, 0 FP) |
+| Dondurulmuş görülmemiş test (görev/profil/aile) | 0/16 yanlış-pozitif (ağ+zamanlama AUROC 0.89, RF+zamanlama 1.00) |
+| Niyet (korpus sınıflandırma) | gruplu **0.896**, yalnız-AI **0.785** — betimsel, kötü-niyet değil |
+| İnsan sınıfı | **oynatılmış arşiv komutları, canlı katılımcı değil** |
 
-Proje, bir saldırı dedektörünün, operatörün bir AI ajanı olduğunu komut dizisi ve ağ trafiğinden ayırt edip edemeyeceğini sorar. Dürüst okuma: gerçek ama mütevazı bir host sinyali, kanıtlanmamış bir grafik katkısı, gerçekçi olmayan bir loopback'te zamanlama-baskın bir ağ sinyali ve tamamlanmamış bir insan-vs-AI saha iddiası.
+Proje, bir saldırı dedektörünün — karşılaştırma adil hale getirildiğinde — operatörün bir AI ajanı olduğunu komut dizisi ve ağ trafiğinden tanıyıp tanıyamayacağını sorar; görevi ve araç/tarama bütçesini eşitler ve geniş bir bağımsız script-ailesi havuzuyla deterministik otomasyona karşı ölçer. Dürüst okuma: ağ ve birleşik dedektörler (özellikle paketler-arası zamanlamayla) **AI'yı otomasyondan AUROC ~0.9 ve düşük test yanlış-pozitif oranıyla ayırıyor**, ayrım **eşit emüle-WAN bozunumunu ve görülmemiş görev/profil/negatif-aile üzerinde dondurulmuş bir testi atlatıyor**, ama host komut-adı baseline'ı zayıf ve kararsız, ve bunların hiçbiri *doğrulanmış* düşük-FPR bir dedektör değil: negatifler canlı insan değil otomasyon, FP çözünürlüğü kaba, ve komut hacmi kısmi bir confound olarak kalıyor.
 
 ### 1 · Soru — atıf değil köken
 
-> *"Sisteme gelen bir saldırının, arkasındaki model ne olursa olsun, bir insan ya da script yerine bir AI ajanı tarafından sürüldüğünü ayırt eden bir IDS kurabilir miyiz?"*
+*Hangi* LLM olduğunu değil, operatörün bir dil modeli olup olmadığını soruyoruz. Tasarım, bu sorunun daha kolay bir soruya çökmesini engellemek için var: AI ile karşılaştırma sınıfları görev, araç bütçesi veya tarama genişliğinde farklıysa, dedektör onları ajans öğrenmeden ayırır. Bu yüzden köken eşit bütçe altında otomasyona karşı ölçülür, ve tek-özellikli kontroller bütçenin gerçekten eşit olduğunu denetler.
 
-*Hangi* LLM olduğunu değil, operatörün bir dil modeli olup olmadığını soruyoruz. Önemli sınavlar, görülmemiş modellere genelleme ve bilinen confound'lar kontrol edilince sağlamlık.
+### 2 · Tasarım
 
-### 2 · Yöntem
+Her oturum komut dizisi ve yönlü pcap olarak yakalanır; tek izole laboratuvarda üç operatör sınıfı için, eşit komut zaman aşımlarıyla ve enjekte edilmiş kurtarma komutu olmadan:
 
-Her oturum komut dizisi ve yönlü bir pcap olarak yakalanır; üç operatör sınıfı için — AI ajanları, `human_replay` (arşivlenmiş insan komutlarının bir programca oynatılması) ve deterministik `script` kontrolleri — eşit süre sınırıyla. Değerlendirme sözleşmesi (`scripts/eval_common.py`) temkinlidir:
+- **AI ajanları** — gemma3, gemma4, llama3.1, qwen3; iki bağımsız iskele ile (kendi native döngümüz ve aynı shell yürütücüsünü paylaşan upstream `smolagents` araç-çağıran ajanı).
+- **`script`** — negatif kontrol olarak sekiz deterministik aile (nmap/nc/curl/`/dev/tcp` çeşitleri).
+- **`human_live`** — aynı talimat ve çıktılardan komut seçen katılımcılar. Onam/toplama paketi hazır ama **katılımcı verisi yok**; bugünkü insan negatifleri oynatılmış arşiv komutlarıdır (`human_replay`) — canlı bir karar değil ve ayrı etiketlenir.
 
-- **Modelin kendi komutu skorlanır.** Harness ajan komutlarına bayrak enjekte etmez. Bir kayıtlı komut executor-eklentili bayrak taşıyorsa (3.215 malicious/evasion komutunun 337'si — ör. `nmap -T4 --host-timeout 25s`, `ping -c 3`, `ssh -o BatchMode=yes …`), yerine modelin `raw_command`'daki kendi metni kullanılır; böylece dedektör harness biçimlemesini değil ajan davranışını görür.
-- **Yönlü ağ özellikleri.** Hedef port/IP/SYN yalnız giden; alınan-RST oranı yalnız gelen; SSH taşıma yönü ilk TCP SYN'e göre.
-- **Yalnız-eğitimde ön işleme.** Ortak sözlük, TF-IDF ve ölçekleyiciler yalnız eğitimde, 20-komut sınırından sonra, ağ komutları çıkarılarak fit edilir. Boş/çözümlenemeyen oturumlar tutulur.
-- **Dürüst belirsizlik.** Wilson aralıklı oturum recall/FPR; üç grafik tohumu (17/42/73) min–max aralığı olarak (güven aralığı değil); FPR eşikleri yalnız calibration setinde; iptal olmayan batch sınıf ağırlıkları.
-- **Held-out tasarım.** AI tarafı için leave-one-model-out; ayrık insan kayıt grupları train (147) / calibration (80) / test (40); script kontrolleri eğitime asla girmez.
+Her operatör aynı talimatı, aynı altı kapsam-içi portu ve aynı altı-komut bütçesini alır. Değerlendirme sözleşmesi (`scripts/eval_common.py`) sözlük/TF-IDF/ölçekleyicileri yalnız eğitimde fit eder; AI modellerini, görevleri, ortamları ve negatif kaynak-gruplarını bütünüyle dışarıda tutar; yanlış-pozitif eşiklerini yalnız ayrı bir calibration setinde seçer; Wilson aralıkları ve grup-yeniden-örnekleyen bir cluster bootstrap raporlar; ve eksik-yakalanan oturumları skorlamak yerine karantinaya alır.
 
-### 3 · Host katmanı — görülmemiş modele genelleme
+### 3 · Komut ve ağ davranışı otomasyona karşı
 
-| dışarıda tutulan model | AI n | SVC recall | SVC %95 Wilson | SVC FPR | grafik recall (tohum) | ensemble (tohum) |
-|---|---:|---:|---|---:|---|---|
-| gemini-3.1-pro | 14 | 0.857 | 0.601–0.960 | 0.050 | 0.571–0.786 | 0.857 |
-| gemini-3.5-flash | 49 | 0.939 | 0.835–0.979 | 0.050 | 0.959 | 0.959 |
-| gemma3 | 24 | 0.708 | 0.508–0.851 | 0.025 | 0.583–0.625 | 0.792–0.833 |
-| gemma4 | 23 | 0.783 | 0.581–0.903 | 0.025 | 0.565–0.696 | 0.783–0.826 |
-| llama3.1 | 23 | 0.913 | 0.732–0.976 | 0.025 | 0.783–0.870 | 0.957–1.000 |
-| qwen3 | 8 | 1.000 | 0.676–1.000 | 0.050 | 0.875–1.000 | 1.000 |
+Leave-one-model-out, her dışarıda tutulan AI modeli eşit bütçe altında deterministik scriptlere karşı, **16 bağımsız script ailesinden oluşan geniş bir negatif havuzuyla** (split başına birkaç aile):
 
-Dışarıda tutulan model şanstan yüksek tanınıyor, ama aralıklar geniş ve iki Gemini modeli tek sağlayıcı (bağımsız frontier aile değil). `qwen3` satırı boş-oturum artefaktıdır (§6).
+| dedektör | AUROC | recall @kal-%5 | test FPR |
+|---|---:|---:|---:|
+| yalnız port sayısı *(kontrol)* | 0.61 | 0.23 | 0.00 |
+| yalnız komut sayısı *(kontrol)* | 0.77 | 0.00 | 0.00 |
+| yalnız durum-kontrol payı *(kontrol)* | 0.50 | 0.00 | 0.00 |
+| host komut-adı TF-IDF | 0.87 | 0.24 | 0.00 |
+| ağ SVC, zamanlamasız | 0.92 | 0.67 | 0.14 |
+| ağ SVC, zamanlamalı | 0.92 | 0.82 | 0.01 |
+| ağ RF, zamanlamalı | 0.94 | 0.51 | 0.00 |
+| host + ağ, zamanlamalı | 0.95 | 0.72 | 0.00 |
 
-### 4 · Grafik hakkını veriyor mu? Net kanıt yok
+Kontroller bütçenin eşit olduğunu doğruluyor — yalnız port sayısı 0.61 — ama **komut sayısı 0.77'ye ulaşıyor** (komut hacmi kısmi confound), ve **durum-kontrol payı 0.50 çünkü o token'lar bu eşit oturumlarda hiç geçmiyor** (sabit özellik). **Host komut-adı TF-IDF** AUROC 0.87 alıyor ama %5-kalibre eşikte recall'ı yalnız 0.24 ve bazı split'lerde tersleniyor — ilk altı komutun ilk kelimesinden hesaplanan zayıf, kararsız bir sinyal. **Ağ ve birleşik modeller AI'yı otomasyondan ayırıyor ve geniş bağımsız-aile negatif havuzunda düşük test yanlış-pozitif oranı tutuyor**: ağ+zamanlama AUROC 0.92, %1 FPR (recall 0.82); host+ağ+zamanlama 0.95, %0 FPR. Bu hâlâ *doğrulanmış* bir dağıtım FPR'si değil — split başına yalnız onlarca negatif (sıfır-FP fold'un geniş exact üst sınırı), negatifler canlı insan değil otomasyon, ve cluster aralıkları geniş.
 
-Model foldları üzerinde ortalama recall (fold başına eşit ağırlık):
+### 4 · Aynı komutlar, farklı operatör
 
-| yöntem | ortalama recall | ortalama insan FPR |
-|---|---:|---:|
-| sözcüksel SVC | **0.867** | 0.037 |
-| kategori-frekansı lojistik | 0.801 | 0.079 |
-| grafik topoloji (tohum 42) | 0.758 | 0.071 |
-| grafik, **sırası karıştırılmış** | 0.799 | 0.104 |
-| grafik, **kenarları çıkarılmış** | 0.785 | 0.067 |
-| OR-topluluğu (SVC ∪ grafik) | 0.913 | 0.087 |
+Bir AI oturumunun tam komutlarını script olarak oynatmak, operatörü komut metninden ayırır:
 
-Sırayı karıştırmak veya kenarları silmek grafik modeli neredeyse değiştirmiyor ve sözcüksel SVC tek başına onu geçiyor. Yüksek topluluk sayısı, sinyali *topolojinin* taşıdığını kanıtlamıyor; 0.913'ün çoğu SVC. Birincil dedektör sözcüksel SVC; grafik sonuçsuz bir kontrol.
+| dedektör | AUROC |
+|---|---:|
+| host komut-adı TF-IDF | 0.50 |
+| ağ SVC, zamanlamasız | 0.50 |
+| ağ SVC, zamanlamalı | 0.81 |
 
-### 5 · Durum-kontrol eğilimi, no-state ve kaçınma kontrolleri
+13 çiftte komut-adı özellikleri yapısı gereği eşitlenir — bir tutarlılık kontrolü, bir bulgu değil. Zamanlama özellikleri bir miktar ayrım ekliyor, ama her satır iki-örnekli bir fold ve ortalama 13 fold üzerinden; yerel-model çıkarım beklemeleri ile beklemesiz replay beklenen bir zamanlama farkıdır, yani bu "bu koşullarda zamanlama ayrım ekliyor" demek, AI'ya özgü kanıtlanmış bir sinyal değil. "Bu komutu bir AI mı yazdı?" ve "şimdi çevrimiçi kararı bir AI mı veriyor?" farklı sorular olarak kalıyor.
 
-LLM ajanları `pwd`/`whoami`/`id`/`uname`/`hostname`'i insan kayıtlarından çok daha fazla sorguluyor — malicious/evasion setinde 503 komut. Keşif promptları da bir `pwd` fallback'i söylüyor, dolayısıyla promptsuz bir özellik değil. Dedektör için belirleyici: bir `no_state` ablation'ı (bu beş token'ı çıkarmak) SVC recall'ını belirgin düşürüyor (gemma3 0.71→0.50, qwen 1.00→0.13, gemini-flash 0.94→0.74). Kaçınma promptları altında durum payı çöküyor ve tepki modele bağlı (`evasion:gemma4` SVC 1.00, `evasion:llama` 0.67, `evasion:gemma3` 0.75); düşmanca yeniden eğitim bazı modelleri kurtarıyor. Deney-bazlı tüm sayılar `experiments/` altında. Promptsuz, canlı-insan replikasyonu eksik.
+### 5 · Kaçınma, eşit bozunum ve dondurulmuş test
 
-### 6 · Görev kapsamı — bazı ajanlar neredeyse hiç iş yapmıyor
+**Kaçınma.** 32 denemenin (30 uygun) **9'u tam doğru cevabı üretiyor** (gemma4 6, llama 2, qwen 1) — birkaç model tamamlıyor. Durum-kontrol payı "çökmüyor" — normal koşulda da sıfır. İki oturum **port bütçesini aştı** (~1000 port), kayıtlı ve dışlanmış; başarı-kapılı alt küme `successful_ai_sensitivity`'de. Kaçınma altında tespit tutuyor (ağ+zamanlama AUROC 0.97, %1 FPR). Tüm yararlı keşfi bastıran ajan kaçınmış sayılmaz.
 
-Kapsam = SYN+ACK dönen beklenen açık servislerin oranı; etkinlik tabanı, anlama/exploit kanıtı değil.
+**Eşit emüle-WAN bozunumu.** Emüle netem profili — gecikme 80ms±40ms (normal), %1.5 korelasyonlu kayıp, %5 reordering — **hem** AI'ya **hem** scriptlere uygulandı (16 bozunmuş AI, 32 bozunmuş script), bozunmuş-vs-bozunmuş değerlendirildi, eşik bozunmuş negatiflerde yeniden fit edildi. Ayrım hayatta kalıyor (ağ RF+zamanlama AUROC 0.96, recall 0.81, 0 FP; ağ+zamanlama 0.72). Bu tek Docker host'ta emülasyon, operatör konteynerinin `eth0`'ında yakalama, **gerçek** bir WAN değil.
 
-| operatör | oturum | ortalama açık-servis kapsamı | çalıştırılan komut | timeout | sıfır-dışı çıkış |
-|---|---:|---:|---:|---:|---:|
-| gemma3:4b | 8 | 0.411 | 48 | 15 | 24 |
-| gemma4:latest | 8 | 1.000 | 43 | 0 | 4 |
-| llama3.1:8b | 8 | 1.000 | 37 | 3 | 10 |
-| **qwen3:4b** | 8 | **0.000** | **0** | 0 | 0 |
-| human_replay | 12 | 0.892 | 72 | 4 | 14 |
-| script | 4 | 0.240 | 18 | 0 | 3 |
+**Dondurulmuş doğrulama testi.** Dedektör ve eşik geliştirmede donduruldu; **görülmemiş görevler (triage, dbweb), görülmemiş servis profilleri (c, d) ve 4 rezerve script ailesi** (`nmap_reason`, `nmap_seq`, `ssh_probe`, `telnet_probe`) bir kez skorlandı: ağ+zamanlama ve host+ağ **0/16 yanlış-pozitif** (AUROC 0.86–0.89), RF+zamanlama AUROC 1.00. Umut verici genelleme, ama 16 negatif hâlâ geniş bir exact %95 FP üst sınırı bırakıyor.
 
-`qwen3:4b` kullanılabilir komut üretmiyor; "tespiti" boş oturumun tespitidir — onu içeren her model sayısı için bir uyarı.
+### 6 · Arşiv insan komut korpuslarına karşı
 
-### 7 · Ağ katmanı
+Otomasyon yerine farklı bir insan korpusuna (arşivlenmiş cyber-range kayıtları) karşı komut içeriği çok daha iyi ayırıyor — leave-one-model-out recall 0.71–1.00 — ama o karşılaştırma iki veri kaynağı arasındaki korpus, dönem, görev ve kurulu-araç farklarını taşır, dolayısıyla ajans yanında bunları da ölçer. Komut-geçiş topolojisi üzerinde bir grafik model sözcüksel baseline'ı geçmiyor (sırayı karıştırmak veya kenarları çıkarmak neredeyse değiştirmiyor), yani ek yapı sinyalin yaşadığı yer değil. Kontrollü karşılaştırmanın eşit bütçe altında otomasyona karşı olmasının nedeni budur.
 
-- **Eski yakalamalar.** 14 eski pcap (8 AI, 6 replay), Random Forest ve oturum-dışı split, yönlü özelliklerle macro F1 **0.714**. Bu yakalamalar port-22'yi dışladı, dolayısıyla ön-işleme karşılaştırması, görülmemiş-model genellemesi değil.
-- **Eşlenmiş lab.** 48 eşlenmiş oturumda host, ağ ve birleşik modeller aynı foldları kullanır. Ağ özellikleri — özellikle paketler-arası **zamanlama** ile — AI'yı replay'den güçlü ayırıyor (birleşik F1 1.00'a kadar; yalnız host ≈ 0.60–0.82). Ama bu, gerçekçi gecikme/kayıp olmayan bir **loopback** lab; negatifler replay, canlı insan değil; ajanın dar port bütçesi replay'in görevinden farklı. Ayrımı çoğunlukla zamanlama taşıyor. Dört görülmemiş script sıkça yanlış işaretleniyor (host-only / ağ-zamansız yanlış-alarm 0.50), yani çözülmüş bir ayrım değil.
-- **HASSH** bir *programatik istemci* (paramiko vs OpenSSH) tanımlar, ki Ansible/CI de dahil; ajansın kendisini değil.
+### 7 · Niyet (zararlı vs zararsız)
 
-### 8 · Niyet ekseni (zararlı vs zararsız)
+Görev kategorisi korpuslar arasında leave-one-group-out macro F1 **0.896** ve AI içinde **0.785** ile ayrılıyor. Bu betimsel korpus sınıflandırmasıdır: korpuslar kaynak/dönem olarak farklı ve etiketler kanıtlı zarardan değil verilen görevden gelir. Permüte-etiket kontrolü bu köken confound'unu kaldıramaz. Canlı, eş görevli insan çalışması olmadan niyet iddiası çıkmaz.
 
-Komut korpuslarında leave-one-group-out macro F1 **0.896**; yalnız AI tarafında leave-one-model-out **0.785**. Bu betimsel korpus sınıflandırmasıdır: korpuslar kaynak ve dönem olarak farklı ve etiketler verilen görevden gelir, kanıtlı zarardan değil. Permüte-etiket kontrolü bu köken confound'unu kaldıramaz. Canlı, eş görevli insan çalışması olmadan niyet iddiası çıkmaz.
+### 8 · Dürüst sınırlamalar
 
-### 9 · Dürüst sınırlamalar
+- **İnsan sınıfı replay'dir, canlı katılım değil** — en büyük sınırlama. Soru, aynı görev ve çıktılardan komut seçen canlı katılımcılar gerektirir ([HUMAN_STUDY.md](experiments/HUMAN_STUDY.md)).
+- **Pilot örneklem.** 253 deneme, 237 uygun (112 AI, 16 aileye yayılan 128 script, 13 counterfactual; 16 karantina). Her AI denemesi repeat 0. Her split birkaç negatif aile içeriyor ama hâlâ yalnız onlarca negatif, dolayısıyla sıfır-FP fold'un geniş bir exact üst sınırı var; cluster aralıkları geniş.
+- **Sinyal gerçek ama dağıtım-doğrulaması yok.** Ağ ve birleşik dedektörler AUROC ~0.92–0.95'e, ~%0–1 test FPR ile ulaşıyor, eşit bozunumu atlatıyor ve dondurulmuş görülmemiş testte genelleşiyor — ama negatifler canlı insan değil otomasyon, FP çözünürlüğü kaba. Host komut-adı baseline'ı zayıf ve kararsız (AUROC 0.87, recall 0.24, bazı split'lerde tersleniyor).
+- **Komut hacmi, eşit bütçenin tam gideremediği kısmi bir confound** (komut-sayısı kontrolü 0.77); iki kaçınma oturumu bütçeyi aştı.
+- **Üç aileye yayılan dört yerel açık-ağırlık model** (gemma×2, llama, qwen); iki iskele tek yürütücü paylaşıyor; yalnız-ağ savunucusu operatör konteynerinde yakalanan komutları görmez.
+- **Açık işler:** canlı eş-görevli insanlar, daha fazla bağımsız uygulanmış ajan, çok daha fazla bağımsız negatif, daha geniş görev/ortamlar, gerçekçi bir ağ deneyi.
 
-- **İnsan sınıfı replay'dir, canlı katılım değil** — en büyük sınırlama. Herhangi bir insan-vs-AI iddiasından önce canlı katılımcılar aynı görev talimatı ve çıktılardan komut seçmeli ([HUMAN_STUDY.md](experiments/HUMAN_STUDY.md)).
-- **Pilot örneklem.** 48 eşlenmiş oturum ({ai: 32, replay: 12, script: 4}; 8 sıfır-trafik AI tutuldu; 2 collector hatası dışlandı); komut/ağ setleri de küçük. Wilson aralıkları oturum bağımlılığını ve eğitim varyansını yok sayar.
-- **Doğrulanmış düşük FPR yok.** 40 test insanıyla FPR çözünürlüğü %2.5; %1 popülasyon FPR'si sıfır yanlış-pozitifle ≈299 bağımsız negatif gerektirir, bu örneklemin çok ötesinde.
-- **Grafik katkısı kanıtlanmadı** (karıştırma / kenarsız ≈ gerçek grafik).
-- **İki frontier model tek sağlayıcı,** ve pro model ağır API rate-limit yedi (küçük n).
-- **Ağ loopback ve confound'lu** (jitter/kayıp yok; replay ≠ insan; tarama-bütçesi uyumsuz; zamanlama baskın).
-- **Ortam/bağlam varyantları tek sürücü** — aynı toplayıcının iki servis profili ve iki bağlam politikası, bağımsız ajan frameworkleri değil.
-- **Açık işler:** canlı eş-görevli insanlar, bağımsız uygulanmış ajanlar, daha geniş görev/ortamlar, keşif başarısını koruyan adaptif kaçınma, gerçek ağ-bozunumu deneyi, bağımsız saha testi.
+### 9 · Tekrar üretim ve veri kaynakları
 
-### Veri kaynakları
-
-| veri seti | rol | bağlantı |
-|---|---|---|
-| **MUNI shell komutları** | gerçek insan komutları (negatif olarak replay) | [Zenodo 8136017](https://zenodo.org/records/8136017) (CC-BY-4.0) |
-| **DTU "Honey for the Agent"** | zararlı+AI referansı, aldatma tasarımı | [Zenodo 20818246](https://zenodo.org/records/20818246) (CC-BY-4.0) |
-| **Schonlau SEA** | gerçek zararsız insan komut akışları (niyet korpusu) | [schonlau.net](https://www.schonlau.net/intrusion.html) |
-| **Gemini 3.x API** | frontier AI host oturumları | [ai.google.dev](https://ai.google.dev) |
-| **TRACE** | parmak izi hattı referansı | [arXiv 2605.01186](https://arxiv.org/abs/2605.01186) |
+Protokol ve komutlar [PROTOCOL.md](experiments/PROTOCOL.md); tüm tablolar [MATCHED_RESULTS.md](experiments/MATCHED_RESULTS.md); fold-bazlı tahminler/eşikler ve runtime/bağımlılık kilitleri `experiments/` altında. Veri kaynakları için yukarıdaki İngilizce tabloya bakın.
 
 </details>
 

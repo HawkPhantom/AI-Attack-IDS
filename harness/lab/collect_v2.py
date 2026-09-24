@@ -19,6 +19,7 @@ sys.path.insert(0, str(ROOT/'harness'))
 from driver import extract_command
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from recon_features import features
+from capture import Capture
 
 NET = 'ids-v2-private'
 ATK = 'ids-v2-atk'
@@ -88,10 +89,8 @@ def session(outdir, sid, meta, turns=6, replay=None, seed=42):
         return
     # Fresh attacker process/container state per session, same image and IP.
     docker('restart', ATK)
-    docker('exec', ATK, 'rm', '-f', '/capture/v2.pcap')
-    docker('exec', '-d', ATK, 'sh', '-c',
-           "tcpdump -i eth0 -s0 -U -w /capture/v2.pcap 'ip and net 172.30.0.0/24' 2>/capture/v2.log")
-    time.sleep(.4)
+    capture = Capture(docker, ATK)
+    capture.start()
     history, records, errors = [], [], []
     try:
         for i in range(turns if replay is None else min(turns, len(replay))):
@@ -111,10 +110,8 @@ def session(outdir, sid, meta, turns=6, replay=None, seed=42):
     except Exception as e:
         errors.append(type(e).__name__ + ': ' + str(e)[:300])
     finally:
-        docker('exec', ATK, 'pkill', '-INT', 'tcpdump', check=False)
-        time.sleep(.4)
         pcap = outdir/(sid+'.pcap')
-        docker('cp', ATK+':/capture/v2.pcap', str(pcap))
+        capture_audit = capture.stop(pcap)
     feat = features(pcap)
     # Objective observation, not a claim that a complete exploitation task succeeded.
     evidence = '\n'.join(x.get('output','') for x in records)
@@ -122,7 +119,8 @@ def session(outdir, sid, meta, turns=6, replay=None, seed=42):
     discovered = sorted(set(re.findall(r'(?m)^\s*(\d+)/tcp\s+open\b', evidence)))
     result = dict(meta, id=sid, schema='paired-v2', policy='no-command-replacement', seed=seed,
                   commands=records, network=feat, errors=errors, observed_open_ports=discovered,
-                  pcap_sha256=hashlib.sha256(pcap.read_bytes()).hexdigest())
+                  pcap_sha256=hashlib.sha256(pcap.read_bytes()).hexdigest(),
+                  capture=capture_audit)
     out.write_text(json.dumps(result, indent=2))
     print(f'{sid}: commands={len(history)} packets={feat["n_pkts"]} errors={len(errors)}', flush=True)
 

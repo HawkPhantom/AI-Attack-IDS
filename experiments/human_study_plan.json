@@ -1,0 +1,1810 @@
+{
+  "status": "prospective_development_plan_not_preregistered",
+  "protocol_sha256": "b78ad797aeafbbf238587e0302319213e974042e751d7f7c24449bf0ffbbdd07",
+  "seed": 1729,
+  "planned_slots": 60,
+  "observed_participants": 0,
+  "participants": {
+    "P001": {
+      "partition": "train",
+      "order": [
+        {
+          "env": "a",
+          "task": "discover"
+        },
+        {
+          "env": "a",
+          "task": "inventory"
+        },
+        {
+          "env": "a",
+          "task": "web_check"
+        },
+        {
+          "env": "b",
+          "task": "discover"
+        },
+        {
+          "env": "b",
+          "task": "inventory"
+        },
+        {
+          "env": "b",
+          "task": "web_check"
+        }
+      ],
+      "status": "planned_slot_no_participant_or_consent"
+    },
+    "P002": {
+      "partition": "train",
+      "order": [
+        {
+          "env": "a",
+          "task": "inventory"
+        },
+        {
+          "env": "a",
+          "task": "web_check"
+        },
+        {
+          "env": "b",
+          "task": "discover"
+        },
+        {
+          "env": "b",
+          "task": "inventory"
+        },
+        {
+          "env": "b",
+          "task": "web_check"
+        },
+        {
+          "env": "a",
+          "task": "discover"
+        }
+      ],
+      "status": "planned_slot_no_participant_or_consent"
+    },
+    "P003": {
+      "partition": "train",
+      "order": [
+        {
+          "env": "a",
+          "task": "web_check"
+        },
+        {
+          "env": "b",
+          "task": "discover"
+        },
+        {
+          "env": "b",
+          "task": "inventory"
+        },
+        {
+          "env": "b",
+          "task": "web_check"
+        },
+        {
+          "env": "a",
+          "task": "discover"
+        },
+        {
+          "env": "a",
+          "task": "inventory"
+        }
+      ],
+      "status": "planned_slot_no_participant_or_consent"
+    },
+    "P004": {
+      "partition": "train",
+      "order": [
+        {
+          "env": "b",
+          "task": "discover"
+        },
+        {
+          "env": "b",
+          "task": "inventory"
+        },
+        {
+          "env": "b",
+          "task": "web_check"
+        },
+        {
+          "env": "a",
+          "task": "discover"
+        },
+        {
+          "env": "a",
+          "task": "inventory"
+        },
+        {
+          "env": "a",
+          "task": "web_check"
+        }
+      ],
+      "status": "planned_slot_no_participant_or_consent"
+    },
+    "P005": {
+      "partition": "test",
+      "order": [
+        {
+          "env": "b",
+          "task": "inventory"
+        },
+        {
+          "env": "b",
+          "task": "web_check"
+        },
+        {
+          "env": "a",
+          "task": "discover"
+        },
+        {
+          "env": "a",
+          "task": "inventory"
+        },
+        {
+          "env": "a",
+          "task": "web_check"
+        },
+        {
+          "env": "b",
+          "task": "discover"
+        }
+      ],
+      "status": "planned_slot_no_participant_or_consent"
+    },
+    "P006": {
+      "partition": "test",
+      "order": [
+        {
+          "env": "b",
+          "task": "web_check"
+        },
+        {
+          "env": "a",
+          "task": "discover"
+        },
+        {
+          "env": "a",
+          "task": "inventory"
+        },
+        {
+          "env": "a",
+          "task": "web_check"
+        },
+        {
+          "env": "b",
+          "task": "discover"
+        },
+        {
+          "env": "b",
+          "task": "inventory"
+        }
+      ],
+      "status": "planned_slot_no_participant_or_consent"
+    },
+    "P007": {
+      "partition": "cal",
+      "order": [
+        {
+          "env": "b",
+          "task": "web_check"
+        },
+        {
+          "env": "b",
+          "task": "inventory"
+        },
+        {
+          "env": "b",
+          "task": "discover"
+        },
+        {
+          "env": "a",
+          "task": "web_check"
+        },
+        {
+          "env": "a",
+          "task": "inventory"
+        },
+        {
+          "env": "a",
+          "task": "discover"
+        }
+      ],
+      "status": "planned_slot_no_participant_or_consent"
+    },
+    "P008": {
+      "partition": "cal",
+      "order": [
+        {
+          "env": "a",
+          "task": "discover"
+        },
+        {
+          "env": "b",
+          "task": "web_check"
+        },
+        {
+          "env": "b",
+          "task": "inventory"
+        },
+        {
+          "env": "b",
+          "task": "discover"
+        },
+        {
+          "env": "a",
+          "task": "web_check"
+        },
+        {
+          "env": "a",
+          "task": "inventory"
+        }
+      ],
+      "status": "planned_slot_no_participant_or_consent"
+    },
+    "P009": {
+      "partition": "test",
+      "order": [
+        {
+          "env": "a",
+          "task": "inventory"
+        },
+        {
+          "env": "a",
+          "task": "discover"
+        },
+        {
+          "env": "b",
+          "task": "web_check"
+        },
+        {
+          "env": "b",
+          "task": "inventory"
+        },
+        {
+          "env": "b",
+          "task": "discover"
+        },
+        {
+          "env": "a",
+          "task": "web_check"
+        }
+      ],
+      "status": "planned_slot_no_participant_or_consent"
+    },
+    "P010": {
+      "partition": "train",
+      "order": [
+        {
+          "env": "a",
+          "task": "web_check"
+        },
+        {
+          "env": "a",
+          "task": "inventory"
+        },
+        {
+          "env": "a",
+          "task": "discover"
+        },
+        {
+          "env": "b",
+          "task": "web_check"
+        },
+        {
+          "env": "b",
+          "task": "inventory"
+        },
+        {
+          "env": "b",
+          "task": "discover"
+        }
+      ],
+      "status": "planned_slot_no_participant_or_consent"
+    },
+    "P011": {
+      "partition": "train",
+      "order": [
+        {
+          "env": "b",
+          "task": "discover"
+        },
+        {
+          "env": "a",
+          "task": "web_check"
+        },
+        {
+          "env": "a",
+          "task": "inventory"
+        },
+        {
+          "env": "a",
+          "task": "discover"
+        },
+        {
+          "env": "b",
+          "task": "web_check"
+        },
+        {
+          "env": "b",
+          "task": "inventory"
+        }
+      ],
+      "status": "planned_slot_no_participant_or_consent"
+    },
+    "P012": {
+      "partition": "train",
+      "order": [
+        {
+          "env": "b",
+          "task": "inventory"
+        },
+        {
+          "env": "b",
+          "task": "discover"
+        },
+        {
+          "env": "a",
+          "task": "web_check"
+        },
+        {
+          "env": "a",
+          "task": "inventory"
+        },
+        {
+          "env": "a",
+          "task": "discover"
+        },
+        {
+          "env": "b",
+          "task": "web_check"
+        }
+      ],
+      "status": "planned_slot_no_participant_or_consent"
+    },
+    "P013": {
+      "partition": "cal",
+      "order": [
+        {
+          "env": "a",
+          "task": "discover"
+        },
+        {
+          "env": "a",
+          "task": "inventory"
+        },
+        {
+          "env": "a",
+          "task": "web_check"
+        },
+        {
+          "env": "b",
+          "task": "discover"
+        },
+        {
+          "env": "b",
+          "task": "inventory"
+        },
+        {
+          "env": "b",
+          "task": "web_check"
+        }
+      ],
+      "status": "planned_slot_no_participant_or_consent"
+    },
+    "P014": {
+      "partition": "train",
+      "order": [
+        {
+          "env": "a",
+          "task": "inventory"
+        },
+        {
+          "env": "a",
+          "task": "web_check"
+        },
+        {
+          "env": "b",
+          "task": "discover"
+        },
+        {
+          "env": "b",
+          "task": "inventory"
+        },
+        {
+          "env": "b",
+          "task": "web_check"
+        },
+        {
+          "env": "a",
+          "task": "discover"
+        }
+      ],
+      "status": "planned_slot_no_participant_or_consent"
+    },
+    "P015": {
+      "partition": "train",
+      "order": [
+        {
+          "env": "a",
+          "task": "web_check"
+        },
+        {
+          "env": "b",
+          "task": "discover"
+        },
+        {
+          "env": "b",
+          "task": "inventory"
+        },
+        {
+          "env": "b",
+          "task": "web_check"
+        },
+        {
+          "env": "a",
+          "task": "discover"
+        },
+        {
+          "env": "a",
+          "task": "inventory"
+        }
+      ],
+      "status": "planned_slot_no_participant_or_consent"
+    },
+    "P016": {
+      "partition": "cal",
+      "order": [
+        {
+          "env": "b",
+          "task": "discover"
+        },
+        {
+          "env": "b",
+          "task": "inventory"
+        },
+        {
+          "env": "b",
+          "task": "web_check"
+        },
+        {
+          "env": "a",
+          "task": "discover"
+        },
+        {
+          "env": "a",
+          "task": "inventory"
+        },
+        {
+          "env": "a",
+          "task": "web_check"
+        }
+      ],
+      "status": "planned_slot_no_participant_or_consent"
+    },
+    "P017": {
+      "partition": "cal",
+      "order": [
+        {
+          "env": "b",
+          "task": "inventory"
+        },
+        {
+          "env": "b",
+          "task": "web_check"
+        },
+        {
+          "env": "a",
+          "task": "discover"
+        },
+        {
+          "env": "a",
+          "task": "inventory"
+        },
+        {
+          "env": "a",
+          "task": "web_check"
+        },
+        {
+          "env": "b",
+          "task": "discover"
+        }
+      ],
+      "status": "planned_slot_no_participant_or_consent"
+    },
+    "P018": {
+      "partition": "train",
+      "order": [
+        {
+          "env": "b",
+          "task": "web_check"
+        },
+        {
+          "env": "a",
+          "task": "discover"
+        },
+        {
+          "env": "a",
+          "task": "inventory"
+        },
+        {
+          "env": "a",
+          "task": "web_check"
+        },
+        {
+          "env": "b",
+          "task": "discover"
+        },
+        {
+          "env": "b",
+          "task": "inventory"
+        }
+      ],
+      "status": "planned_slot_no_participant_or_consent"
+    },
+    "P019": {
+      "partition": "train",
+      "order": [
+        {
+          "env": "b",
+          "task": "web_check"
+        },
+        {
+          "env": "b",
+          "task": "inventory"
+        },
+        {
+          "env": "b",
+          "task": "discover"
+        },
+        {
+          "env": "a",
+          "task": "web_check"
+        },
+        {
+          "env": "a",
+          "task": "inventory"
+        },
+        {
+          "env": "a",
+          "task": "discover"
+        }
+      ],
+      "status": "planned_slot_no_participant_or_consent"
+    },
+    "P020": {
+      "partition": "train",
+      "order": [
+        {
+          "env": "a",
+          "task": "discover"
+        },
+        {
+          "env": "b",
+          "task": "web_check"
+        },
+        {
+          "env": "b",
+          "task": "inventory"
+        },
+        {
+          "env": "b",
+          "task": "discover"
+        },
+        {
+          "env": "a",
+          "task": "web_check"
+        },
+        {
+          "env": "a",
+          "task": "inventory"
+        }
+      ],
+      "status": "planned_slot_no_participant_or_consent"
+    },
+    "P021": {
+      "partition": "cal",
+      "order": [
+        {
+          "env": "a",
+          "task": "inventory"
+        },
+        {
+          "env": "a",
+          "task": "discover"
+        },
+        {
+          "env": "b",
+          "task": "web_check"
+        },
+        {
+          "env": "b",
+          "task": "inventory"
+        },
+        {
+          "env": "b",
+          "task": "discover"
+        },
+        {
+          "env": "a",
+          "task": "web_check"
+        }
+      ],
+      "status": "planned_slot_no_participant_or_consent"
+    },
+    "P022": {
+      "partition": "test",
+      "order": [
+        {
+          "env": "a",
+          "task": "web_check"
+        },
+        {
+          "env": "a",
+          "task": "inventory"
+        },
+        {
+          "env": "a",
+          "task": "discover"
+        },
+        {
+          "env": "b",
+          "task": "web_check"
+        },
+        {
+          "env": "b",
+          "task": "inventory"
+        },
+        {
+          "env": "b",
+          "task": "discover"
+        }
+      ],
+      "status": "planned_slot_no_participant_or_consent"
+    },
+    "P023": {
+      "partition": "train",
+      "order": [
+        {
+          "env": "b",
+          "task": "discover"
+        },
+        {
+          "env": "a",
+          "task": "web_check"
+        },
+        {
+          "env": "a",
+          "task": "inventory"
+        },
+        {
+          "env": "a",
+          "task": "discover"
+        },
+        {
+          "env": "b",
+          "task": "web_check"
+        },
+        {
+          "env": "b",
+          "task": "inventory"
+        }
+      ],
+      "status": "planned_slot_no_participant_or_consent"
+    },
+    "P024": {
+      "partition": "train",
+      "order": [
+        {
+          "env": "b",
+          "task": "inventory"
+        },
+        {
+          "env": "b",
+          "task": "discover"
+        },
+        {
+          "env": "a",
+          "task": "web_check"
+        },
+        {
+          "env": "a",
+          "task": "inventory"
+        },
+        {
+          "env": "a",
+          "task": "discover"
+        },
+        {
+          "env": "b",
+          "task": "web_check"
+        }
+      ],
+      "status": "planned_slot_no_participant_or_consent"
+    },
+    "P025": {
+      "partition": "test",
+      "order": [
+        {
+          "env": "a",
+          "task": "discover"
+        },
+        {
+          "env": "a",
+          "task": "inventory"
+        },
+        {
+          "env": "a",
+          "task": "web_check"
+        },
+        {
+          "env": "b",
+          "task": "discover"
+        },
+        {
+          "env": "b",
+          "task": "inventory"
+        },
+        {
+          "env": "b",
+          "task": "web_check"
+        }
+      ],
+      "status": "planned_slot_no_participant_or_consent"
+    },
+    "P026": {
+      "partition": "train",
+      "order": [
+        {
+          "env": "a",
+          "task": "inventory"
+        },
+        {
+          "env": "a",
+          "task": "web_check"
+        },
+        {
+          "env": "b",
+          "task": "discover"
+        },
+        {
+          "env": "b",
+          "task": "inventory"
+        },
+        {
+          "env": "b",
+          "task": "web_check"
+        },
+        {
+          "env": "a",
+          "task": "discover"
+        }
+      ],
+      "status": "planned_slot_no_participant_or_consent"
+    },
+    "P027": {
+      "partition": "train",
+      "order": [
+        {
+          "env": "a",
+          "task": "web_check"
+        },
+        {
+          "env": "b",
+          "task": "discover"
+        },
+        {
+          "env": "b",
+          "task": "inventory"
+        },
+        {
+          "env": "b",
+          "task": "web_check"
+        },
+        {
+          "env": "a",
+          "task": "discover"
+        },
+        {
+          "env": "a",
+          "task": "inventory"
+        }
+      ],
+      "status": "planned_slot_no_participant_or_consent"
+    },
+    "P028": {
+      "partition": "test",
+      "order": [
+        {
+          "env": "b",
+          "task": "discover"
+        },
+        {
+          "env": "b",
+          "task": "inventory"
+        },
+        {
+          "env": "b",
+          "task": "web_check"
+        },
+        {
+          "env": "a",
+          "task": "discover"
+        },
+        {
+          "env": "a",
+          "task": "inventory"
+        },
+        {
+          "env": "a",
+          "task": "web_check"
+        }
+      ],
+      "status": "planned_slot_no_participant_or_consent"
+    },
+    "P029": {
+      "partition": "cal",
+      "order": [
+        {
+          "env": "b",
+          "task": "inventory"
+        },
+        {
+          "env": "b",
+          "task": "web_check"
+        },
+        {
+          "env": "a",
+          "task": "discover"
+        },
+        {
+          "env": "a",
+          "task": "inventory"
+        },
+        {
+          "env": "a",
+          "task": "web_check"
+        },
+        {
+          "env": "b",
+          "task": "discover"
+        }
+      ],
+      "status": "planned_slot_no_participant_or_consent"
+    },
+    "P030": {
+      "partition": "train",
+      "order": [
+        {
+          "env": "b",
+          "task": "web_check"
+        },
+        {
+          "env": "a",
+          "task": "discover"
+        },
+        {
+          "env": "a",
+          "task": "inventory"
+        },
+        {
+          "env": "a",
+          "task": "web_check"
+        },
+        {
+          "env": "b",
+          "task": "discover"
+        },
+        {
+          "env": "b",
+          "task": "inventory"
+        }
+      ],
+      "status": "planned_slot_no_participant_or_consent"
+    },
+    "P031": {
+      "partition": "cal",
+      "order": [
+        {
+          "env": "b",
+          "task": "web_check"
+        },
+        {
+          "env": "b",
+          "task": "inventory"
+        },
+        {
+          "env": "b",
+          "task": "discover"
+        },
+        {
+          "env": "a",
+          "task": "web_check"
+        },
+        {
+          "env": "a",
+          "task": "inventory"
+        },
+        {
+          "env": "a",
+          "task": "discover"
+        }
+      ],
+      "status": "planned_slot_no_participant_or_consent"
+    },
+    "P032": {
+      "partition": "train",
+      "order": [
+        {
+          "env": "a",
+          "task": "discover"
+        },
+        {
+          "env": "b",
+          "task": "web_check"
+        },
+        {
+          "env": "b",
+          "task": "inventory"
+        },
+        {
+          "env": "b",
+          "task": "discover"
+        },
+        {
+          "env": "a",
+          "task": "web_check"
+        },
+        {
+          "env": "a",
+          "task": "inventory"
+        }
+      ],
+      "status": "planned_slot_no_participant_or_consent"
+    },
+    "P033": {
+      "partition": "train",
+      "order": [
+        {
+          "env": "a",
+          "task": "inventory"
+        },
+        {
+          "env": "a",
+          "task": "discover"
+        },
+        {
+          "env": "b",
+          "task": "web_check"
+        },
+        {
+          "env": "b",
+          "task": "inventory"
+        },
+        {
+          "env": "b",
+          "task": "discover"
+        },
+        {
+          "env": "a",
+          "task": "web_check"
+        }
+      ],
+      "status": "planned_slot_no_participant_or_consent"
+    },
+    "P034": {
+      "partition": "train",
+      "order": [
+        {
+          "env": "a",
+          "task": "web_check"
+        },
+        {
+          "env": "a",
+          "task": "inventory"
+        },
+        {
+          "env": "a",
+          "task": "discover"
+        },
+        {
+          "env": "b",
+          "task": "web_check"
+        },
+        {
+          "env": "b",
+          "task": "inventory"
+        },
+        {
+          "env": "b",
+          "task": "discover"
+        }
+      ],
+      "status": "planned_slot_no_participant_or_consent"
+    },
+    "P035": {
+      "partition": "train",
+      "order": [
+        {
+          "env": "b",
+          "task": "discover"
+        },
+        {
+          "env": "a",
+          "task": "web_check"
+        },
+        {
+          "env": "a",
+          "task": "inventory"
+        },
+        {
+          "env": "a",
+          "task": "discover"
+        },
+        {
+          "env": "b",
+          "task": "web_check"
+        },
+        {
+          "env": "b",
+          "task": "inventory"
+        }
+      ],
+      "status": "planned_slot_no_participant_or_consent"
+    },
+    "P036": {
+      "partition": "train",
+      "order": [
+        {
+          "env": "b",
+          "task": "inventory"
+        },
+        {
+          "env": "b",
+          "task": "discover"
+        },
+        {
+          "env": "a",
+          "task": "web_check"
+        },
+        {
+          "env": "a",
+          "task": "inventory"
+        },
+        {
+          "env": "a",
+          "task": "discover"
+        },
+        {
+          "env": "b",
+          "task": "web_check"
+        }
+      ],
+      "status": "planned_slot_no_participant_or_consent"
+    },
+    "P037": {
+      "partition": "train",
+      "order": [
+        {
+          "env": "a",
+          "task": "discover"
+        },
+        {
+          "env": "a",
+          "task": "inventory"
+        },
+        {
+          "env": "a",
+          "task": "web_check"
+        },
+        {
+          "env": "b",
+          "task": "discover"
+        },
+        {
+          "env": "b",
+          "task": "inventory"
+        },
+        {
+          "env": "b",
+          "task": "web_check"
+        }
+      ],
+      "status": "planned_slot_no_participant_or_consent"
+    },
+    "P038": {
+      "partition": "train",
+      "order": [
+        {
+          "env": "a",
+          "task": "inventory"
+        },
+        {
+          "env": "a",
+          "task": "web_check"
+        },
+        {
+          "env": "b",
+          "task": "discover"
+        },
+        {
+          "env": "b",
+          "task": "inventory"
+        },
+        {
+          "env": "b",
+          "task": "web_check"
+        },
+        {
+          "env": "a",
+          "task": "discover"
+        }
+      ],
+      "status": "planned_slot_no_participant_or_consent"
+    },
+    "P039": {
+      "partition": "test",
+      "order": [
+        {
+          "env": "a",
+          "task": "web_check"
+        },
+        {
+          "env": "b",
+          "task": "discover"
+        },
+        {
+          "env": "b",
+          "task": "inventory"
+        },
+        {
+          "env": "b",
+          "task": "web_check"
+        },
+        {
+          "env": "a",
+          "task": "discover"
+        },
+        {
+          "env": "a",
+          "task": "inventory"
+        }
+      ],
+      "status": "planned_slot_no_participant_or_consent"
+    },
+    "P040": {
+      "partition": "train",
+      "order": [
+        {
+          "env": "b",
+          "task": "discover"
+        },
+        {
+          "env": "b",
+          "task": "inventory"
+        },
+        {
+          "env": "b",
+          "task": "web_check"
+        },
+        {
+          "env": "a",
+          "task": "discover"
+        },
+        {
+          "env": "a",
+          "task": "inventory"
+        },
+        {
+          "env": "a",
+          "task": "web_check"
+        }
+      ],
+      "status": "planned_slot_no_participant_or_consent"
+    },
+    "P041": {
+      "partition": "test",
+      "order": [
+        {
+          "env": "b",
+          "task": "inventory"
+        },
+        {
+          "env": "b",
+          "task": "web_check"
+        },
+        {
+          "env": "a",
+          "task": "discover"
+        },
+        {
+          "env": "a",
+          "task": "inventory"
+        },
+        {
+          "env": "a",
+          "task": "web_check"
+        },
+        {
+          "env": "b",
+          "task": "discover"
+        }
+      ],
+      "status": "planned_slot_no_participant_or_consent"
+    },
+    "P042": {
+      "partition": "train",
+      "order": [
+        {
+          "env": "b",
+          "task": "web_check"
+        },
+        {
+          "env": "a",
+          "task": "discover"
+        },
+        {
+          "env": "a",
+          "task": "inventory"
+        },
+        {
+          "env": "a",
+          "task": "web_check"
+        },
+        {
+          "env": "b",
+          "task": "discover"
+        },
+        {
+          "env": "b",
+          "task": "inventory"
+        }
+      ],
+      "status": "planned_slot_no_participant_or_consent"
+    },
+    "P043": {
+      "partition": "train",
+      "order": [
+        {
+          "env": "b",
+          "task": "web_check"
+        },
+        {
+          "env": "b",
+          "task": "inventory"
+        },
+        {
+          "env": "b",
+          "task": "discover"
+        },
+        {
+          "env": "a",
+          "task": "web_check"
+        },
+        {
+          "env": "a",
+          "task": "inventory"
+        },
+        {
+          "env": "a",
+          "task": "discover"
+        }
+      ],
+      "status": "planned_slot_no_participant_or_consent"
+    },
+    "P044": {
+      "partition": "train",
+      "order": [
+        {
+          "env": "a",
+          "task": "discover"
+        },
+        {
+          "env": "b",
+          "task": "web_check"
+        },
+        {
+          "env": "b",
+          "task": "inventory"
+        },
+        {
+          "env": "b",
+          "task": "discover"
+        },
+        {
+          "env": "a",
+          "task": "web_check"
+        },
+        {
+          "env": "a",
+          "task": "inventory"
+        }
+      ],
+      "status": "planned_slot_no_participant_or_consent"
+    },
+    "P045": {
+      "partition": "cal",
+      "order": [
+        {
+          "env": "a",
+          "task": "inventory"
+        },
+        {
+          "env": "a",
+          "task": "discover"
+        },
+        {
+          "env": "b",
+          "task": "web_check"
+        },
+        {
+          "env": "b",
+          "task": "inventory"
+        },
+        {
+          "env": "b",
+          "task": "discover"
+        },
+        {
+          "env": "a",
+          "task": "web_check"
+        }
+      ],
+      "status": "planned_slot_no_participant_or_consent"
+    },
+    "P046": {
+      "partition": "test",
+      "order": [
+        {
+          "env": "a",
+          "task": "web_check"
+        },
+        {
+          "env": "a",
+          "task": "inventory"
+        },
+        {
+          "env": "a",
+          "task": "discover"
+        },
+        {
+          "env": "b",
+          "task": "web_check"
+        },
+        {
+          "env": "b",
+          "task": "inventory"
+        },
+        {
+          "env": "b",
+          "task": "discover"
+        }
+      ],
+      "status": "planned_slot_no_participant_or_consent"
+    },
+    "P047": {
+      "partition": "train",
+      "order": [
+        {
+          "env": "b",
+          "task": "discover"
+        },
+        {
+          "env": "a",
+          "task": "web_check"
+        },
+        {
+          "env": "a",
+          "task": "inventory"
+        },
+        {
+          "env": "a",
+          "task": "discover"
+        },
+        {
+          "env": "b",
+          "task": "web_check"
+        },
+        {
+          "env": "b",
+          "task": "inventory"
+        }
+      ],
+      "status": "planned_slot_no_participant_or_consent"
+    },
+    "P048": {
+      "partition": "train",
+      "order": [
+        {
+          "env": "b",
+          "task": "inventory"
+        },
+        {
+          "env": "b",
+          "task": "discover"
+        },
+        {
+          "env": "a",
+          "task": "web_check"
+        },
+        {
+          "env": "a",
+          "task": "inventory"
+        },
+        {
+          "env": "a",
+          "task": "discover"
+        },
+        {
+          "env": "b",
+          "task": "web_check"
+        }
+      ],
+      "status": "planned_slot_no_participant_or_consent"
+    },
+    "P049": {
+      "partition": "cal",
+      "order": [
+        {
+          "env": "a",
+          "task": "discover"
+        },
+        {
+          "env": "a",
+          "task": "inventory"
+        },
+        {
+          "env": "a",
+          "task": "web_check"
+        },
+        {
+          "env": "b",
+          "task": "discover"
+        },
+        {
+          "env": "b",
+          "task": "inventory"
+        },
+        {
+          "env": "b",
+          "task": "web_check"
+        }
+      ],
+      "status": "planned_slot_no_participant_or_consent"
+    },
+    "P050": {
+      "partition": "train",
+      "order": [
+        {
+          "env": "a",
+          "task": "inventory"
+        },
+        {
+          "env": "a",
+          "task": "web_check"
+        },
+        {
+          "env": "b",
+          "task": "discover"
+        },
+        {
+          "env": "b",
+          "task": "inventory"
+        },
+        {
+          "env": "b",
+          "task": "web_check"
+        },
+        {
+          "env": "a",
+          "task": "discover"
+        }
+      ],
+      "status": "planned_slot_no_participant_or_consent"
+    },
+    "P051": {
+      "partition": "cal",
+      "order": [
+        {
+          "env": "a",
+          "task": "web_check"
+        },
+        {
+          "env": "b",
+          "task": "discover"
+        },
+        {
+          "env": "b",
+          "task": "inventory"
+        },
+        {
+          "env": "b",
+          "task": "web_check"
+        },
+        {
+          "env": "a",
+          "task": "discover"
+        },
+        {
+          "env": "a",
+          "task": "inventory"
+        }
+      ],
+      "status": "planned_slot_no_participant_or_consent"
+    },
+    "P052": {
+      "partition": "train",
+      "order": [
+        {
+          "env": "b",
+          "task": "discover"
+        },
+        {
+          "env": "b",
+          "task": "inventory"
+        },
+        {
+          "env": "b",
+          "task": "web_check"
+        },
+        {
+          "env": "a",
+          "task": "discover"
+        },
+        {
+          "env": "a",
+          "task": "inventory"
+        },
+        {
+          "env": "a",
+          "task": "web_check"
+        }
+      ],
+      "status": "planned_slot_no_participant_or_consent"
+    },
+    "P053": {
+      "partition": "train",
+      "order": [
+        {
+          "env": "b",
+          "task": "inventory"
+        },
+        {
+          "env": "b",
+          "task": "web_check"
+        },
+        {
+          "env": "a",
+          "task": "discover"
+        },
+        {
+          "env": "a",
+          "task": "inventory"
+        },
+        {
+          "env": "a",
+          "task": "web_check"
+        },
+        {
+          "env": "b",
+          "task": "discover"
+        }
+      ],
+      "status": "planned_slot_no_participant_or_consent"
+    },
+    "P054": {
+      "partition": "test",
+      "order": [
+        {
+          "env": "b",
+          "task": "web_check"
+        },
+        {
+          "env": "a",
+          "task": "discover"
+        },
+        {
+          "env": "a",
+          "task": "inventory"
+        },
+        {
+          "env": "a",
+          "task": "web_check"
+        },
+        {
+          "env": "b",
+          "task": "discover"
+        },
+        {
+          "env": "b",
+          "task": "inventory"
+        }
+      ],
+      "status": "planned_slot_no_participant_or_consent"
+    },
+    "P055": {
+      "partition": "train",
+      "order": [
+        {
+          "env": "b",
+          "task": "web_check"
+        },
+        {
+          "env": "b",
+          "task": "inventory"
+        },
+        {
+          "env": "b",
+          "task": "discover"
+        },
+        {
+          "env": "a",
+          "task": "web_check"
+        },
+        {
+          "env": "a",
+          "task": "inventory"
+        },
+        {
+          "env": "a",
+          "task": "discover"
+        }
+      ],
+      "status": "planned_slot_no_participant_or_consent"
+    },
+    "P056": {
+      "partition": "test",
+      "order": [
+        {
+          "env": "a",
+          "task": "discover"
+        },
+        {
+          "env": "b",
+          "task": "web_check"
+        },
+        {
+          "env": "b",
+          "task": "inventory"
+        },
+        {
+          "env": "b",
+          "task": "discover"
+        },
+        {
+          "env": "a",
+          "task": "web_check"
+        },
+        {
+          "env": "a",
+          "task": "inventory"
+        }
+      ],
+      "status": "planned_slot_no_participant_or_consent"
+    },
+    "P057": {
+      "partition": "train",
+      "order": [
+        {
+          "env": "a",
+          "task": "inventory"
+        },
+        {
+          "env": "a",
+          "task": "discover"
+        },
+        {
+          "env": "b",
+          "task": "web_check"
+        },
+        {
+          "env": "b",
+          "task": "inventory"
+        },
+        {
+          "env": "b",
+          "task": "discover"
+        },
+        {
+          "env": "a",
+          "task": "web_check"
+        }
+      ],
+      "status": "planned_slot_no_participant_or_consent"
+    },
+    "P058": {
+      "partition": "test",
+      "order": [
+        {
+          "env": "a",
+          "task": "web_check"
+        },
+        {
+          "env": "a",
+          "task": "inventory"
+        },
+        {
+          "env": "a",
+          "task": "discover"
+        },
+        {
+          "env": "b",
+          "task": "web_check"
+        },
+        {
+          "env": "b",
+          "task": "inventory"
+        },
+        {
+          "env": "b",
+          "task": "discover"
+        }
+      ],
+      "status": "planned_slot_no_participant_or_consent"
+    },
+    "P059": {
+      "partition": "train",
+      "order": [
+        {
+          "env": "b",
+          "task": "discover"
+        },
+        {
+          "env": "a",
+          "task": "web_check"
+        },
+        {
+          "env": "a",
+          "task": "inventory"
+        },
+        {
+          "env": "a",
+          "task": "discover"
+        },
+        {
+          "env": "b",
+          "task": "web_check"
+        },
+        {
+          "env": "b",
+          "task": "inventory"
+        }
+      ],
+      "status": "planned_slot_no_participant_or_consent"
+    },
+    "P060": {
+      "partition": "cal",
+      "order": [
+        {
+          "env": "b",
+          "task": "inventory"
+        },
+        {
+          "env": "b",
+          "task": "discover"
+        },
+        {
+          "env": "a",
+          "task": "web_check"
+        },
+        {
+          "env": "a",
+          "task": "inventory"
+        },
+        {
+          "env": "a",
+          "task": "discover"
+        },
+        {
+          "env": "b",
+          "task": "web_check"
+        }
+      ],
+      "status": "planned_slot_no_participant_or_consent"
+    }
+  },
+  "note": "Slots are not recruited people. Repeated sessions are clustered by participant. A confirmatory external test and a separate low-FPR sample-size plan remain necessary."
+}

@@ -1,0 +1,901 @@
+{
+  "date": "2026-09-23",
+  "reviewed_commit": "df71886",
+  "purpose": "Exploratory audit of scan-budget confounding; not an independent validation experiment. Feature chosen after inspecting collection policy. Only the decision threshold is fitted on each existing training fold.",
+  "feature": "unique_dst_ports",
+  "model": "DecisionTreeClassifier(max_depth=1, random_state=42)",
+  "origin_counts": {
+    "ai": 32,
+    "human_replay": 12,
+    "script": 4
+  },
+  "feature_values_by_origin": {
+    "ai": [
+      0,
+      6,
+      7
+    ],
+    "human_replay": [
+      1000,
+      1001
+    ],
+    "script": [
+      1,
+      6
+    ]
+  },
+  "folds": [
+    {
+      "fold": "model:gemma3:4b",
+      "train_n": 30,
+      "test_n": 12,
+      "test_negative_n": 4,
+      "threshold": 503.0,
+      "macro_f1": 1.0,
+      "fpr": 0.0,
+      "predictions": [
+        {
+          "id": "ai_gemma3-4b_a_full_history_discover",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 6
+        },
+        {
+          "id": "ai_gemma3-4b_a_full_history_services",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 6
+        },
+        {
+          "id": "ai_gemma3-4b_a_recent_history_discover",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 6
+        },
+        {
+          "id": "ai_gemma3-4b_a_recent_history_services",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 6
+        },
+        {
+          "id": "ai_gemma3-4b_b_full_history_discover",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 6
+        },
+        {
+          "id": "ai_gemma3-4b_b_full_history_services",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 7
+        },
+        {
+          "id": "ai_gemma3-4b_b_recent_history_discover",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 6
+        },
+        {
+          "id": "ai_gemma3-4b_b_recent_history_services",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 6
+        },
+        {
+          "id": "replay_a_human_s04",
+          "y": 0,
+          "prediction": 0,
+          "feature_value": 1000
+        },
+        {
+          "id": "replay_a_human_s05",
+          "y": 0,
+          "prediction": 0,
+          "feature_value": 1000
+        },
+        {
+          "id": "replay_b_human_s04",
+          "y": 0,
+          "prediction": 0,
+          "feature_value": 1000
+        },
+        {
+          "id": "replay_b_human_s05",
+          "y": 0,
+          "prediction": 0,
+          "feature_value": 1000
+        }
+      ]
+    },
+    {
+      "fold": "model:gemma4:latest",
+      "train_n": 30,
+      "test_n": 12,
+      "test_negative_n": 4,
+      "threshold": 503.5,
+      "macro_f1": 1.0,
+      "fpr": 0.0,
+      "predictions": [
+        {
+          "id": "ai_gemma4-latest_a_full_history_discover",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 6
+        },
+        {
+          "id": "ai_gemma4-latest_a_full_history_services",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 6
+        },
+        {
+          "id": "ai_gemma4-latest_a_recent_history_discover",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 6
+        },
+        {
+          "id": "ai_gemma4-latest_a_recent_history_services",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 6
+        },
+        {
+          "id": "ai_gemma4-latest_b_full_history_discover",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 6
+        },
+        {
+          "id": "ai_gemma4-latest_b_full_history_services",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 6
+        },
+        {
+          "id": "ai_gemma4-latest_b_recent_history_discover",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 6
+        },
+        {
+          "id": "ai_gemma4-latest_b_recent_history_services",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 6
+        },
+        {
+          "id": "replay_a_human_s04",
+          "y": 0,
+          "prediction": 0,
+          "feature_value": 1000
+        },
+        {
+          "id": "replay_a_human_s05",
+          "y": 0,
+          "prediction": 0,
+          "feature_value": 1000
+        },
+        {
+          "id": "replay_b_human_s04",
+          "y": 0,
+          "prediction": 0,
+          "feature_value": 1000
+        },
+        {
+          "id": "replay_b_human_s05",
+          "y": 0,
+          "prediction": 0,
+          "feature_value": 1000
+        }
+      ]
+    },
+    {
+      "fold": "model:llama3.1:8b",
+      "train_n": 30,
+      "test_n": 12,
+      "test_negative_n": 4,
+      "threshold": 503.5,
+      "macro_f1": 1.0,
+      "fpr": 0.0,
+      "predictions": [
+        {
+          "id": "ai_llama3.1-8b_a_full_history_discover",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 6
+        },
+        {
+          "id": "ai_llama3.1-8b_a_full_history_services",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 6
+        },
+        {
+          "id": "ai_llama3.1-8b_a_recent_history_discover",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 6
+        },
+        {
+          "id": "ai_llama3.1-8b_a_recent_history_services",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 6
+        },
+        {
+          "id": "ai_llama3.1-8b_b_full_history_discover",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 6
+        },
+        {
+          "id": "ai_llama3.1-8b_b_full_history_services",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 6
+        },
+        {
+          "id": "ai_llama3.1-8b_b_recent_history_discover",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 6
+        },
+        {
+          "id": "ai_llama3.1-8b_b_recent_history_services",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 6
+        },
+        {
+          "id": "replay_a_human_s04",
+          "y": 0,
+          "prediction": 0,
+          "feature_value": 1000
+        },
+        {
+          "id": "replay_a_human_s05",
+          "y": 0,
+          "prediction": 0,
+          "feature_value": 1000
+        },
+        {
+          "id": "replay_b_human_s04",
+          "y": 0,
+          "prediction": 0,
+          "feature_value": 1000
+        },
+        {
+          "id": "replay_b_human_s05",
+          "y": 0,
+          "prediction": 0,
+          "feature_value": 1000
+        }
+      ]
+    },
+    {
+      "fold": "model:qwen3:4b",
+      "train_n": 30,
+      "test_n": 12,
+      "test_negative_n": 4,
+      "threshold": 503.5,
+      "macro_f1": 1.0,
+      "fpr": 0.0,
+      "predictions": [
+        {
+          "id": "ai_qwen3-4b_a_full_history_discover",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 0
+        },
+        {
+          "id": "ai_qwen3-4b_a_full_history_services",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 0
+        },
+        {
+          "id": "ai_qwen3-4b_a_recent_history_discover",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 0
+        },
+        {
+          "id": "ai_qwen3-4b_a_recent_history_services",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 0
+        },
+        {
+          "id": "ai_qwen3-4b_b_full_history_discover",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 0
+        },
+        {
+          "id": "ai_qwen3-4b_b_full_history_services",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 0
+        },
+        {
+          "id": "ai_qwen3-4b_b_recent_history_discover",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 0
+        },
+        {
+          "id": "ai_qwen3-4b_b_recent_history_services",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 0
+        },
+        {
+          "id": "replay_a_human_s04",
+          "y": 0,
+          "prediction": 0,
+          "feature_value": 1000
+        },
+        {
+          "id": "replay_a_human_s05",
+          "y": 0,
+          "prediction": 0,
+          "feature_value": 1000
+        },
+        {
+          "id": "replay_b_human_s04",
+          "y": 0,
+          "prediction": 0,
+          "feature_value": 1000
+        },
+        {
+          "id": "replay_b_human_s05",
+          "y": 0,
+          "prediction": 0,
+          "feature_value": 1000
+        }
+      ]
+    },
+    {
+      "fold": "environment:a",
+      "train_n": 19,
+      "test_n": 18,
+      "test_negative_n": 2,
+      "threshold": 503.5,
+      "macro_f1": 1.0,
+      "fpr": 0.0,
+      "predictions": [
+        {
+          "id": "ai_gemma3-4b_a_full_history_discover",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 6
+        },
+        {
+          "id": "ai_gemma3-4b_a_full_history_services",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 6
+        },
+        {
+          "id": "ai_gemma3-4b_a_recent_history_discover",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 6
+        },
+        {
+          "id": "ai_gemma3-4b_a_recent_history_services",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 6
+        },
+        {
+          "id": "ai_gemma4-latest_a_full_history_discover",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 6
+        },
+        {
+          "id": "ai_gemma4-latest_a_full_history_services",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 6
+        },
+        {
+          "id": "ai_gemma4-latest_a_recent_history_discover",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 6
+        },
+        {
+          "id": "ai_gemma4-latest_a_recent_history_services",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 6
+        },
+        {
+          "id": "ai_llama3.1-8b_a_full_history_discover",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 6
+        },
+        {
+          "id": "ai_llama3.1-8b_a_full_history_services",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 6
+        },
+        {
+          "id": "ai_llama3.1-8b_a_recent_history_discover",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 6
+        },
+        {
+          "id": "ai_llama3.1-8b_a_recent_history_services",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 6
+        },
+        {
+          "id": "ai_qwen3-4b_a_full_history_discover",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 0
+        },
+        {
+          "id": "ai_qwen3-4b_a_full_history_services",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 0
+        },
+        {
+          "id": "ai_qwen3-4b_a_recent_history_discover",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 0
+        },
+        {
+          "id": "ai_qwen3-4b_a_recent_history_services",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 0
+        },
+        {
+          "id": "replay_a_human_s04",
+          "y": 0,
+          "prediction": 0,
+          "feature_value": 1000
+        },
+        {
+          "id": "replay_a_human_s05",
+          "y": 0,
+          "prediction": 0,
+          "feature_value": 1000
+        }
+      ]
+    },
+    {
+      "fold": "environment:b",
+      "train_n": 19,
+      "test_n": 18,
+      "test_negative_n": 2,
+      "threshold": 503.0,
+      "macro_f1": 1.0,
+      "fpr": 0.0,
+      "predictions": [
+        {
+          "id": "ai_gemma3-4b_b_full_history_discover",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 6
+        },
+        {
+          "id": "ai_gemma3-4b_b_full_history_services",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 7
+        },
+        {
+          "id": "ai_gemma3-4b_b_recent_history_discover",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 6
+        },
+        {
+          "id": "ai_gemma3-4b_b_recent_history_services",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 6
+        },
+        {
+          "id": "ai_gemma4-latest_b_full_history_discover",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 6
+        },
+        {
+          "id": "ai_gemma4-latest_b_full_history_services",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 6
+        },
+        {
+          "id": "ai_gemma4-latest_b_recent_history_discover",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 6
+        },
+        {
+          "id": "ai_gemma4-latest_b_recent_history_services",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 6
+        },
+        {
+          "id": "ai_llama3.1-8b_b_full_history_discover",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 6
+        },
+        {
+          "id": "ai_llama3.1-8b_b_full_history_services",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 6
+        },
+        {
+          "id": "ai_llama3.1-8b_b_recent_history_discover",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 6
+        },
+        {
+          "id": "ai_llama3.1-8b_b_recent_history_services",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 6
+        },
+        {
+          "id": "ai_qwen3-4b_b_full_history_discover",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 0
+        },
+        {
+          "id": "ai_qwen3-4b_b_full_history_services",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 0
+        },
+        {
+          "id": "ai_qwen3-4b_b_recent_history_discover",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 0
+        },
+        {
+          "id": "ai_qwen3-4b_b_recent_history_services",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 0
+        },
+        {
+          "id": "replay_b_human_s04",
+          "y": 0,
+          "prediction": 0,
+          "feature_value": 1000
+        },
+        {
+          "id": "replay_b_human_s05",
+          "y": 0,
+          "prediction": 0,
+          "feature_value": 1000
+        }
+      ]
+    },
+    {
+      "fold": "context_policy:full_history",
+      "train_n": 22,
+      "test_n": 20,
+      "test_negative_n": 4,
+      "threshold": 503.0,
+      "macro_f1": 1.0,
+      "fpr": 0.0,
+      "predictions": [
+        {
+          "id": "ai_gemma3-4b_a_full_history_discover",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 6
+        },
+        {
+          "id": "ai_gemma3-4b_a_full_history_services",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 6
+        },
+        {
+          "id": "ai_gemma3-4b_b_full_history_discover",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 6
+        },
+        {
+          "id": "ai_gemma3-4b_b_full_history_services",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 7
+        },
+        {
+          "id": "ai_gemma4-latest_a_full_history_discover",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 6
+        },
+        {
+          "id": "ai_gemma4-latest_a_full_history_services",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 6
+        },
+        {
+          "id": "ai_gemma4-latest_b_full_history_discover",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 6
+        },
+        {
+          "id": "ai_gemma4-latest_b_full_history_services",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 6
+        },
+        {
+          "id": "ai_llama3.1-8b_a_full_history_discover",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 6
+        },
+        {
+          "id": "ai_llama3.1-8b_a_full_history_services",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 6
+        },
+        {
+          "id": "ai_llama3.1-8b_b_full_history_discover",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 6
+        },
+        {
+          "id": "ai_llama3.1-8b_b_full_history_services",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 6
+        },
+        {
+          "id": "ai_qwen3-4b_a_full_history_discover",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 0
+        },
+        {
+          "id": "ai_qwen3-4b_a_full_history_services",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 0
+        },
+        {
+          "id": "ai_qwen3-4b_b_full_history_discover",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 0
+        },
+        {
+          "id": "ai_qwen3-4b_b_full_history_services",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 0
+        },
+        {
+          "id": "replay_a_human_s04",
+          "y": 0,
+          "prediction": 0,
+          "feature_value": 1000
+        },
+        {
+          "id": "replay_a_human_s05",
+          "y": 0,
+          "prediction": 0,
+          "feature_value": 1000
+        },
+        {
+          "id": "replay_b_human_s04",
+          "y": 0,
+          "prediction": 0,
+          "feature_value": 1000
+        },
+        {
+          "id": "replay_b_human_s05",
+          "y": 0,
+          "prediction": 0,
+          "feature_value": 1000
+        }
+      ]
+    },
+    {
+      "fold": "context_policy:recent_history",
+      "train_n": 22,
+      "test_n": 20,
+      "test_negative_n": 4,
+      "threshold": 503.5,
+      "macro_f1": 1.0,
+      "fpr": 0.0,
+      "predictions": [
+        {
+          "id": "ai_gemma3-4b_a_recent_history_discover",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 6
+        },
+        {
+          "id": "ai_gemma3-4b_a_recent_history_services",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 6
+        },
+        {
+          "id": "ai_gemma3-4b_b_recent_history_discover",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 6
+        },
+        {
+          "id": "ai_gemma3-4b_b_recent_history_services",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 6
+        },
+        {
+          "id": "ai_gemma4-latest_a_recent_history_discover",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 6
+        },
+        {
+          "id": "ai_gemma4-latest_a_recent_history_services",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 6
+        },
+        {
+          "id": "ai_gemma4-latest_b_recent_history_discover",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 6
+        },
+        {
+          "id": "ai_gemma4-latest_b_recent_history_services",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 6
+        },
+        {
+          "id": "ai_llama3.1-8b_a_recent_history_discover",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 6
+        },
+        {
+          "id": "ai_llama3.1-8b_a_recent_history_services",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 6
+        },
+        {
+          "id": "ai_llama3.1-8b_b_recent_history_discover",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 6
+        },
+        {
+          "id": "ai_llama3.1-8b_b_recent_history_services",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 6
+        },
+        {
+          "id": "ai_qwen3-4b_a_recent_history_discover",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 0
+        },
+        {
+          "id": "ai_qwen3-4b_a_recent_history_services",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 0
+        },
+        {
+          "id": "ai_qwen3-4b_b_recent_history_discover",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 0
+        },
+        {
+          "id": "ai_qwen3-4b_b_recent_history_services",
+          "y": 1,
+          "prediction": 1,
+          "feature_value": 0
+        },
+        {
+          "id": "replay_a_human_s04",
+          "y": 0,
+          "prediction": 0,
+          "feature_value": 1000
+        },
+        {
+          "id": "replay_a_human_s05",
+          "y": 0,
+          "prediction": 0,
+          "feature_value": 1000
+        },
+        {
+          "id": "replay_b_human_s04",
+          "y": 0,
+          "prediction": 0,
+          "feature_value": 1000
+        },
+        {
+          "id": "replay_b_human_s05",
+          "y": 0,
+          "prediction": 0,
+          "feature_value": 1000
+        }
+      ]
+    },
+    {
+      "fold": "unseen_script_controls",
+      "train_n": 38,
+      "test_n": 4,
+      "test_negative_n": 4,
+      "threshold": 503.5,
+      "macro_f1": null,
+      "fpr": 1.0,
+      "predictions": [
+        {
+          "id": "script_a_0",
+          "y": 0,
+          "prediction": 1,
+          "feature_value": 6
+        },
+        {
+          "id": "script_a_1",
+          "y": 0,
+          "prediction": 1,
+          "feature_value": 1
+        },
+        {
+          "id": "script_b_0",
+          "y": 0,
+          "prediction": 1,
+          "feature_value": 6
+        },
+        {
+          "id": "script_b_1",
+          "y": 0,
+          "prediction": 1,
+          "feature_value": 1
+        }
+      ]
+    }
+  ],
+  "collector_error_ids": [
+    "ai_llama3.1-8b_b_full_history_services",
+    "ai_llama3.1-8b_b_recent_history_services"
+  ],
+  "counterfactual_session_count": 0
+}

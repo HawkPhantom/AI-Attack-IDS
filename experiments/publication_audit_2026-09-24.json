@@ -1,0 +1,956 @@
+{
+  "review_date": "2026-09-24",
+  "base_commit": "df71886",
+  "scope": "Read-only review of the dirty working tree; only separate review artifacts added. No new observations or paid API calls.",
+  "sha256": {
+    "README.md": "048b34bf52400adb7f767bde1b3a0f501581884ca2b79e0833d9e292f09f3008",
+    "REPORT.md": "2ce5a49c1abda44f08e2badfe968f1dca98122f8b3077fd6d1e5d5cd80927e41",
+    "experiments/MATCHED_RESULTS.md": "c6857135489d2e5031883fd9dc4ef0aa371f975e6124fe3019568d595933521a",
+    "experiments/study_v3_results.json": "6121e918d2a21dac9d981141f10b3833c4017a0e7fa4771f1ee5b6b1e17aa5e2",
+    "experiments/study_v3.json": "74f6862d9d923e526ec3e7ff35042c0d127e2e812caa6f9fdba942ce3dac597f",
+    "scripts/evaluate_study_v3.py": "7b105d0c8b1fd859e3ad56304988f8e93fcdf782a6586b4fcc57850726bb34e6",
+    "scripts/evaluate_network_v2.py": "26ae75af038f0d4c3ed77324de021714a102e93fbbc89ae4216f9788698305c8",
+    "scripts/eval_common.py": "4e84f32819fd1bf454b8afd435508dce48187bc3e9b1a00233a8aed1750087ca",
+    "harness/lab/study_v3.py": "af61abd098137a3eafabd69df002a82c7ba2edf43e42a2432a31aacb426d3d9f",
+    "harness/lab/capture.py": "8a549530b92bed495b53173400efc8c6886fc6395b3e14f2aef54c70b6869182",
+    "harness/lab/session_quality.py": "36a91f60aa7fbbdd59a56acbdeba5603001753ebe3f0f2106288c6e452abfa12"
+  },
+  "unit_tests": {
+    "command": ".venv/bin/python -m unittest discover -s tests -v",
+    "passed": 18
+  },
+  "reproduction": {
+    "command": ".venv/bin/python scripts/evaluate_study_v3.py --out /private/tmp/ids-review-v3-reproduced-20260924.json",
+    "entire_parsed_json_equal": true,
+    "folds": 35
+  },
+  "cohort": [
+    {
+      "origin": "ai",
+      "condition": "evasion",
+      "impairment": "none",
+      "attempts": 32,
+      "eligible": 30,
+      "exact_task_success": 8
+    },
+    {
+      "origin": "ai",
+      "condition": "normal",
+      "impairment": "delay_loss",
+      "attempts": 16,
+      "eligible": 13,
+      "exact_task_success": 6
+    },
+    {
+      "origin": "ai",
+      "condition": "normal",
+      "impairment": "none",
+      "attempts": 48,
+      "eligible": 42,
+      "exact_task_success": 15
+    },
+    {
+      "origin": "counterfactual_script",
+      "condition": "normal",
+      "impairment": "none",
+      "attempts": 13,
+      "eligible": 13,
+      "exact_task_success": null
+    },
+    {
+      "origin": "script",
+      "condition": "normal",
+      "impairment": "none",
+      "attempts": 48,
+      "eligible": 48,
+      "exact_task_success": null
+    }
+  ],
+  "negative_partitions": {
+    "train": {
+      "n_sessions": 36,
+      "source_groups": [
+        "curl_http",
+        "devtcp_bash",
+        "nc_each",
+        "nc_joint",
+        "nmap_joint",
+        "ping_then_nmap"
+      ]
+    },
+    "calibration": {
+      "n_sessions": 6,
+      "source_groups": [
+        "nmap_version"
+      ]
+    },
+    "test": {
+      "n_sessions": 6,
+      "source_groups": [
+        "nmap_each"
+      ]
+    }
+  },
+  "macro_fold_means_at_calibration_target_0_05": {
+    "model:": {
+      "host_only": {
+        "auroc": 0.1939393939393939,
+        "recall": 0.1686868686868687,
+        "fpr": 0.0
+      },
+      "port_count_only": {
+        "auroc": 0.6227272727272727,
+        "recall": 0.24545454545454548,
+        "fpr": 0.0
+      },
+      "command_count_only": {
+        "auroc": 0.7726010101010101,
+        "recall": 0.5452020202020202,
+        "fpr": 0.0
+      },
+      "state_share_only": {
+        "auroc": 0.5,
+        "recall": 0.0,
+        "fpr": 0.0
+      },
+      "network_no_timing": {
+        "auroc": 0.8843118686868687,
+        "recall": 0.8045454545454546,
+        "fpr": 0.5833333333333334
+      },
+      "host_network_no_timing": {
+        "auroc": 0.7526304713804715,
+        "recall": 0.6795454545454546,
+        "fpr": 0.5833333333333333
+      },
+      "network_rf_no_timing": {
+        "auroc": 0.7254313973063974,
+        "recall": 0.6303030303030303,
+        "fpr": 0.29166666666666663
+      },
+      "network_with_timing": {
+        "auroc": 0.8648989898989898,
+        "recall": 0.865530303030303,
+        "fpr": 0.4583333333333333
+      },
+      "host_network_with_timing": {
+        "auroc": 0.711847643097643,
+        "recall": 0.6599747474747475,
+        "fpr": 0.16666666666666666
+      },
+      "network_rf_with_timing": {
+        "auroc": 0.874368686868687,
+        "recall": 0.7530303030303029,
+        "fpr": 0.0
+      }
+    },
+    "model_family:": {
+      "host_only": {
+        "auroc": 0.22683982683982684,
+        "recall": 0.20375180375180377,
+        "fpr": 0.0
+      },
+      "port_count_only": {
+        "auroc": 0.61998556998557,
+        "recall": 0.23997113997113995,
+        "fpr": 0.0
+      },
+      "command_count_only": {
+        "auroc": 0.7854256854256855,
+        "recall": 0.5708513708513708,
+        "fpr": 0.0
+      },
+      "state_share_only": {
+        "auroc": 0.5,
+        "recall": 0.0,
+        "fpr": 0.0
+      },
+      "network_no_timing": {
+        "auroc": 0.8725348725348726,
+        "recall": 0.7393939393939394,
+        "fpr": 0.5
+      },
+      "host_network_no_timing": {
+        "auroc": 0.7113997113997114,
+        "recall": 0.5806637806637807,
+        "fpr": 0.5
+      },
+      "network_rf_no_timing": {
+        "auroc": 0.673039923039923,
+        "recall": 0.5784992784992785,
+        "fpr": 0.27777777777777773
+      },
+      "network_with_timing": {
+        "auroc": 0.796055796055796,
+        "recall": 0.8326118326118325,
+        "fpr": 0.38888888888888884
+      },
+      "host_network_with_timing": {
+        "auroc": 0.6358585858585859,
+        "recall": 0.6088023088023088,
+        "fpr": 0.2222222222222222
+      },
+      "network_rf_with_timing": {
+        "auroc": 0.8285233285233286,
+        "recall": 0.7183261183261184,
+        "fpr": 0.1111111111111111
+      }
+    },
+    "framework:": {
+      "host_only": {
+        "auroc": 0.21428571428571425,
+        "recall": 0.19047619047619047,
+        "fpr": 0.0
+      },
+      "port_count_only": {
+        "auroc": 0.6190476190476191,
+        "recall": 0.23809523809523808,
+        "fpr": 0.0
+      },
+      "command_count_only": {
+        "auroc": 0.7738095238095237,
+        "recall": 0.5476190476190476,
+        "fpr": 0.0
+      },
+      "state_share_only": {
+        "auroc": 0.5,
+        "recall": 0.0,
+        "fpr": 0.0
+      },
+      "network_no_timing": {
+        "auroc": 0.876984126984127,
+        "recall": 0.5476190476190476,
+        "fpr": 0.4166666666666667
+      },
+      "host_network_no_timing": {
+        "auroc": 0.6587301587301587,
+        "recall": 0.45238095238095233,
+        "fpr": 0.3333333333333333
+      },
+      "network_rf_no_timing": {
+        "auroc": 0.6924603174603174,
+        "recall": 0.7380952380952381,
+        "fpr": 0.5
+      },
+      "network_with_timing": {
+        "auroc": 0.8293650793650793,
+        "recall": 0.8095238095238095,
+        "fpr": 0.41666666666666663
+      },
+      "host_network_with_timing": {
+        "auroc": 0.5793650793650793,
+        "recall": 0.5,
+        "fpr": 0.25
+      },
+      "network_rf_with_timing": {
+        "auroc": 0.8650793650793651,
+        "recall": 0.6904761904761905,
+        "fpr": 0.16666666666666666
+      }
+    },
+    "task:": {
+      "host_only": {
+        "auroc": 0.1907203907203907,
+        "recall": 0.16507936507936508,
+        "fpr": 0.0
+      },
+      "port_count_only": {
+        "auroc": 0.6178266178266177,
+        "recall": 0.23565323565323562,
+        "fpr": 0.0
+      },
+      "command_count_only": {
+        "auroc": 0.7772893772893772,
+        "recall": 0.5545787545787546,
+        "fpr": 0.0
+      },
+      "state_share_only": {
+        "auroc": 0.5,
+        "recall": 0.0,
+        "fpr": 0.0
+      },
+      "network_no_timing": {
+        "auroc": 0.8345848595848596,
+        "recall": 0.7142857142857143,
+        "fpr": 0.6666666666666666
+      },
+      "host_network_no_timing": {
+        "auroc": 0.645054945054945,
+        "recall": 0.5262515262515263,
+        "fpr": 0.6666666666666666
+      },
+      "network_rf_no_timing": {
+        "auroc": 0.7920024420024422,
+        "recall": 0.7096459096459097,
+        "fpr": 0.3333333333333333
+      },
+      "network_with_timing": {
+        "auroc": 0.793040293040293,
+        "recall": 0.8021978021978021,
+        "fpr": 0.5
+      },
+      "host_network_with_timing": {
+        "auroc": 0.7340659340659341,
+        "recall": 0.7101343101343102,
+        "fpr": 0.5
+      },
+      "network_rf_with_timing": {
+        "auroc": 0.9029304029304029,
+        "recall": 0.8037851037851037,
+        "fpr": 0.16666666666666666
+      }
+    },
+    "env:": {
+      "host_only": {
+        "auroc": 0.21428571428571427,
+        "recall": 0.19047619047619047,
+        "fpr": 0.0
+      },
+      "port_count_only": {
+        "auroc": 0.6190476190476191,
+        "recall": 0.23809523809523808,
+        "fpr": 0.0
+      },
+      "command_count_only": {
+        "auroc": 0.7976190476190477,
+        "recall": 0.5952380952380952,
+        "fpr": 0.0
+      },
+      "state_share_only": {
+        "auroc": 0.5,
+        "recall": 0.0,
+        "fpr": 0.0
+      },
+      "network_no_timing": {
+        "auroc": 0.8492063492063493,
+        "recall": 0.9761904761904762,
+        "fpr": 1.0
+      },
+      "host_network_no_timing": {
+        "auroc": 0.7380952380952381,
+        "recall": 0.9523809523809523,
+        "fpr": 0.8333333333333333
+      },
+      "network_rf_no_timing": {
+        "auroc": 0.6587301587301586,
+        "recall": 0.7142857142857142,
+        "fpr": 0.5
+      },
+      "network_with_timing": {
+        "auroc": 0.8412698412698414,
+        "recall": 0.9285714285714286,
+        "fpr": 0.6666666666666666
+      },
+      "host_network_with_timing": {
+        "auroc": 0.626984126984127,
+        "recall": 0.8095238095238095,
+        "fpr": 0.8333333333333333
+      },
+      "network_rf_with_timing": {
+        "auroc": 0.9206349206349207,
+        "recall": 0.8333333333333333,
+        "fpr": 0.0
+      }
+    },
+    "evasion:": {
+      "host_only": {
+        "auroc": 0.22767857142857142,
+        "recall": 0.14285714285714285,
+        "fpr": 0.0
+      },
+      "port_count_only": {
+        "auroc": 0.6495535714285714,
+        "recall": 0.29910714285714285,
+        "fpr": 0.0
+      },
+      "command_count_only": {
+        "auroc": 0.6696428571428571,
+        "recall": 0.3392857142857143,
+        "fpr": 0.0
+      },
+      "state_share_only": {
+        "auroc": 0.5,
+        "recall": 0.0,
+        "fpr": 0.0
+      },
+      "network_no_timing": {
+        "auroc": 0.9609375,
+        "recall": 0.75,
+        "fpr": 0.5833333333333334
+      },
+      "host_network_no_timing": {
+        "auroc": 0.8534226190476191,
+        "recall": 0.7142857142857143,
+        "fpr": 0.5833333333333333
+      },
+      "network_rf_no_timing": {
+        "auroc": 0.8426339285714286,
+        "recall": 0.7633928571428572,
+        "fpr": 0.29166666666666663
+      },
+      "network_with_timing": {
+        "auroc": 0.9315476190476191,
+        "recall": 0.9330357142857143,
+        "fpr": 0.4583333333333333
+      },
+      "host_network_with_timing": {
+        "auroc": 0.8519345238095238,
+        "recall": 0.7366071428571429,
+        "fpr": 0.16666666666666666
+      },
+      "network_rf_with_timing": {
+        "auroc": 0.9352678571428571,
+        "recall": 0.7008928571428571,
+        "fpr": 0.0
+      }
+    },
+    "delay_loss:": {
+      "host_only": {
+        "auroc": 0.09375,
+        "recall": 0.0625,
+        "fpr": 0.0
+      },
+      "port_count_only": {
+        "auroc": 0.5625,
+        "recall": 0.125,
+        "fpr": 0.0
+      },
+      "command_count_only": {
+        "auroc": 0.8333333333333333,
+        "recall": 0.6666666666666666,
+        "fpr": 0.0
+      },
+      "state_share_only": {
+        "auroc": 0.5,
+        "recall": 0.0,
+        "fpr": 0.0
+      },
+      "network_no_timing": {
+        "auroc": 0.828125,
+        "recall": 0.875,
+        "fpr": 0.5833333333333334
+      },
+      "host_network_no_timing": {
+        "auroc": 0.7083333333333334,
+        "recall": 0.75,
+        "fpr": 0.5833333333333333
+      },
+      "network_rf_no_timing": {
+        "auroc": 0.7413194444444444,
+        "recall": 0.6875,
+        "fpr": 0.29166666666666663
+      },
+      "network_with_timing": {
+        "auroc": 0.71875,
+        "recall": 0.7916666666666666,
+        "fpr": 0.4583333333333333
+      },
+      "host_network_with_timing": {
+        "auroc": 0.625,
+        "recall": 0.5416666666666666,
+        "fpr": 0.16666666666666666
+      },
+      "network_rf_with_timing": {
+        "auroc": 0.8958333333333333,
+        "recall": 0.75,
+        "fpr": 0.0
+      }
+    },
+    "counterfactual:": {
+      "host_only": {
+        "auroc": 0.5,
+        "recall": 0.07692307692307693,
+        "fpr": 0.07692307692307693
+      },
+      "port_count_only": {
+        "auroc": 0.5384615384615384,
+        "recall": 0.23076923076923078,
+        "fpr": 0.15384615384615385
+      },
+      "command_count_only": {
+        "auroc": 0.5,
+        "recall": 0.6923076923076923,
+        "fpr": 0.6923076923076923
+      },
+      "state_share_only": {
+        "auroc": 0.5,
+        "recall": 0.0,
+        "fpr": 0.0
+      },
+      "network_no_timing": {
+        "auroc": 0.5,
+        "recall": 0.8461538461538461,
+        "fpr": 0.9230769230769231
+      },
+      "host_network_no_timing": {
+        "auroc": 0.5,
+        "recall": 0.6153846153846154,
+        "fpr": 0.5384615384615384
+      },
+      "network_rf_no_timing": {
+        "auroc": 0.5,
+        "recall": 0.38461538461538464,
+        "fpr": 0.38461538461538464
+      },
+      "network_with_timing": {
+        "auroc": 0.8076923076923077,
+        "recall": 0.7692307692307693,
+        "fpr": 0.5384615384615384
+      },
+      "host_network_with_timing": {
+        "auroc": 0.8076923076923077,
+        "recall": 0.46153846153846156,
+        "fpr": 0.38461538461538464
+      },
+      "network_rf_with_timing": {
+        "auroc": 0.8461538461538461,
+        "recall": 0.6923076923076923,
+        "fpr": 0.5384615384615384
+      }
+    }
+  },
+  "iid_illustration_zero_of_6_fpr_upper_one_sided_95": 0.39303776899708276,
+  "thresholds_at_1pct_and_5pct_identical": true,
+  "measured_state_head_counts": {},
+  "quality_false_accept": {
+    "id": "ai_9fc950fe6b82a13f4913",
+    "evidence": "Three successful ping response streams and two Docker No such container errors, but accepted 24-byte header-only pcap / n_pkts=0. Current QC checks only successful-returncode nmap evidence.",
+    "current_eligible": true
+  },
+  "eligible_port_budget_violations": [
+    {
+      "id": "ai_6920b82376a34a7fb295",
+      "condition": "evasion",
+      "observed_ports": 1000,
+      "unexpected_port_count": 994
+    }
+  ],
+  "human_plan_assignment_mismatch": {
+    "planned_slots": 60,
+    "observed_participants": 0,
+    "would_change_partition": 34
+  },
+  "exploratory_qc_sensitivity": {
+    "note": "Exploratory exclusion of one directly demonstrated measurement failure; not a new confirmatory result. Counterfactual pair is consequently not evaluated. Bootstrap reduced to 100 for diagnostic only.",
+    "excluded_id": "ai_9fc950fe6b82a13f4913",
+    "folds": 34,
+    "macro_fold_means_at_calibration_target_0_05": {
+      "model:": {
+        "host_only": {
+          "auroc": 0.19949494949494948,
+          "recall": 0.17424242424242425,
+          "fpr": 0.0
+        },
+        "port_count_only": {
+          "auroc": 0.6130050505050505,
+          "recall": 0.22601010101010102,
+          "fpr": 0.0
+        },
+        "command_count_only": {
+          "auroc": 0.7670454545454546,
+          "recall": 0.5340909090909092,
+          "fpr": 0.0
+        },
+        "state_share_only": {
+          "auroc": 0.5,
+          "recall": 0.0,
+          "fpr": 0.0
+        },
+        "network_no_timing": {
+          "auroc": 0.8843118686868687,
+          "recall": 0.8156565656565657,
+          "fpr": 0.5833333333333334
+        },
+        "host_network_no_timing": {
+          "auroc": 0.7561026936026936,
+          "recall": 0.6906565656565657,
+          "fpr": 0.5833333333333333
+        },
+        "network_rf_no_timing": {
+          "auroc": 0.7312184343434344,
+          "recall": 0.6830808080808081,
+          "fpr": 0.29166666666666663
+        },
+        "network_with_timing": {
+          "auroc": 0.8648989898989898,
+          "recall": 0.865530303030303,
+          "fpr": 0.4583333333333333
+        },
+        "host_network_with_timing": {
+          "auroc": 0.6697180134680134,
+          "recall": 0.6502525252525253,
+          "fpr": 0.16666666666666666
+        },
+        "network_rf_with_timing": {
+          "auroc": 0.8769991582491583,
+          "recall": 0.7474747474747474,
+          "fpr": 0.0
+        }
+      },
+      "model_family:": {
+        "host_only": {
+          "auroc": 0.23424723424723423,
+          "recall": 0.21115921115921119,
+          "fpr": 0.0
+        },
+        "port_count_only": {
+          "auroc": 0.607022607022607,
+          "recall": 0.21404521404521404,
+          "fpr": 0.0
+        },
+        "command_count_only": {
+          "auroc": 0.778018278018278,
+          "recall": 0.556036556036556,
+          "fpr": 0.0
+        },
+        "state_share_only": {
+          "auroc": 0.5,
+          "recall": 0.0,
+          "fpr": 0.0
+        },
+        "network_no_timing": {
+          "auroc": 0.8725348725348726,
+          "recall": 0.7542087542087543,
+          "fpr": 0.5
+        },
+        "host_network_no_timing": {
+          "auroc": 0.7087542087542088,
+          "recall": 0.5796055796055796,
+          "fpr": 0.5
+        },
+        "network_rf_no_timing": {
+          "auroc": 0.6558441558441559,
+          "recall": 0.5747955747955747,
+          "fpr": 0.27777777777777773
+        },
+        "network_with_timing": {
+          "auroc": 0.7987012987012987,
+          "recall": 0.8326118326118325,
+          "fpr": 0.38888888888888884
+        },
+        "host_network_with_timing": {
+          "auroc": 0.6467051467051467,
+          "recall": 0.6421356421356421,
+          "fpr": 0.2222222222222222
+        },
+        "network_rf_with_timing": {
+          "auroc": 0.8221099887766554,
+          "recall": 0.710918710918711,
+          "fpr": 0.2222222222222222
+        }
+      },
+      "framework:": {
+        "host_only": {
+          "auroc": 0.22083333333333333,
+          "recall": 0.19642857142857142,
+          "fpr": 0.0
+        },
+        "port_count_only": {
+          "auroc": 0.6083333333333334,
+          "recall": 0.21666666666666667,
+          "fpr": 0.0
+        },
+        "command_count_only": {
+          "auroc": 0.7666666666666666,
+          "recall": 0.5333333333333333,
+          "fpr": 0.0
+        },
+        "state_share_only": {
+          "auroc": 0.5,
+          "recall": 0.0,
+          "fpr": 0.0
+        },
+        "network_no_timing": {
+          "auroc": 0.870138888888889,
+          "recall": 0.5511904761904761,
+          "fpr": 0.4166666666666667
+        },
+        "host_network_no_timing": {
+          "auroc": 0.6339285714285714,
+          "recall": 0.4583333333333333,
+          "fpr": 0.3333333333333333
+        },
+        "network_rf_no_timing": {
+          "auroc": 0.6577380952380952,
+          "recall": 0.7333333333333334,
+          "fpr": 0.5
+        },
+        "network_with_timing": {
+          "auroc": 0.8238095238095238,
+          "recall": 0.8011904761904762,
+          "fpr": 0.41666666666666663
+        },
+        "host_network_with_timing": {
+          "auroc": 0.5555555555555556,
+          "recall": 0.48690476190476195,
+          "fpr": 0.25
+        },
+        "network_rf_with_timing": {
+          "auroc": 0.8561507936507937,
+          "recall": 0.6773809523809524,
+          "fpr": 0.16666666666666666
+        }
+      },
+      "task:": {
+        "host_only": {
+          "auroc": 0.19285714285714284,
+          "recall": 0.16507936507936508,
+          "fpr": 0.0
+        },
+        "port_count_only": {
+          "auroc": 0.6071428571428571,
+          "recall": 0.21428571428571427,
+          "fpr": 0.0
+        },
+        "command_count_only": {
+          "auroc": 0.7730158730158729,
+          "recall": 0.546031746031746,
+          "fpr": 0.0
+        },
+        "state_share_only": {
+          "auroc": 0.5,
+          "recall": 0.0,
+          "fpr": 0.0
+        },
+        "network_no_timing": {
+          "auroc": 0.8281746031746032,
+          "recall": 0.7142857142857143,
+          "fpr": 0.6666666666666666
+        },
+        "host_network_no_timing": {
+          "auroc": 0.6142857142857143,
+          "recall": 0.5198412698412698,
+          "fpr": 0.6666666666666666
+        },
+        "network_rf_no_timing": {
+          "auroc": 0.7845238095238095,
+          "recall": 0.719047619047619,
+          "fpr": 0.3333333333333333
+        },
+        "network_with_timing": {
+          "auroc": 0.7876984126984127,
+          "recall": 0.7936507936507936,
+          "fpr": 0.5
+        },
+        "host_network_with_timing": {
+          "auroc": 0.7043650793650794,
+          "recall": 0.6571428571428571,
+          "fpr": 0.5
+        },
+        "network_rf_with_timing": {
+          "auroc": 0.9007936507936507,
+          "recall": 0.7952380952380952,
+          "fpr": 0.16666666666666666
+        }
+      },
+      "env:": {
+        "host_only": {
+          "auroc": 0.21964285714285714,
+          "recall": 0.19523809523809524,
+          "fpr": 0.0
+        },
+        "port_count_only": {
+          "auroc": 0.6101190476190477,
+          "recall": 0.22023809523809523,
+          "fpr": 0.0
+        },
+        "command_count_only": {
+          "auroc": 0.7928571428571429,
+          "recall": 0.5857142857142856,
+          "fpr": 0.0
+        },
+        "state_share_only": {
+          "auroc": 0.5,
+          "recall": 0.0,
+          "fpr": 0.0
+        },
+        "network_no_timing": {
+          "auroc": 0.847420634920635,
+          "recall": 0.975,
+          "fpr": 1.0
+        },
+        "host_network_no_timing": {
+          "auroc": 0.719047619047619,
+          "recall": 0.95,
+          "fpr": 0.8333333333333333
+        },
+        "network_rf_no_timing": {
+          "auroc": 0.6450396825396825,
+          "recall": 0.6535714285714286,
+          "fpr": 0.5
+        },
+        "network_with_timing": {
+          "auroc": 0.8373015873015874,
+          "recall": 0.925,
+          "fpr": 0.6666666666666666
+        },
+        "host_network_with_timing": {
+          "auroc": 0.609920634920635,
+          "recall": 0.8,
+          "fpr": 0.8333333333333333
+        },
+        "network_rf_with_timing": {
+          "auroc": 0.9186507936507937,
+          "recall": 0.8035714285714286,
+          "fpr": 0.0
+        }
+      },
+      "evasion:": {
+        "host_only": {
+          "auroc": 0.22767857142857142,
+          "recall": 0.14285714285714285,
+          "fpr": 0.0
+        },
+        "port_count_only": {
+          "auroc": 0.6495535714285714,
+          "recall": 0.29910714285714285,
+          "fpr": 0.0
+        },
+        "command_count_only": {
+          "auroc": 0.6696428571428571,
+          "recall": 0.3392857142857143,
+          "fpr": 0.0
+        },
+        "state_share_only": {
+          "auroc": 0.5,
+          "recall": 0.0,
+          "fpr": 0.0
+        },
+        "network_no_timing": {
+          "auroc": 0.9609375,
+          "recall": 0.75,
+          "fpr": 0.5833333333333334
+        },
+        "host_network_no_timing": {
+          "auroc": 0.8586309523809524,
+          "recall": 0.7142857142857143,
+          "fpr": 0.5833333333333333
+        },
+        "network_rf_no_timing": {
+          "auroc": 0.8582589285714286,
+          "recall": 0.7991071428571428,
+          "fpr": 0.29166666666666663
+        },
+        "network_with_timing": {
+          "auroc": 0.9367559523809523,
+          "recall": 0.9330357142857143,
+          "fpr": 0.4583333333333333
+        },
+        "host_network_with_timing": {
+          "auroc": 0.7924107142857143,
+          "recall": 0.6651785714285714,
+          "fpr": 0.16666666666666666
+        },
+        "network_rf_with_timing": {
+          "auroc": 0.9412202380952381,
+          "recall": 0.7008928571428571,
+          "fpr": 0.0
+        }
+      },
+      "delay_loss:": {
+        "host_only": {
+          "auroc": 0.17708333333333331,
+          "recall": 0.14583333333333331,
+          "fpr": 0.0
+        },
+        "port_count_only": {
+          "auroc": 0.5625,
+          "recall": 0.125,
+          "fpr": 0.0
+        },
+        "command_count_only": {
+          "auroc": 0.8333333333333333,
+          "recall": 0.6666666666666666,
+          "fpr": 0.0
+        },
+        "state_share_only": {
+          "auroc": 0.5,
+          "recall": 0.0,
+          "fpr": 0.0
+        },
+        "network_no_timing": {
+          "auroc": 0.828125,
+          "recall": 0.875,
+          "fpr": 0.5833333333333334
+        },
+        "host_network_no_timing": {
+          "auroc": 0.7083333333333334,
+          "recall": 0.75,
+          "fpr": 0.5833333333333333
+        },
+        "network_rf_no_timing": {
+          "auroc": 0.7413194444444444,
+          "recall": 0.6875,
+          "fpr": 0.29166666666666663
+        },
+        "network_with_timing": {
+          "auroc": 0.71875,
+          "recall": 0.7916666666666666,
+          "fpr": 0.4583333333333333
+        },
+        "host_network_with_timing": {
+          "auroc": 0.625,
+          "recall": 0.5416666666666666,
+          "fpr": 0.16666666666666666
+        },
+        "network_rf_with_timing": {
+          "auroc": 0.8854166666666667,
+          "recall": 0.75,
+          "fpr": 0.0
+        }
+      },
+      "counterfactual:": {
+        "host_only": {
+          "auroc": 0.5,
+          "recall": 0.08333333333333333,
+          "fpr": 0.08333333333333333
+        },
+        "port_count_only": {
+          "auroc": 0.5,
+          "recall": 0.16666666666666666,
+          "fpr": 0.16666666666666666
+        },
+        "command_count_only": {
+          "auroc": 0.5,
+          "recall": 0.6666666666666666,
+          "fpr": 0.6666666666666666
+        },
+        "state_share_only": {
+          "auroc": 0.5,
+          "recall": 0.0,
+          "fpr": 0.0
+        },
+        "network_no_timing": {
+          "auroc": 0.5416666666666666,
+          "recall": 0.9166666666666666,
+          "fpr": 0.9166666666666666
+        },
+        "host_network_no_timing": {
+          "auroc": 0.5416666666666666,
+          "recall": 0.6666666666666666,
+          "fpr": 0.5
+        },
+        "network_rf_no_timing": {
+          "auroc": 0.4583333333333333,
+          "recall": 0.4166666666666667,
+          "fpr": 0.4166666666666667
+        },
+        "network_with_timing": {
+          "auroc": 0.7916666666666666,
+          "recall": 0.75,
+          "fpr": 0.5
+        },
+        "host_network_with_timing": {
+          "auroc": 0.875,
+          "recall": 0.5,
+          "fpr": 0.3333333333333333
+        },
+        "network_rf_with_timing": {
+          "auroc": 0.75,
+          "recall": 0.6666666666666666,
+          "fpr": 0.5
+        }
+      }
+    }
+  }
+}
